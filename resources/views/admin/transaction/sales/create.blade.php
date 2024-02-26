@@ -8,7 +8,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Sales</li>
+                        <li class="breadcrumb-item">Enquiry</li>
                         <li class="breadcrumb-item active" aria-current="page">Create</li>
                     </ol>
                 </nav>
@@ -68,21 +68,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group pb-1 parent">
-                                            <h6 class="form-label"><span>Metode Pembayaran</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="method_payment" id="method_payment">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Cash">Debit</option>
-                                                <option value="Cash">Transfer</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
@@ -287,7 +273,7 @@
                 </div>
                 <div class="card-body">
                     <div class="dropHere">
-
+                        
                     </div>
                 </div>
                 <div class="card-footer">

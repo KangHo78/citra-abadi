@@ -82,6 +82,7 @@
                                 <th>Nama PIC</th>
                                 <th>Email</th>
                                 <th>Total Transaksi</th>
+                                <th>Member</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -102,6 +103,7 @@
                                   testing@gmail.com
                                 </td>
                                 <td>Rp. {{number_format(10000*$i)}}</td>
+                                <td>Silver</td>
                                 
                                 <td>
                                     <div class="btn-group mb-1">
@@ -111,12 +113,12 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" style="">
-                                                <a href="{{route('promotions.show',$i)}}"
+                                                <a href="{{route('customer.show',$i)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-eye text-primary"></i>
                                                     <b class="p-2">Lihat</b>
                                                 </a>
-                                                <a href="{{route('promotions.edit',$i)}}"
+                                                <a href="{{route('customer.edit',$i)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-pencil text-warning"></i>
                                                     <b class="p-2">Ubah</b>

@@ -255,10 +255,10 @@
                 <div class = "invoice-head">
                     <div class = "invoice-head-top">
                         <div class = "invoice-head-top-left text-start">
-                            <img src="{{ asset('images/logo/logo.png') }}">
+                            <img src="{{ asset('front-end/images/logo-light.png') }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
-                            <h3>Invoice Penjualan</h3>
+                            <h3>Enquiry</h3>
                         </div>
                     </div>
                     <div class = "hr"></div>
@@ -268,7 +268,7 @@
                         </div>
                         <div class = "invoice-head-middle-right text-end">
                             <p>
-                                <spanf class = "text-bold">Invoice No:</span>16789
+                                <spanf class = "text-bold">Enquiry No:</span>16789
                             </p>
                         </div>
                     </div>
@@ -276,22 +276,12 @@
                     <div class = "invoice-head-bottom">
                         <div class = "invoice-head-bottom-left">
                             <ul>
-                                <li class = 'text-bold'>Invoiced To:</li>
+                                <li class = 'text-bold'>Enquirer:</li>
                                 <li>Smith Rhodes</li>
-                                <li>15 Hodges Mews, High Wycombe</li>
-                                <li>HP12 3JL</li>
-                                <li>United Kingdom</li>
+                                
                             </ul>
                         </div>
-                        <div class = "invoice-head-bottom-right">
-                            <ul class = "text-end">
-                                <li class = 'text-bold'>Pay To:</li>
-                                <li>Koice Inc.</li>
-                                <li>2705 N. Enterprise</li>
-                                <li>Orange, CA 89438</li>
-                                <li>contact@koiceinc.com</li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class = "overflow-view">
@@ -299,10 +289,10 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <td class = "text-bold">Service</td>
+                                    <td class = "text-bold">SKU</td>
                                     <td class = "text-bold">Description</td>
                                     <td class = "text-bold">Rate</td>
-                                    <td class = "text-bold">QTY</td>
+                                    <td class = "text-bold">Qty</td>
                                     <td class = "text-bold">Amount</td>
                                 </tr>
                             </thead>
@@ -310,23 +300,23 @@
                                 <tr>
                                     <td>Design</td>
                                     <td>Creating a website design</td>
-                                    <td>$50.00</td>
+                                    <td>Rp.50.00</td>
                                     <td>10</td>
-                                    <td class = "text-end">$500.00</td>
+                                    <td class = "text-end">Rp.500.00</td>
                                 </tr>
                                 <tr>
                                     <td>Development</td>
                                     <td>Website Development</td>
-                                    <td>$50.00</td>
+                                    <td>Rp.50.00</td>
                                     <td>10</td>
-                                    <td class = "text-end">$500.00</td>
+                                    <td class = "text-end">Rp.500.00</td>
                                 </tr>
                                 <tr>
                                     <td>SEO</td>
                                     <td>Optimize the site for search engines (SEO)</td>
-                                    <td>$50.00</td>
+                                    <td>Rp.50.00</td>
                                     <td>10</td>
-                                    <td class = "text-end">$500.00</td>
+                                    <td class = "text-end">Rp.500.00</td>
                                 </tr>
                                 <!-- <tr>
                                         <td colspan="4">10</td>
@@ -337,15 +327,15 @@
                         <div class = "invoice-body-bottom">
                             <div class = "invoice-body-info-item border-bottom">
                                 <div class = "info-item-td text-end text-bold">Sub Total:</div>
-                                <div class = "info-item-td text-end">$2150.00</div>
+                                <div class = "info-item-td text-end">Rp.2150.00</div>
                             </div>
                             <div class = "invoice-body-info-item border-bottom">
                                 <div class = "info-item-td text-end text-bold">Tax:</div>
-                                <div class = "info-item-td text-end">$215.00</div>
+                                <div class = "info-item-td text-end">Rp.215.00</div>
                             </div>
                             <div class = "invoice-body-info-item">
                                 <div class = "info-item-td text-end text-bold">Total:</div>
-                                <div class = "info-item-td text-end">$21365.00</div>
+                                <div class = "info-item-td text-end">Rp.21365.00</div>
                             </div>
                         </div>
                     </div>

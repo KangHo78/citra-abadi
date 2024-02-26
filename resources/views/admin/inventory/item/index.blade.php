@@ -92,25 +92,42 @@
                     <div class="col-sm-3 col-3">
                         <h4 class="card-title ">Data</h4>
                     </div>
+                   
                     <div class="col-sm-9 col-9">
-                        <div class="buttons">
-                            <a href="{{ route('item.create') }}"
-                                class="btn btn-outline-info rounded-pill float-end">Buat data baru</a>
+                    <div class="buttons">
+                          
+                          <a href="{{ route('item.create') }}"
+                              class="btn btn-outline-info rounded-pill float-end">Buat data baru</a>
+                      </div>
+                    <div class="buttons">
+                            <a href=""
+                                class="btn btn-outline-info rounded-pill float-end">Import Item</a>
                         </div>
+                    <div class="buttons">
+                            <a href=""
+                                class="btn btn-outline-info rounded-pill float-end">Export Item</a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive dataTable" >
-                    <table class="table" id="dataTable" style="overflow:scroll; " width="150%">
+                    <table class="table" id="dataTable" style="overflow:scroll; " width="225%">
                         <thead>
                             <tr>
                                 <th>SKU</th>
                                 <th>Nama</th>
                                 <th>Merek</th>
                                 <th>Kategori</th>
+                                <th>Subkategori 1</th>
+                                <th>Subkategori 2</th>
+                                <th>Subkategori 3</th>
+                                <th>Material</th>
+                                <th>Finishing</th>
+                                <th>Diameter</th>
+                                <th>Qty / Pkt</th>
                                 <th>Deskripsi</th>
-                                <th>HPP</th>
                                 <th>Harga Jual</th>
                                 <th>Harga Diskon</th>
                                 <th>Foto Produk</th>
@@ -125,15 +142,20 @@
                                 <td>Item {{$i}}</td>
                                 <td>Merek A</td>
                                 <td>Kategori A</td>
+                                <td>Subkategori A</td>
+                                <td>Subkategori A</td>
+                                <td>Subkategori A</td>
+                                <td>Material A</td>
+                                <td>Finishing A</td>
+                                <td>Diameter A</td>
+                                <td>100</td>
                                 <td>
                                     <ul style="list-style-type: none;padding-inline-start: 0">
                                         <li>Deskripsi</li>
                                         <li>Deskripsi</li>
                                     </ul>
                                 </td>
-                                <td>
-                                Rp. {{number_format(10000*$i+1)}}
-                                </td>
+                               
                                 <td>Rp. {{number_format(20000*$i+2)}}</td>
                                 <td>Rp. {{number_format(15000*$i+2)}}</td>
                                 <td>

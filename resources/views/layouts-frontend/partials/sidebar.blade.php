@@ -1,4 +1,4 @@
-<x-maz-sidebar :href="route('dashboard')" :logo="asset('images/logo/logo.png')">
+<x-maz-sidebar :href="route('dashboard')" :logo="{{ asset('front-end/images/logo-light.png') }}">
 
     <!-- Add Sidebar Menu Items Here -->
 
@@ -10,22 +10,14 @@
         <x-maz-sidebar-sub-item name="Penerimaan" :link="route('receive_item.index')"></x-maz-sidebar-sub-item>
     </x-maz-sidebar-item>
 
-    <x-maz-sidebar-item name="Stok" icon="bi bi-stack">
-        <!-- Current stock + Item-->
-        <x-maz-sidebar-sub-item name="Item" :link="route('item.index')"></x-maz-sidebar-sub-item>
-        <!-- Stock opname-->
-        <x-maz-sidebar-sub-item name="Penyesuaian Stok" :link="route('adjustment.index')"></x-maz-sidebar-sub-item>
-        <!--  Mutasi Stok -->
-        <x-maz-sidebar-sub-item name="Mutasi Stok" :link="route('transfer.index')"></x-maz-sidebar-sub-item>
-        <!--  List Gudang -->
-        <x-maz-sidebar-sub-item name="Gudang" :link="route('warehouses.index')"></x-maz-sidebar-sub-item>
-    </x-maz-sidebar-item>
+    <x-maz-sidebar-item name="Item" :link="route('item.index')"></x-maz-sidebar-item>
+
 
     <x-maz-sidebar-item name="Laporan" icon="bi bi-stack">
         <x-maz-sidebar-sub-item name="Stock" :link="route('report.stock.index')"></x-maz-sidebar-sub-item>
         <x-maz-sidebar-sub-item name="Mutasi Stock" :link="route('report.stock-mutation.index')"></x-maz-sidebar-sub-item>
         <x-maz-sidebar-sub-item name="Pengguna" :link="route('report.user.index')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="Pendapatan" :link="route('report.income.index')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="Enquiry" :link="route('report.income.index')"></x-maz-sidebar-sub-item>
         <x-maz-sidebar-sub-item name="HPP" :link="route('report.hpp.index')"></x-maz-sidebar-sub-item>
         <x-maz-sidebar-sub-item name="Gross" :link="route('report.gross.index')"></x-maz-sidebar-sub-item>
         <x-maz-sidebar-sub-item name="Wishlist" :link="route('report.wishlist.index')"></x-maz-sidebar-sub-item>

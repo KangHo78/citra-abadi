@@ -138,6 +138,36 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Banner 1</span></h6>
+                                            <input name="description" type="file" id="description"
+                                                placeholder="Pilih File" class="form-control form-control-lg "
+                                                value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Banner 2</span></h6>
+                                            <input name="description" type="file" id="description"
+                                                placeholder="Pilih File" class="form-control form-control-lg "
+                                                value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Warna</span></h6>
+                                            <input name="description" type="text" id="description"
+                                                placeholder="#FFF" class="form-control form-control-lg "
+                                                value="">
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">

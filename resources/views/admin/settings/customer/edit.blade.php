@@ -137,6 +137,18 @@
                                                 value="">
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Member</span></h6>
+                                            <select class="select2 form-select form-control-lg validation required"
+                                                name="customer_id" id="customer_id">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="Cash">Bronze</option>
+                                                <option value="Cash">Silver</option>
+                                                <option value="Cash">Gold</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

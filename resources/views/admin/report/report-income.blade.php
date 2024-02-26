@@ -270,13 +270,13 @@
                 <div class = "invoice-head">
                     <div class = "invoice-head-top">
                         <div class = "invoice-head-top-left text-start">
-                            <img src="{{ asset('images/logo/logo.png') }}">
+                            <img src="{{ asset('front-end/images/logo-light.png') }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
-                            <h3>Laporan Pendapatan</h3>
+                            <h3>Laporan Enquiry</h3>
                             <h5>Jl tenggilis Raya no 77</h5>
                             <h5>+62 8231 9323 34</h5>
-                            <h5>www.mebel-modern.com</h5>
+                            <h5>citraabaditeknik.com</h5>
                         </div>
                     </div>
                     <div class = "hr"></div>
@@ -288,33 +288,22 @@
                             <thead>
                                 <tr>
                                     <td class = "text-bold">#</td>
-                                    <td class = "text-bold">Kode</td>
-                                    <td class = "text-bold">Tanggal</td>
                                     <td class = "text-bold">Produk</td>
-                                    <td class = "text-bold">Warehouse</td>
-                                    <td class = "text-bold">Qty</td>
-                                    <td class = "text-bold text-end">Total</td>
+                                    <td class = "text-bold">Total Qty</td>
+                                    <td class = "text-bold text-end">Total Enquiry</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 @for ($i = 1; $i < 50; $i++)
                                     <tr>
                                         <td>{{$i}}</td>
-                                        <td>SLE019200{{$i}}</td>
-                                        <td>{{date('d F Y')}}</td>
                                         <td>Pakureng</td>
-                                        <td>Pusat</td>
                                         <td>{{10*$i}}</td>
-                                        <td class = "text-end">Rp. {{number_format(12000*$i,0,'.',',')}}</td>
+                                        <td class = "text-end">{{10*$i}}</td>
                                     </tr>
                                 @endfor
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="6" class="text-center">Sub total</th>
-                                    <th class="text-end">Rp. 30.000.000</th>
-                                </tr>
-                            </tfoot>
+                            
                         </table>
                     </div>
                 </div>
