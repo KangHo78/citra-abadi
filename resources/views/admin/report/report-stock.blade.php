@@ -274,7 +274,7 @@
                 <div class = "invoice-head">
                     <div class = "invoice-head-top">
                         <div class = "invoice-head-top-left text-start">
-                            <img src="{{ asset('images/logo/logo.png') }}">
+                            <img src="{{ asset('front-end/images/logo-light.png') }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
                             <h3>Laporan Stock</h3>
@@ -286,7 +286,7 @@
                         ">+62 8231 9323 34</h5>
                             <h5 style="
                             font-size: small;
-                        ">www.mebel-modern.com</h5>
+                        ">citraabaditeknik.com</h5>
                         </div>
                     </div>
                     <div class = "hr"></div>

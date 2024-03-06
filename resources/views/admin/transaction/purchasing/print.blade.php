@@ -255,7 +255,7 @@
                 <div class = "invoice-head">
                     <div class = "invoice-head-top">
                         <div class = "invoice-head-top-left text-start">
-                            <img src="{{ asset('images/logo/logo.png') }}">
+                            <img src="{{ asset('front-end/images/logo-light.png') }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
                             <h3>Invoice Pembelian</h3>

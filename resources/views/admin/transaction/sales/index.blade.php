@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="row mb-2">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Transaksi Penjualan</h3>
+                <h3>Enquiry</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -110,7 +110,7 @@
                                 <th>Date</th>
                                 <th>Customer</th>
                                 <th>Item</th>
-                                <th>Total</th>
+                                <!-- <th>Total</th> -->
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -133,21 +133,21 @@
                                             <li>Plafon</li>
                                         </ul>
                                     </td>
-                                    <td>Rp. {{ number_format(10000 * $i) }}</td>
+                                    <!-- <td>Rp. {{ number_format(10000 * $i) }}</td> -->
                                     <td>
                                         <ul
                                             style="list-style-type: none;padding-inline-start: 0;margin-bottom: 0px;text-align:center">
                                             @if ($i % 3 == 1)
-                                                <li class="pb-2"><span class="badge bg-warning">Transfer</span></li>
+                                                <li class="pb-2"><span class="badge bg-warning">Email balik</span></li>
                                             @else
-                                                <li class="pb-2"><span class="badge bg-info">Cash / Debit</span></li>
+                                                <li class="pb-2"><span class="badge bg-info">Permintaan Masuk</span></li>
                                             @endif
 
-                                            @if ($i % 3 == 1)
+                                            <!-- @if ($i % 3 == 1)
                                                 <li><span class="badge bg-danger">Belum Bayar</span></li>
                                             @else
                                                 <li><span class="badge bg-success">Terbayar</span></li>
-                                            @endif
+                                            @endif -->
                                         </ul>
 
                                     </td>
@@ -165,13 +165,13 @@
                                                         <i class="bi bi-eye text-primary"></i>
                                                         <b class="p-2">Lihat</b>
                                                     </a>
-                                                    @if ($i % 3 == 1)
+                                                    <!-- @if ($i % 3 == 1)
                                                         <a href="{{ route('transaction.sales.show', $i) }}"
                                                             class="dropdown-item">
                                                             <i class="bi bi-wallet text-success"></i>
                                                             <b class="p-2">Bukti Transfer</b>
                                                         </a>
-                                                    @endif
+                                                    @endif -->
                                                     <a href="{{ route('transaction.sales.edit', $i) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-pencil text-warning"></i>

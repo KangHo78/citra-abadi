@@ -2,13 +2,13 @@
     <x-slot name="header">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h4>Ubah Penjualan</h4>
-                <p class="text-subtitle text-muted">Buat data transaksi dan isi form dibawah.</p>
+                <h4>Ubah Enquiry</h4>
+                <p class="text-subtitle text-muted">Buat data enquiry dan isi form dibawah.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Sales</li>
+                        <li class="breadcrumb-item">Enquiry</li>
                         <li class="breadcrumb-item active" aria-current="page">Create</li>
                     </ol>
                 </nav>
@@ -68,19 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group pb-1 parent">
-                                            <h6 class="form-label"><span>Metode Pembayaran</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Cash">Debit</option>
-                                                <option value="Cash">Transfer</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
+                                    
                                     {{-- <div class="col-6">
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Akun</span></h6>
@@ -114,6 +102,36 @@
                                             <input name="description" type="text" id="description"
                                                 placeholder="Description" class="form-control form-control-lg "
                                                 value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group pb-1 parent">
+                                            <h6 class="form-label"><span>Status</span></h6>
+                                            <select class="select2 form-select form-control-lg validation required"
+                                                name="customer_id" id="customer_id">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="1" >
+                                                    Permintaan Masuk
+                                                </option>
+                                                <option value="1" >
+                                                    Proses
+                                                </option>
+                                                <option value="1" >
+                                                    Email balik
+                                                </option>
+                                                <option value="1" >
+                                                    Cancel
+                                                </option>
+                                                <option value="1" >
+                                                    Deal
+                                                </option>
+                                                <option value="1" >
+                                                    Follow Up
+                                                </option>
+                                    
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -283,7 +301,64 @@
                 </div>
                 <div class="card-body">
                     <div class="dropHere">
+                    <div class="row dataDetail" style="margin-bottom: -20px;">
+                <input name="dt[]" type="hidden" class="dt" value="0">
+                <input name="current_stock[]" class="current_stock" type="hidden">
 
+                <div class="col-sm-12 col-lg-4">
+                    <div class="form-group pb-3">
+                        <select class="select2 form-select form-control-lg validation required"
+                                                name="customer_id" id="customer_id">
+                                                <option value="" selected="">- Select -</option>
+                                                
+                                                <option value="26" data-name="PAK MUL #5"
+                                                    data-code="CUS01240030001" data-phone="081332333095"
+                                                    data-address="-">[CUS01240030001]
+                                                    Paku Reng
+                                                </option>
+
+                                                <option value="26" data-name="PAK MUL #5"
+                                                    data-code="CUS01240030001" data-phone="081332333095"
+                                                    data-address="-">[CUS01240030001]
+                                                    Asbes
+                                                </option>
+
+                                            </select>
+                    </div>
+
+                   
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="form-group pb-3">
+                        <input name="price_dt[]" type="text" id="" placeholder="0" onkeyup="calcSubTotal()"
+                            class="form-control form-control-lg sumTotal text-end numberFormat validation price_dt"
+                            value="0">
+                    </div>
+                    <p class="float-end" style="margin-top: -20px"> Total : <input type="text"
+                            style="pointer-events:none"
+                            class="removeField border-0 bg-transparent text-end price_total_dt">
+                    </p>
+                </div>
+                <div class="col-sm-6 col-lg-1">
+                    <div class="form-group pb-3">
+                        <input name="qty_dt[]" value="1" type="text" id="" placeholder="0"
+                            onkeyup="calcSubTotal()"
+                            class="form-control form-control-lg validation numberFormat text-end qty_dt">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-3">
+                    <div class="form-group pb-3">
+                        <input name="description_dt[]" type="text" id="" placeholder="Description"
+                            class="form-control form-control-lg validation description_dt" value="">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-1">
+                    <button style="margin-top:2px" class="btn btn-outline-danger rounded-pill"
+                        onclick="removeDetail(this)" type="button">
+                        <i class="bi bi-close"></i> X
+                    </button>
+                </div>
+            </div>
                     </div>
                 </div>
                 <div class="card-footer">

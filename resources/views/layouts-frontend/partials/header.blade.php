@@ -7,10 +7,9 @@
                         <div class="de-flex-col">
                             <!-- logo begin -->
                             <div id="logo">
-                                <a href="{{ url('/') }}">
-                                    <img alt="" class="logo" src="front-end/images/logo-light.png" />
-                                    <img alt="" class="logo-2" src="front-end/images/logo-light.png"
-                                        width="150px" />
+                                <a href="index.html">
+                                    <img alt="" class="logo" src="{{ asset('front-end/images/logo-light.png') }}" />
+                                    <img alt="" class="logo-2" src="{{ asset('front-end/images/logo-light.png') }}" width="150px" />
                                 </a>
                             </div>
                             <!-- logo close -->
