@@ -19,12 +19,20 @@
 
 <body>
     <div id="wrapper">
+      
+        <div class="floating-button">
+          <a href="#" class="float">
+            <i class="fa fa-whatsapp my-float"></i>
+          </a>
+        </div>
+
         @include('layouts-frontend.partials.header')
         {{ $slot }}
         @include('layouts-frontend.partials.footer')
         <a href="#" id="back-to-top"></a>
     </div>
     @include('layouts-frontend.partials.scripts')
-</body>
+    @yield('scripts')
+  </body>
 
 </html>

@@ -22,7 +22,7 @@
                             <a href="explore.html" class="btn-main wow fadeInUp lead"
                                 data-wow-delay="1.25s">Katalog</a>&nbsp;
                             <a href="create-options.html" class="btn-main btn-light wow fadeInUp lead"
-                                data-wow-delay="1.25s">Hubungi Kami</a>
+                                data-wow-delay="1.25s">Tentang Kami</a>
                             <div class="row">
                                 <div class="spacer-single"></div>
                                 <div class="row">
@@ -50,29 +50,46 @@
                             </div>
                             <div class="mb-sm-30"></div>
                         </div>
+                        <div class="col-md-6">
+                            <section id="section-hero" class="no-bottom"
+                                data-bgimage="url(images/background/12.jpg) bottom"
+                                style="background: url(&quot;images/background/12.jpg&quot;) center bottom / cover;">
+                                <div class="container" style="background-size: cover;">
+
+
+                                    <div id="items-carousel-big" class="owl-carousel owl-loaded owl-drag">
+
+
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-5184px, 0px, 0px); transition: all 0.25s ease 0s; width: 9072px; background-size: cover;">
+                                                <div class="owl-item cloned">
+                                                    <div class="nft__item_lg">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-12">
+                                                                <img src="https://madebydesignesia.com/themes/gigaland/images/carousel/crs-9.jpg"
+                                                                    class="img-fluid" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav" style="background-size: cover;"><button type="button"
+                                                role="presentation" class="owl-prev"><i
+                                                    class="fa fa-chevron-left"></i></button><button type="button"
+                                                role="presentation" class="owl-next"><i
+                                                    class="fa fa-chevron-right"></i></button></div>
+                                        <div class="owl-dots disabled" style="background-size: cover;"></div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
-      
-        {{-- <section id="section-category" class="pt0 pb60">
-            <div class="container">
-             
-                <div class="row">
-                    @foreach ($category as $el)
-                        <div class="col-md-2 col-sm-4 col-6 mb-sm-30 wow fadeInRight" data-wow-delay=".6s">
-                            <a href='explore.html' class="icon-box style-2 rounded">
-                                <i class="fa fa-th"></i>
-                                <span>
-                                    {{ $el }}
-                                </span>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section> --}}
 
         <section id="section-collections" class="pt60 pb60" data-bgcolor="#f7ffe7">
             <div class="container">
@@ -91,7 +108,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -104,13 +121,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -135,7 +152,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -148,13 +165,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -179,7 +196,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -192,13 +209,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -223,7 +240,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -236,13 +253,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -267,7 +284,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -280,13 +297,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -311,7 +328,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -324,13 +341,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -355,7 +372,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -368,13 +385,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -394,9 +411,9 @@
                 </div>
         </section>
         @php
-        $category = ['anchor', 'bolts', 'manchine', 'screws', 'rivets', 'nuts', 'socket screws', 'Washer', 'clips & pins', 'structure & marine product', 'wire thread insert', 'other'];
+            $category = ['anchor', 'bolts', 'manchine', 'screws', 'rivets', 'nuts', 'socket screws', 'Washer', 'clips & pins', 'structure & marine product', 'wire thread insert', 'other'];
         @endphp
-        <section id="section-category"  aria-label="section">
+        <section id="section-category" aria-label="section">
             <div class="col-lg-12" style="background-size: cover;">
                 <div class="text-center" style="background-size: cover;">
                     <h2>Kategori Produk</h2>
@@ -406,17 +423,18 @@
             <div class="d-carousel">
                 <div id="item-carousel-big-type-4" class="owl-carousel owl-center wow fadeIn" data-wow-delay="1s">
                     @foreach ($category as $el)
-                    <div class="nft_pic mod-a">                            
-                        <a href="{{route('item-details')}}">
-                            <span class="nft_pic_info">
-                                <span class="nft_pic_title">{{$el}}</span>
-                                <span class="nft_pic_by">-</span>
-                            </span>
-                        </a>
-                        <div class="nft_pic_wrap">
-                            <img src="https://www.sinhong.com/uploadedimg/bannerimg/1463124747_1_Anchors.jpg" class="lazy img-fluid" alt="">
+                        <div class="nft_pic mod-a">
+                            <a href="{{ route('item-details') }}">
+                                <span class="nft_pic_info">
+                                    <span class="nft_pic_title">{{ $el }}</span>
+                                    <span class="nft_pic_by">-</span>
+                                </span>
+                            </a>
+                            <div class="nft_pic_wrap">
+                                <img src="https://www.sinhong.com/uploadedimg/bannerimg/1463124747_1_Anchors.jpg"
+                                    class="lazy img-fluid" alt="">
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 <div class="d-arrow-left mod-a"><i class="fa fa-angle-left"></i></div>
@@ -444,7 +462,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -457,13 +475,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -488,7 +506,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -501,13 +519,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -532,7 +550,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -545,13 +563,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -576,7 +594,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -589,13 +607,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -620,7 +638,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -633,13 +651,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -664,7 +682,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -677,13 +695,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -708,7 +726,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -721,13 +739,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -752,7 +770,8 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{route('item-details')}}'">Buy Now</button>
+                                        <button onclick="location.href='{{ route('item-details') }}'">Buy
+                                            Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
@@ -765,13 +784,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{route('item-details')}}">
+                                <a href="{{ route('item-details') }}">
                                     <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -827,4 +846,5 @@
         </div>
     </section>
     <!-- content close -->
+
 </x-app-layout-frontend>

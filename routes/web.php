@@ -54,6 +54,26 @@ Route::get('/item-details', function () {
     return view('user.item_details');
 })->name('item-details');
 
+Route::get('/catalog', function () {
+    return view('user.catalog');
+})->name('catalog');
+
+Route::get('/checkout', function () {
+    return view('user.checkout');
+})->name('checkout');
+
+Route::get('/about-us', function () {
+    return view('user.about_us');
+})->name('about-us');
+
+Route::get('/service', function () {
+    return view('user.service');
+})->name('service');
+
+Route::get('/contact-us', function () {
+    return view('user.contact_us');
+})->name('contact-us');
+
 
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {

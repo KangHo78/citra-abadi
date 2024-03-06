@@ -4,15 +4,27 @@
         <section aria-label="section" class="mt90 sm-mt-0 pb-0">
             <div class="container">
                 <div class="row">
-                    
-                    <div class="col-md-4 text-center">
-                        
+
+                    <div class="col-md-8 col-lg-3 text-center">
+
                         <div class="" style="border:1px solid black">
-                            <img src="https://www.sinhong.com/UploadedImg/category/1062016_50826_PM_1_Anchor_660_md.jpg" class="img-fluid img-rounded mb-sm-30" alt="">
+                            <img src="https://www.sinhong.com/UploadedImg/category/1062016_50826_PM_1_Anchor_660_md.jpg"
+                                class="img-fluid img-rounded mb-sm-30" alt="">
                         </div>
-                       
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-4 col-lg-1 text-center">
+                        <div >
+                            <div class="mb10" style="border:1px solid black">
+                                <img src="https://www.sinhong.com/UploadedImg/category/1062016_50826_PM_1_Anchor_660_md.jpg"
+                                    class="img-fluid img-rounded mb-sm-30" alt="" width="100px">
+                            </div>
+                            <div class="mb10" style="border:1px solid black">
+                                <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    class="img-fluid img-rounded mb-sm-30" alt="" width="100px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-8">
                         <div class="item_info">
                             <!-- Auctions ends in <div class="de_countdown" data-year="2022" data-month="4" data-day="16" data-hour="8"></div> -->
                             <h2>Drop In Anchor Type D</h2>
@@ -117,6 +129,16 @@
                                                     <li><span>Utility</span></li>
                                                 </ul>
                                             </div>
+
+                                            <div id="filter_by_category" class="dropdown"
+                                                style="background-size: cover;">
+                                                <input type="text" name="search" id="description" class="form-control" placeholder="Cari Item..">
+                                            </div>
+
+                                            <div id="filter_by_category" class="dropdown float-end"
+                                                style="background-size: cover;">
+                                                <button class="btn btn-main"><i class="fa fa-shopping-basket"></i> &nbsp; Add To Cart </button>
+                                            </div>
                                         </div>
 
                                         <table class="table table-md">
@@ -137,7 +159,8 @@
                                                         <u>670021-060-050</u>
                                                     </th>
                                                     <td style="vertical-align: middle;">STEEL</td>
-                                                    <td style="vertical-align: middle;" class="d-plus">YELLOW ZINC</td>
+                                                    <td style="vertical-align: middle;" class="d-plus">YELLOW ZINC
+                                                    </td>
                                                     <td style="vertical-align: middle;" class="d-plus">M 8</td>
                                                     <td style="vertical-align: middle;">50</td>
                                                     <td style="vertical-align: middle;">100</td>
@@ -172,9 +195,11 @@
                                         <div class="spacer-double" style="background-size: cover;"></div>
 
                                         <ul class="pagination justify-content-center">
+                                            <li><a href="#">Previous</a></li>
                                             <li class="active"><a href="#">1 - 20</a></li>
                                             <li><a href="#">21 - 40</a></li>
                                             <li><a href="#">41 - 60</a></li>
+                                            <li><a href="#">Next</a></li>
                                         </ul>
                                     </div>
                                 </div>
