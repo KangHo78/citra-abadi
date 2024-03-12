@@ -2,13 +2,13 @@
     <x-slot name="header">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h4>Tambah Pelanggan</h4>
+                <h4>Tambah Enquirer</h4>
                 <p class="text-subtitle text-muted">Buat data transaksi dan isi form dibawah.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Pelanggan</li>
+                        <li class="breadcrumb-item">Enquirer</li>
                         <li class="breadcrumb-item active" aria-current="page">Create</li>
                     </ol>
                 </nav>

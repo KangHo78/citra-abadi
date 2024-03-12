@@ -78,8 +78,8 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">Pembelian</h5>
-                                <h6 class="font-bold mb-0">Rp. 0.00</h6>
+                                <h5 class="font-bold text-primary">Total Inquiry (50)</h5>
+                                <h6 class="font-bold text-primary">Rp. 55.000.000</h6>
 
                             </div>
                         </div>
@@ -97,8 +97,7 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">Penjualan</h5>
-                                <h6 class="font-bold mb-0">Rp. 0.00</h6>
+                                <h5 class="font-bold text-primary">Permintaan Masuk (30)</h5>
                             </div>
                         </div>
                     </div>
@@ -115,8 +114,7 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">Total</h5>
-                                <h6 class="font-bold mb-0">Rp. 0.00</h6>
+                                <h5 class="font-bold text-primary">Penawaran Terkirim (10)</h5>
                             </div>
                         </div>
                     </div>
@@ -127,7 +125,7 @@
         <div class="row">
       
 
-            <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12">
+            <div class="col-xl-4 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
                         <div class="d-flex align-items-center">
@@ -137,15 +135,15 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">HPP</h5>
-                                <h6 class="font-bold mb-0">Rp. 0.00</h6>
+                                <h5 class="font-bold text-warning">Follow Up (4)</h5>
+                                <h6 class="font-bold mb-0 text-warning">Rp. 25.000.000</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-6 col-lg-12 col-sm-12 col-md-12">
+            <div class="col-xl-4 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
                         <div class="d-flex align-items-center">
@@ -155,8 +153,25 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">Total Gross</h5>
-                                <h6 class="font-bold mb-0">Rp. 0.00</h6>
+                                <h5 class="font-bold text-danger">Cancel (3)</h5>
+                                <h6 class="font-bold mb-0 text-danger">Rp. 10.000.000</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-12 col-sm-12 col-md-12">
+                <div class="card">
+                    <div class="card-body py-4 px-4">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar avatar-xl">
+                                <div class="stats-icon pink">
+                                    <i class="iconly-boldPlus"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3 name">
+                                <h5 class="font-bold text-success">Deal (3)</h5>
+                                <h6 class="font-bold mb-0 text-success">Rp. 15.000.000</h6>
                             </div>
                         </div>
                     </div>
@@ -211,13 +226,13 @@
             Highcharts.chart('line-chart', {
 
                 title: {
-                    text: 'Data Ditampilkan dalam 7 hari terakir',
+                    text: 'Data Ditampilkan dalam 7 hari terakhir',
                     align: 'center'
                 },
 
                 yAxis: {
                     title: {
-                        text: 'Dalam Bentuk Rupiah (Rp)'
+                        text: 'Jumlah Inquiry'
                     }
                 },
 
@@ -236,10 +251,7 @@
                     }
                 },
 
-                tooltip: {
-                    valuePrefix: 'Rp. ', // Menggunakan simbol mata uang rupiah di sini
-                    valueSuffix: ''
-                },
+                
 
                 legend: {
                     layout: 'vertical',
@@ -248,19 +260,9 @@
                 },
 
                 series: [{
-                    name: 'Penjualan',
-                    data: [4393400, 4865006, 6500165, 8100827, 11214300, 14200383,
-                        17153003
-                    ]
-                }, {
-                    name: 'Pembelian',
-                    data: [2491006, 3700941, 2970042, 2980051, 3240090, 3000282,
-                        3812001
-                    ]
-                }, {
-                    name: 'HPP',
-                    data: [1174004, 3000000, 1600005, 1977001, 2018005, 2430077,
-                        3214007
+                    name: 'Inquiry',
+                    data: [5, 6, 7, 9, 7, 10,
+                        11
                     ]
                 }],
 
@@ -321,19 +323,23 @@
                 },
                 series: [{
                     name: 'Percentage',
-                    colorByPoint: true,
+                    colors: [
+                    "#ffc107",
+                    "#dc3545",
+                    "#198754"
+                    ],
                     data: [{
-                            name: 'Penjualan',
+                            name: 'Follow Up',
                             y: 120.00,
                             sliced: true,
                             selected: true,
                         },
                         {
-                            name: 'Pembelian',
+                            name: 'Cancel',
                             y: 50.00
                         },
                         {
-                            name: 'Hpp',
+                            name: 'Deal',
                             y: 100.00
                         },
 
@@ -402,15 +408,20 @@
                 credits: {
                     enabled: false
                 },
+                colors: [
+                    "#ffc107",
+                    "#dc3545",
+                    "#198754"
+                ],
                 series: [{
-                    name: ['Penjualan'],
-                    data: [32433402]
+                    name: ['Follow Up'],
+                    data: [25000000],
                 },{
-                    name: ['Pembelian'],
-                    data: [ 30334321]
+                    name: ['Cancel'],
+                    data: [10000000]
                 },{
-                    name: ['Hpp'],
-                    data: [31433402]
+                    name: ['Deal'],
+                    data: [15000000]
                 }]
             });
         </script>

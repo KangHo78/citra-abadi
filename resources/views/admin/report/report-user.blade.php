@@ -273,7 +273,7 @@
                             <img src="{{ asset('front-end/images/logo-light.png') }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
-                            <h3>Laporan Pelanggan</h3>
+                            <h3>Laporan Enquirer</h3>
                             <h5>Jl tenggilis Raya no 77</h5>
                             <h5>+62 8231 9323 34</h5>
                             <h5>citraabaditeknik.com</h5>

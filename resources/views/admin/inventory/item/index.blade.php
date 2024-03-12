@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-lg-10 col-9">
                                     <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                                name="category" id="category">
                                                 <option value="" selected="">- Select -</option>
                                                 <option value="Cash">Kategori A</option>
                                                 <option value="Cash">Kategori B</option>
@@ -61,15 +61,103 @@
                                             </select>
                                     </div>
                                 </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="first-name">Subkategori 2</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                                name="subcategory_2" id="subcategory_2">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="Cash">Subkategori A</option>
+                                                <option value="Cash">Subkategori B</option>
+                                                <option value="Cash">Subkategori C</option>
+                                            </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6">
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="first-name">Subkategori 1</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                                name="subcategory" id="subcategory">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="Cash">Subkategori A</option>
+                                                <option value="Cash">Subkategori B</option>
+                                                <option value="Cash">Subkategori C</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="first-name">Subkategori 3</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                                name="subcategory_3" id="subcategory_3">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="Cash">Subkategori A</option>
+                                                <option value="Cash">Subkategori B</option>
+                                                <option value="Cash">Subkategori C</option>
+                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="first-name">Subkategori 4</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                                name="subcategory_4" id="subcategory_4">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="Cash">Subkategori A</option>
+                                                <option value="Cash">Subkategori B</option>
+                                                <option value="Cash">Subkategori C</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="first-name">Subkategori 6</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                                name="subcategory_6" id="subcategory_6">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="Cash">Subkategori A</option>
+                                                <option value="Cash">Subkategori B</option>
+                                                <option value="Cash">Subkategori C</option>
+                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="first-name">Subkategori 5</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                                name="subcategory_5" id="subcategory_5">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="Cash">Subkategori A</option>
+                                                <option value="Cash">Subkategori B</option>
+                                                <option value="Cash">Subkategori C</option>
+                                            </select>
+                                    </div>
+                                </div>
                                 <div class="form-group row align-items-center">
                                     <div class="col-lg-2 col-3">
                                         <label class="col-form-label" for="last-name">Merek</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
                                     <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                                name="brand" id="brand">
                                                 <option value="" selected="">- Select -</option>
                                                 <option value="Cash">Merek A</option>
                                                 <option value="Cash">Merek B</option>
@@ -78,6 +166,7 @@
                                     </div>
                                 </div>
                             </div>
+                           
                           
                     </div>
                 </div>

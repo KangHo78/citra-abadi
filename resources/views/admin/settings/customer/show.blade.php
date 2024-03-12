@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h4>Lihat Pelanggan</h4>
+                <h4>Lihat Enquirer</h4>
                 <p class="text-subtitle text-muted">Buat data transaksi dan isi form dibawah.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">

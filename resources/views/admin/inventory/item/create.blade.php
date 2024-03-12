@@ -78,19 +78,33 @@ display: none;
                                 </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Kategori</span></h6>
+                                    <div class="row">
+                                    <div class="col-6">
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="category" id="category">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">Kategori A</option>
                                         <option value="Cash">Kategori B</option>
                                         <option value="Cash">Kategori C</option>
                                     </select>
+                                    
+                                        </div>
+
+                                        <div class="col-6">
+                                        <button type="button" class="btn btn-primary "
+                                                >
+                                                Tambah Kategori
+                                            </button>
+</div>
+</div>
 
                                 </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 1</span></h6>
+                                    <div class="row">
+                                    <div class="col-6">
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="subcategory_1" id="subcategory_1">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">Subkategori A</option>
                                         <option value="Cash">Subkategori B</option>
@@ -98,32 +112,118 @@ display: none;
                                     </select>
 
                                 </div>
+                                <div class="col-6">
+                                        <button type="button" class="btn btn-primary "
+                                                >
+                                                Tambah Subkategori
+                                            </button>
+</div>
+</div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 2</span></h6>
+                                    <div class="row">
+                                    <div class="col-6">
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="subcategory_2" id="subcategory_2">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">Subkategori A</option>
                                         <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subategori C</option>
+                                        <option value="Cash">Subkategori C</option>
                                     </select>
+                                    </div>
 
-                                </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-primary "
+                                                >
+                                                Tambah Subkategori
+                                            </button>
+</div>
+</div>
+
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 3</span></h6>
+                                    <div class="row">
+                                    <div class="col-6">
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="subcategory_3" id="subcategory_3">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">Subkategori A</option>
                                         <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subategori C</option>
+                                        <option value="Cash">Subkategori C</option>
                                     </select>
 
                                 </div>
+                                <div class="col-6">
+                                        <button type="button" class="btn btn-primary "
+                                                >
+                                                Tambah Subkategori
+                                            </button>
+</div>
+</div>
+                                <div class="form-group pb-1 parent">
+                                    <h6 class="form-label"><span>Subkategori 4</span></h6>
+                                    <div class="row">
+                                    <div class="col-6">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                        name="subcategory_4" id="subcategory_4">
+                                        <option value="" selected="">- Select -</option>
+                                        <option value="Cash">Subkategori A</option>
+                                        <option value="Cash">Subkategori B</option>
+                                        <option value="Cash">Subkategori C</option>
+                                    </select>
+
+                                </div>
+                                 <div class="col-6">
+                                        <button type="button" class="btn btn-primary "
+                                                >
+                                                Tambah Subkategori
+                                            </button>
+</div>
+</div>
+                                <div class="form-group pb-1 parent">
+                                    <h6 class="form-label"><span>Subkategori 5</span></h6>
+                                    <div class="row">
+                                    <div class="col-6">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                        name="subcategory_5" id="subcategory_5">
+                                        <option value="" selected="">- Select -</option>
+                                        <option value="Cash">Subkategori A</option>
+                                        <option value="Cash">Subkategori B</option>
+                                        <option value="Cash">Subkategori C</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-6">
+                                        <button type="button" class="btn btn-primary "
+                                                >
+                                                Tambah Subkategori
+                                            </button>
+</div>
+</div>
+                                <div class="form-group pb-1 parent">
+                                    <h6 class="form-label"><span>Subkategori 6</span></h6>
+                                    <div class="row">
+                                    <div class="col-6">
+                                    <select class="select2 form-select form-control-lg validation required"
+                                        name="subcategory_6" id="subcategory_6">
+                                        <option value="" selected="">- Select -</option>
+                                        <option value="Cash">Subkategori A</option>
+                                        <option value="Cash">Subkategori B</option>
+                                        <option value="Cash">Subkategori C</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-6">
+                                        <button type="button" class="btn btn-primary "
+                                                >
+                                                Tambah Subkategori
+                                            </button>
+</div>
+</div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Material</span></h6>
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="material" id="material">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">Material A</option>
                                         <option value="Cash">Material B</option>
@@ -134,7 +234,7 @@ display: none;
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Finishing</span></h6>
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="finishing" id="finishing">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">Finishing A</option>
                                         <option value="Cash">Finishing B</option>
@@ -145,7 +245,7 @@ display: none;
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Diameter</span></h6>
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="diameter" id="diameter">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">2"</option>
                                         <option value="Cash">3"</option>
@@ -166,7 +266,7 @@ display: none;
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Merek</span></h6>
                                     <select class="select2 form-select form-control-lg validation required"
-                                        name="customer_id" id="customer_id">
+                                        name="brand" id="brand">
                                         <option value="" selected="">- Select -</option>
                                         <option value="Cash">Merek A</option>
                                         <option value="Cash">Merek B</option>
