@@ -3,7 +3,7 @@
     <div class="no-bottom no-top" id="content">
         <div id="top"></div>
         <section id="section-hero" aria-label="section" class="pt-5 no-bottom vh-100"
-            data-bgimage="url(front-end/images/background/11.jpg) left bottom"
+            data-bgimage="url(front-end/images/background/bg.jpg) left bottom"
             data-bgimage_rtl="url(front-end/images/background/11-rtl.jpg) left bottom">
             <div class="v-center">
                 <div class="container">
@@ -15,7 +15,7 @@
                             <div class="spacer-10"></div>
                             <h1 class="wow fadeInUp" data-wow-delay=".75s">Koneksi yang <span class="id-color-2">Aman,
                                 </span> Layanan yang Tak Terkalahkan</h1>
-                            <p class="wow fadeInUp lead" data-wow-delay="1s">
+                            <p class="wow fadeInUp lead" data-wow-delay="1s" style="text-decoration:underline">
                                 Perusahaan pipa kami adalah pilihan utama bagi klien yang mengutamakan kualitas,
                                 keandalan, dan inovasi dalam infrastruktur.</p>
                             <div class="spacer-10"></div>
@@ -51,7 +51,7 @@
                             <div class="mb-sm-30"></div>
                         </div>
                         <div class="col-md-6">
-                            <section id="section-hero" class="no-bottom"
+                            {{-- <section id="section-hero" class="no-bottom"
                                 data-bgimage="url(images/background/12.jpg) bottom"
                                 style="background: url(&quot;images/background/12.jpg&quot;) center bottom / cover;">
                                 <div class="container" style="background-size: cover;">
@@ -84,7 +84,7 @@
                                         <div class="owl-dots disabled" style="background-size: cover;"></div>
                                     </div>
                                 </div>
-                            </section>
+                            </section> --}}
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -210,7 +210,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -254,7 +254,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -298,7 +298,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -342,7 +342,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -386,7 +386,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -476,7 +476,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -520,7 +520,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -564,7 +564,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -608,7 +608,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -652,7 +652,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -696,7 +696,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -740,7 +740,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
@@ -785,7 +785,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('item-details') }}">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>

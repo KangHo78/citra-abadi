@@ -7,9 +7,13 @@
                         <div class="de-flex-col">
                             <!-- logo begin -->
                             <div id="logo">
-                                <a href="index.html">
-                                    <img alt="" class="logo" src="{{ asset('front-end/images/logo-light.png') }}" />
-                                    <img alt="" class="logo-2" src="{{ asset('front-end/images/logo-light.png') }}" width="150px" />
+                                <a href="{{ url('/') }}">
+                                    <img alt="" class="logo"
+                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png"/>
+                                        {{-- {{ asset('front-end/images/logo-light.png') }} --}}
+                                        {{-- https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png --}}
+                                    <img alt="" class="logo-2"
+                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png" width="60px" />
                                 </a>
                             </div>
                             <!-- logo close -->
@@ -40,10 +44,10 @@
                         </ul>
                         <div class="menu_side_area" style="background-size: cover;">
                             <div class="de-login-menu" style="background-size: cover;">
-                                <a href="02_dark-create-options.html" class="btn-main btn-wallet"><i
+                                <a href="{{ url('login') }}" class="btn-main btn-wallet"><i
                                         class="icon_wallet_alt"></i><span>Login</span></a>
 
-                                <a href="{{ route('wishlist') }}"><span
+                                {{-- <a href="{{ route('wishlist') }}"><span
                                         style="cursor: pointer;
                                 display: inline-block;
                                 width: 38px;
@@ -56,11 +60,11 @@
                                 margin-left: 5px;">
                                         <i class="fa fa-heart"></i>
                                     </span>
-                                </a>
+                                </a> --}}
                                 <span id="de-click-menu-notification" class="de-menu-notification">
-                                        <span class="d-count">8</span>
-                                        <i class="fa fa-shopping-bag"></i>
-                                    </span>
+                                    <span class="d-count">8</span>
+                                    <i class="fa fa-shopping-bag"></i>
+                                </span>
                                 <span id="de-click-menu-profile" class="de-menu-profile">
                                     <img src="https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg"
                                         class="img-fluid" alt="">
@@ -113,9 +117,9 @@
                                     style="display: none; background-size: cover;">
                                     <div class="d-name" style="background-size: cover;">
                                         <h4>Monica Lucas</h4>
-                                        <a href="02_dark-profile.html">Set display name</a>
+                                        {{-- <a href="02_dark-profile.html">Set display name</a> --}}
                                     </div>
-                                    <div class="spacer-10" style="background-size: cover;"></div>
+                                    {{-- <div class="spacer-10" style="background-size: cover;"></div>
                                     <div class="d-balance" style="background-size: cover;">
                                         <h4>Balance</h4>
                                         12.858 ETH
@@ -126,15 +130,14 @@
                                         <span id="wallet"
                                             class="d-wallet-address">DdzFFzCqrhshMSxb9oW3mRo4MJrQkusV3fGFSTwaiu4wPBqMryA9DYVJCkW9n7twCffG5f5wX2sSkoDXGiZB1HPa7K7f865Kk4LqnrME</span>
                                         <button id="btn_copy" title="Copy Text">Copy</button>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="d-line" style="background-size: cover;"></div>
 
                                     <ul class="de-submenu-profile">
-                                        <li><a href="02_dark-author.html"><i class="fa fa-user"></i> My profile</a>
+                                        <li><a href="{{route('profile')}}"><i class="fa fa-user"></i> My profile</a>
                                         </li>
-                                        <li><a href="02_dark-profile.html"><i class="fa fa-pencil"></i> Edit
-                                                profile</a>
+                                        <li><a href="{{route('wishlist')}}"><i class="fa fa-heart"></i> Wishlist</a>
                                         </li>
                                         <li><a href="#"><i class="fa fa-sign-out"></i> Sign out</a>
                                         </li>

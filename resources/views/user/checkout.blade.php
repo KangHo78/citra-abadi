@@ -20,43 +20,8 @@
             <div class="container">
                 <div class=" wow fadeIn row justify-content-md-center">
                     <div class="col-md-10 mb-sm-20">
-                        <div class="switch-with-title s2">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-3">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                        class="lazy nft__item_preview" alt="" width="100px">
-                                </div>
-                                <div class="col-md-10 col-sm-9">
-                                    <h5>Dog[Eye] Bolt c/w Wing Nut </h5>
-                                    <div class="de-switch">
-                                        <input type="checkbox" id="notif-item-sold" class="checkbox">
-                                        <span
-                                            style="cursor: pointer;
-                                                    display: inline-block;
-                                                    width: 38px;
-                                                    height: 38px;
-                                                    background: #dc3545;
-                                                    text-align: center;
-                                                    line-height: 32px;
-                                                    border-radius: 30px;
-                                                    padding-top: 3px;
-                                                    margin-left: 5px;
-                                                    color: white;">
-                                            <i class="fa fa-times-circle"></i>
-                                        </span>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <h6><u>x 17 pcs</u></h6>
-                                    <div class="clearfix"></div>
-                                    <input type="text" name="description" id="description" class="form-control"
-                                        placeholder="Enter description">
-                                </div>
-                            </div>
-                        </div>
-
-
+                        @for ($i = 0; $i < 10; $i++)
                         <div class="spacer-20"></div>
-
                         <div class="switch-with-title s2">
                             <div class="row">
                                 <div class="col-md-2 col-sm-3">
@@ -66,72 +31,78 @@
                                 <div class="col-md-10 col-sm-9">
                                     <h5>Dog[Eye] Bolt c/w Wing Nut </h5>
                                     <div class="de-switch">
-                                        <input type="checkbox" id="notif-item-sold" class="checkbox">
-                                        <span
-                                            style="cursor: pointer;
-                                                    display: inline-block;
-                                                    width: 38px;
-                                                    height: 38px;
-                                                    background: #dc3545;
-                                                    text-align: center;
-                                                    line-height: 32px;
-                                                    border-radius: 30px;
-                                                    padding-top: 3px;
-                                                    margin-left: 5px;
-                                                    color: white;">
-                                            <i class="fa fa-times-circle"></i>
-                                        </span>
+                                        <div class="row">
+                                            <input type="checkbox" id="notif-item-sold" class="checkbox">
+                                            <span
+                                                style="cursor: pointer;
+                                                        display: inline-block;
+                                                        width: 38px;
+                                                        height: 38px;
+                                                        background: lightsteelblue;
+                                                        text-align: center;
+                                                        line-height: 32px;
+                                                        border-radius: 30px;
+                                                        padding-top: 3px;
+                                                        margin-left: 5px;
+                                                        color: white;">
+                                                <i class="fa fa-minus"></i>
+                                            </span>
+                                            <div class="col">
+                                                <input type="text" name="description" id="description"
+                                                    class="form-control text-center" placeholder="0">
+                                            </div>
+                                            <input type="checkbox" id="notif-item-sold" class="checkbox">
+                                            <span
+                                                style="cursor: pointer;
+                                                        display: inline-block;
+                                                        width: 38px;
+                                                        height: 38px;
+                                                        background: lightsteelblue;
+                                                        text-align: center;
+                                                        line-height: 32px;
+                                                        border-radius: 30px;
+                                                        padding-top: 3px;
+                                                        margin-left: 5px;
+                                                        color: white;">
+                                                <i class="fa fa-plus"></i>
+                                            </span>
+                                            <input type="checkbox" id="notif-item-sold" class="checkbox">
+                                            <span
+                                                style="cursor: pointer;
+                                                        display: inline-block;
+                                                        width: 38px;
+                                                        height: 38px;
+                                                        background: #dc3545;
+                                                        text-align: center;
+                                                        line-height: 32px;
+                                                        border-radius: 30px;
+                                                        padding-top: 3px;
+                                                        margin-left: 5px;
+                                                        color: white;">
+                                                <i class="fa fa-times"></i>
+                                            </span>
+                                        </div>
+
                                     </div>
                                     <div class="clearfix"></div>
-                                    <h6><u>x 17 pcs</u></h6>
+                                    <h6><u>( STEEL, YELLOW ,ZINC, M 8 )</u></h6>
                                     <div class="clearfix"></div>
+
                                     <input type="text" name="description" id="description" class="form-control"
                                         placeholder="Enter description">
                                 </div>
                             </div>
                         </div>
-
-                        <div class="spacer-20"></div>
-
-                        <div class="switch-with-title s2">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-3">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                        class="lazy nft__item_preview" alt="" width="100px">
-                                </div>
-                                <div class="col-md-10 col-sm-9">
-                                    <h5>Dog[Eye] Bolt c/w Wing Nut </h5>
-                                    <div class="de-switch">
-                                        <input type="checkbox" id="notif-item-sold" class="checkbox">
-                                        <span
-                                            style="cursor: pointer;
-                                                    display: inline-block;
-                                                    width: 38px;
-                                                    height: 38px;
-                                                    background: #dc3545;
-                                                    text-align: center;
-                                                    line-height: 32px;
-                                                    border-radius: 30px;
-                                                    padding-top: 3px;
-                                                    margin-left: 5px;
-                                                    color: white;">
-                                            <i class="fa fa-times-circle"></i>
-                                        </span>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <h6><u>x 17 pcs</u></h6>
-                                    <div class="clearfix"></div>
-                                    <input type="text" name="description" id="description" class="form-control"
-                                        placeholder="Enter description">
-                                </div>
-                            </div>
-                        </div>
+                        @endfor
+                        
 
 
                         <div class="spacer-20"></div>
 
                         <div class="col-12">
-                            <button class="btn-main float-end" onclick="checkout()"> <i class="fa fa-shopping-cart"></i> &nbsp;
+
+                            <button class="btn-main float-end" onclick="checkout()"> <i class="fa fa-shopping-cart"></i>
+                                &nbsp;
                                 Checkout</button>
                         </div>
 
@@ -235,7 +206,8 @@
                 var detail_user = "\nAlamat saya di  " + alamat + "& Nomor Telepon saya " + nomorTelepon;
 
                 var url = "https://wa.me/6282142942965?text=" + encodeURIComponent(pesan + product + detail_user);
-                window.open(url, '_blank');
+                // window.open(url, '_blank');
+                window.open('mailto:test@example.com?subject=Testing out mailto!&body='+product+'!', '_blank');
             }
         </script>
     @endsection
