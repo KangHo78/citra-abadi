@@ -109,7 +109,7 @@
                                 <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Gudang</span></h6>
                                             <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                                name="warehouse" id="warehouse">
                                                 <option value="" selected="">- Select -</option>
                                                 <option value="WA">Warehouse A</option>
                                                 <option value="WB">Warehouse B</option>

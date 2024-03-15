@@ -137,10 +137,16 @@
                                     <td>
                                         <ul
                                             style="list-style-type: none;padding-inline-start: 0;margin-bottom: 0px;text-align:center">
-                                            @if ($i % 3 == 1)
-                                                <li class="pb-2"><span class="badge bg-warning">Email balik</span></li>
-                                            @else
+                                            @if ($i % 5 == 1)
+                                                <li class="pb-2"><span class="badge bg-info">Email balik</span></li>
+                                            @elseif ($i % 5 == 2)
                                                 <li class="pb-2"><span class="badge bg-info">Permintaan Masuk</span></li>
+                                            @elseif ($i % 5 == 3)
+                                            <li class="pb-2"><span class="badge bg-warning">Follow Up</span></li>
+                                            @elseif ($i % 5 == 4)
+                                            <li class="pb-2"><span class="badge bg-success">Deal</span></li>
+                                            @elseif ($i % 5 == 0)
+                                            <li class="pb-2"><span class="badge bg-danger">Cancel</span></li>
                                             @endif
 
                                             <!-- @if ($i % 3 == 1)
@@ -177,6 +183,13 @@
                                                         <i class="bi bi-pencil text-warning"></i>
                                                         <b class="p-2">Ubah</b>
                                                     </a>
+                                                    @if ($i % 5 == 1 || $i % 5 == 2 || $i % 5 == 3)
+                                                    <a href="{{ route('transaction.sales.edit', $i) }}"
+                                                        class="dropdown-item">
+                                                        <i class="bi bi-envelope text-warning"></i>
+                                                        <b class="p-2">Email</b>
+                                                    </a>
+                                                    @endif
                                                     <a href="{{ route('transaction.sales.print', $i) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-printer text-primary"></i>

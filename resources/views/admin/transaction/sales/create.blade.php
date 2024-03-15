@@ -2,8 +2,8 @@
     <x-slot name="header">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h4>Tambah Penjualan</h4>
-                <p class="text-subtitle text-muted">Buat data transaksi dan isi form dibawah.</p>
+                <h4>Tambah Enquiry</h4>
+                <p class="text-subtitle text-muted">Buat data enquiry dan isi form dibawah.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -44,7 +44,7 @@
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Kode</span></h6>
                                             <input name="code" type="text" id="code"
-                                                placeholder="PO000001"
+                                                placeholder="SO000001"
                                                 class="form-control form-control-lg validation required" value=""
                                                 readonly="" style="background-color:#eeeeee">
 
@@ -63,12 +63,38 @@
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
                                                     placeholder="Date" tabindex="0" type="text"
                                                     readonly="readonly">
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="row">
+                                    
+                                    {{-- <div class="col-6">
+                                        <div class="form-group pb-1 parent">
+                                            <h6 class="form-label"><span>Akun</span></h6>
+                                            <select class="select2 form-select form-control-lg validation required"
+                                                name="customer_id" id="customer_id">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
+                                                    data-phone="-" data-address="-">[NON]
+                                                    ONE TIME CUSTOMER
+                                                </option>
+                                                <option value="25" data-name="BU MERRY #1"
+                                                    data-code="CUS01240010001" data-phone="08123480519"
+                                                    data-address="-">[CUS01240010001]
+                                                    BU MERRY #1
+                                                </option>
+                                                <option value="26" data-name="PAK MUL #5"
+                                                    data-code="CUS01240030001" data-phone="081332333095"
+                                                    data-address="-">[CUS01240030001]
+                                                    PAK MUL #5
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                    </div> --}}
+
+                                </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
@@ -76,6 +102,33 @@
                                             <input name="description" type="text" id="description"
                                                 placeholder="Description" class="form-control form-control-lg "
                                                 value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group pb-1 parent">
+                                            <h6 class="form-label"><span>Status</span></h6>
+                                            <select class="select2 form-select form-control-lg validation required"
+                                                name="status" id="status">
+                                                <option value="" selected="">- Select -</option>
+                                                <option value="1" >
+                                                    Permintaan Masuk
+                                                </option>
+                                                <option value="1" >
+                                                    Penawaran Terkirim
+                                                </option>
+                                                <option value="1" >
+                                                    Follow Up
+                                                </option>
+                                                <option value="1" >
+                                                    Deal
+                                                </option>
+                                                <option value="1" >
+                                                    Cancel
+                                                </option>
+                                    
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -133,39 +186,35 @@
                                                 placeholder="Tlp Customer"
                                                 class="form-control form-control-lg validation required"
                                                 value="">
+
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                
                                 <div class="row">
-                                    <div class="col-sm-12 col-lg-12">
+                                    <div class="col-sm-6 col-lg-6">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Alamat Customer</span></h6>
-                                            <input name="customer_address" type="text" id="customer_address"
-                                                placeholder="Alamat Customer"
+                                            <h6 class="form-label"><span>Email Customer</span></h6>
+                                            <input name="customer_name" type="text" id="customer_name"
+                                                placeholder="Nama Customer"
                                                 class="form-control form-control-lg validation required"
                                                 value="">
 
                                         </div>
                                     </div>
+                                    <!-- <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Fukle</span></h6>
+                                            <input name="customer_phone" type="text" id="customer_phone"
+                                                placeholder="Tlp Customer"
+                                                class="form-control form-control-lg validation required"
+                                                readonly="" style="background-color:#eeeeee" value="08123456789">
+
+                                        </div>
+                                    </div> -->
+
                                 </div>
-
-                                <div class="col-12 pb-3">
-                                    <h6><code>*</code> Simpan Ke Database ?</h6>
-                                    <div class="btn-group pb-3 col-12" role="group"
-                                        aria-label="Basic radio toggle button group">
-
-                                        <input type="radio" class="btn-check" name="store_customer" id="dis_non"
-                                            autocomplete="off" value="NON">
-                                        <label class="btn btn-outline-primary" for="dis_non"> YA</label>
-
-                                        <input type="radio" class="btn-check" name="store_customer" id="dis_value"
-                                            autocomplete="off" checked="" value="$">
-                                        <label class="btn btn-outline-primary" for="dis_value"> Tidak
-                                        </label>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -206,7 +255,7 @@
                                         <input type="radio" class="btn-check" name="discount_type" id="dis_value"
                                             autocomplete="off" value="$">
                                         <label class="btn btn-outline-primary" for="dis_value"> Nilai
-                                            (Rp)</label>
+                                            ($)</label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -281,19 +330,21 @@
                         <div class="col-12">
                             <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
                                 onclick="save()">
+                                Simpan Data & Email
+                            </button>
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
+                                onclick="save()">
                                 Simpan Data
                             </button>
                         </div>
+                        
                     </div>
                 </div>
             </div>
         </section>
     </form>
 
-
-
-
-    @section('scripts')
+@section('scripts')
         <script>
             function addNew(params) {
                 $('.dropHere').append(`
@@ -304,7 +355,7 @@
                 <div class="col-sm-12 col-lg-4">
                     <div class="form-group pb-3">
                         <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                                name="item" id="item">
                                                 <option value="" selected="">- Select -</option>
                                                 
                                                 <option value="26" data-name="PAK MUL #5"
@@ -358,5 +409,4 @@
             }
         </script>
     @endsection
-
-</x-app-layout>
+    </x-app-layout>

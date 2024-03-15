@@ -150,4 +150,18 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             return view('admin.component.accordion');
         })->name('accordion');
     });
+    
+    Route::get('/about-us', function () {
+        return view('user.about_us');
+    })->name('about-us');
+    
+    Route::get('/service', function () {
+        return view('user.service');
+    })->name('service');
+    
+    Route::get('/contact-us', function () {
+        return view('user.contact_us');
+    })->name('contact-us');
+
+   
 });

@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="row mb-2">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Pelanggan</h3>
+                <h3>Enquirer</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -81,8 +81,7 @@
                                 <th>Telepon / WA</th>
                                 <th>Nama PIC</th>
                                 <th>Email</th>
-                                <th>Total Transaksi</th>
-                                <th>Member</th>
+                                <th>Total Inquiry</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -102,8 +101,7 @@
                                 <td>
                                   testing@gmail.com
                                 </td>
-                                <td>Rp. {{number_format(10000*$i)}}</td>
-                                <td>Silver</td>
+                                <td>3</td>
                                 
                                 <td>
                                     <div class="btn-group mb-1">

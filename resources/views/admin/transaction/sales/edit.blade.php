@@ -9,7 +9,7 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Enquiry</li>
-                        <li class="breadcrumb-item active" aria-current="page">Create</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -110,25 +110,23 @@
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Status</span></h6>
                                             <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                                name="status" id="status">
                                                 <option value="" selected="">- Select -</option>
                                                 <option value="1" >
                                                     Permintaan Masuk
                                                 </option>
+                                               
                                                 <option value="1" >
-                                                    Proses
+                                                    Penawaran Terkirim
                                                 </option>
                                                 <option value="1" >
-                                                    Email balik
-                                                </option>
-                                                <option value="1" >
-                                                    Cancel
+                                                    Follow Up
                                                 </option>
                                                 <option value="1" >
                                                     Deal
                                                 </option>
                                                 <option value="1" >
-                                                    Follow Up
+                                                    Cancel
                                                 </option>
                                     
                                             </select>
@@ -150,24 +148,10 @@
                                     <div class="col-12">
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Customer</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
-                                                    data-phone="-" data-address="-">[NON]
-                                                    ONE TIME CUSTOMER
-                                                </option>
-                                                <option value="25" data-name="BU MERRY #1"
-                                                    data-code="CUS01240010001" data-phone="08123480519"
-                                                    data-address="-">[CUS01240010001]
-                                                    BU MERRY #1
-                                                </option>
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    PAK MUL #5
-                                                </option>
-                                            </select>
+                                            <input name="code" type="text" id="code"
+                                                placeholder="CUS10001"
+                                                class="form-control form-control-lg validation required" value=""
+                                                readonly="" style="background-color:#eeeeee">
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +162,7 @@
                                             <input name="customer_name" type="text" id="customer_name"
                                                 placeholder="Nama Customer"
                                                 class="form-control form-control-lg validation required"
-                                                value="">
+                                                value="Asep Hidayat" readonly="" style="background-color:#eeeeee">
 
                                         </div>
                                     </div>
@@ -188,10 +172,33 @@
                                             <input name="customer_phone" type="text" id="customer_phone"
                                                 placeholder="Tlp Customer"
                                                 class="form-control form-control-lg validation required"
-                                                value="">
+                                                readonly="" style="background-color:#eeeeee" value="08123456789">
 
                                         </div>
                                     </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Email Customer</span></h6>
+                                            <input name="customer_name" type="text" id="customer_name"
+                                                placeholder="Nama Customer"
+                                                class="form-control form-control-lg validation required"
+                                                value="asephidayat@gmail.com" readonly="" style="background-color:#eeeeee">
+
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Fukle</span></h6>
+                                            <input name="customer_phone" type="text" id="customer_phone"
+                                                placeholder="Tlp Customer"
+                                                class="form-control form-control-lg validation required"
+                                                readonly="" style="background-color:#eeeeee" value="08123456789">
+
+                                        </div>
+                                    </div> -->
 
                                 </div>
                             </div>
@@ -308,7 +315,7 @@
                 <div class="col-sm-12 col-lg-4">
                     <div class="form-group pb-3">
                         <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                                name="item" id="item">
                                                 <option value="" selected="">- Select -</option>
                                                 
                                                 <option value="26" data-name="PAK MUL #5"
@@ -366,12 +373,83 @@
                         <div class="col-12">
                             <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
                                 onclick="save()">
+                                Simpan Data & Email
+                            </button>
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
+                                onclick="save()">
                                 Simpan Data
                             </button>
                         </div>
+                        
                     </div>
                 </div>
             </div>
         </section>
     </form>
-</x-app-layout>
+
+@section('scripts')
+        <script>
+            function addNew(params) {
+                $('.dropHere').append(`
+                <div class="row dataDetail" style="margin-bottom: -20px;">
+                <input name="dt[]" type="hidden" class="dt" value="0">
+                <input name="current_stock[]" class="current_stock" type="hidden">
+
+                <div class="col-sm-12 col-lg-4">
+                    <div class="form-group pb-3">
+                        <select class="select2 form-select form-control-lg validation required"
+                                                name="item" id="item">
+                                                <option value="" selected="">- Select -</option>
+                                                
+                                                <option value="26" data-name="PAK MUL #5"
+                                                    data-code="CUS01240030001" data-phone="081332333095"
+                                                    data-address="-">[CUS01240030001]
+                                                    Paku Reng
+                                                </option>
+
+                                                <option value="26" data-name="PAK MUL #5"
+                                                    data-code="CUS01240030001" data-phone="081332333095"
+                                                    data-address="-">[CUS01240030001]
+                                                    Asbes
+                                                </option>
+
+                                            </select>
+                    </div>
+
+                   
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="form-group pb-3">
+                        <input name="price_dt[]" type="text" id="" placeholder="0" onkeyup="calcSubTotal()"
+                            class="form-control form-control-lg sumTotal text-end numberFormat validation price_dt"
+                            value="0">
+                    </div>
+                    <p class="float-end" style="margin-top: -20px"> Total : <input type="text"
+                            style="pointer-events:none"
+                            class="removeField border-0 bg-transparent text-end price_total_dt">
+                    </p>
+                </div>
+                <div class="col-sm-6 col-lg-1">
+                    <div class="form-group pb-3">
+                        <input name="qty_dt[]" value="1" type="text" id="" placeholder="0"
+                            onkeyup="calcSubTotal()"
+                            class="form-control form-control-lg validation numberFormat text-end qty_dt">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-3">
+                    <div class="form-group pb-3">
+                        <input name="description_dt[]" type="text" id="" placeholder="Description"
+                            class="form-control form-control-lg validation description_dt" value="">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-1">
+                    <button style="margin-top:2px" class="btn btn-outline-danger rounded-pill"
+                        onclick="removeDetail(this)" type="button">
+                        <i class="bi bi-close"></i> X
+                    </button>
+                </div>
+            </div>`);
+            }
+        </script>
+    @endsection
+    </x-app-layout>

@@ -13,8 +13,6 @@
 
 
     <x-maz-sidebar-item name="Item" icon="bi bi-stack">
-         <!-- Kategori-->
-         <x-maz-sidebar-sub-item name="Kategori" :link="route('category.index')"></x-maz-sidebar-sub-item>
           <!-- Merek-->
         <x-maz-sidebar-sub-item name="Merek" :link="route('brand.index')"></x-maz-sidebar-sub-item>
         <!-- Current stock + Item-->
@@ -25,8 +23,8 @@
     <x-maz-sidebar-item name="Laporan" icon="bi bi-stack">
         <!-- <x-maz-sidebar-sub-item name="Stock" :link="route('report.stock.index')"></x-maz-sidebar-sub-item> -->
         <!-- <x-maz-sidebar-sub-item name="Mutasi Stock" :link="route('report.stock-mutation.index')"></x-maz-sidebar-sub-item> -->
-        <x-maz-sidebar-sub-item name="Pengguna" :link="route('report.user.index')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="Pendapatan" :link="route('report.income.index')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="Enquirer" :link="route('report.user.index')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="Item" :link="route('report.income.index')"></x-maz-sidebar-sub-item>
         <!-- <x-maz-sidebar-sub-item name="HPP" :link="route('report.hpp.index')"></x-maz-sidebar-sub-item> -->
         <!-- <x-maz-sidebar-sub-item name="Gross" :link="route('report.gross.index')"></x-maz-sidebar-sub-item> -->
         <x-maz-sidebar-sub-item name="Wishlist" :link="route('report.wishlist.index')"></x-maz-sidebar-sub-item>
@@ -46,7 +44,7 @@
         <x-maz-sidebar-sub-item name="Umum" :link="route('general.index')"></x-maz-sidebar-sub-item>
         <!-- <x-maz-sidebar-sub-item name="Aplikasi Mobile" :link="route('mobile_app.index')"></x-maz-sidebar-sub-item> -->
         <!-- Pengguna User + Membership-->
-        <x-maz-sidebar-sub-item name="Pelanggan" :link="route('customer.index')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="Enquirer" :link="route('customer.index')"></x-maz-sidebar-sub-item>
         <!-- Pengguna Admin -->
         <x-maz-sidebar-sub-item name="Staf" :link="route('staff.index')"></x-maz-sidebar-sub-item>
         <!-- Pengguna Hak Akses -->
