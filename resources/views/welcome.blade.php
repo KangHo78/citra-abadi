@@ -90,6 +90,37 @@
                 </div>
             </div>
         </section>
+        @php
+            $category = ['anchor', 'bolts', 'manchine', 'screws', 'rivets', 'nuts', 'socket screws', 'Washer', 'clips & pins', 'structure & marine product', 'wire thread insert', 'other'];
+        @endphp
+        <section id="section-category" aria-label="section">
+            {{-- <div class="col-lg-12" style="background-size: cover;">
+                <div class="text-center" style="background-size: cover;">
+                    <h2>Kategori Produk</h2>
+                    <div class="small-border bg-color-2" style="background-size: cover;"></div>
+                </div>
+            </div> --}}
+            <div class="d-carousel">
+                <div id="item-carousel-big-type-4" class="owl-carousel owl-center wow fadeIn" data-wow-delay="1s">
+                    @foreach ($category as $el)
+                        <div class="nft_pic mod-a">
+                            <a href="{{ route('item-details') }}">
+                                <span class="nft_pic_info">
+                                    <span class="nft_pic_title">{{ $el }}</span>
+                                    <span class="nft_pic_by">-</span>
+                                </span>
+                            </a>
+                            <div class="nft_pic_wrap">
+                                <img src="https://www.sinhong.com/uploadedimg/bannerimg/1463124747_1_Anchors.jpg"
+                                    class="lazy img-fluid" alt="">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="d-arrow-left mod-a"><i class="fa fa-angle-left"></i></div>
+                <div class="d-arrow-right mod-a"><i class="fa fa-angle-right"></i></div>
+            </div>
+        </section>
 
         <section id="section-collections" class="pt60 pb60" data-bgcolor="#f7ffe7">
             <div class="container">
@@ -409,37 +440,6 @@
 
                     </div>
                 </div>
-        </section>
-        @php
-            $category = ['anchor', 'bolts', 'manchine', 'screws', 'rivets', 'nuts', 'socket screws', 'Washer', 'clips & pins', 'structure & marine product', 'wire thread insert', 'other'];
-        @endphp
-        <section id="section-category" aria-label="section">
-            <div class="col-lg-12" style="background-size: cover;">
-                <div class="text-center" style="background-size: cover;">
-                    <h2>Kategori Produk</h2>
-                    <div class="small-border bg-color-2" style="background-size: cover;"></div>
-                </div>
-            </div>
-            <div class="d-carousel">
-                <div id="item-carousel-big-type-4" class="owl-carousel owl-center wow fadeIn" data-wow-delay="1s">
-                    @foreach ($category as $el)
-                        <div class="nft_pic mod-a">
-                            <a href="{{ route('item-details') }}">
-                                <span class="nft_pic_info">
-                                    <span class="nft_pic_title">{{ $el }}</span>
-                                    <span class="nft_pic_by">-</span>
-                                </span>
-                            </a>
-                            <div class="nft_pic_wrap">
-                                <img src="https://www.sinhong.com/uploadedimg/bannerimg/1463124747_1_Anchors.jpg"
-                                    class="lazy img-fluid" alt="">
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="d-arrow-left mod-a"><i class="fa fa-angle-left"></i></div>
-                <div class="d-arrow-right mod-a"><i class="fa fa-angle-right"></i></div>
-            </div>
         </section>
 
         <section id="section-collections" class="pt30" style="background-size: cover;" data-bgcolor="#F7F4FD">

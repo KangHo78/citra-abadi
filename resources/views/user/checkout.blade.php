@@ -25,7 +25,7 @@
                         <div class="switch-with-title s2">
                             <div class="row">
                                 <div class="col-md-2 col-sm-3">
-                                    <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="" width="100px">
                                 </div>
                                 <div class="col-md-10 col-sm-9">
