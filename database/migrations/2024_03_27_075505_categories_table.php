@@ -17,7 +17,10 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->bigInteger('parent_category_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('parent_category_id')->references('id')->on('categories');
         });
 
     }

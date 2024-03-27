@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Spec extends Model
 {
     use HasFactory;
-    public function item()
+    public function item_detail()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(ItemDetail::class);
     }
+    
 }
