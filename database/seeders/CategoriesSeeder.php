@@ -17,9 +17,11 @@ class CategoriesSeeder extends Seeder
     {
         Category::create([
             'name' => 'Socket',
+            'image' => null,
         ]);
         Category::create([
             'name' => 'Elbow 90',
+            'image' => null,
         ]);
         
     }
