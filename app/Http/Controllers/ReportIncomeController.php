@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\Enquiry;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ReportIncomeController extends Controller
 {
@@ -14,10 +17,14 @@ class ReportIncomeController extends Controller
         $this->middleware('auth');
         $this->path = 'admin.report.report-';
     }
+    function like($text) {
+        return '%'.$text.'%';
+    }
 
-    function index() {
-        $data = [];
-        return view($this->path.'income',compact('data'));
+    function index(Request $request) {
+        $data = Item::orderBy('id', 'desc');
+        $enquiry = Enquiry::orderBy('id', 'desc');
+        return view($this->path.'income',compact('data', 'enquiry'));
     }
    
 }

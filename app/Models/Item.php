@@ -10,7 +10,7 @@ class Item extends Model
     use HasFactory;
     public function enquiry_detail()
     {
-        return $this->belongsTo(EnquiryDetail::class);
+        return $this->hasMany(EnquiryDetail::class);
     }
     public function item_detail()
     {
