@@ -104,7 +104,7 @@
                 <div id="item-carousel-big-type-4" class="owl-carousel owl-center wow fadeIn" data-wow-delay="1s">
                     @foreach ($category as $el)
                         <div class="nft_pic mod-a">
-                            <a href="{{ route('product-details') }}">
+                            <a href="{{ route('product-details',$el->id) }}">
                                 <span class="nft_pic_info">
                                     <span class="nft_pic_title">{{ $el->name }}</span>
                                     <span class="nft_pic_by">-</span>
@@ -137,7 +137,7 @@
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('product-details') }}'">Buy
+                                        <button onclick="location.href='{{ route('product-details',$el->id) }}'">Buy
                                             Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
@@ -151,13 +151,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{ route('product-details') }}">
+                                <a href="{{ route('product-details',$el->id) }}">
                                     <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('product-details') }}">
+                                <a href="{{ route('product-details',$el->id) }}">
                                     <h4 style="margin-right: 25px;">{{$el->name}}</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
@@ -196,7 +196,7 @@
                                     <div class="nft__item_extra"
                                         style="background-size: cover; visibility: hidden; opacity: 0;">
                                         <div class="nft__item_buttons" style="background-size: cover;">
-                                            <button onclick="location.href='{{ route('product-details') }}'">Buy
+                                            <button onclick="location.href='{{ route('product-details',$el->id) }}'">Buy
                                                 Now</button>
                                             <div class="nft__item_share" style="background-size: cover;">
                                                 <h4>Share</h4>
@@ -210,13 +210,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('product-details') }}">
+                                    <a href="{{ route('product-details',$el->id) }}">
                                         <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                             class="lazy nft__item_preview" alt="">
                                     </a>
                                 </div>
                                 <div class="nft__item_info" style="background-size: cover;">
-                                    <a href="{{ route('product-details') }}">
+                                    <a href="{{ route('product-details',$el->id) }}">
                                         <h4 style="margin-right: 25px;">{{$el->name}}</h4>
                                     </a>
                                     <div class="nft__item_click" style="background-size: cover;">
