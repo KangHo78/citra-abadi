@@ -16,10 +16,10 @@ class SizeSeeder extends Seeder
     public function run()
     {
         Size::create([
-            'name' => 'A',
+            'name' => '1/4',
         ]);
         Size::create([
-            'name' => 'B',
+            'name' => '1/2',
         ]);
         
     }

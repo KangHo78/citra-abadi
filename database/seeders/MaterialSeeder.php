@@ -16,10 +16,10 @@ class MaterialSeeder extends Seeder
     public function run()
     {
         Material::create([
-            'name' => 'Material A',
+            'name' => 'A234',
         ]);
         Material::create([
-            'name' => 'Material B',
+            'name' => 'MALLEABLE IRON',
         ]);
         
     }

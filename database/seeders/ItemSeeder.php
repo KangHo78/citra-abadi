@@ -17,8 +17,8 @@ class ItemSeeder extends Seeder
     public function run()
     {
         Item::create([
-            'name' => 'Socket',
-            'sku' => 'SKU',
+            'name' => 'ELBOW 90',
+            'sku' => 'EL2839',
             'description' => 'Desc',
             'brand_id' => 1,
             'category_id' => 1,

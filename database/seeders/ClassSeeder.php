@@ -16,10 +16,10 @@ class ClassSeeder extends Seeder
     public function run()
     {
         Classes::create([
-            'name' => 'Socket',
+            'name' => 'SGP',
         ]);
         Classes::create([
-            'name' => 'Elbow 90',
+            'name' => 'SCH40',
         ]);
         
     }

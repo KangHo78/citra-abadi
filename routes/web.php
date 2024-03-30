@@ -6,10 +6,12 @@ use App\Http\Controllers\AdjustmentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PurchasingController;
 use App\Http\Controllers\ReportCartController;
 use App\Http\Controllers\ReportGrossController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\MobileAppSettingsController;
+use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,9 +41,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[HomeController::class, 'index'])->name('home');
+Route::get('/catalog',[CatalogController::class, 'index'])->name('catalog');
+Route::get('/product-details/{id}',[ProductDetailsController::class, 'index'])->name('product-details');
 
 Route::get('/wishlist', function () {
     return view('user.wishlist');
@@ -50,13 +57,9 @@ Route::get('/profile', function () {
     return view('user.profile');
 })->name('profile');
 
-Route::get('/item-details', function () {
-    return view('user.item_details');
-})->name('item-details');
-
-Route::get('/catalog', function () {
-    return view('user.catalog');
-})->name('catalog');
+// Route::get('/item-details', function () {
+//     return view('user.item_details');
+// })->name('item-details');
 
 Route::get('/checkout', function () {
     return view('user.checkout');

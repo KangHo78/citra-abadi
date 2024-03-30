@@ -91,7 +91,7 @@
             </div>
         </section>
         @php
-            $category = ['anchor', 'bolts', 'manchine', 'screws', 'rivets', 'nuts', 'socket screws', 'Washer', 'clips & pins', 'structure & marine product', 'wire thread insert', 'other'];
+            // $category = ['anchor', 'bolts', 'manchine', 'screws', 'rivets', 'nuts', 'socket screws', 'Washer', 'clips & pins', 'structure & marine product', 'wire thread insert', 'other'];
         @endphp
         <section id="section-category" aria-label="section">
             {{-- <div class="col-lg-12" style="background-size: cover;">
@@ -104,14 +104,14 @@
                 <div id="item-carousel-big-type-4" class="owl-carousel owl-center wow fadeIn" data-wow-delay="1s">
                     @foreach ($category as $el)
                         <div class="nft_pic mod-a">
-                            <a href="{{ route('item-details') }}">
+                            <a href="{{ route('product-details',$el->id) }}">
                                 <span class="nft_pic_info">
-                                    <span class="nft_pic_title">{{ $el }}</span>
+                                    <span class="nft_pic_title">{{ $el->name }}</span>
                                     <span class="nft_pic_by">-</span>
                                 </span>
                             </a>
                             <div class="nft_pic_wrap">
-                                <img src="https://www.sinhong.com/uploadedimg/bannerimg/1463124747_1_Anchors.jpg"
+                                <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
                                     class="lazy img-fluid" alt="">
                             </div>
                         </div>
@@ -128,649 +128,16 @@
                     <div class="col-lg-12">
                         <h2 class="style-2">Produk Populer</h2>
                     </div>
-                    <div id="items-carousel-5-cols" class="owl-carousel wow fadeIn">
-
-                        <div class="nft__item" style="background-size: cover;">
-
-                            <div class="author_list_pp" style="background-size: cover;">
-
-                            </div>
-                            <div class="nft__item_wrap" style="background-size: cover; height: 161.188px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nft__item" style="background-size: cover;">
-
-                            <div class="author_list_pp" style="background-size: cover;">
-
-                            </div>
-                            <div class="nft__item_wrap" style="background-size: cover; height: 161.188px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nft__item" style="background-size: cover;">
-
-                            <div class="author_list_pp" style="background-size: cover;">
-
-                            </div>
-                            <div class="nft__item_wrap" style="background-size: cover; height: 161.188px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nft__item" style="background-size: cover;">
-
-                            <div class="author_list_pp" style="background-size: cover;">
-
-                            </div>
-                            <div class="nft__item_wrap" style="background-size: cover; height: 161.188px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nft__item" style="background-size: cover;">
-
-                            <div class="author_list_pp" style="background-size: cover;">
-
-                            </div>
-                            <div class="nft__item_wrap" style="background-size: cover; height: 161.188px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nft__item" style="background-size: cover;">
-
-                            <div class="author_list_pp" style="background-size: cover;">
-
-                            </div>
-                            <div class="nft__item_wrap" style="background-size: cover; height: 161.188px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nft__item" style="background-size: cover;">
-
-                            <div class="author_list_pp" style="background-size: cover;">
-
-                            </div>
-                            <div class="nft__item_wrap" style="background-size: cover; height: 161.188px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2024/1/16/e1267cd0-b2f7-460b-a648-0c9fc1b95385.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Screw Anchor Plug</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-        </section>
-
-        <section id="section-collections" class="pt30" style="background-size: cover;" data-bgcolor="#F7F4FD">
-            <div class="container" style="background-size: cover;">
-
-                <div class="spacer-single" style="background-size: cover;"></div>
-
-                <div class="row wow fadeIn animated"
-                    style="background-size: cover; visibility: visible; animation-name: fadeIn;">
-                    <div class="col-lg-12" style="background-size: cover;">
-                        <h2 class="style-2">Produk Baru</h2>
-                    </div>
-
+                    @foreach ($item as $el)
                     <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
                         style="display: block; background-size: cover;">
                         <div class="nft__item style-2" style="background-size: cover;">
-
 
                             <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
                                 <div class="nft__item_extra"
                                     style="background-size: cover; visibility: hidden; opacity: 0;">
                                     <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
-
-
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
-
-
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
-
-
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
-
-
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
-
-
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
-
-
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('item-details') }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
-
-
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('item-details') }}'">Buy
+                                        <button onclick="location.href='{{ route('product-details',$el->id) }}'">Buy
                                             Now</button>
                                         <div class="nft__item_share" style="background-size: cover;">
                                             <h4>Share</h4>
@@ -784,20 +151,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{ route('item-details') }}">
+                                <a href="{{ route('product-details',$el->id) }}">
                                     <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                         class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('item-details') }}">
-                                    <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
+                                <a href="{{ route('product-details',$el->id) }}">
+                                    <h4 style="margin-right: 25px;">{{$el->name}}</h4>
                                 </a>
                                 <div class="nft__item_click" style="background-size: cover;">
                                     <span></span>
                                 </div>
                                 <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
+                                    <a href="#"></a>
+                                    <br>
                                 </div>
                                 <div class="nft__item_like" style="background-size: cover;">
                                     <i class="fa fa-heart"></i><span>50</span>
@@ -805,6 +173,67 @@
                             </div>
                         </div>
                     </div>
+                @endforeach
+                </div>
+        </section>
+
+        <section id="section-collections" class="pt30" style="background-size: cover;" data-bgcolor="#F7F4FD">
+            <div class="container" style="background-size: cover;">
+
+                <div class="spacer-single" style="background-size: cover;"></div>
+
+                <div class="row wow fadeIn animated"
+                    style="background-size: cover; visibility: visible; animation-name: fadeIn;">
+                    <div class="col-lg-12" style="background-size: cover;">
+                        <h2 class="style-2">Produk Baru</h2>
+                    </div>
+                    @foreach ($item as $el)
+                        <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                            style="display: block; background-size: cover;">
+                            <div class="nft__item style-2" style="background-size: cover;">
+
+                                <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
+                                    <div class="nft__item_extra"
+                                        style="background-size: cover; visibility: hidden; opacity: 0;">
+                                        <div class="nft__item_buttons" style="background-size: cover;">
+                                            <button onclick="location.href='{{ route('product-details',$el->id) }}'">Buy
+                                                Now</button>
+                                            <div class="nft__item_share" style="background-size: cover;">
+                                                <h4>Share</h4>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
+                                                    target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
+                                                <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
+                                                    target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+                                                <a
+                                                    href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
+                                                        class="fa fa-envelope fa-lg"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('product-details',$el->id) }}">
+                                        <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
+                                            class="lazy nft__item_preview" alt="">
+                                    </a>
+                                </div>
+                                <div class="nft__item_info" style="background-size: cover;">
+                                    <a href="{{ route('product-details',$el->id) }}">
+                                        <h4 style="margin-right: 25px;">{{$el->name}}</h4>
+                                    </a>
+                                    <div class="nft__item_click" style="background-size: cover;">
+                                        <span></span>
+                                    </div>
+                                    <div class="nft__item_action" style="background-size: cover;">
+                                        <a href="#"></a>
+                                        <br>
+                                    </div>
+                                    <div class="nft__item_like" style="background-size: cover;">
+                                        <i class="fa fa-heart"></i><span>50</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
                 </div>
 
             </div>
