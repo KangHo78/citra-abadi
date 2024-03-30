@@ -6,7 +6,7 @@ use App\Models\Material;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MaterialSeedeer extends Seeder
+class MaterialSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,10 @@ class MaterialSeedeer extends Seeder
     public function run()
     {
         Material::create([
-            'name' => 'Material A',
+            'name' => 'A234',
         ]);
         Material::create([
-            'name' => 'Material B',
+            'name' => 'MALLEABLE IRON',
         ]);
         
     }

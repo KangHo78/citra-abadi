@@ -6,7 +6,7 @@ use App\Models\Size;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategoriesSeeder extends Seeder
+class SizeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,10 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         Size::create([
-            'name' => 'A',
+            'name' => '1/4',
         ]);
         Size::create([
-            'name' => 'B',
+            'name' => '1/2',
         ]);
         
     }

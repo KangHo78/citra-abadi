@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-1 text-center">
-                        <div >
+                        <div>
                             <div class="mb10" style="border:1px solid black">
                                 <img src="https://www.sinhong.com/UploadedImg/category/1062016_50826_PM_1_Anchor_660_md.jpg"
                                     class="img-fluid img-rounded mb-sm-30" alt="" width="100px">
@@ -27,23 +27,17 @@
                     <div class="col-md-12 col-lg-8">
                         <div class="item_info">
                             <!-- Auctions ends in <div class="de_countdown" data-year="2022" data-month="4" data-day="16" data-hour="8"></div> -->
-                            <h2>Drop In Anchor Type D</h2>
+                            <h2>{{ $item->name }}</h2>
                             <div class="item_info_counts">
-                                <div class="item_info_type"><i class="fa fa-image"></i>Anchor</div>
+                                <div class="item_info_type"><i class="fa fa-image"></i>{{ $item->category->name }}</div>
                                 <div class="item_info_views"><i class="fa fa-eye"></i>250</div>
                                 <div class="item_info_like"><i class="fa fa-heart"></i>18</div>
                             </div>
                             <p>
-                                Material : Steel
-                                <br>
-                                Finishing : Yellow Zinc
-                                <br>
-                                Diameter : d
-                                <br>
-                                Length : l (mm)
+                                {!! $item->description !!}
                             </p>
 
-
+                            {{-- 
 
                             <div class="de_tab_content">
                                 <div class="tab-1">
@@ -56,7 +50,7 @@
                                 </div>
 
 
-                            </div>
+                            </div> --}}
 
                             <div class="spacer-10"></div>
 
@@ -96,10 +90,13 @@
                                                 style="background-size: cover;">
                                                 <a href="#" class="btn-selector">Filter By Material </a>
                                                 <ul>
-                                                    <li><span>Last 24 hours</span></li>
+                                                    @foreach ($material as $el)
+                                                        <li><span>{{ $el->name }}</span></li>
+                                                    @endforeach
+                                                    {{-- <li><span>Last 24 hours</span></li>
                                                     <li class="active"><span>Last 7 days</span></li>
                                                     <li><span>Last 30 days</span></li>
-                                                    <li><span>All time</span></li>
+                                                    <li><span>All time</span></li> --}}
                                                 </ul>
                                             </div>
 
@@ -107,10 +104,9 @@
                                                 style="background-size: cover;">
                                                 <a href="#" class="btn-selector"> Filter By Finishing </a>
                                                 <ul>
-                                                    <li><span>Last 24 hours</span></li>
-                                                    <li class="active"><span>Last 7 days</span></li>
-                                                    <li><span>Last 30 days</span></li>
-                                                    <li><span>All time</span></li>
+                                                    @foreach ($material as $el)
+                                                        <li><span>{{ $el->name }}</span></li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
 
@@ -118,26 +114,22 @@
                                                 style="background-size: cover;">
                                                 <a href="#" class="btn-selector"> Filter By Diameter</a>
                                                 <ul>
-                                                    <li class="active"><span>All categories</span></li>
-                                                    <li><span>Art</span></li>
-                                                    <li><span>Music</span></li>
-                                                    <li><span>Domain Names</span></li>
-                                                    <li><span>Virtual World</span></li>
-                                                    <li><span>Trading Cards</span></li>
-                                                    <li><span>Collectibles</span></li>
-                                                    <li><span>Sports</span></li>
-                                                    <li><span>Utility</span></li>
+                                                    @foreach ($material as $el)
+                                                        <li><span>{{ $el->name }}</span></li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
 
                                             <div id="filter_by_category" class="dropdown"
                                                 style="background-size: cover;">
-                                                <input type="text" name="search" id="description" class="form-control" placeholder="Cari Item..">
+                                                <input type="text" name="search" id="description"
+                                                    class="form-control" placeholder="Cari Item..">
                                             </div>
 
                                             <div id="filter_by_category" class="dropdown float-end"
                                                 style="background-size: cover;">
-                                                <button class="btn btn-main"><i class="fa fa-shopping-basket"></i> &nbsp; Add To Cart </button>
+                                                <button class="btn btn-main"><i class="fa fa-shopping-basket"></i>
+                                                    &nbsp; Add To Cart </button>
                                             </div>
                                         </div>
 

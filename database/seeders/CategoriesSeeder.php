@@ -16,13 +16,25 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'Socket',
+            'name' => 'PIPA',
             'image' => null,
+            'parent_category_id' => 1,
         ]);
         Category::create([
-            'name' => 'Elbow 90',
-            'image' => null,
+            'name' => 'FLANGE',
+            'parent_category_id' => 2,
         ]);
-        
+        Category::create([
+            'name' => 'FITTING',
+            'parent_category_id' => 2,
+        ]);
+        Category::create([
+            'name' => 'GASKET',
+            'parent_category_id' => 2,
+        ]);
+        Category::create([
+            'name' => 'VALVE',
+            'parent_category_id' => 2,
+        ]);
     }
 }

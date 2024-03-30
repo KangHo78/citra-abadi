@@ -16,10 +16,10 @@ class ConnSeeder extends Seeder
     public function run()
     {
         Conn::create([
-            'name' => 'Socket',
+            'name' => 'BW',
         ]);
         Conn::create([
-            'name' => 'Elbow 90',
+            'name' => 'BSPT',
         ]);
         
     }

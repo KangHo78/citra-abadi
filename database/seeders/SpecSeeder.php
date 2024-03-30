@@ -16,10 +16,10 @@ class SpecSeeder extends Seeder
     public function run()
     {
         Spec::create([
-            'name' => 'Spec A',
+            'name' => 'CS',
         ]);
         Spec::create([
-            'name' => 'Spec B',
+            'name' => 'CS BK',
         ]);
         
     }

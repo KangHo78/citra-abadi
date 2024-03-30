@@ -20,11 +20,13 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             ClassSeeder::class,
             ConnSeeder::class,
-            ItemDetailSeeder::class,
-            ItemSeeder::class,
+        
             MaterialSeeder::class,
             SizeSeeder::class,
-            SpecSeeder::class
+            SpecSeeder::class,
+
+            ItemSeeder::class,
+            ItemDetailSeeder::class,
         ]);
     }
 }
