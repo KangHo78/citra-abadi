@@ -6,7 +6,7 @@ use App\Models\Material;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MaterialSeedeer extends Seeder
+class MaterialSeeder extends Seeder
 {
     /**
      * Run the database seeds.

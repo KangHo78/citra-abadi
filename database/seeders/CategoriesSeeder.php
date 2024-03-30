@@ -16,12 +16,14 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'Socket',
+            'name' => 'Socket 2',
             'image' => null,
+            'parent_category_id' => 1
         ]);
         Category::create([
             'name' => 'Elbow 90',
             'image' => null,
+            'parent_category_id' => 1
         ]);
         
     }

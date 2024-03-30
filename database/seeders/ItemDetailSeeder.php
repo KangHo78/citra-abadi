@@ -24,6 +24,15 @@ class ItemDetailSeeder extends Seeder
             'conn_id' => 1,
             'size_id' => 1,
         ]);
+
+        ItemDetail::create([
+            'item_id' => 2,
+            'spec_id' => 1,
+            'material_id' => 1,
+            'class_id' => 1,
+            'conn_id' => 1,
+            'size_id' => 1,
+        ]);
        
         
     }

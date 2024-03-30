@@ -8,9 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+    public function enquiry_detail()
+    {
+        return $this->belongsTo(EnquiryDetail::class);
+    }
     public function item_detail()
     {
         return $this->belongsTo(ItemDetail::class);
+    }
+    public function share_product()
+    {
+        return $this->belongsTo(ShareProduct::class);
+    }
+    public function wishlist()
+    {
+        return $this->belongsTo(Wishlist::class);
     }
     public function brand()
     {
