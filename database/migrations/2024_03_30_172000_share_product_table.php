@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('share_product', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->bigInteger('parent_category_id')->unsigned()->nullable();
-            $table->string('image')->nullable();
+            $table->bigInteger('item_id')->unsigned();
+            $table->bigInteger('customer_id')->unsigned();
+
             $table->timestamps();
-
-            $table->foreign('parent_category_id')->references('id')->on('categories');
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('customer_id')->references('id')->on('users');
         });
-
     }
 
     /**
@@ -34,6 +32,6 @@ return new class extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('item_details');
     }
 };

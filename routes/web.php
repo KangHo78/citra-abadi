@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\SalesController;
+use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\ReceiveItemController;
 use App\Http\Controllers\AdjustmentController;
 use App\Http\Controllers\ItemController;
@@ -10,7 +10,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PurchasingController;
 use App\Http\Controllers\ReportCartController;
@@ -90,10 +90,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     // Transaction
     Route::group(['prefix' => 'transaction'], function () {
-        Route::resource('sales', SalesController::class, [
+        Route::resource('sales', EnquiryController::class, [
             'as' => 'transaction'
         ]);
-        Route::get('sales/{sales}/print', [SalesController::class, 'print'])->name('transaction.sales.print');
+        Route::get('sales/{sales}/print', [EnquiryController::class, 'print'])->name('transaction.sales.print');
 
         Route::resource('purchasing', PurchasingController::class, [
             'as' => 'transaction'
@@ -139,7 +139,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     });
     Route::resource('promotions', PromotionController::class);
     Route::group(['prefix' => 'settings'], function () {
-        Route::resource('customer', CustomerController::class);
+        Route::resource('customer', UserController::class);
         Route::resource('role', RoleController::class);
         Route::resource('staff', StaffController::class);
         Route::resource('general', SettingsController::class);

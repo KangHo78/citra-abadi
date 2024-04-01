@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Classes extends Model
+class Role extends Model
 {
     use HasFactory;
-
-    protected $table = 'class';
-    public function item_detail()
+    public function permission()
     {
-        return $this->belongsTo(ItemDetail::class);
+        return $this->hasMany(Permission::class);
     }
+    
 }

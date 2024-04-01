@@ -31,6 +31,22 @@ class ItemSeeder extends Seeder
             'photos' => 1,
 
         ]);
+
+        Item::create([
+            'name' => 'Socket',
+            'sku' => 'SKU2',
+            'description' => 'Desc',
+            'brand_id' => 1,
+            'category_id' => 1,
+            'subcategory_id_1' => 1,
+            'subcategory_id_2' => 1,
+            'subcategory_id_3' => 1,
+            'subcategory_id_4' => 1,
+            'subcategory_id_5' => 1,
+            'subcategory_id_6' => 1,
+            'photos' => 1,
+
+        ]);
         
         
     }

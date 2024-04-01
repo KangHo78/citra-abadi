@@ -1,3 +1,5 @@
+@php
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <div class="row mb-2">
