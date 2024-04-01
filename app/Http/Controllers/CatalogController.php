@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Item;
+use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
@@ -16,34 +17,44 @@ class CatalogController extends Controller
         // $this->middleware('auth');
     }
 
-    function index() {
+    function index(Request $req)
+    {
         $category = Category::get();
-        $item = Item::get();
-        return view('user.catalog',compact('category','item'));
+
+        $item = Item::where(function ($q) use ($req) {
+            if ($req->has('q')) {
+                $q->where('name', 'like', '%' . $req->q . '%');
+            }
+        })->get();
+        return view('user.catalog', compact('category', 'item'));
     }
-    function show() {
+    function show()
+    {
         $data = [];
-        return view($this->path.'/show',compact('data'));
+        return view($this->path . '/show', compact('data'));
     }
-    function create() {
+    function create()
+    {
         $data = [];
-        return view($this->path.'/create',compact('data'));
+        return view($this->path . '/create', compact('data'));
     }
-    function store() {
-    
+    function store()
+    {
     }
-    function edit() {
+    function edit()
+    {
         $data = [];
-        return view($this->path.'/edit',compact('data'));
+        return view($this->path . '/edit', compact('data'));
     }
-    function update() {
-    
+    function update()
+    {
     }
-    function print() {
+    function print()
+    {
         $data = [];
-        return view($this->path.'/print',compact('data'));
+        return view($this->path . '/print', compact('data'));
     }
-    function destroy() {
-    
+    function destroy()
+    {
     }
 }

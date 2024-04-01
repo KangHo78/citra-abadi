@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Enquiry;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -51,5 +52,10 @@ class HomeController extends Controller
     function dataMaterial(Request $req) {
         $category = Category::where('name',$req->q)->get();
         return response()->json($category);
+    }
+
+    function profile() {
+        $enquiry = Enquiry::get();
+        return view('user.profile',compact('enquiry'));
     }
 }

@@ -31,6 +31,7 @@ class ProductDetailsController extends Controller
         $item = Item::with('item_detail')->findOrFail($id);
         return view('user.product_details',compact('category','item','material','spec','class','conn','size'));
     }
+    
     function show() {
         $data = [];
         return view($this->path.'/show',compact('data'));

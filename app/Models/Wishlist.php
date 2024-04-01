@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Wishlist extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'item_id', 
+        'customer_id',
+    ];
+
+
     public function item_detail()
     {
         return $this->hasMany(ItemDetail::class);

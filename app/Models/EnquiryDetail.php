@@ -9,6 +9,16 @@ class EnquiryDetail extends Model
 {
     use HasFactory;
    
+
+    
+    protected $fillable = [
+        'enquiry_id', 
+        'item_id', 
+        'item_detail_id', 
+        'item_price', 
+        'item_quantity',
+    ];
+    
     public function enquiry()
     {
         return $this->belongsTo(Enquiry::class);

@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Enquiry extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'code', 
+        'date', 
+        'desc', 
+        'status', 
+        'customer_id',
+        'discount',
+        'discount_type',
+        'grand_total',
+    ];
+
     public function enquiry_detail()
     {
         return $this->hasMany(EnquiryDetail::class);

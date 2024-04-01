@@ -61,7 +61,7 @@
                                     alt=""><span>0.059</span>($253.67)</div> -->
 
                             <!-- Button trigger modal -->
-                            <button class="btn-main btn-lg"> <i class="fa fa-heart"></i> Add Wishlist </button>
+                            <button class="btn-main btn-lg" onclick="addToWishlish('{{$item->id}}')"> <i class="fa fa-heart"></i> Add Wishlist </button>
                             <button class="btn-main bg-info btn-lg btn-light"> <i class="fa fa-share-alt"></i> Share
                                 Product </button>
                         </div>
@@ -404,13 +404,6 @@
                     qtyIdsRaw.push(value);
                 });
 
-
-                // console.log('Item IDs:', itemIds);
-                // console.log('Item Detail IDs:', itemDetailIds);
-
-
-
-
                 $.ajax({
                     url: "{{ route('add-to-cart') }}", // Ganti dengan URL endpoint Anda
                     method: 'POST',
@@ -446,6 +439,40 @@
 
                 // var data = $('.form-data').serialize();
                 // console.log(data);
+            }
+
+
+            function addToWishlish(params) {
+
+                $.ajax({
+                    url: "{{ route('add-to-wishlist') }}", // Ganti dengan URL endpoint Anda
+                    method: 'POST',
+                    dataType: 'json',
+                    data: 'item_id='+params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                        }
+                        // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
+                        // '_blank');
+
+                    },
+                    error: function(xhr, status, error) {
+                        iziToast.error({
+                            title: 'Pemberitahuan',
+                            message: response.message,
+                        });
+                    }
+                });
             }
         </script>
     @endsection

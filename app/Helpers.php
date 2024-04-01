@@ -7,8 +7,13 @@ if (!function_exists('checkCarts')) {
     function checkCarts()
     {
 
-        $totalCarts = Cart::where('user_id', Auth::user()->id)->count();
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
+        if (Auth::check()) {
+            $totalCarts = Cart::where('user_id', Auth::user()->id)->count();
+            $carts = Cart::where('user_id', Auth::user()->id)->get();
+        }else{
+            $totalCarts = 0;
+            $carts = [];
+        }
 
         return ['totalCart' => $totalCarts, 'carts' => $carts];
     }

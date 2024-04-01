@@ -14,8 +14,8 @@ class Cart extends Model
         'item_detail_id', 
         'qty', 
         'user_id', 
-        // Add user_id here
-        // other fillable attributes...
+        'description', 
+
     ];
 
     public function item()
