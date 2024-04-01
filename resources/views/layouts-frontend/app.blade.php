@@ -15,15 +15,16 @@
 
     <!-- Styles -->
     @include('layouts-frontend.partials.styles')
+    @yield('styles')
 </head>
 
 <body>
     <div id="wrapper">
-      
+
         <div class="floating-button">
-          <a href="#" class="float">
-            <i class="fa fa-whatsapp my-float"></i>
-          </a>
+            <a href="#" class="float">
+                <i class="fa fa-whatsapp my-float"></i>
+            </a>
         </div>
 
         @include('layouts-frontend.partials.header')
@@ -33,6 +34,6 @@
     </div>
     @include('layouts-frontend.partials.scripts')
     @yield('scripts')
-  </body>
+</body>
 
 </html>

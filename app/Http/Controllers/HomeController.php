@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Item;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -45,5 +46,10 @@ class HomeController extends Controller
     }
     function destroy() {
     
+    }
+
+    function dataMaterial(Request $req) {
+        $category = Category::where('name',$req->q)->get();
+        return response()->json($category);
     }
 }

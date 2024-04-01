@@ -29,7 +29,9 @@
                             <!-- Auctions ends in <div class="de_countdown" data-year="2022" data-month="4" data-day="16" data-hour="8"></div> -->
                             <h2>{{ $item->name }}</h2>
                             <div class="item_info_counts">
-                                <div class="item_info_type"><i class="fa fa-image"></i>{{ $item->category->name }}</div>
+                                <div class="item_info_type"><i class="fa fa-list"></i>SKU : {{ $item->sku }}</div>
+                                <div class="item_info_type"><i class="fa fa-archive"></i>{{ $item->category->name }}
+                                </div>
                                 <div class="item_info_views"><i class="fa fa-eye"></i>250</div>
                                 <div class="item_info_like"><i class="fa fa-heart"></i>18</div>
                             </div>
@@ -59,14 +61,9 @@
                                     alt=""><span>0.059</span>($253.67)</div> -->
 
                             <!-- Button trigger modal -->
-                            <a href="#" class="btn-main btn-lg" data-bs-toggle="modal" data-bs-target="#buy_now">
-                                <i class="fa fa-heart"></i> Add Wishlist
-                            </a>
-                            &nbsp;
-                            <a href="#" class="btn-main btn-lg btn-light" data-bs-toggle="modal"
-                                data-bs-target="#place_a_bid">
-                                <i class="fa fa-share-alt"></i> Share Product
-                            </a>
+                            <button class="btn-main btn-lg"> <i class="fa fa-heart"></i> Add Wishlist </button>
+                            <button class="btn-main bg-info btn-lg btn-light"> <i class="fa fa-share-alt"></i> Share
+                                Product </button>
                         </div>
                     </div>
                 </div>
@@ -84,107 +81,172 @@
                             <div class="container" style="background-size: cover;">
                                 <div class="row" style="background-size: cover;">
                                     <div class="col-md-12" style="background-size: cover;">
-                                        <div class="items_filter text-start" style="background-size: cover;">
+                                        <div class="row">
 
-                                            <div id="filter_by_duration" class="dropdown"
-                                                style="background-size: cover;">
-                                                <a href="#" class="btn-selector">Filter By Material </a>
-                                                <ul>
+                                            <div class="col-sm-12">
+                                                <select id="select-ajax" class="form-control"></select>
+                                                {{-- <select name="material" id=""
+                                                    class="js-data-example-ajax form-control select2">
+                                                    <option value="" data-filter="">- Filter Material -</option>
+                                                </select>
+                                                <div class="spacer-single" style="background-size: cover;"></div> --}}
+                                                <div class="spacer-double" style="background-size: cover;"></div>
+
+
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <select name="material" id=""
+                                                    class="material_filter form-control select2">
+                                                    <option value="" data-filter="">- Filter Material -</option>
                                                     @foreach ($material as $el)
-                                                        <li><span>{{ $el->name }}</span></li>
+                                                        <option value="{{ $el->id }}"
+                                                            data-filter="{{ $el->name }}">{{ $el->name }}
+                                                        </option>
                                                     @endforeach
-                                                    {{-- <li><span>Last 24 hours</span></li>
-                                                    <li class="active"><span>Last 7 days</span></li>
-                                                    <li><span>Last 30 days</span></li>
-                                                    <li><span>All time</span></li> --}}
-                                                </ul>
+                                                </select>
+                                                <div class="spacer-single" style="background-size: cover;"></div>
                                             </div>
 
-                                            <div id="filter_by_finishing" class="dropdown"
-                                                style="background-size: cover;">
-                                                <a href="#" class="btn-selector"> Filter By Finishing </a>
-                                                <ul>
-                                                    @foreach ($material as $el)
-                                                        <li><span>{{ $el->name }}</span></li>
+                                            <div class="col-sm-2">
+                                                <select name="material" id=""
+                                                    class="spec_filter form-control select2">
+                                                    <option value="" data-filter="">- Filter Spec -</option>
+                                                    @foreach ($spec as $el)
+                                                        <option value="{{ $el->id }}"
+                                                            data-filter="{{ $el->name }}">{{ $el->name }}
+                                                        </option>
                                                     @endforeach
-                                                </ul>
+                                                </select>
+                                                <div class="spacer-single" style="background-size: cover;"></div>
                                             </div>
 
-                                            <div id="filter_by_category" class="dropdown"
-                                                style="background-size: cover;">
-                                                <a href="#" class="btn-selector"> Filter By Diameter</a>
-                                                <ul>
-                                                    @foreach ($material as $el)
-                                                        <li><span>{{ $el->name }}</span></li>
+                                            <div class="col-sm-2">
+                                                <select name="class" id=""
+                                                    class="class_filter form-control select2">
+                                                    <option value="" data-filter="">- Filter Class -</option>
+                                                    @foreach ($class as $el)
+                                                        <option value="{{ $el->id }}"
+                                                            data-filter="{{ $el->name }}">{{ $el->name }}
+                                                        </option>
                                                     @endforeach
-                                                </ul>
+                                                </select>
+                                                <div class="spacer-single" style="background-size: cover;"></div>
                                             </div>
 
-                                            <div id="filter_by_category" class="dropdown"
-                                                style="background-size: cover;">
-                                                <input type="text" name="search" id="description"
-                                                    class="form-control" placeholder="Cari Item..">
+                                            <div class="col-sm-2">
+                                                <select name="conn" id=""
+                                                    class="conn_filter form-control select2">
+                                                    <option value="" data-filter="">- Filter Conn -</option>
+                                                    @foreach ($conn as $el)
+                                                        <option value="{{ $el->id }}"
+                                                            data-filter="{{ $el->name }}">{{ $el->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="spacer-single" style="background-size: cover;"></div>
                                             </div>
 
-                                            <div id="filter_by_category" class="dropdown float-end"
-                                                style="background-size: cover;">
-                                                <button class="btn btn-main"><i class="fa fa-shopping-basket"></i>
-                                                    &nbsp; Add To Cart </button>
+                                            <div class="col-sm-2">
+                                                <select name="size" id=""
+                                                    class="size_filter form-control select2">
+                                                    <option value="" data-filter="">- Filter Size -</option>
+                                                    @foreach ($size as $el)
+                                                        <option value="{{ $el->id }}"
+                                                            data-filter="{{ $el->name }}">{{ $el->name }}"
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="spacer-single" style="background-size: cover;"></div>
                                             </div>
+
+                                            <div class="col-sm-2">
+                                                <input type="text" name="filter_all" id="filter_all"
+                                                    class="form-control" placeholder="Search...">
+                                            </div>
+
+
+                                        </div>
+                                        {{-- <div class="spacer-single" style="background-size: cover;"></div> --}}
+
+                                        <div class="responsive" style="overflow:auto">
+                                            <table class="table table-sm table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="vertical-align: middle;text-align: center;">Code/SKU
+                                                        </th>
+                                                        <th style="vertical-align: middle;text-align: center;">Material
+                                                        </th>
+                                                        <th style="vertical-align: middle;text-align: center;">Spec
+                                                        </th>
+                                                        <th style="vertical-align: middle;text-align: center;">Class
+                                                        </th>
+                                                        <th style="vertical-align: middle;text-align: center;">Conn
+                                                        </th>
+                                                        <th style="vertical-align: middle;text-align: center;">Size
+                                                        </th>
+                                                        <th style="vertical-align: middle;text-align: center;"
+                                                            class="text-end">Qty</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($item->item_detail as $el)
+                                                        <tr>
+                                                            <th
+                                                                style="padding-left: 0px !important;vertical-align: middle;text-align: center;">
+                                                                <u>{{ $el->sku }}</u>
+                                                            </th>
+                                                            <td style="vertical-align: middle;text-align: center;">
+                                                                <div style="min-width:100px;max-width:200px">
+                                                                    {{ $el->material->name }}
+                                                                </div>
+                                                            </td>
+                                                            <td style="vertical-align: middle;text-align: center;">
+                                                                <div style="min-width:100px;max-width:200px">
+                                                                    {{ $el->spec->name }}
+                                                                </div>
+
+                                                            </td>
+                                                            <td style="vertical-align: middle;text-align: center;">
+                                                                <div style="min-width:100px;max-width:200px">
+                                                                    {{ $el->class->name }}
+                                                                </div>
+                                                            </td>
+                                                            <td style="vertical-align: middle;text-align: center;">
+                                                                <div style="min-width:100px;max-width:200px">
+                                                                    {{ $el->conn->name }}
+                                                                </div>
+                                                            </td>
+                                                            <td style="vertical-align: middle;text-align: center;">
+                                                                <div style="min-width:100px;max-width:200px">
+                                                                    {{ $el->size->name }}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="field-set"
+                                                                    style="background-size: cover;min-width:150px;max-width:300px">
+                                                                    <input type="text" name="qty"
+                                                                        id="qty" class="form-control text-end"
+                                                                        placeholder="0">
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="spacer-single" style="background-size: cover;"></div>
+
+                                        <div id="filter_by_category" class="dropdown float-end"
+                                            style="background-size: cover;">
+                                            <button class="btn btn-main"><i class="fa fa-shopping-basket"></i>
+                                                &nbsp; Add To Cart </button>
                                         </div>
 
-                                        <table class="table table-md">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Item Code</th>
-                                                    <th scope="col">Material</th>
-                                                    <th scope="col">Finishing</th>
-                                                    <th scope="col">diameter</th>
-                                                    <th scope="col">Length</th>
-                                                    <th scope="col">Qty/Pkt</th>
-                                                    <th scope="col" style="width: 15%;" class="text-end">Qty</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th style="padding-left: 0px !important;vertical-align: middle;">
-                                                        <u>670021-060-050</u>
-                                                    </th>
-                                                    <td style="vertical-align: middle;">STEEL</td>
-                                                    <td style="vertical-align: middle;" class="d-plus">YELLOW ZINC
-                                                    </td>
-                                                    <td style="vertical-align: middle;" class="d-plus">M 8</td>
-                                                    <td style="vertical-align: middle;">50</td>
-                                                    <td style="vertical-align: middle;">100</td>
-                                                    <td>
-                                                        <div class="field-set" style="background-size: cover;">
-                                                            <input type="text" name="email" id="email"
-                                                                class="form-control text-end" placeholder="0">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th style="padding-left: 0px !important;vertical-align: middle;">
-                                                        <u>670021-060-050</u>
-                                                    </th>
-                                                    <td style="vertical-align: middle;">STEEL</td>
-                                                    <td style="vertical-align: middle;" class="d-plus">YELLOW ZINC
-                                                    </td>
-                                                    <td style="vertical-align: middle;" class="d-plus">M 8</td>
-                                                    <td style="vertical-align: middle;">50</td>
-                                                    <td style="vertical-align: middle;">100</td>
-                                                    <td>
-                                                        <div class="field-set" style="background-size: cover;">
-                                                            <input type="text" name="email" id="email"
-                                                                class="form-control text-end" placeholder="0">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-
-                                        <div class="spacer-double" style="background-size: cover;"></div>
+                                        {{-- <div class="spacer-double" style="background-size: cover;"></div>
 
                                         <ul class="pagination justify-content-center">
                                             <li><a href="#">Previous</a></li>
@@ -192,7 +254,7 @@
                                             <li><a href="#">21 - 40</a></li>
                                             <li><a href="#">41 - 60</a></li>
                                             <li><a href="#">Next</a></li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                             </div>
@@ -205,68 +267,106 @@
 
 
     </div>
-    <link href="https://cdn.jsdelivr.net/gh/hummingbird-dev/hummingbird-treeview@v3.0.5/hummingbird-treeview.min.css"
-        rel="stylesheet">
-    <!-- <script src="https://raw.githubusercontent.com/hummingbird-dev/hummingbird-treeview/master/hummingbird-treeview.js">
-    </script> -->
-    <script src="https://cdn.jsdelivr.net/gh/hummingbird-dev/hummingbird-treeview@v3.0.5/hummingbird-treeview.min.js">
-    </script>
-    <style>
-        input[type="checkbox"] {
-            appearance: auto;
-        }
 
-        .hummingbird-base {
-            padding-left: 0px;
-        }
 
-        .hummingbird-base label {
-            font-family: var(--body-font);
-            font-size: 16px;
-            font-weight: 400;
-            color: #727272;
-            line-height: 30px;
-            padding: 0;
-            line-height: 26px;
-            word-spacing: 0px;
-        }
+    @section('styles')
+        <style>
+            .dt-search {
+                display: none;
+                /* Menyembunyikan elemen pencarian */
+            }
+        </style>
+    @endsection
 
-        .hummingbird-treeview,
-        .hummingbird-treeview * {
-            line-height: 40px;
-        }
-    </style>
-    <script>
-        $(document).ready(function() {
-            //options
-            $.fn.hummingbird.defaults.collapsedSymbol = "fa-angle-right";
-            $.fn.hummingbird.defaults.expandedSymbol = "fa-angle-down";
-            $.fn.hummingbird.defaults.hoverItems = true;
+    @section('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+        <script>
 
-            //init	
-            $("#treeview").hummingbird();
-
-            //expandAll
-            $("#expandAll").on("click", function() {
-                $("#treeview").hummingbird("expandAll");
-            });
-            //collapseAll
-            $("#collapseAll").on("click", function() {
-                $("#treeview").hummingbird("collapseAll");
+            $('.table').DataTable({
+                searching: true, 
+                lengthChange: false, 
+                "columnDefs": [{
+                        "type": "html",
+                        "targets": "_all"
+                    }
+                ]
             });
 
-            //pre-check
-            var pre_check = [1, 2];
-            $.each(pre_check, function(i, e) {
-                $("#treeview").hummingbird("checkNode", {
-                    attr: "data-id",
-                    name: e,
-                    expandParents: false
+            $(document).ready(function() {
+                // Inisialisasi DataTables
+                var table = $('.table').DataTable();
+
+                // Menggunakan Select2 untuk kolom yang memerlukan
+                $('.select2').select2({
+                    theme: 'bootstrap-5'
+                });
+
+                $('.material_filter').on('change', function() {
+                    var value = $(this).find(':selected').data('filter');
+                    console.log(value);
+                    table.columns(1).search(value).draw();
+                });
+
+                $('.spec_filter').on('change', function() {
+                    var value = $(this).find(':selected').data('filter');
+                    console.log(value);
+                    table.columns(2).search(value).draw();
+                });
+
+                $('.class_filter').on('change', function() {
+                    var value = $(this).find(':selected').data('filter');
+                    console.log(value);
+                    table.columns(3).search(value).draw();
+                });
+
+                $('.conn_filter').on('change', function() {
+                    var value = $(this).find(':selected').data('filter');
+                    console.log(value);
+                    table.columns(4).search(value).draw();
+                });
+
+                $('.size_filter').on('change', function() {
+                    var value = $(this).find(':selected').data('filter');
+                    console.log(value);
+                    table.columns(5).search(value).draw();
+                });
+
+                $('#filter_all').on('keyup', function() {
+                    var value = $(this).val(); 
+                    var columnIndex = $(this).data('column'); 
+                    table.search(value).draw(); 
+                });
+
+            });
+
+
+            $(document).ready(function() {
+                $('#select-ajax').select2({
+                    ajax: {
+                        url: "{{ route('dataMaterial') }}", 
+                        dataType: 'json',
+                        delay: 250, 
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        id: item
+                                        .id, 
+                                        text: item
+                                            .name 
+                                    };
+                                })
+                            };
+                        },
+                        cache: true
+                    },
+                    placeholder: 'Pilih data', 
+                    minimumInputLength: 1 
                 });
             });
-
-        });
-    </script>
+        </script>
+    @endsection
 
 
 </x-app-layout-frontend>

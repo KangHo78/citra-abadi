@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('item_details', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('item_id')->unsigned();
+            $table->string('sku')->unique();
             $table->bigInteger('spec_id')->unsigned();
             $table->bigInteger('material_id')->unsigned();
             $table->bigInteger('class_id')->unsigned();

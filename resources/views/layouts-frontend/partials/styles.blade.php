@@ -10,10 +10,18 @@
 <link href="{{ asset('front-end/css/owl.transitions.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('front-end/css/magnific-popup.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('front-end/css/jquery.countdown.css') }}" rel="stylesheet" type="text/css" />
+
+
 <link href="{{ asset('front-end/css/style.css') }}" rel="stylesheet" type="text/css" />
 <!-- color scheme -->
 <link id="colors" href="{{ asset('front-end/css/colors/scheme-01.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('front-end/css/coloring.css') }}" rel="stylesheet" type="text/css" />
+
+
+{{-- cdn select2 --}}
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" rel="stylesheet" />
 
 
 <style>
@@ -60,4 +68,72 @@
     .switch-with-title{
         border-radius: 10px;
     }
+
+    <style>
+            /* Styling for Select2 container */
+            .select2-container {
+                box-sizing: border-box;
+                display: inline-block;
+                position: relative;
+                width: 100%;
+                /* Sesuaikan lebar sesuai kebutuhan Anda */
+            }
+
+            /* Styling for Select2 dropdown */
+            .select2-dropdown {
+                position: absolute;
+                z-index: 9999;
+                /* Sesuaikan dengan kebutuhan Anda */
+                width: 100%;
+                /* Sesuaikan lebar sesuai kebutuhan Anda */
+                background-color: #fff;
+                /* Warna latar belakang dropdown */
+                border: 1px solid #ccc;
+                /* Warna border dropdown */
+                border-radius: 4px;
+                /* Sudut border dropdown */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                /* Efek bayangan dropdown */
+            }
+
+            /* Styling for Select2 options */
+            .select2-results__option {
+                padding: 8px 12px;
+                /* Padding opsi dropdown */
+                cursor: pointer;
+            }
+
+            /* Styling for Select2 selected option */
+            .select2-selection__rendered {
+                padding: 5px 10px;
+                /* Padding untuk opsi yang dipilih */
+                background-color: #f0f0f0;
+                /* Warna latar belakang opsi yang dipilih */
+                border: 1px solid #ccc;
+                /* Warna border opsi yang dipilih */
+                border-radius: 4px;
+                /* Sudut border opsi yang dipilih */
+            }
+
+            /* Styling for Select2 arrow */
+            .select2-selection__arrow {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                /* Sesuaikan dengan kebutuhan Anda */
+                transform: translateY(-50%);
+            }
+
+            /* Styling for Select2 disabled state */
+            .select2-container--disabled .select2-selection__rendered {
+                background-color: #f5f5f5;
+                /* Warna latar belakang untuk opsi yang dinonaktifkan */
+                color: #999;
+                /* Warna teks untuk opsi yang dinonaktifkan */
+            }
+
+            .select2-dropdown{
+                margin-top:10px;
+            }
+        </style>
 </style>
