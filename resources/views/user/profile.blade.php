@@ -107,7 +107,8 @@
                                             </div>
                                             <div class="col-2">
                                                 <div class="spacer-30"></div>
-                                                <input type="button" id="submit" class="btn-main" value="Update profile">
+                                                <input type="button" id="submit" class="btn-main"
+                                                    value="Update profile">
                                             </div>
                                         </div>
                                     </div>
@@ -115,37 +116,46 @@
                                     <div class="tab-2">
                                         <div class="row wow fadeIn">
                                             <div class="col-md-12 mb-sm-20">
-                                                @for ($i = 0; $i < 10; $i++)
+                                                @foreach ($enquiry as $el)
                                                     <div class="spacer-20"></div>
                                                     <div class="switch-with-title s2">
                                                         <div class="row">
                                                             {{-- <div class="col-md-2 col-sm-3">
-                                                                <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                                    class="lazy nft__item_preview" alt=""
-                                                                    width="100px">
-                                                            </div> --}}
+                                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                                                class="lazy nft__item_preview" alt=""
+                                                                width="100px">
+                                                        </div> --}}
                                                             <div class="col-md-12 col-sm-12">
-                                                                <h3 style="
-                                                                float: left;
-                                                                margin: 0px;
-                                                            ">#ORD102381723</h3>
+                                                                <h3
+                                                                    style="
+                                                            float: left;
+                                                            margin: 0px;
+                                                        ">
+                                                                    {{ $el->code }}</h3>
                                                                 <div class="de-switch">
-                                                                    <input type="button" class="btn-main btn-xs"
-                                                                        value="Progres" style="padding: 5px 15px;">
+                                                                    <input type="button" 
 
-                                                                    {{-- <br> --}}
-                                                                    {{-- <h6><u>10 Items</u></h6> --}}
-
+                                                                        @if ($el->status == 1)
+                                                                            value="Progres"
+                                                                            class="btn-main btn-xs"
+                                                                        @else
+                                                                            value="Cancel"
+                                                                            class="btn-danger btn-xs"
+                                                                        @endif
+                                                                        
+                                                                        style="padding: 5px 15px;">
                                                                 </div>
                                                                 <div class="clearfix"></div>
-                                                                <h6><u>Rp. 100.000.000 (10 Items)</u></h6>
+                                                                <h6><u>Rp.
+                                                                        {{ number_format($el->grand_total, 2, ',', '.') }}
+                                                                        ({{ $el->enquiry_detail->count() }} Items)
+                                                                    </u></h6>
                                                                 <div class="clearfix"></div>
-                                                                Note : Lorem ipsum dolor sit amet
+                                                                Note : {{ $el->desc }}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endfor
-
+                                                @endforeach
                                             </div>
 
                                         </div>
@@ -188,7 +198,7 @@
                                 </div>
                             </div>
 
-                    
+
                         </form>
                     </div>
                 </div>

@@ -29,6 +29,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\MobileAppSettingsController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,21 +51,23 @@ Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/material',[HomeController::class, 'dataMaterial'])->name('dataMaterial');
 Route::get('/catalog',[CatalogController::class, 'index'])->name('catalog');
 Route::get('/product-details/{id}',[ProductDetailsController::class, 'index'])->name('product-details');
-
+Route::get('/profile',[HomeController::class, 'profile'])->name('profile');
 
 Route::post('/add-to-cart',[CartsController::class, 'addToCart'])->name('add-to-cart');
 Route::get('/cart',[CartsController::class, 'cart'])->name('cart');
+
+Route::post('/remove-item-cart',[CartsController::class, 'removeItemCart'])->name('remove-item-cart');
+Route::post('/add-quantity-item-cart',[CartsController::class, 'addQuantityItemCart'])->name('add-quantity-item-cart');
+Route::post('/decrease-quantity-item-cart',[CartsController::class, 'decreaseQuantityItemCart'])->name('decrease-quantity-item-cart');
+Route::post('/sync-quantity-item-cart',[CartsController::class, 'syncQuantityItemCart'])->name('sync-quantity-item-cart');
+
 Route::post('/place-order',[CartsController::class, 'placeOrder'])->name('place-order');
 
 
+Route::get('/wishlist',[WishlistController::class, 'index'])->name('wishlist');
+Route::post('/add-to-wishlist',[WishlistController::class, 'addToWishlist'])->name('add-to-wishlist');
 
-Route::get('/wishlist', function () {
-    return view('user.wishlist');
-})->name('wishlist');
 
-Route::get('/profile', function () {
-    return view('user.profile');
-})->name('profile');
 
 // Route::get('/item-details', function () {
 //     return view('user.item_details');

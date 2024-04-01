@@ -87,17 +87,33 @@
                                         <a href="{{ route('cart') }}">Show all</a>
                                     </div>
 
-                                    <ul>
+                                    <ul style="max-height: 250px;overflow:auto">
                                         @foreach (checkCarts()['carts'] as $el)
                                             <li>
-                                                <a href="#">
-                                                    <img class="lazy"
+                                                <a href="{{route('product-details',$el->item_id)}}">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <div class="col-4"><img
+                                                                    style="position: relative !important;width:50px!important;height:50px!important" class="lazy"
+                                                                    src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                                                    alt=""></div>
+                                                            <div class="col">
+                                                                <div class="" style="background-size: cover;">
+                                                                    <span
+                                                                        class="d-name"><b>{{ $el->item_detail->sku }}</b>
+                                                                        {{ $el->item->name }} <br>
+                                                                        {{ $el->qty }}Pcs</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <img class="lazy"
                                                         src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                                         alt="">
                                                     <div class="d-desc" style="background-size: cover;">
                                                         <span class="d-name"><b>{{$el->item_detail->sku}}</b> {{$el->item->name}} <br>
                                                             {{$el->qty}}Pcs</span>
-                                                    </div>
+                                                    </div> --}}
                                                 </a>
                                             </li>
                                         @endforeach

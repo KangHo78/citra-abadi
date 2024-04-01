@@ -1,7 +1,8 @@
 <x-app-layout-frontend>
     <div class="no-bottom" id="content">
         <div id="top"></div>
-        <section id="subheader" class="text-light" data-bgimage="url(https://madebydesignesia.com/themes/gigaland/images/background/subheader-dark.jpg) top">
+        <section id="subheader" class="text-light"
+            data-bgimage="url(https://madebydesignesia.com/themes/gigaland/images/background/subheader-dark.jpg) top">
             <div class="center-y relative text-center">
                 <div class="container">
                     <div class="row">
@@ -23,17 +24,18 @@
                     <div class="col-md-12">
                         <div class="row">
 
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
+                            @foreach ($data as $el)
+                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                                style="display: block; background-size: cover;">
+                                <div class="nft__item style-2" style="background-size: cover;">
+        
+                                    <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
+                                        <div class="nft__item_extra"
+                                            style="background-size: cover; visibility: hidden; opacity: 0;">
+                                            <div class="nft__item_buttons" style="background-size: cover;">
+                                                <button onclick="location.href='{{ route('product-details',$el->item->id) }}'">Buy
+                                                    Now</button>
+                                                <div class="nft__item_share" style="background-size: cover;">
                                                     <h4>Share</h4>
                                                     <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
                                                         target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
@@ -45,329 +47,29 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                        <a href="{{ route('product-details',$el->item->id) }}">
+                                            <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
                                                 class="lazy nft__item_preview" alt="">
                                         </a>
                                     </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
+                                    <div class="nft__item_info" style="background-size: cover;">
+                                        <a href="{{ route('product-details',$el->item->id) }}">
+                                            <h4 style="margin-right: 25px;">{{$el->item->name}}</h4>
                                         </a>
-                                        <div class="nft__item_click">
+                                        <div class="nft__item_click" style="background-size: cover;">
                                             <span></span>
                                         </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
+                                        <div class="nft__item_action" style="background-size: cover;">
+                                            <a href="#"></a>
+                                            <br>
                                         </div>
-                                        <div class="nft__item_like">
+                                        <div class="nft__item_like" style="background-size: cover;">
                                             <i class="fa fa-heart"></i><span>50</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                        </a>
-                                        <div class="nft__item_click">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                        </div>
-                                        <div class="nft__item_like">
-                                            <i class="fa fa-heart"></i><span>50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                        </a>
-                                        <div class="nft__item_click">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                        </div>
-                                        <div class="nft__item_like">
-                                            <i class="fa fa-heart"></i><span>50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                        </a>
-                                        <div class="nft__item_click">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                        </div>
-                                        <div class="nft__item_like">
-                                            <i class="fa fa-heart"></i><span>50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                        </a>
-                                        <div class="nft__item_click">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                        </div>
-                                        <div class="nft__item_like">
-                                            <i class="fa fa-heart"></i><span>50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                        </a>
-                                        <div class="nft__item_click">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                        </div>
-                                        <div class="nft__item_like">
-                                            <i class="fa fa-heart"></i><span>50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                        </a>
-                                        <div class="nft__item_click">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                        </div>
-                                        <div class="nft__item_like">
-                                            <i class="fa fa-heart"></i><span>50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="nft__item">
-
-                                    <div class="author_list_pp">
-
-                                    </div>
-                                    <div class="nft__item_wrap">
-                                        <div class="nft__item_extra">
-                                            <div class="nft__item_buttons">
-                                                <button onclick="location.href='item-details.html'">Buy Now</button>
-                                                <div class="nft__item_share">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="item-details.html">
-                                            <img src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info">
-                                        <a href="item-details.html">
-                                            <h4 style="margin-right: 25px;">Dog[Eye] Bolt c/w Wing Nut</h4>
-                                        </a>
-                                        <div class="nft__item_click">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action">
-                                            <a href="#">Add to Cart <i class="fa fa-fw fa-plus-circle"></i></a>
-                                        </div>
-                                        <div class="nft__item_like">
-                                            <i class="fa fa-heart"></i><span>50</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                        @endforeach
 
                             <div class="col-md-12 text-center">
                                 <a href="#" id="loadmore" class="btn-main wow fadeInUp lead">Load more</a>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('item_id')->unsigned();
             $table->bigInteger('item_detail_id')->unsigned();
             $table->double('qty');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('item_id')->references('id')->on('items');
