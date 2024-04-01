@@ -14,7 +14,7 @@
 <script src="{{ asset('front-end/js/jquery.lazy.min.js')}}"></script>
 <script src="{{ asset('front-end/js/jquery.lazy.plugins.min.js')}}"></script>
 <script src="{{ asset('front-end/js/designesia.js')}}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 <script>
 
 

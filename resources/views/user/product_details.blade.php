@@ -84,13 +84,13 @@
                                         <div class="row">
 
                                             {{-- <div class="col-sm-12"> --}}
-                                                {{-- <select id="select-ajax" class="form-control"></select> --}}
-                                                {{-- <select name="material" id=""
+                                            {{-- <select id="select-ajax" class="form-control"></select> --}}
+                                            {{-- <select name="material" id=""
                                                     class="js-data-example-ajax form-control select2">
                                                     <option value="" data-filter="">- Filter Material -</option>
                                                 </select>
                                                 <div class="spacer-single" style="background-size: cover;"></div> --}}
-                                                {{-- <div class="spacer-double" style="background-size: cover;"></div> --}}
+                                            {{-- <div class="spacer-double" style="background-size: cover;"></div> --}}
 
 
                                             {{-- </div> --}}
@@ -168,93 +168,96 @@
 
                                         </div>
                                         {{-- <div class="spacer-single" style="background-size: cover;"></div> --}}
-
-                                        <div class="responsive" style="overflow:auto">
-                                            <table class="table table-sm table-responsive">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="vertical-align: middle;text-align: center;">Code/SKU
-                                                        </th>
-                                                        <th style="vertical-align: middle;text-align: center;">Material
-                                                        </th>
-                                                        <th style="vertical-align: middle;text-align: center;">Spec
-                                                        </th>
-                                                        <th style="vertical-align: middle;text-align: center;">Class
-                                                        </th>
-                                                        <th style="vertical-align: middle;text-align: center;">Conn
-                                                        </th>
-                                                        <th style="vertical-align: middle;text-align: center;">Size
-                                                        </th>
-                                                        <th style="vertical-align: middle;text-align: center;"
-                                                            class="text-end">Qty</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    @foreach ($item->item_detail as $el)
+                                        <form action="#" class="form-data">
+                                            <div class="responsive" style="overflow:auto">
+                                                <table class="table table-sm table-responsive">
+                                                    <thead>
                                                         <tr>
-                                                            <th
-                                                                style="padding-left: 0px !important;vertical-align: middle;text-align: center;">
-                                                                <u>{{ $el->sku }}</u>
+                                                            {{-- <th>NO</th> --}}
+                                                            <th style="vertical-align: middle;text-align: center;">
+                                                                Code/SKU
                                                             </th>
-                                                            <td style="vertical-align: middle;text-align: center;">
-                                                                <div style="min-width:100px;max-width:200px">
-                                                                    {{ $el->material->name }}
-                                                                </div>
-                                                            </td>
-                                                            <td style="vertical-align: middle;text-align: center;">
-                                                                <div style="min-width:100px;max-width:200px">
-                                                                    {{ $el->spec->name }}
-                                                                </div>
-
-                                                            </td>
-                                                            <td style="vertical-align: middle;text-align: center;">
-                                                                <div style="min-width:100px;max-width:200px">
-                                                                    {{ $el->class->name }}
-                                                                </div>
-                                                            </td>
-                                                            <td style="vertical-align: middle;text-align: center;">
-                                                                <div style="min-width:100px;max-width:200px">
-                                                                    {{ $el->conn->name }}
-                                                                </div>
-                                                            </td>
-                                                            <td style="vertical-align: middle;text-align: center;">
-                                                                <div style="min-width:100px;max-width:200px">
-                                                                    {{ $el->size->name }}
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="field-set"
-                                                                    style="background-size: cover;min-width:150px;max-width:300px">
-                                                                    <input type="text" name="qty"
-                                                                        id="qty" class="form-control text-end"
-                                                                        placeholder="0">
-                                                                </div>
-                                                            </td>
+                                                            <th style="vertical-align: middle;text-align: center;">
+                                                                Material
+                                                            </th>
+                                                            <th style="vertical-align: middle;text-align: center;">Spec
+                                                            </th>
+                                                            <th style="vertical-align: middle;text-align: center;">
+                                                                Class
+                                                            </th>
+                                                            <th style="vertical-align: middle;text-align: center;">Conn
+                                                            </th>
+                                                            <th style="vertical-align: middle;text-align: center;">Size
+                                                            </th>
+                                                            <th style="vertical-align: middle;text-align: center;"
+                                                                class="text-end">Qty</th>
                                                         </tr>
-                                                    @endforeach
+                                                    </thead>
+                                                    <tbody>
 
 
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="spacer-single" style="background-size: cover;"></div>
+                                                        @foreach ($item->item_detail as $i => $el)
+                                                            <tr>
+                                                                {{-- <th>
+                                                                    {{ $i + 1 }}
+                                                                </th> --}}
 
-                                        <div id="filter_by_category" class="dropdown float-end"
-                                            style="background-size: cover;">
-                                            <button class="btn btn-main"><i class="fa fa-shopping-basket"></i>
-                                                &nbsp; Add To Cart </button>
-                                        </div>
+                                                                <th
+                                                                    style="padding-left: 0px !important;vertical-align: middle;text-align: center;">
+                                                                    <input type="hidden" name="item_id[]"
+                                                                        value="{{ $el->item_id }}">
+                                                                    <input type="hidden" name="item_detail_id[]"
+                                                                        value="{{ $el->id }}">
 
-                                        {{-- <div class="spacer-double" style="background-size: cover;"></div>
+                                                                    {{ $el->sku }}
+                                                                </th>
+                                                                <td style="vertical-align: middle;text-align: center;">
+                                                                    <div style="min-width:100px;max-width:200px">
+                                                                        {{ $el->material->name }}
+                                                                    </div>
+                                                                </td>
+                                                                <td style="vertical-align: middle;text-align: center;">
+                                                                    <div style="min-width:100px;max-width:200px">
+                                                                        {{ $el->spec->name }}
+                                                                    </div>
 
-                                        <ul class="pagination justify-content-center">
-                                            <li><a href="#">Previous</a></li>
-                                            <li class="active"><a href="#">1 - 20</a></li>
-                                            <li><a href="#">21 - 40</a></li>
-                                            <li><a href="#">41 - 60</a></li>
-                                            <li><a href="#">Next</a></li>
-                                        </ul> --}}
+                                                                </td>
+                                                                <td style="vertical-align: middle;text-align: center;">
+                                                                    <div style="min-width:100px;max-width:200px">
+                                                                        {{ $el->class->name }}
+                                                                    </div>
+                                                                </td>
+                                                                <td style="vertical-align: middle;text-align: center;">
+                                                                    <div style="min-width:100px;max-width:200px">
+                                                                        {{ $el->conn->name }}
+                                                                    </div>
+                                                                </td>
+                                                                <td style="vertical-align: middle;text-align: center;">
+                                                                    <div style="min-width:100px;max-width:200px">
+                                                                        {{ $el->size->name }}
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="qty[]"
+                                                                        class="form-control text-end" value=""
+                                                                        {{-- style="min-width:150px;max-width:250px"  --}}>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="spacer-single" style="background-size: cover;"></div>
+
+                                            <div id="filter_by_category" class="dropdown float-end"
+                                                style="background-size: cover;">
+                                                <button class="btn btn-main" type="button" onclick="addToCart()"><i
+                                                        class="fa fa-shopping-basket"></i>
+                                                    &nbsp; Add To Cart </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -282,20 +285,19 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
         <script>
-
-            $('.table').DataTable({
-                searching: true, 
-                lengthChange: false, 
-                "columnDefs": [{
-                        "type": "html",
-                        "targets": "_all"
-                    }
-                ]
-            });
-
             $(document).ready(function() {
                 // Inisialisasi DataTables
-                var table = $('.table').DataTable();
+                var table = $('.table').DataTable({
+                    searching: true,
+                    lengthChange: false,
+                    "columnDefs": [{
+                        "type": "html",
+                        "targets": "_all"
+                    }],
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
 
                 // Menggunakan Select2 untuk kolom yang memerlukan
                 $('.select2').select2({
@@ -333,9 +335,9 @@
                 });
 
                 $('#filter_all').on('keyup', function() {
-                    var value = $(this).val(); 
-                    var columnIndex = $(this).data('column'); 
-                    table.search(value).draw(); 
+                    var value = $(this).val();
+                    var columnIndex = $(this).data('column');
+                    table.search(value).draw();
                 });
 
             });
@@ -365,6 +367,86 @@
             //         minimumInputLength: 1 
             //     });
             // });
+            function addToCart(params) {
+
+                // Inisialisasi array untuk menyimpan nilai item_id
+                var itemIdsRaw = [];
+                var itemsidRawTable = $('.table').DataTable().column(0).data();
+                itemsidRawTable.each(function(value) {
+                    itemIdsRaw.push(value);
+                });
+
+                // Iterasi melalui semua data dalam kolom
+                var itemIds = [];
+                var itemDetailIds = [];
+
+                itemIdsRaw.forEach(function(data) {
+                    var itemIdMatch = data.match(/name="item_id\[\]" value="(\d+)"/);
+                    if (itemIdMatch && itemIdMatch.length > 1) {
+                        itemIds.push(itemIdMatch[1]);
+                    }
+
+                    var itemDetailIdMatch = data.match(/name="item_detail_id\[\]" value="(\d+)"/);
+                    if (itemDetailIdMatch && itemDetailIdMatch.length > 1) {
+                        itemDetailIds.push(itemDetailIdMatch[1]);
+                    }
+                });
+
+
+                var qtyIdsRaw = [];
+
+                // Mendapatkan elemen-elemen HTML yang dirender oleh DataTables untuk kolom ke-7
+                var qtyIdNodes = $('.table').DataTable().column(6).nodes();
+
+                // Iterasi melalui setiap elemen HTML untuk mendapatkan nilai input
+                qtyIdNodes.each(function(node) {
+                    var value = $(node).find('input').val();
+                    qtyIdsRaw.push(value);
+                });
+
+
+                // console.log('Item IDs:', itemIds);
+                // console.log('Item Detail IDs:', itemDetailIds);
+
+
+
+
+                $.ajax({
+                    url: "{{ route('add-to-cart') }}", // Ganti dengan URL endpoint Anda
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        item: itemIds,
+                        item_detail: itemDetailIds,
+                        qty: qtyIdsRaw,
+
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                        }
+
+
+                    },
+                    error: function(xhr, status, error) {
+                        // Menangani kesalahan jika ada
+                        // console.error('Kesalahan:', error);
+                    }
+                });
+
+                // var data = $('.form-data').serialize();
+                // console.log(data);
+            }
         </script>
     @endsection
 

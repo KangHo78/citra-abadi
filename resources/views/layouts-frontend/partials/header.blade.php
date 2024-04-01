@@ -9,11 +9,12 @@
                             <div id="logo">
                                 <a href="{{ url('/') }}">
                                     <img alt="" class="logo"
-                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png"/>
-                                        {{-- {{ asset('front-end/images/logo-light.png') }} --}}
-                                        {{-- https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png --}}
+                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png" />
+                                    {{-- {{ asset('front-end/images/logo-light.png') }} --}}
+                                    {{-- https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png --}}
                                     <img alt="" class="logo-2"
-                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png" width="60px" />
+                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png"
+                                        width="60px" />
                                 </a>
                             </div>
                             <!-- logo close -->
@@ -62,7 +63,14 @@
                                     </span>
                                 </a> --}}
                                 <span id="de-click-menu-notification" class="de-menu-notification">
-                                    <span class="d-count">8</span>
+                                    <span class="d-count">
+                                        @if (Auth::check())
+                                            {{ checkCarts()['totalCart'] }}
+                                        @else
+                                            0
+                                        @endif
+
+                                    </span>
                                     <i class="fa fa-shopping-bag"></i>
                                 </span>
                                 <span id="de-click-menu-profile" class="de-menu-profile">
@@ -76,11 +84,24 @@
                                         <div style="background-size: cover;">
                                             <h4>Keranjang</h4>
                                         </div>
-                                        <a href="{{ route('checkout') }}">Show all</a>
+                                        <a href="{{ route('cart') }}">Show all</a>
                                     </div>
 
                                     <ul>
-                                        <li>
+                                        @foreach (checkCarts()['carts'] as $el)
+                                            <li>
+                                                <a href="#">
+                                                    <img class="lazy"
+                                                        src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                                        alt="">
+                                                    <div class="d-desc" style="background-size: cover;">
+                                                        <span class="d-name"><b>{{$el->item_detail->sku}}</b> {{$el->item->name}} <br>
+                                                            {{$el->qty}}Pcs</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                        {{-- <li>
                                             <a href="#">
                                                 <img class="lazy"
                                                     src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
@@ -88,7 +109,6 @@
                                                 <div class="d-desc" style="background-size: cover;">
                                                     <span class="d-name"><b>Dog[Eye] Bolt c/w Wing Nut</b> <br>
                                                         10pcs</span>
-                                                    {{-- <span class="d-time">10pcs</span> --}}
                                                 </div>
                                             </a>
                                         </li>
@@ -100,12 +120,11 @@
                                                 <div class="d-desc" style="background-size: cover;">
                                                     <span class="d-name"><b>Dog[Eye] Bolt c/w Wing Nut</b> <br>
                                                         10pcs</span>
-                                                    {{-- <span class="d-time">10pcs</span> --}}
                                                 </div>
                                             </a>
-                                        </li>
+                                        </li> --}}
                                         <li>
-                                            <a href="{{ route('checkout') }}">
+                                            <a href="{{ route('cart') }}">
                                                 <button class="btn btn-main w-100"> Keranjang </button>
                                             </a>
                                         </li>
@@ -135,9 +154,9 @@
                                     <div class="d-line" style="background-size: cover;"></div>
 
                                     <ul class="de-submenu-profile">
-                                        <li><a href="{{route('profile')}}"><i class="fa fa-user"></i> My profile</a>
+                                        <li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> My profile</a>
                                         </li>
-                                        <li><a href="{{route('wishlist')}}"><i class="fa fa-heart"></i> Wishlist</a>
+                                        <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a>
                                         </li>
                                         <li><a href="#"><i class="fa fa-sign-out"></i> Sign out</a>
                                         </li>

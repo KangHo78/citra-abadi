@@ -8,7 +8,7 @@
                     <div class="row">
 
                         <div class="col-md-12 text-center">
-                            <h1>Checkout</h1>
+                            <h1>Cart</h1>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -20,21 +20,23 @@
             <div class="container">
                 <div class=" wow fadeIn row justify-content-md-center">
                     <div class="col-md-10 mb-sm-20">
-                        @for ($i = 0; $i < 10; $i++)
-                        <div class="spacer-20"></div>
-                        <div class="switch-with-title s2">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-3">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="" width="100px">
-                                </div>
-                                <div class="col-md-10 col-sm-9">
-                                    <h5>Dog[Eye] Bolt c/w Wing Nut </h5>
-                                    <div class="de-switch">
-                                        <div class="row">
-                                            <input type="checkbox" id="notif-item-sold" class="checkbox">
-                                            <span
-                                                style="cursor: pointer;
+
+
+                        @foreach ($carts as $el)
+                            <div class="spacer-20"></div>
+                            <div class="switch-with-title s2">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-3">
+                                        <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
+                                            class="lazy nft__item_preview" alt="" width="100px">
+                                    </div>
+                                    <div class="col-md-10 col-sm-9">
+                                        <h5>{{$el->item->name}} <u>( {{$el->item_detail->sku}} )</u> </h5>
+                                        <div class="de-switch">
+                                            <div class="row">
+                                                <input type="checkbox" id="notif-item-sold" class="checkbox">
+                                                <span
+                                                    style="cursor: pointer;
                                                         display: inline-block;
                                                         width: 38px;
                                                         height: 38px;
@@ -45,15 +47,15 @@
                                                         padding-top: 3px;
                                                         margin-left: 5px;
                                                         color: white;">
-                                                <i class="fa fa-minus"></i>
-                                            </span>
-                                            <div class="col">
-                                                <input type="text" name="description" id="description"
-                                                    class="form-control text-center" placeholder="0">
-                                            </div>
-                                            <input type="checkbox" id="notif-item-sold" class="checkbox">
-                                            <span
-                                                style="cursor: pointer;
+                                                    <i class="fa fa-minus"></i>
+                                                </span>
+                                                <div class="col">
+                                                    <input type="text" name="qty[]" id="qty[]"
+                                                        class="form-control text-center" value="{{$el->qty}}">
+                                                </div>
+                                                <input type="checkbox" id="notif-item-sold" class="checkbox">
+                                                <span
+                                                    style="cursor: pointer;
                                                         display: inline-block;
                                                         width: 38px;
                                                         height: 38px;
@@ -64,11 +66,11 @@
                                                         padding-top: 3px;
                                                         margin-left: 5px;
                                                         color: white;">
-                                                <i class="fa fa-plus"></i>
-                                            </span>
-                                            <input type="checkbox" id="notif-item-sold" class="checkbox">
-                                            <span
-                                                style="cursor: pointer;
+                                                    <i class="fa fa-plus"></i>
+                                                </span>
+                                                <input type="checkbox" id="notif-item-sold" class="checkbox">
+                                                <span
+                                                    style="cursor: pointer;
                                                         display: inline-block;
                                                         width: 38px;
                                                         height: 38px;
@@ -79,23 +81,21 @@
                                                         padding-top: 3px;
                                                         margin-left: 5px;
                                                         color: white;">
-                                                <i class="fa fa-times"></i>
-                                            </span>
+                                                    <i class="fa fa-times"></i>
+                                                </span>
+                                            </div>
+
                                         </div>
+                                        <div class="clearfix"></div>
+                                        <p><u>( {{$el->item_detail->material->name}} , {{$el->item_detail->spec->name}} , {{$el->item_detail->class->name}} , {{$el->item_detail->conn->name}} , {{$el->item_detail->size->name}} )</u></p>
+                                        <div class="clearfix"></div>
 
+                                        <input type="text" name="description" id="description" class="form-control"
+                                            placeholder="Enter description">
                                     </div>
-                                    <div class="clearfix"></div>
-                                    <h6><u>( STEEL, YELLOW ,ZINC, M 8 )</u></h6>
-                                    <div class="clearfix"></div>
-
-                                    <input type="text" name="description" id="description" class="form-control"
-                                        placeholder="Enter description">
                                 </div>
                             </div>
-                        </div>
-                        @endfor
-                        
-
+                        @endforeach
 
                         <div class="spacer-20"></div>
 
@@ -207,7 +207,7 @@
 
                 var url = "https://wa.me/6282142942965?text=" + encodeURIComponent(pesan + product + detail_user);
                 // window.open(url, '_blank');
-                window.open('mailto:test@example.com?subject=Testing out mailto!&body='+product+'!', '_blank');
+                window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + product + '!', '_blank');
             }
         </script>
     @endsection

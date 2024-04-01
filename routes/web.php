@@ -6,6 +6,7 @@ use App\Http\Controllers\AdjustmentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WarehouseController;
@@ -50,6 +51,13 @@ Route::get('/material',[HomeController::class, 'dataMaterial'])->name('dataMater
 Route::get('/catalog',[CatalogController::class, 'index'])->name('catalog');
 Route::get('/product-details/{id}',[ProductDetailsController::class, 'index'])->name('product-details');
 
+
+Route::post('/add-to-cart',[CartsController::class, 'addToCart'])->name('add-to-cart');
+Route::get('/cart',[CartsController::class, 'cart'])->name('cart');
+Route::post('/place-order',[CartsController::class, 'placeOrder'])->name('place-order');
+
+
+
 Route::get('/wishlist', function () {
     return view('user.wishlist');
 })->name('wishlist');
@@ -62,9 +70,9 @@ Route::get('/profile', function () {
 //     return view('user.item_details');
 // })->name('item-details');
 
-Route::get('/checkout', function () {
-    return view('user.checkout');
-})->name('checkout');
+// Route::get('/checkout', function () {
+//     return view('user.checkout');
+// })->name('checkout');
 
 Route::get('/about-us', function () {
     return view('user.about_us');
