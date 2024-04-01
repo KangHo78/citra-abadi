@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             'as' => 'transaction'
         ]);
         Route::get('sales/{sales}/print', [EnquiryController::class, 'print'])->name('transaction.sales.print');
+        Route::get('sales/{sales}/email', [EnquiryController::class, 'email'])->name('transaction.sales.email');
 
         Route::resource('purchasing', PurchasingController::class, [
             'as' => 'transaction'
@@ -132,6 +133,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('item', ItemController::class);
         Route::resource('category', CategoryController::class);
         Route::resource('brand', BrandController::class);
+        Route::get('brand/search', [BrandController::class, 'search'])->name('brand.search');
         Route::resource('transfer', TransferController::class);
         Route::get('transfer/{transfer}/print', [TransferController::class, 'print'])->name('transfer.print');
         Route::resource('warehouses', WarehouseController::class);
@@ -139,6 +141,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('promotions', PromotionController::class);
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('customer', UserController::class);
+        Route::get('customer/search', [UserController::class, 'search'])->name('customer.search');
         Route::resource('role', RoleController::class);
         Route::resource('staff', StaffController::class);
         Route::resource('general', SettingsController::class);

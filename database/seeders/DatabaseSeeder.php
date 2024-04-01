@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            // MaterialSeeder::class,
-            SizeSeeder::class,
-            SpecSeeder::class,
-            ItemSeeder::class,
-            ItemDetailSeeder::class,
+            UserSeeder::class
+            // SizeSeeder::class,
+            // SpecSeeder::class,
+            // ItemSeeder::class,
+            // ItemDetailSeeder::class,
 
         ]);
     }
