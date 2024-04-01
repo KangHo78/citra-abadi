@@ -83,17 +83,17 @@
                                     <div class="col-md-12" style="background-size: cover;">
                                         <div class="row">
 
-                                            <div class="col-sm-12">
-                                                <select id="select-ajax" class="form-control"></select>
+                                            {{-- <div class="col-sm-12"> --}}
+                                                {{-- <select id="select-ajax" class="form-control"></select> --}}
                                                 {{-- <select name="material" id=""
                                                     class="js-data-example-ajax form-control select2">
                                                     <option value="" data-filter="">- Filter Material -</option>
                                                 </select>
                                                 <div class="spacer-single" style="background-size: cover;"></div> --}}
-                                                <div class="spacer-double" style="background-size: cover;"></div>
+                                                {{-- <div class="spacer-double" style="background-size: cover;"></div> --}}
 
 
-                                            </div>
+                                            {{-- </div> --}}
 
                                             <div class="col-sm-2">
                                                 <select name="material" id=""
@@ -341,30 +341,30 @@
             });
 
 
-            $(document).ready(function() {
-                $('#select-ajax').select2({
-                    ajax: {
-                        url: "{{ route('dataMaterial') }}", 
-                        dataType: 'json',
-                        delay: 250, 
-                        processResults: function(data) {
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item
-                                        .id, 
-                                        text: item
-                                            .name 
-                                    };
-                                })
-                            };
-                        },
-                        cache: true
-                    },
-                    placeholder: 'Pilih data', 
-                    minimumInputLength: 1 
-                });
-            });
+            // $(document).ready(function() {
+            //     $('#select-ajax').select2({
+            //         ajax: {
+            //             url: "{{ route('dataMaterial') }}", 
+            //             dataType: 'json',
+            //             delay: 250, 
+            //             processResults: function(data) {
+            //                 return {
+            //                     results: $.map(data, function(item) {
+            //                         return {
+            //                             id: item
+            //                             .id, 
+            //                             text: item
+            //                                 .name 
+            //                         };
+            //                     })
+            //                 };
+            //             },
+            //             cache: true
+            //         },
+            //         placeholder: 'Pilih data', 
+            //         minimumInputLength: 1 
+            //     });
+            // });
         </script>
     @endsection
 
