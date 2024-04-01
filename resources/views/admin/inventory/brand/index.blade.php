@@ -7,7 +7,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Stok</li>
+                        <li class="breadcrumb-item active" aria-current="page">Merek</li>
                     </ol>
                 </nav>
             </div>
@@ -30,8 +30,15 @@
                                         <label class="col-form-label" for="last-name">Nama Merek</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
-                                        <input type="text" id="last-name" class="form-control" name="fname"
-                                            placeholder="Name">
+                                        <form action="" method="GET">
+                                            @if (isset($name))
+                                        <input type="text" id="brand_filter" class="form-control" name="name"
+                                            placeholder="Name" value="{{ $name }}">
+                                            @else
+                                            <input type="text" id="brand_filter" class="form-control" name="name"
+                                            placeholder="Name" value="">
+                                            @endif
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -57,68 +64,38 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive dataTable">
-                    <table class="table" id="dataTable">
-                        <thead>
-                            <tr>
-                               
-                                <th>Nama</th>
-                                <!-- <th>Subkategori</th> -->
-                               
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for ($i = 0; $i < 30; $i++)
-                                
-                            <tr>
-                                <td>Merek A</td>
-                                <!-- <td>
-                                    <ul style="list-style-type: none;padding-inline-start: 0">
-                                        <li>Deskripsi</li>
-                                        <li>Deskripsi</li>
-                                    </ul>
-                                </td> -->
-                               
-                                <td>
-                                    <div class="btn-group mb-1">
-                                        <div class="dropdown">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu" style="">
-                                                <!-- <a href="{{route('category.show',$i)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-eye text-primary"></i>
-                                                    <b class="p-2">Lihat</b>
-                                                </a> -->
-                                                <a href="{{route('brand.edit',$i)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-pencil text-warning"></i>
-                                                    <b class="p-2">Ubah</b>
-                                                </a>
-                                                
-                                                <input type="hidden" name="_token"
-                                                    value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
-                                                <a class="dropdown-item" data-bs-toggle="tooltip" title="Delete Data"
-                                                    onclick="destroy('https://atmanegara.com/transaction/service/service/127')"
-                                                    href="javascript:;">
-                                                    <i class="bi bi-trash text-danger"></i>
-                                                    <b class="p-2">Hapus</b>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endfor
-
-                        </tbody>
-                    </table>
-                </div>
+            <div id="brandDataTable">
+            @include('admin.inventory.brand.datatable')
+            </div>
             </div>
         </div>
     </section>
-</x-app-layout>
+@section('scripts')
+        <script type="text/javascript">
+            $(document).ready(function(){
+            });
+           
+            // 
+            // $('#customer_id').select2({
+            //     ajax({
+                    
+            //         url: '{{route('customer.search')}}',
+            //         type: 'POST',
+            //         data: {
+            //             keyword: keyword_input,
+            //             page: false
+            //         },
+            //         cache: false,
+            //         contentType: false,
+            //         processData: false,
+            //        processResults: function(data) {
+            //         return {
+            //             results: data
+            //         }
+            //        }
+            //     });
+                
+            // });
+            </script>
+    @endsection
+    </x-app-layout>

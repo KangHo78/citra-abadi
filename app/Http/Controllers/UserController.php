@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -24,7 +25,12 @@ class UserController extends Controller
     }
 
     function index(Request $request) {
-        $data = User::orderBy('id', 'desc')->where(''); // TODO:
+        $data = User::orderBy('id', 'desc'); // TODO:
+        return view($this->path.'/index',compact('data'));
+    }
+    function search(Request $request) {
+        Log::info('check search '.$request->keyword);
+        $data = User::orderBy('id', 'desc')->where('code', 'like', '%'.$request->keyword.'%')->orWhere('name', 'like', '%'.$request->keyword.'%')->orWhere('company_name', 'like', '%'.$request->keyword.'%'); // TODO:
         return view($this->path.'/index',compact('data'));
     }
     function show(Request $request) {

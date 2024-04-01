@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Enquiry;
+Use App\Models\User;
 use App\Models\EnquiryDetail;
 use Illuminate\Http\Request;
 
@@ -47,12 +48,32 @@ class EnquiryController extends Controller
         return view($this->path.'/show',compact('data'));
     }
     function create(Request $request) {
-        $data = [];
+        $data = ['code' => 'ENQ-'.self::incrementalHash(), 'customer' => User::where('code', 'like', '%CUS%')->latest()->take(5)->get()];
         return view($this->path.'/create',compact('data'));
     }
+
+    function incrementalHash($len = 6){
+        $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $base = strlen($charset);
+        $result = '';
+      
+        $now = explode(' ', microtime())[1];
+        while ($now >= $base){
+          $i = $now % $base;
+          $result = $charset[$i] . $result;
+          $now /= $base;
+        }
+        return substr($result, -5);
+      }
+
     function store(Request $request) {
         $enquiry = new Enquiry;
-        $enquiry->code = $request->code;
+        $requestCode = $request->code;
+        $enquiry_check = Enquiry::where('code', $requestCode)->get();
+        if(!empty($enquiry_check)) {
+            $requestCode = 'ENQ-'.self::incrementalHash();
+        }
+        $enquiry->code = $requestCode;
         $enquiry->date = $request->date;
         $enquiry->desc = $request->desc;
         $enquiry->status = $request->status;
@@ -91,7 +112,6 @@ class EnquiryController extends Controller
         $enquiry->discount_type = $request->discount_type;
         $enquiry->grand_total = $request->grand_total;
         $enquiry->save();
-        $enquiry->save();
         if($request->enquiry_details) {
             $eds = $request->enquiry_details;
             foreach($eds as $ed) {
@@ -110,6 +130,10 @@ class EnquiryController extends Controller
         return view($this->path.'/index',compact('data'));
     }
     function print(Request $request) {
+        $data = Enquiry::where('id', $request->id);
+        return view($this->path.'/print',compact('data'));
+    }
+    function email(Request $request) {//TODO:
         $data = Enquiry::where('id', $request->id);
         return view($this->path.'/print',compact('data'));
     }

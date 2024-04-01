@@ -8,7 +8,7 @@ display: none;
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Lihat Item</h4>
-                <p class="text-subtitle text-muted">Buat data item dan isi form dibawah.</p>
+                <p class="text-subtitle text-muted">Lihat data item.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -50,7 +50,7 @@ display: none;
                                             <h6 class="form-label"><span>SKU</span></h6>
                                             <input name="code" type="text" id="code"
                                                 placeholder="SKU"
-                                                class="form-control form-control-lg validation required" value="">
+                                                class="form-control form-control-lg validation required" value="{{ $data->sku }}" readonly="">
 
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@ display: none;
                                             <h6 class="form-label"><span>Nama</span></h6>
                                             <input name="code" type="text" id="code"
                                                 placeholder="Nama"
-                                                class="form-control form-control-lg validation required" value="">
+                                                class="form-control form-control-lg validation required" value="{{ $data->name }}" readonly="">
 
                                         </div>
                                     </div>
@@ -72,201 +72,84 @@ display: none;
                                             <h6 class="form-label"><span>Deskripsi</span></h6>
                                             <input name="description" type="text" id="description"
                                                 placeholder="Description" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ $data->desc }}" readonly="">
                                         </div>
                                     </div>
-                                </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Kategori</span></h6>
-                                    <div class="row">
-                                    <div class="col-6">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="category" id="category">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Kategori A</option>
-                                        <option value="Cash">Kategori B</option>
-                                        <option value="Cash">Kategori C</option>
-                                    </select>
-                                    
-                                        </div>
-
-                                        <div class="col-6">
-                                      
-</div>
+                                    <input name="description" type="text" id="description"
+                                                placeholder="Category" class="form-control form-control-lg "
+                                                value="{{ $data->category->name }}" readonly="">
 </div>
 
-                                </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 1</span></h6>
-                                    <div class="row">
-                                    <div class="col-6">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_1" id="subcategory_1">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Subkategori A</option>
-                                        <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subategori C</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-6">
-                                        
-</div>
+                                    <input name="description" type="text" id="description"
+                                                placeholder="Category" class="form-control form-control-lg "
+                                                value="{{ $data->subcategory_1->name }}" readonly="">
 </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 2</span></h6>
-                                    <div class="row">
-                                    <div class="col-6">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_2" id="subcategory_2">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Subkategori A</option>
-                                        <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subkategori C</option>
-                                    </select>
-                                    </div>
-
-                                    <div class="col-6">
-                                        
-</div>
+                                    <input name="description" type="text" id="description"
+                                                placeholder="Category" class="form-control form-control-lg "
+                                                value="{{ $data->subcategory_2->name }}" readonly="">
 </div>
 
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 3</span></h6>
-                                    <div class="row">
-                                    <div class="col-6">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_3" id="subcategory_3">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Subkategori A</option>
-                                        <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subkategori C</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-6">
-                                        
-</div>
+                                    <input name="description" type="text" id="description"
+                                                placeholder="Category" class="form-control form-control-lg "
+                                                value="{{ $data->subcategory_3->name }}" readonly="">
 </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 4</span></h6>
-                                    <div class="row">
-                                    <div class="col-6">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_4" id="subcategory_4">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Subkategori A</option>
-                                        <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subkategori C</option>
-                                    </select>
-
-                                </div>
-                                 <div class="col-6">
-                                        
-</div>
+                                    <input name="description" type="text" id="description"
+                                                placeholder="Category" class="form-control form-control-lg "
+                                                value="{{ $data->subcategory_4->name }}" readonly="">
 </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 5</span></h6>
                                     <div class="row">
-                                    <div class="col-6">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_5" id="subcategory_5">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Subkategori A</option>
-                                        <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subkategori C</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-6">
-                                       
-</div>
+                                    <div class="col-12">
+                                    <input name="description" type="text" id="description"
+                                                placeholder="Category" class="form-control form-control-lg "
+                                                value="{{ $data->subcategory_5->name }}" readonly="">
 </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Subkategori 6</span></h6>
                                     <div class="row">
-                                    <div class="col-6">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_6" id="subcategory_6">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Subkategori A</option>
-                                        <option value="Cash">Subkategori B</option>
-                                        <option value="Cash">Subkategori C</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-6">
-                                        
-</div>
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Material</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="material" id="material">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Material A</option>
-                                        <option value="Cash">Material B</option>
-                                        <option value="Cash">Material C</option>
-                                    </select>
-
-                                </div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Finishing</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="finishing" id="finishing">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Finishing A</option>
-                                        <option value="Cash">Finishing B</option>
-                                        <option value="Cash">Finishing C</option>
-                                    </select>
-
-                                </div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Diameter</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="diameter" id="diameter">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">2"</option>
-                                        <option value="Cash">3"</option>
-                                        <option value="Cash">5"</option>
-                                    </select>
-
-                                </div>
-                               
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Qty / Pkt</span></h6>
+                                    <div class="col-12">
                                     <input name="description" type="text" id="description"
-                                        placeholder="Description" class="form-control form-control-lg "
-                                        value="">
-                                    </select>
-
-                                </div>
+                                                placeholder="Category" class="form-control form-control-lg "
+                                                value="{{ $data->subcategory_6->name }}" readonly="">
+</div>
+                                
+                               
+                               
                               
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Merek</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="brand" id="brand">
-                                        <option value="" selected="">- Select -</option>
-                                        <option value="Cash">Merek A</option>
-                                        <option value="Cash">Merek B</option>
-                                        <option value="Cash">Merek C</option>
-                                    </select>
+                                    <input name="description" type="text" id="description"
+                                                placeholder="Brand" class="form-control form-control-lg "
+                                                value="{{ $data->brand->name }}" readonly="">
 
                                 </div>
                                 
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
+                                            @if(!empty($data->photos))
                                             <h6 class="form-label"><span>Foto Produk</span></h6>
-                                            <img src="https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png" width="100px"></img>
-                                            <img src="https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png" width="100px"></img>
-                                            <img src="https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png" width="100px"></img>
-                                            <img src="https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png" width="100px"></img>
+
+                                            @php
+                                                $photo_list = json_decode($data->photos, true)
+                                            @endphp
+                                            @foreach($photo_list as $photo)
+                                                <img src="{{ $photo }}" width="100px"></img>
+                                            @endforeach
+                                            @endif
                                             <br>
-                                            <button type="button" class="btn btn-primary btn-xl"
-                                                >
-                                                Tambah Foto
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -279,17 +162,35 @@ display: none;
 
         <section class="section">
             <div class="card">
-                
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
-                                Simpan Data
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <table class="table" id="dataTable" width="100%">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Material</th>
+                                <th>Spec</th>
+                                <th>Class</th>
+                                <th>Conn</th>
+                                <th>Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data->item_detail as $id)
+                                
+                            <tr>
+                                <td>{{$id->sku}}</td>
+                                <td>{{$id->material->name}}</td>
+                                <td>{{$id->spec->name}}</td>
+                                <td>{{$id->classes->name}}</td>
+                                <td>{{$id->conn->name}}</td>
+                                <td>{{$id->size->name}}</td>
+
+                               
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+               
             </div>
         </section>
     </form>

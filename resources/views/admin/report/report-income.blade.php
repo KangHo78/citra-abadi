@@ -294,14 +294,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 1; $i < 50; $i++)
+                                @php
+                                $i = 1;
+                                @endphp
+                                @foreach ($data as $item)
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>Pakureng</td>
-                                        <td>{{10*$i}}</td>
-                                        <td class = "text-end">{{10*$i}}</td>
+                                        <td>{{$i++}}</td>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{\App\Models\EnquiryDetail::where('item_id', $item->id)->count()}}</td>
+                                        <td class = "text-end">Rp. {{number_format(10000*\App\Models\EnquiryDetail::where('item_id', $item->id)->sum('item_price'),0,'.',',')}}</td>
                                     </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
                             
                         </table>

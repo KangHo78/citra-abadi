@@ -33,7 +33,7 @@
                                             <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                     class="bi bi-calendar"></i></span>
                                             <input class="form-control form-control-lg datepicker" placeholder="Date"
-                                                tabindex="0" type="text" readonly="readonly">
+                                                tabindex="0" type="text" id="date_start">
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                             <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                     class="bi bi-calendar"></i></span>
                                             <input class="form-control form-control-lg datepicker" placeholder="Date"
-                                                tabindex="0" type="text" readonly="readonly">
+                                                tabindex="0" type="text" id="date_end">
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         <h6 class="form-label"><span>Kode</span></h6>
                                         <div class="input-group mb-1">
                                             <input class="form-control form-control-lg " placeholder="Kode"
-                                                tabindex="0" type="text">
+                                                tabindex="0" type="text" id="code">
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                         <h6 class="form-label"><span>Customer</span></h6>
                                         <div class="input-group mb-1">
                                             <input class="form-control form-control-lg " placeholder="Customer"
-                                                tabindex="0" type="text">
+                                                tabindex="0" type="text" id="customer">
                                         </div>
                                     </div>
                                 </div>
@@ -118,37 +118,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 30; $i++)
+                            @foreach($data as $enquiry)
                                 <tr>
-                                    <td>SLE202939{{ $i }}</td>
-                                    <td>{{ date('d F Y') }}</td>
+                                    <td>$enquiry->code</td>
+                                    <td>$enquiry->date</td>
+                                    <td>$enquiry->customer->name</td>
                                     <td>
                                         <ul style="list-style-type: none;padding-inline-start: 0;margin-bottom: 0px;">
-                                            <li>Asep Hidayat</li>
-                                            <li>0834897192</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul style="list-style-type: none;padding-inline-start: 0;margin-bottom: 0px;">
-                                            <li>Plafon</li>
-                                            <li>Plafon</li>
-                                            <li>Plafon</li>
+                                            @foreach($enquiry->enquiry_detail as $ed)
+                                            <li>$ed->item->name</li>
+                                            @endforeach
                                         </ul>
                                     </td>
                                     <!-- <td>Rp. {{ number_format(10000 * $i) }}</td> -->
                                     <td>
                                         <ul
                                             style="list-style-type: none;padding-inline-start: 0;margin-bottom: 0px;text-align:center">
-                                            @if ($i % 5 == 1)
-                                                <li class="pb-2"><span class="badge bg-info">Email balik</span></li>
-                                            @elseif ($i % 5 == 2)
+                                            @if ($enquiry->status == 1)
                                                 <li class="pb-2"><span class="badge bg-info">Permintaan Masuk</span></li>
-                                            @elseif ($i % 5 == 3)
+                                            @elseif ($enquiry->status == 2)
+                                                <li class="pb-2"><span class="badge bg-info">Penawaran Terkirim</span></li>
+                                            @elseif ($enquiry->status == 3)
                                             <li class="pb-2"><span class="badge bg-warning">Follow Up</span></li>
-                                            @elseif ($i % 5 == 4)
-                                            <li class="pb-2"><span class="badge bg-success">Deal</span></li>
-                                            @elseif ($i % 5 == 0)
-                                            <li class="pb-2"><span class="badge bg-danger">Cancel</span></li>
+                                            @elseif ($enquiry->status == 4)
+                                            <li class="pb-2"><span class="badge bg-success">Cancel</span></li>
+                                            @elseif ($enquiry->status == 5)
+                                            <li class="pb-2"><span class="badge bg-danger">Deal</span></li>
                                             @endif
 
                                             <!-- @if ($i % 3 == 1)
@@ -168,7 +163,7 @@
                                                     Action
                                                 </button>
                                                 <div class="dropdown-menu" style="">
-                                                    <a href="{{ route('transaction.sales.show', $i) }}"
+                                                    <a href="{{ route('transaction.sales.show', ['id', $enquiry->id]) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-eye text-primary"></i>
                                                         <b class="p-2">Lihat</b>
@@ -180,19 +175,19 @@
                                                             <b class="p-2">Bukti Transfer</b>
                                                         </a>
                                                     @endif -->
-                                                    <a href="{{ route('transaction.sales.edit', $i) }}"
+                                                    <a href="{{ route('transaction.sales.edit', ['id', $enquiry->id]) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-pencil text-warning"></i>
                                                         <b class="p-2">Ubah</b>
                                                     </a>
-                                                    @if ($i % 5 == 1 || $i % 5 == 2 || $i % 5 == 3)
-                                                    <a href="{{ route('transaction.sales.edit', $i) }}"
+                                                    @if ($enquiry->status == 1 || $enquiry->status == 2 || $enquiry->status == 3)
+                                                    <a href="{{ route('transaction.sales.email', ['id', $enquiry->id]) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-envelope text-warning"></i>
                                                         <b class="p-2">Email</b>
                                                     </a>
                                                     @endif
-                                                    <a href="{{ route('transaction.sales.print', $i) }}"
+                                                    <a href="{{ route('transaction.sales.print', ['id', $enquiry->id]) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-printer text-primary"></i>
                                                         <b class="p-2">Cetak</b>
@@ -211,7 +206,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
 
                         </tbody>
                     </table>

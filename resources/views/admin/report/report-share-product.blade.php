@@ -293,13 +293,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 1; $i < 20; $i++)
+                                @php
+                                $i = 1;
+                                @endphp
+                                @foreach ($item as $item_row)
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>Pakureng</td>
-                                        <td>{{$i*10}}</td>
+                                        <td>{{$i++}}</td>
+                                        <td>{{$item_row->name}}</td>
+                                        <td>{{$data->where('item_id', $item_row->id)->count()}}</td>
                                     </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

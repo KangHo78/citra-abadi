@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold text-primary">Total Inquiry (50)</h5>
+                                <h5 class="font-bold text-primary">Total Enquiry (50)</h5>
                                 <h6 class="font-bold text-primary">Rp. 55.000.000</h6>
 
                             </div>
@@ -232,7 +232,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Jumlah Inquiry'
+                        text: 'Jumlah Enquiry'
                     }
                 },
 
@@ -260,7 +260,7 @@
                 },
 
                 series: [{
-                    name: 'Inquiry',
+                    name: 'Enquiry',
                     data: [5, 6, 7, 9, 7, 10,
                         11
                     ]

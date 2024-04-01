@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('share_product', function (Blueprint $table) {
+        Schema::create('share_products', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('item_id')->unsigned();
             $table->bigInteger('customer_id')->unsigned();

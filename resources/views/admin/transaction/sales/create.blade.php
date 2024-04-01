@@ -16,8 +16,7 @@
         </div>
     </x-slot>
 
-
-    <form id="stored">
+    <form id="stored" action="{{route('transaction.sales.create')}}" method="POST" enctype="multipart/form-data">
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -44,7 +43,7 @@
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Kode</span></h6>
                                             <input name="code" type="text" id="code"
-                                                placeholder="SO000001"
+                                                value="{{ $data['code'] }}"
                                                 class="form-control form-control-lg validation required" value=""
                                                 readonly="" style="background-color:#eeeeee">
 
@@ -56,50 +55,26 @@
                                             <div class="input-group mb-1">
                                                 <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                         class="bi bi-calendar"></i></span>
-                                                        <input name="date" id="date" placeholder="Date"
+                                                        <input name="dateBackground" id="dateBackground" placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
-                                                    value="2024-02-02" readonly="" style="background-color:#eeeeee"
+                                                    value="" style="background-color:#eeeeee"
                                                     onchange="generateCode()" type="hidden"><input
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
                                                     placeholder="Date" tabindex="0" type="text"
-                                                    readonly="readonly">
+                                                    readonly="readonly" name="date" id="date">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     
-                                    {{-- <div class="col-6">
-                                        <div class="form-group pb-1 parent">
-                                            <h6 class="form-label"><span>Akun</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
-                                                    data-phone="-" data-address="-">[NON]
-                                                    ONE TIME CUSTOMER
-                                                </option>
-                                                <option value="25" data-name="BU MERRY #1"
-                                                    data-code="CUS01240010001" data-phone="08123480519"
-                                                    data-address="-">[CUS01240010001]
-                                                    BU MERRY #1
-                                                </option>
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    PAK MUL #5
-                                                </option>
-                                            </select>
-
-                                        </div>
-                                    </div> --}}
-
+                                  
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Deskripsi</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="desc" type="text" id="desc"
                                                 placeholder="Description" class="form-control form-control-lg "
                                                 value="">
                                         </div>
@@ -150,20 +125,13 @@
                                             <select class="select2 form-select form-control-lg validation required"
                                                 name="customer_id" id="customer_id">
                                                 <option value="" selected="">- Select -</option>
-                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
-                                                    data-phone="-" data-address="-">[NON]
-                                                    ONE TIME CUSTOMER
+                                                @foreach($data['customer'] as $cust)
+                                                <option value="{{ $cust->id }}" data-name="{{ $cust->name }}"
+                                                    data-code="{{ $cust->code }}" data-phone="{{ $cust->phone }}"
+                                                    data-address="-">{{ $cust->code }}
+                                                    {{ $cust->name }}
                                                 </option>
-                                                <option value="25" data-name="BU MERRY #1"
-                                                    data-code="CUS01240010001" data-phone="08123480519"
-                                                    data-address="-">[CUS01240010001]
-                                                    BU MERRY #1
-                                                </option>
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    PAK MUL #5
-                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -175,7 +143,7 @@
                                             <input name="customer_name" type="text" id="customer_name"
                                                 placeholder="Nama Customer"
                                                 class="form-control form-control-lg validation required"
-                                                value="">
+                                                readonly="" style="background-color: #eeeeee" value="">
 
                                         </div>
                                     </div>
@@ -185,7 +153,7 @@
                                             <input name="customer_phone" type="text" id="customer_phone"
                                                 placeholder="Tlp Customer"
                                                 class="form-control form-control-lg validation required"
-                                                value="">
+                                                readonly="" style="background-color: #eeeeee" value="">
 
                                         </div>
                                     </div>
@@ -196,10 +164,10 @@
                                     <div class="col-sm-6 col-lg-6">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Email Customer</span></h6>
-                                            <input name="customer_name" type="text" id="customer_name"
-                                                placeholder="Nama Customer"
+                                            <input name="customer_email" type="text" id="customer_email"
+                                                placeholder="Email Customer"
                                                 class="form-control form-control-lg validation required"
-                                                value="">
+                                                readonly="" style="background-color: #eeeeee" value="">
 
                                         </div>
                                     </div>
@@ -238,45 +206,16 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 pb-3">
-                                    <h6><code>*</code> Tipe Diskon</h6>
-                                    <div class="btn-group pb-3 col-12" role="group"
-                                        aria-label="Basic radio toggle button group">
-
-                                        <input type="radio" class="btn-check" name="discount_type"
-                                            id="dis_percentage" autocomplete="off" value="%">
-                                        <label class="btn btn-outline-primary" for="dis_percentage">
-                                            Persen (%)</label>
-
-                                        <input type="radio" class="btn-check" name="discount_type" id="dis_non"
-                                            autocomplete="off" checked="" value="NON">
-                                        <label class="btn btn-outline-primary" for="dis_non"> NON</label>
-
-                                        <input type="radio" class="btn-check" name="discount_type" id="dis_value"
-                                            autocomplete="off" value="$">
-                                        <label class="btn btn-outline-primary" for="dis_value"> Nilai
-                                            ($)</label>
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Persen (%)</span></h6>
-                                            <input name="discount_percentage" type="text" id="discount_percentage"
-                                                placeholder="Persen (%)"
-                                                class="form-control form-control-lg text-end numberFormat"
-                                                value="0" onkeyup="calcSubTotal()">
-
-
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
+                                    
+                                    <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nilai (Rp)</span></h6>
                                             <input name="discount_value" type="text" id="discount_value"
                                                 placeholder="Nilai (Rp)"
                                                 class="form-control form-control-lg text-end numberFormat"
-                                                value="0" onkeyup="calcSubTotal()">
+                                                value="0">
 
 
                                         </div>
@@ -345,7 +284,48 @@
     </form>
 
 @section('scripts')
-        <script>
+        <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                console.log('date');
+                var currentDate = new Date();
+                var currentMonth = (currentDate.getMonth() + 1) + '';
+                document.getElementById('date').value = currentDate.getDate().toString().padStart(2, '0')+'/'+ currentMonth.padStart(2, '0')+'/'+(currentDate.getYear() + 1900);
+            });
+            
+            // $('#customer_id').select2({
+            //     ajax({
+                    
+            //         url: '{{route('customer.search')}}',
+            //         type: 'POST',
+            //         data: {
+            //             keyword: keyword_input,
+            //             page: false
+            //         },
+            //         cache: false,
+            //         contentType: false,
+            //         processData: false,
+            //        processResults: function(data) {
+            //         return {
+            //             results: data
+            //         }
+            //        }
+            //     });
+                
+            // });
+            $('#customer_id').on('change', function(){
+                // document.getElementById('customer_phone').value = ;
+            });
+            $('#discount_value').on('keyup', function (){
+                console.log('calcSubTotal');
+                var totalPrice = $('#price').val() - $('#discount_value').val()
+                if(totalPrice < 0) {
+                    document.getElementById('discount_value').value = $('#price').val();
+                    document.getElementById('total_price').value = 0;
+                } else {
+                    document.getElementById('total_price').value = totalPrice;
+                }
+            });
             function addNew(params) {
                 $('.dropHere').append(`
                 <div class="row dataDetail" style="margin-bottom: -20px;">

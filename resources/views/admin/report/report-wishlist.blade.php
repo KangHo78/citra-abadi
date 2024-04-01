@@ -292,14 +292,17 @@
                                     <td class = "text-bold">Qty</td>
                                 </tr>
                             </thead>
+                            @php
+                            $i = 1;
+                            @endphp
                             <tbody>
-                                @for ($i = 1; $i < 20; $i++)
+                                @foreach ($item as $item_row)
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>Pakureng</td>
-                                        <td>{{$i*10}}</td>
+                                        <td>{{$i++}}</td>
+                                        <td>{{$item_row->name}}</td>
+                                        <td>{{\App\Models\Wishlist::where('item_id', $item_row->id)->count()}}</td>
                                     </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -296,18 +296,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 1; $i < 50; $i++)
+                                @php
+                                    $i = 1;
+                                @endphp
+                                @foreach ($data as $user)
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>USR019200{{$i}}</td>
-                                        <td>{{date('d F Y')}}</td>
-                                        <td>Asep Hidayat</td>
-                                        <td>08218912981</td>
-                                        <td>Jl Angkrek no 55</td>
+                                        <td>{{$i++}}</td>
+                                        <td>{{$user->code}}</td>
+                                        <td>{{date_format($user->created_at, 'd F Y')}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->phone}}</td>
+                                        <td>{{$user->address}}</td>
                                         {{-- <td class = "text-end">Rp. {{number_format(10000*$i,0,'.',',')}}</td> --}}
                                         {{-- <td class = "text-end">Rp. {{number_format(12000*$i,0,'.',',')}}</td> --}}
                                     </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

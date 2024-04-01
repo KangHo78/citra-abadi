@@ -81,7 +81,7 @@
                                 <th>Telepon / WA</th>
                                 <th>Nama PIC</th>
                                 <th>Email</th>
-                                <th>Total Inquiry</th>
+                                <th>Total Enquiry</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

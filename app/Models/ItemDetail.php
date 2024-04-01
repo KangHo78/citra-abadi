@@ -20,7 +20,7 @@ class ItemDetail extends Model
     {
         return $this->belongsTo(Material::class);
     }
-    public function class()
+    public function classes()
     {
         return $this->belongsTo(Classes::class);
     }

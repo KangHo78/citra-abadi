@@ -71,7 +71,7 @@
                                             <h6 class="form-label"><span>Dashboard</span></h6>
                                             <div class="col-12">
                                                 <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Total Inquiry</span></h6>
+                                                <h6 class="form-label" style="margin-left: 25px"><span>Total Enquiry</span></h6>
                                                 <br>
                                                 
                                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
@@ -131,7 +131,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Inquiry Chart</span></h6>
+                                                <h6 class="form-label" style="margin-left: 25px"><span>Enquiry Chart</span></h6>
                                                 <br>
                                                 
                                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>

@@ -8,7 +8,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Item</li>
+                        <li class="breadcrumb-item">Merek</li>
                         <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
@@ -17,7 +17,10 @@
     </x-slot>
 
 
-    <form id="stored">
+    <form id="stored" action="{{ route('brand.update', $data->id)}}" method="POST">
+    @csrf
+    @method('PUT')
+    <input type="hidden" name="id" value="{{ $data->id }}">
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
@@ -44,9 +47,9 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama</span></h6>
-                                            <input name="code" type="text" id="code"
+                                            <input name="name" type="text" id="name"
                                                 placeholder="Nama"
-                                                class="form-control form-control-lg validation required" value="">
+                                                class="form-control form-control-lg validation required" value="{{ $data->name }}">
 
                                         </div>
                                     </div>
@@ -91,10 +94,10 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            <input class="btn btn-outline-success rounded-pill float-end buttonSave" 
+                                type="submit">
                                 Simpan Data
-                            </button>
+</input>
                         </div>
                     </div>
                 </div>

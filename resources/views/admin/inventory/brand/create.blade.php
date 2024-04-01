@@ -4,6 +4,9 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Tambah Merek</h4>
                 <p class="text-subtitle text-muted">Buat data item dan isi form dibawah.</p>
+                @if(isset($error))
+                <p class="text-subtitle text-danger">*{{ $error }}</p>
+                @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -17,7 +20,8 @@
     </x-slot>
 
 
-    <form id="stored">
+    <form id="stored" action="{{ route('brand.store') }}" method="POST">
+        @csrf
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
@@ -44,7 +48,7 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama</span></h6>
-                                            <input name="code" type="text" id="code"
+                                            <input name="name" type="text" id="name"
                                                 placeholder="Nama"
                                                 class="form-control form-control-lg validation required" value="">
 
@@ -91,8 +95,8 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
+                                >
                                 Simpan Data
                             </button>
                         </div>

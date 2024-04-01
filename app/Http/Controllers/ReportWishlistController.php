@@ -22,8 +22,8 @@ class ReportWishlistController extends Controller
     }
 
     function index(Request $request) {
-        $data = Wishlist::orderBy('id', 'desc');
-        $item = Item::orderBy('id', 'desc');
+        $data = Wishlist::all();
+        $item = Item::orderBy('id', 'asc')->get();
         return view($this->path.'wishlist',compact('data', 'item'));
     }
    

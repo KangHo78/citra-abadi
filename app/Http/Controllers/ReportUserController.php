@@ -21,7 +21,7 @@ class ReportUserController extends Controller
     }
 
     function index(Request $request) {
-        $data = User::orderBy('id', 'desc');	
+        $data = User::orderBy('id', 'desc')->whereNot('code', null)->whereNot('code', '0')->get();	
         return view($this->path.'user',compact('data'));
     }
    

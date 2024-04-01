@@ -23,7 +23,7 @@ class ReportShareProductController extends Controller
 
     function index(Request $request) {
         $data = ShareProduct::orderBy('id', 'desc');
-        $item = Item::orderBy('id', 'desc');
+        $item = Item::orderBy('id', 'ASC')->get();
         return view($this->path.'share-product',compact('data', 'item'));
     }
    

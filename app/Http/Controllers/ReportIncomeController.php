@@ -22,7 +22,7 @@ class ReportIncomeController extends Controller
     }
 
     function index(Request $request) {
-        $data = Item::orderBy('id', 'desc');
+        $data = Item::orderBy('id', 'desc')->get();
         $enquiry = Enquiry::orderBy('id', 'desc');
         return view($this->path.'income',compact('data', 'enquiry'));
     }
