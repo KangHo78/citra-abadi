@@ -10,26 +10,26 @@ class ItemDetail extends Model
     use HasFactory;
     public function item()
     {
-        return $this->hasOne(Item::class);
+        return $this->belongsTo(Item::class);
     }
     public function spec()
     {
-        return $this->hasOne(Spec::class);
+        return $this->belongsTo(Spec::class);
     }
     public function material()
     {
-        return $this->hasOne(Material::class);
+        return $this->belongsTo(Material::class);
     }
     public function class()
     {
-        return $this->hasOne(Classes::class, 'class_id');
+        return $this->belongsTo(Classes::class);
     }
     public function conn()
     {
-        return $this->hasOne(Conn::class);
+        return $this->belongsTo(Conn::class);
     }
     public function size()
     {
-        return $this->hasOne(Size::class);
+        return $this->belongsTo(Size::class);
     }
 }

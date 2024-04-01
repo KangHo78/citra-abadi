@@ -10,20 +10,22 @@
     <meta content="" name="keywords" />
     <meta content="" name="author" />
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
 
     <!-- Styles -->
     @include('layouts-frontend.partials.styles')
+    @yield('styles')
 </head>
 
 <body>
     <div id="wrapper">
-      
+
         <div class="floating-button">
-          <a href="#" class="float">
-            <i class="fa fa-whatsapp my-float"></i>
-          </a>
+            <a href="#" class="float">
+                <i class="fa fa-whatsapp my-float"></i>
+            </a>
         </div>
 
         @include('layouts-frontend.partials.header')
@@ -33,6 +35,6 @@
     </div>
     @include('layouts-frontend.partials.scripts')
     @yield('scripts')
-  </body>
+</body>
 
 </html>

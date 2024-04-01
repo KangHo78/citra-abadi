@@ -9,9 +9,9 @@ class Classes extends Model
 {
     use HasFactory;
 
-    protected $table = 'class';
+    // protected $table = 'classes';
     public function item_detail()
     {
-        return $this->belongsTo(ItemDetail::class);
+        return $this->hasMany(ItemDetail::class);
     }
 }

@@ -35,5 +35,14 @@ class DatabaseSeeder extends Seeder
             // ItemDetailSeeder::class,
 
         ]);
+
+        // $this->call([
+        //     // MaterialSeeder::class,
+        //     SizeSeeder::class,
+        //     SpecSeeder::class,
+        //     ItemSeeder::class,
+        //     ItemDetailSeeder::class,
+
+        // ]);
     }
 }
