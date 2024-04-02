@@ -3,6 +3,7 @@
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\ReceiveItemController;
 use App\Http\Controllers\AdjustmentController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
@@ -92,12 +93,7 @@ Route::get('/contact-us', function () {
 
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Transaction
     Route::group(['prefix' => 'transaction'], function () {
@@ -134,6 +130,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('cart', [ReportCartController::class, 'index'])->name('report.cart.index');
         Route::get('share-product', [ReportShareProductController::class, 'index'])->name('report.share-product.index');
     });
+
+    
 
 
     Route::group(['prefix' => 'inventory'], function () {

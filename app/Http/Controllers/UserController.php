@@ -25,16 +25,22 @@ class UserController extends Controller
     }
 
     function index(Request $request) {
-        $data = User::orderBy('id', 'desc'); // TODO:
-        return view($this->path.'/index',compact('data'));
+        $data = User::where('code', '!=', null)->where('code', '!=', '0'); 
+        if($request->code) {
+            $data = $data->where('code', 'like', '%'.$request->code.'%');
+        }
+        if($request->name) {
+            $data = $data->where('name', 'like', '%'.$request->name.'%');
+        }
+        $data = $data->orderBy('id', 'desc')->get();
+        return view($this->path.'/index',compact('data'))->render();
     }
-    function search(Request $request) {
-        Log::info('check search '.$request->keyword);
-        $data = User::orderBy('id', 'desc')->where('code', 'like', '%'.$request->keyword.'%')->orWhere('name', 'like', '%'.$request->keyword.'%')->orWhere('company_name', 'like', '%'.$request->keyword.'%'); // TODO:
-        return view($this->path.'/index',compact('data'));
-    }
+    // function search(Request $request) {
+    //     $data = User::orderBy('id', 'desc')->where('code', 'like', '%'.$request->keyword.'%')->orWhere('name', 'like', '%'.$request->keyword.'%')->orWhere('company_name', 'like', '%'.$request->keyword.'%')->get(); // TODO:
+    //     return view($this->path.'/index',compact('data'));
+    // }
     function show(Request $request) {
-        $data = User::where('id', $request->id);
+        $data = User::where('id', $request->id)->get();
         return view($this->path.'/show',compact('data'));
     }
     function create(Request $request) {
@@ -57,15 +63,15 @@ class UserController extends Controller
         $user->address_2 = $request->address_2;
         $user->phone = $request->phone;
         $user->save();
-        $data = [];
+        $data = User::where('code', '!=', null)->where('code', '!=', '0')->orderBy('id', 'desc');
         return view($this->path.'/index',compact('data'));
     }
-    function edit(Request $request) {
-        $data = User::where('id', $request->id);
+    function edit(Request $request, $id) {
+        $data = User::findOrFail('id', $id);
         return view($this->path.'/edit',compact('data'));
     }
-    function update(Request $request) {
-        $user = User::find($request->id);
+    function update(Request $request, $id) {
+        $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->code = $request->code;
         $user->email = $request->email;
@@ -80,7 +86,7 @@ class UserController extends Controller
         $user->address_2 = $request->address_2;
         $user->phone = $request->phone;
         $user->save();
-        $data = [];
+        $data = User::where('code', '!=', null)->where('code', '!=', '0')->orderBy('id', 'desc');
         return view($this->path.'/index',compact('data'));
     }
     function print(Request $request) {

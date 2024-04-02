@@ -1,9 +1,23 @@
+@php
+$total_enquiry = $data->count();
+$total_enquiry_sum = $data->sum('grand_total');
+$status_1 = $data->where('status', 1)->count();
+$status_2 = $data->where('status', 2)->count();
+$status_3 = $data->where('status', 3)->count();
+$status_4 = $data->where('status', 4)->count();
+$status_5 = $data->where('status', 5)->count();
+$status_1_sum = $data->where('status', 1)->sum('grand_total');
+$status_2_sum = $data->where('status', 2)->sum('grand_total');
+$status_3_sum = $data->where('status', 3)->sum('grand_total');
+$status_4_sum = $data->where('status', 4)->sum('grand_total');
+$status_5_sum = $data->where('status', 5)->sum('grand_total');
+
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Dashboard</h3>
-                <p class="text-subtitle text-muted">This is the main page.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -20,7 +34,8 @@
         <div class="card">
 
             <div class="card-body">
-                <form action="https://nara.prog/dashboard">
+                <form action="{{ route('dashboard') }}" method="GET">
+                    @csrf
                     <div class="row">
                         <div class="col-sm-12 col-md-5 col-lg-5">
                             <div class="form-group pb-1 parent">
@@ -28,9 +43,9 @@
                                 <div class="input-group mb-1">
                                     <span style="padding-bottom: 16px;" class="input-group-text"><i
                                             class="bi bi-calendar"></i></span>
-                                            <input name="date" id="date" placeholder="Date"
+                                            <input name="date_start" id="date_start" placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
-                                                    value="2024-02-02" readonly="" style="background-color:#eeeeee"
+                                                    value="2024-02-02" readonly="" 
                                                     onchange="generateCode()" type="hidden"><input
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
                                                     placeholder="Date" tabindex="0" type="text"
@@ -44,9 +59,9 @@
                                 <div class="input-group mb-1">
                                     <span style="padding-bottom: 16px;" class="input-group-text"><i
                                             class="bi bi-calendar"></i></span>
-                                            <input name="date" id="date" placeholder="Date"
+                                            <input name="date_end" id="date_end" placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
-                                                    value="2024-02-02" readonly="" style="background-color:#eeeeee"
+                                                    value="2024-02-02" readonly=""
                                                     onchange="generateCode()" type="hidden"><input
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
                                                     placeholder="Date" tabindex="0" type="text"
@@ -78,8 +93,8 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold text-primary">Total Enquiry (50)</h5>
-                                <h6 class="font-bold text-primary">Rp. 55.000.000</h6>
+                                <h5 class="font-bold text-primary">Total Enquiry ({{ $total_enquiry }})</h5>
+                                <h6 class="font-bold text-primary">Rp. {{ number_format($total_enquiry_sum, 0, '.', ',') }}</h6>
 
                             </div>
                         </div>
@@ -97,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold text-primary">Permintaan Masuk (30)</h5>
+                                <h5 class="font-bold text-primary">Permintaan Masuk ({{ $status_1 }})</h5>
                             </div>
                         </div>
                     </div>
@@ -114,7 +129,7 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold text-primary">Penawaran Terkirim (10)</h5>
+                                <h5 class="font-bold text-primary">Penawaran Terkirim ({{ $status_2 }})</h5>
                             </div>
                         </div>
                     </div>
@@ -135,8 +150,8 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold text-warning">Follow Up (4)</h5>
-                                <h6 class="font-bold mb-0 text-warning">Rp. 25.000.000</h6>
+                                <h5 class="font-bold text-warning">Follow Up ({{ $status_3 }})</h5>
+                                <h6 class="font-bold mb-0 text-warning">Rp. {{ number_format($status_3_sum, 0, '.', ',') }}</h6>
                             </div>
                         </div>
                     </div>
@@ -153,8 +168,8 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold text-danger">Cancel (3)</h5>
-                                <h6 class="font-bold mb-0 text-danger">Rp. 10.000.000</h6>
+                                <h5 class="font-bold text-danger">Cancel ({{ $status_4 }})</h5>
+                                <h6 class="font-bold mb-0 text-danger">Rp. {{ number_format($status_4_sum, 0, '.', ',') }}</h6>
                             </div>
                         </div>
                     </div>
@@ -170,8 +185,8 @@
                                 </div>
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold text-success">Deal (3)</h5>
-                                <h6 class="font-bold mb-0 text-success">Rp. 15.000.000</h6>
+                                <h5 class="font-bold text-success">Deal ({{ $status_5 }})</h5>
+                                <h6 class="font-bold mb-0 text-success">Rp. {{ number_format($status_5_sum, 0, '.', ',') }}</h6>
                             </div>
                         </div>
                     </div>
@@ -223,6 +238,37 @@
 
     @section('scripts')
         <script>
+            // var today = Date.now();
+            // var H1 = today - 1;
+            // var H2 = today - 2;
+            // var H3 = today - 3;
+            // var H4 = today - 4;
+            // var H5 = today - 5;
+            // var H6 = today - 6;
+            // var todayDate = 
+            @php
+                $today = Date("d/m/Y");
+                $H1 = Date('d/m/Y',strtotime("-1 days"));
+                $H2 = Date('d/m/Y',strtotime("-2 days"));
+                $H3 = Date('d/m/Y',strtotime("-3 days"));
+                $H4 = Date('d/m/Y',strtotime("-4 days"));
+                $H5 = Date('d/m/Y',strtotime("-5 days"));
+                $H6 = Date('d/m/Y',strtotime("-6 days"));
+                $todayX = Date("Y-m-d");
+                $H1X = Date('Y-m-d',strtotime("-1 days"));
+                $H2X = Date('Y-m-d',strtotime("-2 days"));
+                $H3X = Date('Y-m-d',strtotime("-3 days"));
+                $H4X = Date('Y-m-d',strtotime("-4 days"));
+                $H5X = Date('Y-m-d',strtotime("-5 days"));
+                $H6X = Date('Y-m-d',strtotime("-6 days"));
+                $countToday = $data->where('created_at', '=', $todayX)->count();
+                $countH1 = $data->where('created_at', '=', $H1X)->count();
+                $countH2 = $data->where('created_at', '=', $H2X)->count();
+                $countH3 = $data->where('created_at', '=', $H3X)->count();
+                $countH4 = $data->where('created_at', '=', $H4X)->count();
+                $countH5 = $data->where('created_at', '=', $H5X)->count();
+                $countH6 = $data->where('created_at', '=', $H6X)->count();
+            @endphp
             Highcharts.chart('line-chart', {
 
                 title: {
@@ -238,13 +284,13 @@
 
                 xAxis: {
                     categories: [
-                        '08 February 2024',
-                        '09 February 2024',
-                        '10 February 2024',
-                        '11 February 2024',
-                        '12 February 2024',
-                        '13 February 2024',
-                        '14 February 2024',
+                        "{{ $H6 }}",
+                        "{{ $H5 }}",
+                        "{{ $H4 }}",
+                        "{{ $H3 }}",
+                        "{{ $H2 }}",
+                        "{{ $H1 }}",
+                        "{{ $today }}",
                     ],
                     accessibility: {
                         description: 'Months of the year'
@@ -261,8 +307,8 @@
 
                 series: [{
                     name: 'Enquiry',
-                    data: [5, 6, 7, 9, 7, 10,
-                        11
+                    data: [{{$countH6}}, {{$countH5}}, {{$countH4}}, {{$countH3}}, {{$countH2}}, {{$countH1}},
+                        {{$countToday}}
                     ]
                 }],
 
@@ -330,17 +376,17 @@
                     ],
                     data: [{
                             name: 'Follow Up',
-                            y: 120.00,
+                            y: {{ $status_3_sum }},
                             sliced: true,
                             selected: true,
                         },
                         {
                             name: 'Cancel',
-                            y: 50.00
+                            y: {{ $status_4_sum }}
                         },
                         {
                             name: 'Deal',
-                            y: 100.00
+                            y: {{ $status_5_sum }}
                         },
 
                     ]
@@ -415,13 +461,13 @@
                 ],
                 series: [{
                     name: ['Follow Up'],
-                    data: [25000000],
+                    data: [{{ $status_3_sum }}],
                 },{
                     name: ['Cancel'],
-                    data: [10000000]
+                    data: [{{ $status_4_sum }}]
                 },{
                     name: ['Deal'],
-                    data: [15000000]
+                    data: [{{ $status_5_sum }}]
                 }]
             });
         </script>

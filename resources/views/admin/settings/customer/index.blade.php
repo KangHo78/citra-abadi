@@ -22,15 +22,18 @@
                     <div class="card-header">
                         <h4 class="card-title">Filter Data</h4>
                     </div>
+                    <form action="{{ route('customer.index') }}" method="GET">
+                        @csrf
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
+                                
                                 <div class="form-group row align-items-center">
                                     <div class="col-lg-2 col-3">
                                         <label class="col-form-label" for="first-name">Kode</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
-                                        <input type="text" id="first-name" class="form-control" name="fname"
+                                        <input type="text" id="code" class="form-control" name="code"
                                             placeholder="Kode Customer">
                                     </div>
                                 </div>
@@ -41,13 +44,14 @@
                                         <label class="col-form-label" for="last-name">Nama</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
-                                        <input type="text" id="last-name" class="form-control" name="fname"
+                                        <input type="text" id="name" class="form-control" name="name"
                                             placeholder="Nama">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+</form>
                 </div>
             </div>
         </div>
@@ -74,7 +78,7 @@
                         <thead>
                             <tr>
                                 <th>Kode</th>
-                                <th>Nama</th>
+                                <th>Nama Perusahaan</th>
                                 <th>Alamat</th>
                                 <!-- <th>Alamat NPWP</th> -->
                                 <th>Kota / Provinsi / Kode Pos</th>
@@ -86,23 +90,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 30; $i++)
+                            @foreach ($data as $customer)
                                 
                             <tr>
-                                <td>SLE202939{{$i}}</td>
-                                <td>Asep Hidayat</td>
-                                <td>Jl. Test No. 1</td>
+                                <td>{{ $customer->code }}</td>
+                                <td>{{ $customer->company_name }}</td>
+                                <td>{{ $customer->address }}</td>
                                 <!-- <td>Jl. Test No. 1</td> -->
-                                <td>Surabaya, Jawa Timur, 12345</td>
+                                <td>{{ $customer->address_2 }}</td>
                                 <td>
-                                    0834897192
+                                {{ $customer->phone }}
                                 </td>
-                                <td>Asep Hidayat</td>
+                                <td>{{ $customer->name }}</td>
                                 <td>
-                                  testing@gmail.com
+                                {{ $customer->email }}
                                 </td>
-                                <td>3</td>
-                                
+                                @if(!empty($customer->enquiry))
+                                <td>{{ $customer->enquiry->count() }}</td>
+                                @else
+                                <td>{{ 0 }}</td>
+                                @endif
                                 <td>
                                     <div class="btn-group mb-1">
                                         <div class="dropdown">
@@ -111,30 +118,25 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" style="">
-                                                <a href="{{route('customer.show',$i)}}"
+                                                <a href="{{route('customer.show',$customer->id)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-eye text-primary"></i>
                                                     <b class="p-2">Lihat</b>
                                                 </a>
-                                                <a href="{{route('customer.edit',$i)}}"
+                                                <a href="{{route('customer.edit',$customer->id)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-pencil text-warning"></i>
                                                     <b class="p-2">Ubah</b>
                                                 </a>
                                                
                                                
-                                                <a class="dropdown-item" data-bs-toggle="tooltip" title="Delete Data"
-                                                    onclick="destroy('https://atmanegara.com/transaction/service/service/127')"
-                                                    href="javascript:;">
-                                                    <i class="bi bi-trash text-danger"></i>
-                                                    <b class="p-2">Hapus</b>
-                                                </a>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            @endfor
+                            @endforeach
 
                         </tbody>
                     </table>
