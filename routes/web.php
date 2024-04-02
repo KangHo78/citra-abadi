@@ -8,6 +8,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WarehouseController;
@@ -53,6 +54,7 @@ Route::get('/material',[HomeController::class, 'dataMaterial'])->name('dataMater
 Route::get('/catalog',[CatalogController::class, 'index'])->name('catalog');
 Route::get('/product-details/{id}',[ProductDetailsController::class, 'index'])->name('product-details');
 Route::get('/profile',[HomeController::class, 'profile'])->name('profile');
+Route::post('/login', [LoginController::class, 'login'])->middleware('login.redirect');
 
 Route::post('/add-to-cart',[CartsController::class, 'addToCart'])->name('add-to-cart');
 Route::get('/cart',[CartsController::class, 'cart'])->name('cart');

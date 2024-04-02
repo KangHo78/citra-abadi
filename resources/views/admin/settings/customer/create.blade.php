@@ -17,7 +17,8 @@
     </x-slot>
 
 
-    <form id="stored">
+    <form id="stored" method="{{ route('customer.store') }}" action="POST">
+        @csrf
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -45,7 +46,7 @@
                                             <h6 class="form-label"><span>Kode</span></h6>
                                             <input name="code" type="text" id="code"
                                                 placeholder="CUS000001"
-                                                class="form-control form-control-lg validation required" value=""
+                                                class="form-control form-control-lg validation required" value="{{ $data['code'] }}" readonly="" backgroundColor="#eeeeee"
                                                 >
 
                                         </div>
@@ -54,37 +55,14 @@
                                 </div>
                                 <div class="row">
                                    
-                                    {{-- <div class="col-6">
-                                        <div class="form-group pb-1 parent">
-                                            <h6 class="form-label"><span>Akun</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
-                                                    data-phone="-" data-address="-">[NON]
-                                                    ONE TIME CUSTOMER
-                                                </option>
-                                                <option value="25" data-name="BU MERRY #1"
-                                                    data-code="CUS01240010001" data-phone="08123480519"
-                                                    data-address="-">[CUS01240010001]
-                                                    BU MERRY #1
-                                                </option>
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    PAK MUL #5
-                                                </option>
-                                            </select>
-
-                                        </div>
-                                    </div> --}}
+                                    
 
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Nama</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <h6 class="form-label"><span>Nama Perusahaan</span></h6>
+                                            <input name="company_name" type="text" id="company_name"
                                                 placeholder="Nama" class="form-control form-control-lg "
                                                 value="">
                                         </div>
@@ -92,7 +70,7 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Alamat</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="address" type="text" id="address"
                                                 placeholder="Nama" class="form-control form-control-lg "
                                                 value="">
                                         </div>
@@ -108,7 +86,7 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Kota / Provinsi / Kode Pos</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="address_2" type="text" id="address_2"
                                                 placeholder="Kota" class="form-control form-control-lg "
                                                 value="">
                                         </div>
@@ -116,7 +94,7 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Telepon / WA</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="phone" type="text" id="phone"
                                                 placeholder="Telepon" class="form-control form-control-lg "
                                                 value="">
                                         </div>
@@ -125,7 +103,7 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama PIC</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="name" type="text" id="name"
                                                 placeholder="Nama PIC" class="form-control form-control-lg "
                                                 value="">
                                         </div>
@@ -133,25 +111,41 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Email</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="email" type="text" id="email"
                                                 placeholder="Email" class="form-control form-control-lg "
                                                 value="">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Member</span></h6>
+                                            <h6 class="form-label"><span>Position</span></h6>
                                             <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="Cash">Bronze</option>
-                                                <option value="Cash">Silver</option>
-                                                <option value="Cash">Gold</option>
+                                                name="position" id="position">
+                                                <option value="0" selected="">- Select -</option>
+                                                <option value="1">Owner</option>
+                                                <option value="2">Purchaser</option>
+                                                <option value="3">Estimator</option>
+                                                <option value="4">Engineer</option>
+                                                <option value="5">Lainnya</option>
                                             </select>
                                         </div>
                                     </div>
                                     
                                 </div>
+                                <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>NPWP</span></h6>
+                                            <input name="npwp" type="text" id="npwp"
+                                                 class="form-control form-control-lg "
+                                                value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>NPWP Photo</span></h6>
+                                            <input name="npwp_photo" type="file" id="npwp_photo">
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -165,8 +159,8 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
+                                >
                                 Simpan Data
                             </button>
                         </div>

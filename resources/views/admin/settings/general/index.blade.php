@@ -106,28 +106,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                        <h6 class="form-label"><span>Zona Waktu</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
-                                                    data-phone="-" data-address="-">WIB
-                                                </option>
-                                                <option value="25" data-name="BU MERRY #1"
-                                                    data-code="CUS01240010001" data-phone="08123480519"
-                                                    data-address="-">WITA
-                                                </option>
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">WIT
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">

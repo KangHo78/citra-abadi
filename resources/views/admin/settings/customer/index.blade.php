@@ -15,47 +15,7 @@
         </div>
     </x-slot>
 
-    <section id="horizontal-input">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Filter Data</h4>
-                    </div>
-                    <form action="{{ route('customer.index') }}" method="GET">
-                        @csrf
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                
-                                <div class="form-group row align-items-center">
-                                    <div class="col-lg-2 col-3">
-                                        <label class="col-form-label" for="first-name">Kode</label>
-                                    </div>
-                                    <div class="col-lg-10 col-9">
-                                        <input type="text" id="code" class="form-control" name="code"
-                                            placeholder="Kode Customer">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row align-items-center">
-                                    <div class="col-lg-2 col-3">
-                                        <label class="col-form-label" for="last-name">Nama</label>
-                                    </div>
-                                    <div class="col-lg-10 col-9">
-                                        <input type="text" id="name" class="form-control" name="name"
-                                            placeholder="Nama">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-</form>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="section">
         <div class="card">

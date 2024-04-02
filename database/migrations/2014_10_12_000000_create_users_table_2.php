@@ -23,7 +23,7 @@ class CreateUsersTable2 extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
-            $table->string('position')->nullable();
+            $table->string('position')->nullable(); // 1 = Owner, 2 = Purchaser, 3 = Estimator, 4 = Engineer, 5 = Lainnya
             $table->string('company_name')->nullable();
             $table->string('npwp')->nullable();
             $table->string('npwp_photo')->nullable();

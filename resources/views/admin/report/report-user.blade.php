@@ -293,6 +293,8 @@
                                     <td class = "text-bold">Nama</td>
                                     <td class = "text-bold">Tlp</td>
                                     <td class = "text-bold">Alamat</td>
+                                    <td class = "text-bold">Total Enquiry</td>
+                                    <td class = "text-bold">Total Nominal Enquiry</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -307,8 +309,17 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->phone}}</td>
                                         <td>{{$user->address}}</td>
-                                        {{-- <td class = "text-end">Rp. {{number_format(10000*$i,0,'.',',')}}</td> --}}
-                                        {{-- <td class = "text-end">Rp. {{number_format(12000*$i,0,'.',',')}}</td> --}}
+                                        @php
+                                        \Illuminate\Support\Facades\Log::info(json_encode($user->enquiry));
+                                        @endphp
+                                        @if (!empty($user->enquiry))
+                                        <td>{{$user->enquiry->count()}}</td>
+                                        <td class = "text-end">Rp. {{number_format($user->enquiry->sum('grand_total'),0,'.',',')}}</td>
+                                        @else
+                                        <td>0</td>
+                                        <td>Rp. 0</td>
+                                        @endif
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function enquiry()
     {
-        return $this->belongsTo(Enquiry::class);
+        return $this->hasMany(Enquiry::class, 'customer_id');
     }
     use HasFactory;
     public function role()

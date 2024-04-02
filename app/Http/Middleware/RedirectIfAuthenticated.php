@@ -23,7 +23,17 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if (Auth::user()) {
+                    $code = Auth::user()->code;
+                    if($code != '0' && !empty($code)) {
+                        // User is logged in, redirect to intended or custom location
+        
+                        return redirect(RouteServiceProvider::HOME);
+                    } else {
+                        return redirect(RouteServiceProvider::DASHBOARD);
+                    }
+                }
+                
             }
         }
 
