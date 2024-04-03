@@ -93,7 +93,7 @@
                                                 <div class="clearfix"></div>
                                                 <p><u>( {{ $el->item_detail->material->name }} ,
                                                         {{ $el->item_detail->spec->name }} ,
-                                                        {{ $el->item_detail->class->name }}
+                                                        {{ $el->item_detail->classes->name }}
                                                         , {{ $el->item_detail->conn->name }} ,
                                                         {{ $el->item_detail->size->name }} )</u></p>
                                                 <div class="clearfix"></div>

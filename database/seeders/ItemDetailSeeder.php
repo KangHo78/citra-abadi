@@ -24,6 +24,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 1,
             'conn_id' => 1,
             'size_id' => 1,
+            'price' => 200000,
         ]);
 
         ItemDetail::create([
@@ -34,6 +35,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 1,
             'conn_id' => 1,
             'size_id' => 1,
+            'price' => 100000,
         ]);
 
         ItemDetail::create([
@@ -44,6 +46,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 2,
             'conn_id' => 2,
             'size_id' => 2,
+            'price' => 100000,
         ]);
 
         ItemDetail::create([
@@ -54,6 +57,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 2,
             'conn_id' => 2,
             'size_id' => 2,
+            'price' => 100000,
         ]);
 
         ItemDetail::create([
@@ -64,6 +68,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 2,
             'conn_id' => 2,
             'size_id' => 2,
+            'price' => 1100000,
         ]);
 
         ItemDetail::create([
@@ -74,6 +79,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 2,
             'conn_id' => 2,
             'size_id' => 2,
+            'price' => 1020000,
         ]);
 
         ItemDetail::create([
@@ -84,6 +90,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 1,
             'conn_id' => 2,
             'size_id' => 1,
+            'price' => 1004000,
         ]);
 
         ItemDetail::create([
@@ -94,6 +101,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 1,
             'conn_id' => 1,
             'size_id' => 2,
+            'price' => 1007000,
         ]);
 
         ItemDetail::create([
@@ -104,6 +112,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 1,
             'conn_id' => 2,
             'size_id' => 1,
+            'price' => 100000,
         ]);
 
         ItemDetail::create([
@@ -114,6 +123,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 2,
             'conn_id' => 1,
             'size_id' => 2,
+            'price' => 500000,
         ]);
 
         ItemDetail::create([
@@ -124,6 +134,7 @@ class ItemDetailSeeder extends Seeder
             'class_id' => 2,
             'conn_id' => 1,
             'size_id' => 1,
+            'price' => 7700000,
         ]);
        
         

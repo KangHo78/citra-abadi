@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('item_detail_id')->unsigned();
             $table->integer('item_price');
             $table->integer('item_quantity');
+            $table->text('description');
 
             $table->timestamps();
             $table->foreign('enquiry_id')->references('id')->on('enquiries');

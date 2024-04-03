@@ -102,17 +102,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         ]);
         Route::get('sales/{sales}/print', [EnquiryController::class, 'print'])->name('transaction.sales.print');
         Route::get('sales/{sales}/email', [EnquiryController::class, 'email'])->name('transaction.sales.email');
+        Route::get('data/sales/get-data-item-detail',[EnquiryController::class, 'getDataItemDetail'])->name('transaction.sales.get-data-item-detail');
 
-        Route::resource('purchasing', PurchasingController::class, [
-            'as' => 'transaction'
-        ]);
-        Route::get('purchasing/{purchasing}/print', [PurchasingController::class, 'print'])->name('transaction.purchasing.print');
-
-        Route::group(['prefix' => 'purchases'], function () {
-            Route::resource('receive_item', ReceiveItemController::class);
-            Route::get('receive_item/{receive_item}/print', [ReceiveItemController::class, 'print'])->name('receive_item.print');
-
-        });
+    
     });
 
     Route::resource('vendor', VendorController::class);

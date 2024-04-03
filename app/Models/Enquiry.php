@@ -15,8 +15,9 @@ class Enquiry extends Model
         'desc', 
         'status', 
         'customer_id',
+        'price',
         'discount',
-        'discount_type',
+        // 'discount_type',
         'grand_total',
     ];
 

@@ -14,27 +14,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([ untuk semua
-        //     UserSeeder::class,
-        //     CategoriesSeeder::class,
-        //     BrandSeeder::class,
-        //     ClassSeeder::class,
-        //     ConnSeeder::class,
-        //     ItemDetailSeeder::class,
-        //     ItemSeeder::class,
-        //     MaterialSeeder::class,
-        //     SizeSeeder::class,
-        //     SpecSeeder::class
-        // ]);
+        $this->call([ 
+            // untuk semua
+            UserSeeder::class,
+            CategoriesSeeder::class,
+            BrandSeeder::class,
+            ClassSeeder::class,
+            ConnSeeder::class,
+            MaterialSeeder::class,
+            SizeSeeder::class,
+            SpecSeeder::class,
+            ItemSeeder::class,
+            ItemDetailSeeder::class,
+           
+        ]);
 
-        $this->call([
-            UserSeeder::class
+        // $this->call([
+            // UserSeeder::class
             // SizeSeeder::class,
             // SpecSeeder::class,
             // ItemSeeder::class,
             // ItemDetailSeeder::class,
 
-        ]);
+        // ]);
 
         // $this->call([
         //     // MaterialSeeder::class,

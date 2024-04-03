@@ -28,7 +28,7 @@ class ProductDetailsController extends Controller
         $class = Classes::get();
         $conn = Conn::get();
         $size = Size::get();
-        $item = Item::with('item_detail')->findOrFail($id);
+        $item = Item::with('item_detail','item_detail.classes')->findOrFail($id);
         return view('user.product_details',compact('category','item','material','spec','class','conn','size'));
     }
     

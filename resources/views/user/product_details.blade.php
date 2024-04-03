@@ -224,7 +224,7 @@
                                                                 </td>
                                                                 <td style="vertical-align: middle;text-align: center;">
                                                                     <div style="min-width:100px;max-width:200px">
-                                                                        {{ $el->class->name }}
+                                                                        {{ $el->classes->name }}
                                                                     </div>
                                                                 </td>
                                                                 <td style="vertical-align: middle;text-align: center;">

@@ -5,12 +5,6 @@
     <x-maz-sidebar-item name="Dashboard" :link="route('dashboard')" icon="bi bi-grid-fill"></x-maz-sidebar-item>
     <x-maz-sidebar-item name="Enquiry" :link="route('transaction.sales.index')" icon="bi bi-grid-fill"></x-maz-sidebar-item>
     
-    <!-- <x-maz-sidebar-item name="Pembelian" icon="bi bi-stack">
-        <x-maz-sidebar-sub-item name="Pembelian" :link="route('transaction.purchasing.index')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="Penerimaan" :link="route('receive_item.index')"></x-maz-sidebar-sub-item>
-    </x-maz-sidebar-item> -->
-    <!-- <x-maz-sidebar-item name="Vendor" :link="route('vendor.index')" icon="bi bi-grid-fill"></x-maz-sidebar-item> -->
-
 
     <x-maz-sidebar-item name="Item" icon="bi bi-stack">
           <!-- Merek-->

@@ -27,6 +27,10 @@ class EnquiryDetail extends Model
     {
         return $this->belongsTo(Item::class);
     }
+    public function item_detail()
+    {
+        return $this->belongsTo(ItemDetail::class);
+    }
    
     
 }

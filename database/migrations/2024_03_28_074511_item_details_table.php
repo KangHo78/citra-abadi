@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('class_id')->unsigned();
             $table->bigInteger('conn_id')->unsigned();
             $table->bigInteger('size_id')->unsigned();
-            $table->bigInteger('price')->unsigned();
+            $table->double('price')->unsigned();
 
             $table->timestamps();
             $table->foreign('item_id')->references('id')->on('items');

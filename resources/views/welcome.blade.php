@@ -152,8 +152,8 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('product-details',$el->id) }}">
-                                    <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                        class="lazy nft__item_preview" alt="">
+                                    <img src="{{$el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais'}}"
+                                    class="lazy nft__item_preview" alt="">
                                 </a>
                             </div>
                             <div class="nft__item_info" style="background-size: cover;">
@@ -211,8 +211,8 @@
                                         </div>
                                     </div>
                                     <a href="{{ route('product-details',$el->id) }}">
-                                        <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                            class="lazy nft__item_preview" alt="">
+                                        <img src="{{$el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais'}}"
+                                        class="lazy nft__item_preview" alt="">
                                     </a>
                                 </div>
                                 <div class="nft__item_info" style="background-size: cover;">

@@ -111,48 +111,38 @@
                                 <th>Code</th>
                                 <th>Date</th>
                                 <th>Customer</th>
-                                <th>Item</th>
-                                <!-- <th>Total</th> -->
                                 <th>Status</th>
+                                <th>Total</th>
+                                <th>Item</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($data as $enquiry)
+                            @foreach ($data as $el)
                                 <tr>
-                                    <td>$enquiry->code</td>
-                                    <td>$enquiry->date</td>
-                                    <td>$enquiry->customer->name</td>
+                                    <td>{{ $el->code }} </td>
+                                    <td>{{ date('d F Y', strtotime($el->date)) }}</td>
+                                    <td>{{ $el->customer->name }}</td>
                                     <td>
-                                        <ul style="list-style-type: none;padding-inline-start: 0;margin-bottom: 0px;">
-                                            @foreach($enquiry->enquiry_detail as $ed)
-                                            <li>$ed->item->name</li>
+                                        @if ($el->status == 1)
+                                            <span class="badge bg-info">Permintaan Masuk</span>
+                                        @elseif ($el->status == 2)
+                                            <span class="badge bg-info">Penawaran Terkirim</span>
+                                        @elseif ($el->status == 3)
+                                            <span class="badge bg-warning">Follow Up</span>
+                                        @elseif ($el->status == 4)
+                                            <span class="badge bg-success">Cancel</span>
+                                        @elseif ($el->status == 5)
+                                            <span class="badge bg-danger">Deal</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-end">Rp.{{ number_format($el->grand_total,0,'.',',') }}</td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($el->enquiry_detail as $el1)
+                                                <li>{{ $el1->item->name }} ({{ $el1->item_detail->sku }})</li>
                                             @endforeach
                                         </ul>
-                                    </td>
-                                    <!-- <td>Rp. {{ number_format(10000 * $i) }}</td> -->
-                                    <td>
-                                        <ul
-                                            style="list-style-type: none;padding-inline-start: 0;margin-bottom: 0px;text-align:center">
-                                            @if ($enquiry->status == 1)
-                                                <li class="pb-2"><span class="badge bg-info">Permintaan Masuk</span></li>
-                                            @elseif ($enquiry->status == 2)
-                                                <li class="pb-2"><span class="badge bg-info">Penawaran Terkirim</span></li>
-                                            @elseif ($enquiry->status == 3)
-                                            <li class="pb-2"><span class="badge bg-warning">Follow Up</span></li>
-                                            @elseif ($enquiry->status == 4)
-                                            <li class="pb-2"><span class="badge bg-success">Cancel</span></li>
-                                            @elseif ($enquiry->status == 5)
-                                            <li class="pb-2"><span class="badge bg-danger">Deal</span></li>
-                                            @endif
-
-                                            <!-- @if ($i % 3 == 1)
-                                                <li><span class="badge bg-danger">Belum Bayar</span></li>
-                                            @else
-                                                <li><span class="badge bg-success">Terbayar</span></li>
-                                            @endif -->
-                                        </ul>
-
                                     </td>
                                     <td>
                                         <div class="btn-group mb-1">
@@ -163,31 +153,24 @@
                                                     Action
                                                 </button>
                                                 <div class="dropdown-menu" style="">
-                                                    <a href="{{ route('transaction.sales.show', ['id', $enquiry->id]) }}"
+                                                    <a href="{{ route('transaction.sales.show', $el->id) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-eye text-primary"></i>
                                                         <b class="p-2">Lihat</b>
                                                     </a>
-                                                    <!-- @if ($i % 3 == 1)
-                                                        <a href="{{ route('transaction.sales.show', $i) }}"
-                                                            class="dropdown-item">
-                                                            <i class="bi bi-wallet text-success"></i>
-                                                            <b class="p-2">Bukti Transfer</b>
-                                                        </a>
-                                                    @endif -->
-                                                    <a href="{{ route('transaction.sales.edit', ['id', $enquiry->id]) }}"
+                                                    <a href="{{ route('transaction.sales.edit',  $el->id) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-pencil text-warning"></i>
                                                         <b class="p-2">Ubah</b>
                                                     </a>
-                                                    @if ($enquiry->status == 1 || $enquiry->status == 2 || $enquiry->status == 3)
-                                                    <a href="{{ route('transaction.sales.email', ['id', $enquiry->id]) }}"
-                                                        class="dropdown-item">
-                                                        <i class="bi bi-envelope text-warning"></i>
-                                                        <b class="p-2">Email</b>
-                                                    </a>
+                                                    @if ($el->status == 1 || $el->status == 2 || $el->status == 3)
+                                                        <a href="{{ route('transaction.sales.email', $el->id) }}"
+                                                            class="dropdown-item">
+                                                            <i class="bi bi-envelope text-warning"></i>
+                                                            <b class="p-2">Email</b>
+                                                        </a>
                                                     @endif
-                                                    <a href="{{ route('transaction.sales.print', ['id', $enquiry->id]) }}"
+                                                    <a href="{{ route('transaction.sales.print', $el->id) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-printer text-primary"></i>
                                                         <b class="p-2">Cetak</b>
@@ -195,8 +178,7 @@
                                                     <input type="hidden" name="_token"
                                                         value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
                                                     <a class="dropdown-item" data-bs-toggle="tooltip"
-                                                        title="Delete Data"
-                                                        onclick="destroy('https://atmanegara.com/transaction/service/service/127')"
+                                                        title="Delete Data" onclick="destroy('')"
                                                         href="javascript:;">
                                                         <i class="bi bi-trash text-danger"></i>
                                                         <b class="p-2">Hapus</b>
@@ -217,9 +199,6 @@
 
 
     @section('scripts')
-        <script>
-
-
-        </script>
+        <script></script>
     @endsection
 </x-app-layout>

@@ -16,7 +16,8 @@
         </div>
     </x-slot>
 
-    <form id="stored" action="{{route('transaction.sales.create')}}" method="POST" enctype="multipart/form-data">
+    <form id="stored" action="{{ route('transaction.sales.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -55,20 +56,20 @@
                                             <div class="input-group mb-1">
                                                 <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                         class="bi bi-calendar"></i></span>
-                                                        <input name="dateBackground" id="dateBackground" placeholder="Date"
+                                                <input name="dateBackground" id="dateBackground" placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
                                                     value="" style="background-color:#eeeeee"
                                                     onchange="generateCode()" type="hidden"><input
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
-                                                    placeholder="Date" tabindex="0" type="text"
-                                                    readonly="readonly" name="date" id="date">
+                                                    placeholder="Date" tabindex="0" type="text" readonly="readonly"
+                                                    name="date" id="date">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    
-                                  
+
+
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
@@ -80,33 +81,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group pb-1 parent">
-                                            <h6 class="form-label"><span>Status</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="status" id="status">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="1" >
-                                                    Permintaan Masuk
-                                                </option>
-                                                <option value="1" >
-                                                    Penawaran Terkirim
-                                                </option>
-                                                <option value="1" >
-                                                    Follow Up
-                                                </option>
-                                                <option value="1" >
-                                                    Deal
-                                                </option>
-                                                <option value="1" >
-                                                    Cancel
-                                                </option>
-                                    
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -125,19 +100,19 @@
                                             <select class="select2 form-select form-control-lg validation required"
                                                 name="customer_id" id="customer_id">
                                                 <option value="" selected="">- Select -</option>
-                                                @foreach($data['customer'] as $cust)
-                                                <option value="{{ $cust->id }}" data-name="{{ $cust->name }}"
-                                                    data-code="{{ $cust->code }}" data-phone="{{ $cust->phone }}"
-                                                    data-address="-">{{ $cust->code }}
-                                                    {{ $cust->name }}
-                                                </option>
+                                                @foreach ($data['customer'] as $cust)
+                                                    <option value="{{ $cust->id }}" data-name="{{ $cust->name }}"
+                                                        data-code="{{ $cust->code }}"
+                                                        data-phone="{{ $cust->phone }}" data-address="-">
+                                                        {{ $cust->code }} - {{ $cust->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6 col-lg-6">
+                                    <div class="col-sm-4 col-lg-4">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama Customer</span></h6>
                                             <input name="customer_name" type="text" id="customer_name"
@@ -147,7 +122,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-lg-6">
+                                    <div class="col-sm-4 col-lg-4">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Tlp Customer</span></h6>
                                             <input name="customer_phone" type="text" id="customer_phone"
@@ -157,11 +132,7 @@
 
                                         </div>
                                     </div>
-
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-sm-6 col-lg-6">
+                                    <div class="col-sm-4 col-lg-4">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Email Customer</span></h6>
                                             <input name="customer_email" type="text" id="customer_email"
@@ -171,6 +142,11 @@
 
                                         </div>
                                     </div>
+
+                                </div>
+
+                                <div class="row">
+
                                     <!-- <div class="col-sm-6 col-lg-6">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Fukle</span></h6>
@@ -190,6 +166,42 @@
                 </div>
                 <div class="col-sm-12 col-lg-4 col-md-12">
 
+
+                    <div class="card ">
+                        <div class="card-header d-flex justify-content-between">
+                            <label class="text-xl fw-bold my-auto">Status</label>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body pt-0">
+                                <div class="col-12">
+                                    <div class="form-group parent" style="">
+                                        <h6 class="form-label"><span>Status</span></h6>
+                                        <select class="select2 form-select form-control-lg validation required"
+                                            name="status" id="status">
+                                            <option value="">- Select -</option>
+                                            <option value="1" selected="">
+                                                Permintaan Masuk
+                                            </option>
+                                            <option value="2">
+                                                Penawaran Terkirim
+                                            </option>
+                                            <option value="3">
+                                                Follow Up
+                                            </option>
+                                            <option value="4">
+                                                Deal
+                                            </option>
+                                            <option value="5">
+                                                Cancel
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card ">
                         <div class="card-header d-flex justify-content-between">
                             <label class="text-xl fw-bold my-auto">Harga</label>
@@ -201,19 +213,19 @@
                                     <div class="form-group parent" style="">
                                         <h6 class="form-label"><span>Harga</span></h6>
                                         <input name="price" type="text" id="price" placeholder="0"
-                                            class="form-control form-control-lg " value="" readonly=""
-                                            style="background-color:#eeeeee">
+                                            class="form-control form-control-lg text-end numberFormat" value="0"
+                                            readonly="" style="background-color:#eeeeee">
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="row">
-                                    
+
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Nilai (Rp)</span></h6>
+                                            <h6 class="form-label"><span>Diskon</span></h6>
                                             <input name="discount_value" type="text" id="discount_value"
-                                                placeholder="Nilai (Rp)"
+                                                onkeyup="calc()" placeholder="Nilai (Rp)"
                                                 class="form-control form-control-lg text-end numberFormat"
                                                 value="0">
 
@@ -234,6 +246,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                 </div>
             </div>
@@ -260,133 +274,201 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-3">
+                            <h6>Item (detail)</h6>
+                        </div>
+                        <div class="col-sm-12 col-lg-3">
+                            <h6>Price</h6>
+                        </div>
+                        <div class="col-sm-12 col-lg-2">
+                            <h6>Qty</h6>
+                        </div>
+                        <div class="col-sm-12 col-lg-3">
+                            <h6>Desc</h6>
+                        </div>
+                        <div class="col-sm-12 col-lg-1">
+                            <h6>#</h6>
+                        </div>
+                    </div>
                     <div class="dropHere">
-                        
+
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
+                            {{-- <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
                                 onclick="save()">
                                 Simpan Data & Email
-                            </button>
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            </button> --}}
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
+                                >
                                 Simpan Data
                             </button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </section>
     </form>
 
-@section('scripts')
+    @section('scripts')
         <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
+            $(document).ready(function() {
                 console.log('date');
                 var currentDate = new Date();
                 var currentMonth = (currentDate.getMonth() + 1) + '';
-                document.getElementById('date').value = currentDate.getDate().toString().padStart(2, '0')+'/'+ currentMonth.padStart(2, '0')+'/'+(currentDate.getYear() + 1900);
+                document.getElementById('date').value = currentDate.getDate().toString().padStart(2, '0') + '/' +
+                    currentMonth.padStart(2, '0') + '/' + (currentDate.getYear() + 1900);
             });
-            
-            // $('#customer_id').select2({
-            //     ajax({
-                    
-            //         url: '{{route('customer.search')}}',
-            //         type: 'POST',
-            //         data: {
-            //             keyword: keyword_input,
-            //             page: false
-            //         },
-            //         cache: false,
-            //         contentType: false,
-            //         processData: false,
-            //        processResults: function(data) {
-            //         return {
-            //             results: data
-            //         }
-            //        }
-            //     });
-                
+
+            // $('#discount_value').on('keyup', function() {
+            //     var totalPrice = $('#price').val() - $('#discount_value').val()
+            //     if (totalPrice < 0) {
+            //         document.getElementById('discount_value').value = $('#price').val();
+            //         document.getElementById('total_price').value = 0;
+            //     } else {
+            //         document.getElementById('total_price').value = totalPrice;
+            //     }
             // });
-            $('#customer_id').on('change', function(){
-                // document.getElementById('customer_phone').value = ;
-            });
-            $('#discount_value').on('keyup', function (){
-                console.log('calcSubTotal');
-                var totalPrice = $('#price').val() - $('#discount_value').val()
-                if(totalPrice < 0) {
-                    document.getElementById('discount_value').value = $('#price').val();
-                    document.getElementById('total_price').value = 0;
-                } else {
-                    document.getElementById('total_price').value = totalPrice;
-                }
-            });
+
+
+
             function addNew(params) {
-                $('.dropHere').append(`
-                <div class="row dataDetail" style="margin-bottom: -20px;">
-                <input name="dt[]" type="hidden" class="dt" value="0">
-                <input name="current_stock[]" class="current_stock" type="hidden">
+                $text = `
+                    <div class="row dataDetail" style="margin-bottom: 5px;">
+                        <input name="dt[]" type="hidden" class="dt" value="0">
 
-                <div class="col-sm-12 col-lg-4">
-                    <div class="form-group pb-3">
-                        <select class="select2 form-select form-control-lg validation required"
-                                                name="item" id="item">
-                                                <option value="" selected="">- Select -</option>
-                                                
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    Paku Reng
-                                                </option>
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="form-group pb-3">
+                                <select class="select2 form-select form-control-lg validation required item_detail_id"
+                                    name="item_detail_id[]">
+                                    <option value="" selected="">- Select -</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="form-group pb-3">
+                                <input name="price_dt[]" type="text" id="" placeholder="0" onkeyup="calc()"
+                                    class="form-control form-control-lg sumTotal text-end numberFormat validation price_dt"
+                                    value="0">
+                            </div>
+                            <p class="float-end" style="margin-top: -20px"> Total : <input type="text"
+                                    style="pointer-events:none"
+                                    class="removeField border-0 bg-transparent text-end price_total_dt">
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-lg-2">
+                            <div class="form-group pb-3">
+                                <input name="qty_dt[]" value="1" type="text" id="" placeholder="0"
+                                    onkeyup="calc()"
+                                    class="form-control form-control-lg validation numberFormat text-end qty_dt">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="form-group pb-3">
+                                <input name="description_dt[]" type="text" id="" placeholder="Description"
+                                    class="form-control form-control-lg validation description_dt" value="">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-1">
+                            <button style="margin-top:2px" class="btn btn-outline-danger rounded-pill"
+                                onclick="removeDetail(this)" type="button">
+                                <i class="bi bi-close"></i> X
+                            </button>
+                        </div>
+                </div>`;
+                $('.dropHere').append(
+                    $text
+                );
 
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    Asbes
-                                                </option>
+                reinitialize();
 
-                                            </select>
-                    </div>
+            }
 
-                   
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="form-group pb-3">
-                        <input name="price_dt[]" type="text" id="" placeholder="0" onkeyup="calcSubTotal()"
-                            class="form-control form-control-lg sumTotal text-end numberFormat validation price_dt"
-                            value="0">
-                    </div>
-                    <p class="float-end" style="margin-top: -20px"> Total : <input type="text"
-                            style="pointer-events:none"
-                            class="removeField border-0 bg-transparent text-end price_total_dt">
-                    </p>
-                </div>
-                <div class="col-sm-6 col-lg-1">
-                    <div class="form-group pb-3">
-                        <input name="qty_dt[]" value="1" type="text" id="" placeholder="0"
-                            onkeyup="calcSubTotal()"
-                            class="form-control form-control-lg validation numberFormat text-end qty_dt">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-3">
-                    <div class="form-group pb-3">
-                        <input name="description_dt[]" type="text" id="" placeholder="Description"
-                            class="form-control form-control-lg validation description_dt" value="">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-1">
-                    <button style="margin-top:2px" class="btn btn-outline-danger rounded-pill"
-                        onclick="removeDetail(this)" type="button">
-                        <i class="bi bi-close"></i> X
-                    </button>
-                </div>
-            </div>`);
+            function reinitialize() {
+                $(".numberFormat")
+                    .toArray()
+                    .forEach(function(field) {
+                        new Cleave(field, {
+                            numeral: true,
+                            numeralThousandsGroupStyle: "thousand",
+                        });
+                    });
+                // Panggil select2() pada semua elemen dengan kelas .select2
+                $('.item_detail_id').select2({
+                    ajax: {
+                        url: "{{ route('transaction.sales.get-data-item-detail') }}", // Ganti dengan URL endpoint Anda
+                        dataType: 'json',
+                        delay: 250,
+                        processResults: function(data) {
+                            // console.log(data);
+                            // console.log($(this).parents('.dataDetail'));
+
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true
+                    },
+                    minimumInputLength: 1 // Jumlah minimum karakter sebelum pencarian dimulai
+                });
+
+                $('.item_detail_id').on('select2:select', function(event) {
+                    var par = $(this).parents('.dataDetail');
+                    var data = event.params.data;
+                    $(par).find('.price_dt').val(data.price);
+                    calc();
+                });
+            }
+
+            function removeDetail(dom) {
+                var par = $(dom).parents('.dataDetail');
+                $(par).remove();
+                calc();
+            }
+
+
+            function calc(params) {
+                var totalPrice = 0;
+                $('.dataDetail').each(function() {
+                    var qty = $(this).find('.qty_dt').val().replace(/[^0-9\-]+/g, "") * 1;
+                    var priceDetail = $(this).find('.price_dt').length != 0 ? $(this).find('.price_dt').val().replace(
+                        /[^0-9\-]+/g, "") * 1 : 0;
+                    var total = qty * priceDetail;
+                    $(this).find('.price_total_dt').val(accounting.formatNumber(total, {
+                        precision: 0
+                    }));
+                    totalPrice += total;
+                })
+
+                $('#price').val(accounting.formatNumber(totalPrice, {
+                    precision: 0
+                }));
+
+                var discountValue = $('#discount_value').length != 0 ? $('#discount_value').val().replace(
+                    /[^0-9\-]+/g, "") * 1 : 0;
+
+                var totalGrand = totalPrice - discountValue;
+                if (totalGrand < 0) {
+                    $('#discount_value').val(accounting.formatNumber(totalPrice, {
+                        precision: 0
+                    }));
+                    $('#total_price').val(0);
+                } else {
+                    $('#total_price').val(accounting.formatNumber(totalGrand, {
+                        precision: 0
+                    }));
+                }
+
+                $('#total_price').val(accounting.formatNumber(totalGrand, {
+                    precision: 0
+                }));
+
             }
         </script>
     @endsection
-    </x-app-layout>
+</x-app-layout>

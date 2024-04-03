@@ -292,7 +292,7 @@
                             <table width="100%" id="customers">
                                 <thead>
                                     <tr>
-                                        <th style="vertical-align: middle;text-align: center;">NO</th>
+                                        {{-- <th style="vertical-align: middle;text-align: center;">NO</th> --}}
                                         <th style="vertical-align: middle;text-align: center;">Item</th>
                                         <th style="vertical-align: middle;text-align: center;">
                                             Code/SKU
@@ -317,15 +317,15 @@
 
                                     @foreach ($cart as $i => $el)
                                         <tr>
-                                            <td style="vertical-align: middle;text-align: center;">
+                                            {{-- <td style="vertical-align: middle;text-align: center;">
                                                 {{ $i++ }}
-                                            </td>
+                                            </td> --}}
 
                                             <td style="vertical-align: middle;text-align: center;">{{ $el->item->name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">{{ $el->item_detail->sku }}</td>
                                             <td style="vertical-align: middle;text-align: center;">{{ $el->item_detail->material->name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">{{ $el->item_detail->spec->name }}</td>
-                                            <td style="vertical-align: middle;text-align: center;">{{ $el->item_detail->class->name }}</td>
+                                            <td style="vertical-align: middle;text-align: center;">{{ $el->item_detail->classes->name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">{{ $el->item_detail->conn->name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">{{ $el->item_detail->size->name }}</td>
                                             <td style="vertical-align: middle;text-align: center;">{{ $el->qty }}</td>

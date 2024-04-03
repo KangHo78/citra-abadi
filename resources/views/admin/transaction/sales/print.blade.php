@@ -234,8 +234,10 @@
         }
     }
 </style>
+
 <body>
-    <div class = "invoice-btns" style="position: fixed;width:100%;margin:0px !important;padding:10px;background-color:black;">
+    <div class = "invoice-btns"
+        style="position: fixed;width:100%;margin:0px !important;padding:10px;background-color:black;">
         <button type = "button" class = "invoice-btn" onclick="printInvoice()">
             <span>
                 <i class="fa-solid fa-print"></i>
@@ -258,30 +260,31 @@
                             <img src="{{ asset('front-end/images/logo-light.png') }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
-                            <h3>Enquiry</h3>
+                            <h3>{{ $data->code }}</h3>
                         </div>
                     </div>
                     <div class = "hr"></div>
                     <div class = "invoice-head-middle">
                         <div class = "invoice-head-middle-left text-start">
-                            <p><span class = "text-bold">Date</span>: 05/12/2020</p>
+                            <p><span class = "text-bold">Date</span> </p>
                         </div>
                         <div class = "invoice-head-middle-right text-end">
                             <p>
-                                <spanf class = "text-bold">Enquiry No:</span>16789
+                                <spanf class = "text-bold"> {{ date('d F Y', strtotime($data->date)) }} </span>
                             </p>
                         </div>
                     </div>
+
                     <div class = "hr"></div>
                     <div class = "invoice-head-bottom">
                         <div class = "invoice-head-bottom-left">
                             <ul>
                                 <li class = 'text-bold'>Enquirer:</li>
-                                <li>Smith Rhodes</li>
-                                
+                                <li>{{ $data->customer->name }}</li>
+
                             </ul>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class = "overflow-view">
@@ -289,35 +292,52 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <td class = "text-bold">SKU</td>
-                                    <td class = "text-bold">Description</td>
-                                    <td class = "text-bold">Rate</td>
-                                    <td class = "text-bold">Qty</td>
-                                    <td class = "text-bold">Amount</td>
+                                    <th style="vertical-align: middle;text-align: center;">Item</th>
+                                    <th style="vertical-align: middle;text-align: center;">
+                                        Code/SKU
+                                    </th>
+                                    <th style="vertical-align: middle;text-align: center;">
+                                        Material
+                                    </th>
+                                    <th style="vertical-align: middle;text-align: center;">Spec
+                                    </th>
+                                    <th style="vertical-align: middle;text-align: center;">
+                                        Class
+                                    </th>
+                                    <th style="vertical-align: middle;text-align: center;">Conn
+                                    </th>
+                                    <th style="vertical-align: middle;text-align: center;">Size
+                                    </th>
+                                    <th style="vertical-align: middle;text-align: center;" class="text-end">Qty</th>
+                                    <th style="vertical-align: middle;text-align: center;" class="text-end">Price</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Design</td>
-                                    <td>Creating a website design</td>
-                                    <td>Rp.50.00</td>
-                                    <td>10</td>
-                                    <td class = "text-end">Rp.500.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Development</td>
-                                    <td>Website Development</td>
-                                    <td>Rp.50.00</td>
-                                    <td>10</td>
-                                    <td class = "text-end">Rp.500.00</td>
-                                </tr>
-                                <tr>
-                                    <td>SEO</td>
-                                    <td>Optimize the site for search engines (SEO)</td>
-                                    <td>Rp.50.00</td>
-                                    <td>10</td>
-                                    <td class = "text-end">Rp.500.00</td>
-                                </tr>
+                                @foreach ($data->enquiry_detail as $i => $el)
+                                    <tr>
+                                        {{-- <td style="vertical-align: middle;text-align: center;">
+                                        {{ $i++ }}
+                                    </td> --}}
+
+                                        <td style="vertical-align: middle;text-align: center;">{{ $el->item->name }}
+                                        </td>
+                                        <td style="vertical-align: middle;text-align: center;">
+                                            {{ $el->item_detail->sku }}</td>
+                                        <td style="vertical-align: middle;text-align: center;">
+                                            {{ $el->item_detail->material->name }}</td>
+                                        <td style="vertical-align: middle;text-align: center;">
+                                            {{ $el->item_detail->spec->name }}</td>
+                                        <td style="vertical-align: middle;text-align: center;">
+                                            {{ $el->item_detail->classes->name }}</td>
+                                        <td style="vertical-align: middle;text-align: center;">
+                                            {{ $el->item_detail->conn->name }}</td>
+                                        <td style="vertical-align: middle;text-align: center;">
+                                            {{ $el->item_detail->size->name }}</td>
+                                        <td style="vertical-align: middle;text-align: center;">{{ $el->item_quantity }}</td>
+                                        <td style="vertical-align: middle;text-align: center;">Rp.{{ number_format($el->item_price,0,'.',',') }}</td>
+                                    </tr>
+                                @endforeach
                                 <!-- <tr>
                                         <td colspan="4">10</td>
                                         <td>$500.00</td>
@@ -326,16 +346,16 @@
                         </table>
                         <div class = "invoice-body-bottom">
                             <div class = "invoice-body-info-item border-bottom">
-                                <div class = "info-item-td text-end text-bold">Sub Total:</div>
-                                <div class = "info-item-td text-end">Rp.2150.00</div>
+                                <div class = "info-item-td text-end text-bold">Sub Total :</div>
+                                <div class = "info-item-td text-end">Rp.{{ number_format($data->price,0,'.',',') }}</div>
                             </div>
                             <div class = "invoice-body-info-item border-bottom">
-                                <div class = "info-item-td text-end text-bold">Tax:</div>
-                                <div class = "info-item-td text-end">Rp.215.00</div>
+                                <div class = "info-item-td text-end text-bold">Discount :</div>
+                                <div class = "info-item-td text-end">Rp.{{ number_format($data->discount,0,'.',',') }}</div>
                             </div>
                             <div class = "invoice-body-info-item">
-                                <div class = "info-item-td text-end text-bold">Total:</div>
-                                <div class = "info-item-td text-end">Rp.21365.00</div>
+                                <div class = "info-item-td text-end text-bold">Grand Total :</div>
+                                <div class = "info-item-td text-end">Rp.{{ number_format($data->grand_total,0,'.',',') }}</div>
                             </div>
                         </div>
                     </div>
@@ -352,7 +372,8 @@
 </body>
 
 </html>
-<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+    integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script>
@@ -362,30 +383,32 @@
 </script>
 <script>
     //Create PDf from HTML...
-function CreatePDFfromHTML() {
-    var HTML_Width = $(".invoice-wrapper").width();
-    var HTML_Height = $(".invoice-wrapper").height();
-    var top_left_margin = 15;
-    var PDF_Width = HTML_Width + (top_left_margin * 2);
-    var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
-    var canvas_image_width = HTML_Width;
-    var canvas_image_height = HTML_Height;
+    function CreatePDFfromHTML() {
+        var HTML_Width = $(".invoice-wrapper").width();
+        var HTML_Height = $(".invoice-wrapper").height();
+        var top_left_margin = 15;
+        var PDF_Width = HTML_Width + (top_left_margin * 2);
+        var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+        var canvas_image_width = HTML_Width;
+        var canvas_image_height = HTML_Height;
 
-    var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+        var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
 
-    html2canvas($(".invoice-wrapper")[0]).then(function (canvas) {
-        var imgData = canvas.toDataURL("image/jpeg", 1.0);
-        var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
-        pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
-        for (var i = 1; i <= totalPDFPages; i++) { 
-            pdf.addPage(PDF_Width, PDF_Height);
-            pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
-        }
+        html2canvas($(".invoice-wrapper")[0]).then(function(canvas) {
+            var imgData = canvas.toDataURL("image/jpeg", 1.0);
+            var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+            pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width,
+                canvas_image_height);
+            for (var i = 1; i <= totalPDFPages; i++) {
+                pdf.addPage(PDF_Width, PDF_Height);
+                pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4),
+                    canvas_image_width, canvas_image_height);
+            }
 
-        const d = new Date();
-        const date = d.getFullYear()+d.getMonth()+d.getDate()+d.getHours()+d.getMinutes();
-        pdf.save("Invoice_Penjualan_"+date+".pdf");
-        $(".invoice-wrapper").hide();
-    });
-}
+            const d = new Date();
+            const date = d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes();
+            pdf.save("Invoice_Penjualan_" + date + ".pdf");
+            $(".invoice-wrapper").hide();
+        });
+    }
 </script>

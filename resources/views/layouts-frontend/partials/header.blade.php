@@ -45,8 +45,12 @@
                         </ul>
                         <div class="menu_side_area" style="background-size: cover;">
                             <div class="de-login-menu" style="background-size: cover;">
-                                <a href="{{ url('login') }}" class="btn-main btn-wallet"><i
-                                        class="icon_wallet_alt"></i><span>Login</span></a>
+                                @if (Auth::check())
+                                @else
+                                    <a href="{{ url('login') }}" class="btn-main btn-wallet"><i
+                                            class="icon_wallet_alt"></i><span>Login</span></a>
+                                @endif
+
 
                                 {{-- <a href="{{ route('wishlist') }}"><span
                                         style="cursor: pointer;
@@ -90,11 +94,12 @@
                                     <ul style="max-height: 250px;overflow:auto">
                                         @foreach (checkCarts()['carts'] as $el)
                                             <li>
-                                                <a href="{{route('product-details',$el->item_id)}}">
+                                                <a href="{{ route('product-details', $el->item_id) }}">
                                                     <div class="col-12">
                                                         <div class="row">
                                                             <div class="col-4"><img
-                                                                    style="position: relative !important;width:50px!important;height:50px!important" class="lazy"
+                                                                    style="position: relative !important;width:50px!important;height:50px!important"
+                                                                    class="lazy"
                                                                     src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
                                                                     alt=""></div>
                                                             <div class="col">
@@ -148,6 +153,7 @@
                                     </ul>
                                 </div>
 
+                                @if (Auth::check())
                                 <div id="de-submenu-profile" class="de-submenu"
                                     style="display: none; background-size: cover;">
                                     <div class="d-name" style="background-size: cover;">
@@ -178,6 +184,8 @@
                                         </li>
                                     </ul>
                                 </div>
+                                @else
+                                @endif
                                 <span id="menu-btn"></span>
                             </div>
                         </div>

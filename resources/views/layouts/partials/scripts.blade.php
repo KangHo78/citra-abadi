@@ -20,7 +20,12 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.1/accounting.min.js"
+    integrity="sha512-LLsvn7RXQa0J/E40ChF/6YAf2V9PJuLGG1VeuZhMlWp+2yAKj98A1Q1lsChkM9niWqY0gCkvHvpzqQOFEfpxIw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"
+    integrity="sha512-KaIyHb30iXTXfGyI9cyKFUIRSSuekJt6/vqXtyQKhQP6ozZEGY8nOtRS6fExqE4+RbYHus2yGyYg1BrqxzV6YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @livewireScripts
 <script src="{{ asset('/js/main.js') }}"></script>
 
@@ -40,6 +45,10 @@
             format: 'dd/mm/yyyy',
             todayHighlight: 'TRUE',
             autoclose: true
+        });
+        var cleave = new Cleave('.numberFormat', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
         });
     });
 </script>
