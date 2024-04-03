@@ -103,7 +103,7 @@
                                                 name="customer_id" id="customer_id" onchange="changeCustomer()">
                                                 <option value="" selected="">- Select -</option>
                                                 @foreach ($data['customer'] as $cust)
-                                                    <option value="{{ $cust->id }}" data-name="{{ $cust->name }}"
+                                                    <option value="{{ $cust->id }}" data-name="{{ $cust->name }}" data-email="{{ $cust->email }}"
                                                         data-code="{{ $cust->code }}"
                                                         data-phone="{{ $cust->phone }}" data-address="-"
                                                         @if ($data['data']->customer_id) selected @endif>

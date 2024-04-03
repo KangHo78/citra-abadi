@@ -8,18 +8,19 @@
                     <div class="col-md-8 col-lg-3 text-center">
 
                         <div class="" style="border:1px solid black">
-                            <img src="https://www.sinhong.com/UploadedImg/category/1062016_50826_PM_1_Anchor_660_md.jpg"
+                            <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
                                 class="img-fluid img-rounded mb-sm-30" alt="">
                         </div>
+                        <div class="spacer-single"></div>
                     </div>
                     <div class="col-md-4 col-lg-1 text-center">
                         <div>
                             <div class="mb10" style="border:1px solid black">
-                                <img src="https://www.sinhong.com/UploadedImg/category/1062016_50826_PM_1_Anchor_660_md.jpg"
+                                <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
                                     class="img-fluid img-rounded mb-sm-30" alt="" width="100px">
                             </div>
                             <div class="mb10" style="border:1px solid black">
-                                <img src="https://www.sinhong.com/UploadedImg/category/31052016_124224_PM_9_SnM_910_md.jpg"
+                                <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
                                     class="img-fluid img-rounded mb-sm-30" alt="" width="100px">
                             </div>
                         </div>
@@ -242,7 +243,8 @@
                                                                 <td>
                                                                     <input type="text" name="qty[]"
                                                                         class="form-control text-end" value=""
-                                                                        {{-- style="min-width:150px;max-width:250px"  --}}>
+                                                                        style="min-width:150px;max-width:250px" 
+                                                                        >
                                                                 </td>
                                                             </tr>
                                                         @endforeach

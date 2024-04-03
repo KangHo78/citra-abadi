@@ -105,7 +105,7 @@
                                                 name="customer_id" id="customer_id" onchange="changeCustomer()">
                                                 <option value="" selected="">- Select -</option>
                                                 @foreach ($data['customer'] as $cust)
-                                                    <option value="{{ $cust->id }}" data-name="{{ $cust->name }}"
+                                                    <option value="{{ $cust->id }}" data-name="{{ $cust->name }}" data-email="{{ $cust->email }}"
                                                         data-code="{{ $cust->code }}"
                                                         data-phone="{{ $cust->phone }}" data-address="-"
                                                         @if ($data['data']->customer_id) selected @endif>
@@ -133,7 +133,7 @@
                                             <input name="customer_phone" type="text" id="customer_phone"
                                                 placeholder="Tlp Customer"
                                                 class="form-control form-control-lg validation required"
-                                                readonly="" style="background-color: #eeeeee" value="">
+                                                readonly="" style="background-color: #eeeeee" >
 
                                         </div>
                                     </div>
@@ -232,7 +232,7 @@
                                             <input name="discount_value" type="text" id="discount_value"
                                                 onkeyup="calc()" placeholder="Nilai (Rp)"
                                                 class="form-control form-control-lg text-end numberFormat"
-                                                value="0">
+                                                value="{{$data['data']->discount}}">
 
 
                                         </div>
@@ -454,19 +454,6 @@
                 });
                 calc();
             }
-
-
-            // $('#discount_value').on('keyup', function() {
-            //     var totalPrice = $('#price').val() - $('#discount_value').val()
-            //     if (totalPrice < 0) {
-            //         document.getElementById('discount_value').value = $('#price').val();
-            //         document.getElementById('total_price').value = 0;
-            //     } else {
-            //         document.getElementById('total_price').value = totalPrice;
-            //     }
-            // });
-
-
 
             function addNew(params) {
 

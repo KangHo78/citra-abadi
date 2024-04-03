@@ -77,10 +77,12 @@
                                     </span>
                                     <i class="fa fa-shopping-bag"></i>
                                 </span>
-                                <span id="de-click-menu-profile" class="de-menu-profile">
-                                    <img src="https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg"
-                                        class="img-fluid" alt="">
-                                </span>
+                                @if (Auth::check())
+                                    <span id="de-click-menu-profile" class="de-menu-profile">
+                                        <img src="https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg"
+                                            class="img-fluid" alt="">
+                                    </span>
+                                @endif
 
                                 <div id="de-submenu-notification" class="de-submenu"
                                     style="background-size: cover; display: none;">
@@ -100,7 +102,7 @@
                                                             <div class="col-4"><img
                                                                     style="position: relative !important;width:50px!important;height:50px!important"
                                                                     class="lazy"
-                                                                    src="https://www.sinhong.com/UploadedImg/category/13062016_50832_PM_5_Nut_340A_bg.jpg"
+                                                                    src="{{ $el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
                                                                     alt=""></div>
                                                             <div class="col">
                                                                 <div class="" style="background-size: cover;">
@@ -154,13 +156,13 @@
                                 </div>
 
                                 @if (Auth::check())
-                                <div id="de-submenu-profile" class="de-submenu"
-                                    style="display: none; background-size: cover;">
-                                    <div class="d-name" style="background-size: cover;">
-                                        <h4>Monica Lucas</h4>
-                                        {{-- <a href="02_dark-profile.html">Set display name</a> --}}
-                                    </div>
-                                    {{-- <div class="spacer-10" style="background-size: cover;"></div>
+                                    <div id="de-submenu-profile" class="de-submenu"
+                                        style="display: none; background-size: cover;">
+                                        <div class="d-name" style="background-size: cover;">
+                                            <h4>Monica Lucas</h4>
+                                            {{-- <a href="02_dark-profile.html">Set display name</a> --}}
+                                        </div>
+                                        {{-- <div class="spacer-10" style="background-size: cover;"></div>
                                     <div class="d-balance" style="background-size: cover;">
                                         <h4>Balance</h4>
                                         12.858 ETH
@@ -173,24 +175,27 @@
                                         <button id="btn_copy" title="Copy Text">Copy</button>
                                     </div> --}}
 
-                                    <div class="d-line" style="background-size: cover;"></div>
+                                        <div class="d-line" style="background-size: cover;"></div>
 
-                                    <ul class="de-submenu-profile">
-                                        <li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> My profile</a>
-                                        </li>
-                                        <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a>
-                                        </li>
-                                        
-                                        <li><form method="POST" action="{{ route('logout') }}">
-                                            @csrf
+                                        <ul class="de-submenu-profile">
+                                            <li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> My
+                                                    profile</a>
+                                            </li>
+                                            <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i>
+                                                    Wishlist</a>
+                                            </li>
 
-                                            <button type="submit">
-                                            <i class="fa fa-sign-out"></i> Sign out
-                                            </button>
-                                        </form>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            <li>
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <button type="submit">
+                                                        <i class="fa fa-sign-out"></i> Sign out
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 @else
                                 @endif
                                 <span id="menu-btn"></span>
