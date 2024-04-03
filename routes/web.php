@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/material',[HomeController::class, 'dataMaterial'])->name('dataMaterial');
+Route::get('/share-product',[HomeController::class, 'shareProduct'])->name('share-product');
 Route::get('/catalog',[CatalogController::class, 'index'])->name('catalog');
 Route::get('/product-details/{id}',[ProductDetailsController::class, 'index'])->name('product-details');
 Route::get('/profile',[HomeController::class, 'profile'])->name('profile');
