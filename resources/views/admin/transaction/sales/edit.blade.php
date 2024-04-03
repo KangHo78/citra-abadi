@@ -31,7 +31,7 @@
                     </div>
                     <div class="parent">
                         <input name="id" type="hidden" id="id" placeholder="-" class=" "
-                            value="{{$data['data']->id}}">
+                            value="{{ $data['data']->id }}">
                     </div>
 
                     <div class="card ">
@@ -60,11 +60,13 @@
                                                         class="bi bi-calendar"></i></span>
                                                 <input name="dateBackground" id="dateBackground" placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
-                                                    value="{{date('d/m/Y',strtotime($data['data']->date))}}" style="background-color:#eeeeee"
-                                                    onchange="generateCode()" type="hidden"><input
+                                                    value="{{ date('d/m/Y', strtotime($data['data']->date)) }}"
+                                                    style="background-color:#eeeeee" onchange="generateCode()"
+                                                    type="hidden"><input
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
                                                     placeholder="Date" tabindex="0" type="text" readonly="readonly"
-                                                    name="date" id="date" value="{{date('d/m/Y',strtotime($data['data']->date))}}">
+                                                    name="date" id="date"
+                                                    value="{{ date('d/m/Y', strtotime($data['data']->date)) }}">
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +102,7 @@
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Customer</span></h6>
                                             <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                                name="customer_id" id="customer_id" onchange="changeCustomer()">
                                                 <option value="" selected="">- Select -</option>
                                                 @foreach ($data['customer'] as $cust)
                                                     <option value="{{ $cust->id }}" data-name="{{ $cust->name }}"
@@ -414,6 +416,7 @@
 
                 initializeEdit();
 
+                changeCustomer();
 
 
 
@@ -446,7 +449,7 @@
 
                     $('.description_dt').last().val(d.description);
                     $('.dt').last().val(d.id);
-                    
+
                     reinitialize();
                 });
                 calc();
@@ -565,6 +568,17 @@
                     precision: 0
                 }));
 
+            }
+
+            function changeCustomer() {
+                var cus = $('#customer_id').find(':selected');
+                var name = cus.data('name');
+                var phone = cus.data('phone');
+                var email = cus.data('email');
+
+                $('#customer_name').val(name);
+                $('#customer_phone').val(phone);
+                $('#customer_email').val(email);
             }
         </script>
     @endsection

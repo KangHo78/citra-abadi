@@ -17,10 +17,10 @@
     </x-slot>
 
     <form id="stored" action="{{ route('transaction.sales.update', $data['data']->id) }}" method="POST"
-        enctype="multipart/form-data">
+        enctype="multipart/form-data" style="pointer-events: none">
         @csrf
         @method('PUT')
-        <section id="multiple-column-form">
+        <section id="multiple-column-form" >
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
 
@@ -99,8 +99,8 @@
                                     <div class="col-12">
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Customer</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
+                                            <select class=" form-select form-control-lg validation required"
+                                                name="customer_id" id="customer_id" onchange="changeCustomer()">
                                                 <option value="" selected="">- Select -</option>
                                                 @foreach ($data['customer'] as $cust)
                                                     <option value="{{ $cust->id }}" data-name="{{ $cust->name }}"
@@ -179,7 +179,7 @@
                                 <div class="col-12">
                                     <div class="form-group parent" style="">
                                         <h6 class="form-label"><span>Status</span></h6>
-                                        <select class="select2 form-select form-control-lg validation required"
+                                        <select class=" form-select form-control-lg validation required"
                                             name="status" id="status">
                                             <option value="">- Select -</option>
                                             <option value="1" @selected($data['data']->status == 1)>
@@ -269,10 +269,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-8">
-                            <button class="btn btn-outline-info rounded-pill float-end pr-2" type="button"
-                                onclick="addNew()">
-                                Tambah data
-                            </button>
+                           
                         </div>
                     </div>
                 </div>
@@ -401,8 +398,8 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-lg-1">
-                            <button style="margin-top:2px" class="btn btn-outline-danger rounded-pill"
-                                onclick="removeDetail(this)" type="button">
+                            <button style="margin-top:2px" class="btn btn-outline-secodary rounded-pill"
+                                onclick="#" type="button">
                                 <i class="bi bi-close"></i> X
                             </button>
                         </div>
@@ -412,7 +409,7 @@
 
                 initializeEdit();
 
-
+                changeCustomer();
 
 
             });
@@ -563,6 +560,16 @@
                     precision: 0
                 }));
 
+            }
+            function changeCustomer() {
+                var cus = $('#customer_id').find(':selected');
+                var name = cus.data('name');
+                var phone = cus.data('phone');
+                var email = cus.data('email');
+
+                $('#customer_name').val(name);
+                $('#customer_phone').val(phone);
+                $('#customer_email').val(email);
             }
         </script>
     @endsection

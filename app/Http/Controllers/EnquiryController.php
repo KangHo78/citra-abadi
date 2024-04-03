@@ -39,26 +39,10 @@ class EnquiryController extends Controller
                 $q->where('code', 'like', self::like($req->code));
             }
             if ($req->customer != '' || $req->customer != null) {
-                $q->where('customer_id', '=', $req->customer);
+                $q->where('customer_id', '>=', $req->customer);
             }
         })->get();
-        // if($request->date_start) {
-        //     $data = $data->where('created_at', '>=', $request->date_start);
-        // }
-        // if($request->date_end) {
-        //     $data = $data->where('created_at', '<=', $request->date_start);
-        // }
-        // if($request->code) {
-        //     $data = $data->where('code', 'like', self::like($request->code));
-        // }
-        // if($request->customer) {
-        //     $data = $data->whereHas('customer', function($query) use ($request)
-        //     {
-        //         $query->where('name', 'like', self::like($request->customer));
-
-        //     });
-        // }
-        // $data->get();
+  
         $customer = User::get();
         return view($this->path . '/index', compact('data','customer'));
     }

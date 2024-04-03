@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Enquiry;
 use App\Models\Item;
+use App\Models\ShareProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -57,5 +59,9 @@ class HomeController extends Controller
     function profile() {
         $enquiry = Enquiry::get();
         return view('user.profile',compact('enquiry'));
+    }
+    function shareProduct(Request $req) {
+        ShareProduct::create(['item_id'=>$req->item_id,'customer_id'=>Auth::user()->id]);
+        return response()->json(['message' => 'Berhasil Mencopy Link','id'=>$req->item_id,'type'=>'success']);
     }
 }

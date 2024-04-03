@@ -61,8 +61,10 @@
                                     alt=""><span>0.059</span>($253.67)</div> -->
 
                             <!-- Button trigger modal -->
-                            <button class="btn-main btn-lg" onclick="addToWishlish('{{$item->id}}')"> <i class="fa fa-heart"></i> Add Wishlist </button>
-                            <button class="btn-main bg-info btn-lg btn-light"> <i class="fa fa-share-alt"></i> Share
+                            <button class="btn-main btn-lg" onclick="addToWishlish('{{ $item->id }}')"> <i
+                                    class="fa fa-heart"></i> Add Wishlist </button>
+                            <button class="btn-main bg-info btn-lg btn-light"
+                                onclick="shareProduct('{{ $item->id }}')"> <i class="fa fa-share-alt"></i> Share
                                 Product </button>
                         </div>
                     </div>
@@ -448,7 +450,7 @@
                     url: "{{ route('add-to-wishlist') }}", // Ganti dengan URL endpoint Anda
                     method: 'POST',
                     dataType: 'json',
-                    data: 'item_id='+params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    data: 'item_id=' + params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
                     success: function(response) {
                         // Menangani respons dari server jika diperlukan
                         if (response.type == 'success') {
@@ -456,6 +458,58 @@
                                 title: 'Berhasil',
                                 message: response.message,
                             });
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                        }
+                        // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
+                        // '_blank');
+
+                    },
+                    error: function(xhr, status, error) {
+                        iziToast.error({
+                            title: 'Pemberitahuan',
+                            message: response.message,
+                        });
+                    }
+                });
+            }
+
+            function shareProduct(params) {
+                $.ajax({
+                    url: "{{ route('share-product') }}", // Ganti dengan URL endpoint Anda
+                    method: 'POST',
+                    dataType: 'json',
+                    data: 'item_id=' + params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+
+                            // Mengambil URL saat ini
+                            var url = window.location.href;
+
+                            // Membuat elemen textarea sementara untuk menyalin teks ke clipboard
+                            var tempInput = $('<textarea>');
+                            $('body').append(tempInput);
+
+                            // Menyalin URL ke elemen textarea
+                            tempInput.val(url).select();
+
+                            // Menyalin teks yang dipilih ke clipboard
+                            document.execCommand('copy');
+
+                            // Menghapus elemen textarea sementara
+                            tempInput.remove();
+
+                            // Memberi umpan balik bahwa URL telah disalin
+                            // alert('URL telah disalin: ' + url);
+
                         } else {
                             iziToast.warning({
                                 title: 'Pemberitahuan',
