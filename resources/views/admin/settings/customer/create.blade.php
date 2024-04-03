@@ -17,8 +17,9 @@
     </x-slot>
 
 
-    <form id="stored" method="{{ route('customer.store') }}" action="POST">
+    <form id="stored" action="{{ route('customer.store2') }}" method="POST">
         @csrf
+        @method('POST')
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -149,7 +150,8 @@
                             </div>
                         </div>
                     </div>
-
+                    </div>
+</div>
                   
         </section>
 

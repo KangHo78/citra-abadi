@@ -153,6 +153,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('promotions', PromotionController::class);
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('customer', UserController::class);
+        Route::post('customer/store', 'UserController@store')->name('customer.store2');
         Route::get('customer/search', [UserController::class, 'search'])->name('customer.search');
         Route::resource('role', RoleController::class);
         Route::resource('staff', StaffController::class);

@@ -43,8 +43,8 @@ class EnquiryController extends Controller
         }
         return view($this->path.'/index',compact('data'));
     }
-    function show(Request $request) {
-        $data = Enquiry::where('id', $request->id);
+    function show(Request $request, $id) {
+        $data = Enquiry::where('id', $id);
         return view($this->path.'/show',compact('data'));
     }
     function create(Request $request) {

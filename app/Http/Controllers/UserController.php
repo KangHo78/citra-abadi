@@ -25,6 +25,7 @@ class UserController extends Controller
     }
 
     function index(Request $request) {
+        Log::info('index here');
         $data = User::where('code', '!=', null)->where('code', '!=', '0'); 
         $code = "";
         $name = "";
@@ -46,7 +47,9 @@ class UserController extends Controller
         $data = User::findOrFail($id);
         } catch(\Throwable $e) {
             $data = User::where('code', '!=', null)->where('code', '!=', '0')->orderBy('id', 'desc')->get();
-           return self::index($request);
+            $code = "";
+            $name = "";
+            return view($this->path.'/index',compact('data', 'code', 'name'))->render();
         } 
         // Log::info(json_encode($data->company_name));
 
@@ -70,7 +73,7 @@ class UserController extends Controller
         return substr($result, -5);
       }
     function store(Request $request) {
-        Log::info('store');
+        Log::info(json_encode($request->file('npwp_photo')));
         $user = new User;
         $user->name = $request->name;
         $requestCode = $request->code;
@@ -85,7 +88,7 @@ class UserController extends Controller
         $user->company_name = $request->company_name;
         $user->npwp = $request->npwp;
         if($request->file('npwp_photo')) {
-            $imageNPWP = $req->file('npwp_photo');
+            $imageNPWP = $request->file('npwp_photo');
             $imageNPWPName = 'NPWP_' . $user->id . '_' . time() . '.' . $imageNPWP->getClientOriginalExtension();
             $imageNPWP->move(public_path('storage/images'), $imageNPWPName);
             $user->npwp_photo = $imageNPWPName;
@@ -95,9 +98,11 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->save();
         Log::info('check');
-        $request = new Request;
-        $data = User::where('code', '!=', null)->where('code', '!=', '0')->orderBy('id', 'desc'->get());
-        return self::index($request);
+        // $request = new Request;
+        $data = User::where('code', '!=', null)->where('code', '!=', '0')->orderBy('id', 'desc')->get();
+            $code = "";
+            $name = "";
+            return view($this->path.'/index',compact('data', 'code', 'name'))->render();
     }
     function edit(Request $request, $id) {
         $data = User::findOrFail($id);
