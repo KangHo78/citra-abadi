@@ -24,7 +24,7 @@
                         <h4 class="card-title">Filter Data</h4>
                     </div>
                     <div class="card-body">
-                        <form action="https://nara.prog/dashboard">
+                        <form action="{{route('transaction.sales.index')}}" method="GET">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group pb-1 parent">
@@ -33,7 +33,7 @@
                                             <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                     class="bi bi-calendar"></i></span>
                                             <input class="form-control form-control-lg datepicker" placeholder="Date"
-                                                tabindex="0" type="text" id="date_start">
+                                                tabindex="0" type="text" id="date_start" name="date_start" value="{{request()->input('date_start')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                             <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                     class="bi bi-calendar"></i></span>
                                             <input class="form-control form-control-lg datepicker" placeholder="Date"
-                                                tabindex="0" type="text" id="date_end">
+                                                tabindex="0" type="text" id="date_end" name="date_end" value="{{request()->input('date_end')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         <h6 class="form-label"><span>Kode</span></h6>
                                         <div class="input-group mb-1">
                                             <input class="form-control form-control-lg " placeholder="Kode"
-                                                tabindex="0" type="text" id="code">
+                                                tabindex="0" type="text" id="code" name="code" value="{{request()->input('code')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -63,8 +63,12 @@
                                     <div class="form-group pb-1 parent">
                                         <h6 class="form-label"><span>Customer</span></h6>
                                         <div class="input-group mb-1">
-                                            <input class="form-control form-control-lg " placeholder="Customer"
-                                                tabindex="0" type="text" id="customer">
+                                           <select name="customer" id="" class="form-control select2">
+                                            <option value="">- Select -</option>
+                                            @foreach ($customer as $el)
+                                                <option value="{{$el->id}}" @selected(request()->input('customer') == $el->id)>{{$el->name}}</option>
+                                            @endforeach
+                                           </select>
                                         </div>
                                     </div>
                                 </div>

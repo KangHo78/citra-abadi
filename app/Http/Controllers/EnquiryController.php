@@ -26,9 +26,22 @@ class EnquiryController extends Controller
         return '%' . $text . '%';
     }
 
-    function index(Request $request)
+    function index(Request $req)
     {
-        $data = Enquiry::get();
+        $data = Enquiry::where(function($q) use ($req){
+            if ($req->date_start != '' || $req->date_start != null) {
+                $q->where('date', '>=', date("Y-m-d", strtotime($req->date_start)));
+            }
+            if ($req->date_end != '' || $req->date_end != null) {
+                $q->where('date', '<=', date("Y-m-d", strtotime($req->date_end)));
+            }
+            if ($req->code != '' || $req->code != null) {
+                $q->where('code', 'like', self::like($req->code));
+            }
+            if ($req->customer != '' || $req->customer != null) {
+                $q->where('customer_id', '=', $req->customer);
+            }
+        })->get();
         // if($request->date_start) {
         //     $data = $data->where('created_at', '>=', $request->date_start);
         // }
@@ -46,7 +59,8 @@ class EnquiryController extends Controller
         //     });
         // }
         // $data->get();
-        return view($this->path . '/index', compact('data'));
+        $customer = User::get();
+        return view($this->path . '/index', compact('data','customer'));
     }
     function show(Request $request, $id) {
         $data = ['data' => Enquiry::with('enquiry_detail', 'enquiry_detail.item', 'enquiry_detail.item_detail')->where('id', $id)->first(), 'customer' => User::get(), 'item' => Item::get(), 'itemDetail' => ItemDetail::get()];
