@@ -48,10 +48,9 @@ class EnquiryController extends Controller
         // $data->get();
         return view($this->path . '/index', compact('data'));
     }
-    function show(Request $request)
-    {
-        $data = Enquiry::where('id', $request->id);
-        return view($this->path . '/show', compact('data'));
+    function show(Request $request, $id) {
+        $data = ['data' => Enquiry::with('enquiry_detail', 'enquiry_detail.item', 'enquiry_detail.item_detail')->where('id', $id)->first(), 'customer' => User::get(), 'item' => Item::get(), 'itemDetail' => ItemDetail::get()];
+        return view($this->path.'/show',compact('data'));
     }
     function getLastGeneratedCode()
     {

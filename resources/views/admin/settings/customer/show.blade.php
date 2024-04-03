@@ -1,3 +1,6 @@
+@php
+\Illuminate\Support\Facades\Log::info($data->company_name);
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <div class="row">
@@ -40,12 +43,12 @@
                         <div class="card-content">
                             <div class="card-body pt-0">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Kode</span></h6>
-                                            <input name="code" type="text" id="code"
-                                                placeholder="CUS0001"
-                                                class="form-control form-control-lg validation required" value=""
+                                            <input name="code" type="text" id="code" readonly=""
+                                                
+                                                class="form-control form-control-lg validation required" value="{{ $data->code }}"
                                                 >
 
                                         </div>
@@ -54,71 +57,44 @@
                                 </div>
                                 <div class="row">
                                    
-                                    {{-- <div class="col-6">
-                                        <div class="form-group pb-1 parent">
-                                            <h6 class="form-label"><span>Akun</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
-                                                    data-phone="-" data-address="-">[NON]
-                                                    ONE TIME CUSTOMER
-                                                </option>
-                                                <option value="25" data-name="BU MERRY #1"
-                                                    data-code="CUS01240010001" data-phone="08123480519"
-                                                    data-address="-">[CUS01240010001]
-                                                    BU MERRY #1
-                                                </option>
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    PAK MUL #5
-                                                </option>
-                                            </select>
-
-                                        </div>
-                                    </div> --}}
+                                    
 
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Nama</span></h6>
-                                            <input name="description" type="text" id="description"
-                                                placeholder="Nama" class="form-control form-control-lg "
-                                                value="">
+                                            <h6 class="form-label"><span>Nama Perusahaan</span></h6>
+                                            <input name="code" type="text" id="code" readonly=""
+                                                
+                                                class="form-control form-control-lg validation required" value="{{ $data->company_name }}"
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Alamat</span></h6>
-                                            <input name="description" type="text" id="description"
-                                                placeholder="Nama" class="form-control form-control-lg "
-                                                value="">
+                                            <input name="code" type="text" id="code" readonly=""
+                                                
+                                                class="form-control form-control-lg validation required" value="{{ $data->address }}"
+                                                >
                                         </div>
                                     </div>
-                                    <!-- <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Alamat NPWP</span></h6>
-                                            <input name="description" type="text" id="description"
-                                                placeholder="Alamat NPWP" class="form-control form-control-lg "
-                                                value="">
-                                        </div>
-                                    </div> -->
+                                    
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Kota / Provinsi / Kode Pos</span></h6>
-                                            <input name="description" type="text" id="description"
-                                                placeholder="Kota" class="form-control form-control-lg "
-                                                value="">
+                                            <input name="code" type="text" id="code" readonly=""
+                                                
+                                                class="form-control form-control-lg validation required" value="{{ $data->address_2 }}"
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Telepon / WA</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="description" type="text" id="description_4"
                                                 placeholder="Telepon" class="form-control form-control-lg "
-                                                value="">
+                                                readonly="" value="{{ $data->phone }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -126,7 +102,7 @@
                                             <h6 class="form-label"><span>Nama PIC</span></h6>
                                             <input name="description" type="text" id="description"
                                                 placeholder="Nama PIC" class="form-control form-control-lg "
-                                                value="">
+                                                readonly="" value="{{ $data->name }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -134,19 +110,49 @@
                                             <h6 class="form-label"><span>Email</span></h6>
                                             <input name="description" type="text" id="description"
                                                 placeholder="Email" class="form-control form-control-lg "
-                                                value="">
+                                                readonly="" value="{{ $data->email }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Member</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="Cash">Bronze</option>
-                                                <option value="Cash">Silver</option>
-                                                <option value="Cash">Gold</option>
-                                            </select>
+                                            <h6 class="form-label"><span>Position</span></h6>
+                                            @php
+                                            $string = "";
+                                            switch($data->position) {
+                                                case 1:
+                                                    $string = "Owner";
+                                                    break;
+                                                case 2:
+                                                    $string = "Purchaser";
+                                                    break;
+                                                case 3:
+                                                    $string = "Estimator";
+                                                    break;
+                                                case 4:
+                                                    $string = "Engineer";
+                                                    break;
+                                                case 5:
+                                                    $string = "Lainnya";
+                                                    break;
+                                            }
+                                            @endphp
+                                            <input name="description" type="text" id="description"
+                                                 class="form-control form-control-lg "
+                                                readonly="" value="{{ $string }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>NPWP</span></h6>
+                                            <input name="description" type="text" id="description"
+                                                 class="form-control form-control-lg "
+                                                readonly="" value="{{ $data->npwp }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>NPWP Photo</span></h6>
+                                            <img src="{{ $data->npwp_photo }}" width="100px"></img>
                                         </div>
                                     </div>
                                 </div>
@@ -157,20 +163,6 @@
                   
         </section>
 
-        <section class="section">
-            <div class="card">
-              
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
-                                Simpan Data
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
     </form>
 </x-app-layout>

@@ -180,7 +180,14 @@
                                         </li>
                                         <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a>
                                         </li>
-                                        <li><a href="#"><i class="fa fa-sign-out"></i> Sign out</a>
+                                        
+                                        <li><form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <button type="submit">
+                                            <i class="fa fa-sign-out"></i> Sign out
+                                            </button>
+                                        </form>
                                         </li>
                                     </ul>
                                 </div>

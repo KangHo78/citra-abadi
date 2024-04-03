@@ -8,8 +8,8 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Sales</li>
-                        <li class="breadcrumb-item active" aria-current="page">Create</li>
+                        <li class="breadcrumb-item">Enquirer</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -17,7 +17,9 @@
     </x-slot>
 
 
-    <form id="stored">
+    <form id="stored" action="{{ route('customer.update', $data->id) }}" method="POST">
+        @csrf
+        @method('PUT')
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -45,7 +47,7 @@
                                             <h6 class="form-label"><span>Kode</span></h6>
                                             <input name="code" type="text" id="code"
                                                 placeholder="CUS000001"
-                                                class="form-control form-control-lg validation required" value=""
+                                                class="form-control form-control-lg validation required" readonly="" value="{{ $data->code }}"
                                                 >
 
                                         </div>
@@ -54,47 +56,24 @@
                                 </div>
                                 <div class="row">
                                    
-                                    {{-- <div class="col-6">
-                                        <div class="form-group pb-1 parent">
-                                            <h6 class="form-label"><span>Akun</span></h6>
-                                            <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="1" data-name="ONE TIME CUSTOMER" data-code="NON"
-                                                    data-phone="-" data-address="-">[NON]
-                                                    ONE TIME CUSTOMER
-                                                </option>
-                                                <option value="25" data-name="BU MERRY #1"
-                                                    data-code="CUS01240010001" data-phone="08123480519"
-                                                    data-address="-">[CUS01240010001]
-                                                    BU MERRY #1
-                                                </option>
-                                                <option value="26" data-name="PAK MUL #5"
-                                                    data-code="CUS01240030001" data-phone="081332333095"
-                                                    data-address="-">[CUS01240030001]
-                                                    PAK MUL #5
-                                                </option>
-                                            </select>
-
-                                        </div>
-                                    </div> --}}
+                                   
 
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Nama</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <h6 class="form-label"><span>Nama Perusahaan</span></h6>
+                                            <input name="company_name" type="text" id="company_name"
                                                 placeholder="Nama" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ $data->company_name }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Alamat</span></h6>
-                                            <input name="description" type="text" id="description"
-                                                placeholder="Nama" class="form-control form-control-lg "
-                                                value="">
+                                            <input name="address" type="text" id="address"
+                                                placeholder="Alamat" class="form-control form-control-lg "
+                                                value="{{ $data->address }}">
                                         </div>
                                     </div>
                                     <!-- <div class="col-12">
@@ -108,45 +87,88 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Kota / Provinsi / Kode Pos</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="address_2" type="text" id="address_2"
                                                 placeholder="Kota" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ $data->address_2 }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Telepon / WA</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="phone" type="text" id="phone"
                                                 placeholder="Telepon" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ $data->phone }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama PIC</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="name" type="text" id="name"
                                                 placeholder="Nama PIC" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ $data->name }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Email</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="email" type="text" id="email"
                                                 placeholder="Email" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ $data->email }}">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Member</span></h6>
+                                            <h6 class="form-label"><span>Position</span></h6>
                                             <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="Cash">Bronze</option>
-                                                <option value="Cash">Silver</option>
-                                                <option value="Cash">Gold</option>
+                                                name="position" id="position">
+                                                @if(empty($data->position) || $data->position == 0)
+                                                <option value="0" selected="">- Select -</option>
+                                                @else
+                                                <option value="0">- Select -</option>
+                                                @endif
+                                                @if($data->position == 1)
+                                                <option value="1" selected="">Owner</option>
+                                                @else
+                                                <option value="1">Owner</option>
+                                                @endif
+                                                @if($data->position == 2)
+                                                <option value="2" selected>Purchaser</option>
+                                                @else
+                                                <option value="2">Purchaser</option>
+                                                @endif
+                                                @if($data->position == 3)
+                                                <option value="3" selected="">Estimator</option>
+                                                @else
+                                                <option value="3">Estimator</option>
+                                                @endif
+                                                @if($data->position == 4)
+                                                <option value="4" selected="">Engineer</option>
+                                                @else
+                                                <option value="4">Engineer</option>
+                                                @endif
+                                                @if($data->position == 5)
+                                                <option value="5" selected="">Lainnya</option>
+                                                @else
+                                                <option value="5">Lainnya</option>
+                                                @endif
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>NPWP</span></h6>
+                                            <input name="npwp" type="text" id="npwp"
+                                                 class="form-control form-control-lg "
+                                                value="{{ $data->npwp }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>NPWP Photo</span></h6>
+                                            @if(!empty($data->npwp_photo) && $data->npwp_photo != null)
+                                                <img src="{{ $data->npwp_photo }}" width="100px"></img>
+                                            @endif
+                                            <input name="npwp_photo" type="file" id="npwp_photo">
                                         </div>
                                     </div>
                                 </div>
@@ -163,8 +185,8 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
+                                >
                                 Simpan Data
                             </button>
                         </div>
