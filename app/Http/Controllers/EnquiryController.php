@@ -8,7 +8,10 @@ use App\Models\User;
 use App\Models\EnquiryDetail;
 use App\Models\Item;
 use App\Models\ItemDetail;
+use App\Mail\orderEnquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class EnquiryController extends Controller
 {
@@ -170,9 +173,11 @@ class EnquiryController extends Controller
         // return $data;
         return view($this->path . '/print', compact('data'));
     }
-    function email(Request $request)
+    function email($id)
     { //TODO:
-        $data = Enquiry::where('id', $request->id);
+        $data = Enquiry::where('id', $id)->first();
+        Log::info(json_encode($id));
+        Mail::to($data->customer->email)->send(new orderEnquiry($data));
         return view($this->path . '/print', compact('data'));
     }
     function destroy(Request $request)
