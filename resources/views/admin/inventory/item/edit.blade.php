@@ -117,21 +117,15 @@ display: none;
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            @if(!empty($data->photos))
                                             <h6 class="form-label"><span>Foto Produk</span></h6>
 
-                                            @php
-                                                $photo_list = json_decode($data->photos, true)
-                                            @endphp
-                                            @foreach($photo_list as $photo)
-                                                <img src="{{ $photo }}" width="100px"></img>
-                                            @endforeach
-                                            @endif
+                                            
                                             <br>
                                             <button type="button" class="btn btn-primary btn-xl"
                                                 >
                                                 Tambah Foto
                                             </button>
+                                            <div class="row" id="previewPhotos"></div>
                                             
                                         </div>
                                     </div>
@@ -234,18 +228,163 @@ display: none;
        
     </form>
 </x-app-layout>
-@section('script')
-<script>
+@section('scripts')
+@php
+        $materials = \App\Models\Material::pluck('name');
+        $spec = \App\Models\Spec::pluck('name');
+        $class = \App\Models\Classes::pluck('name');
+        $conn = \App\Models\Conn::pluck('name');
+        $size = \App\Models\Size::pluck('name');
+    @endphp
+<script type="text/javascript">
+    function addNew() {
+  // Create a new table row element
+  var newRow = $('<tr>');
+
+  // Add cells for SKU, Material (dropdown), Spec, Class (dropdown), Conn, Size, and Action
+  newRow.append('<td><input type="text" name="item_details[][sku]"></td>');
+
+  // Material dropdown (assuming you have an array of material options)
+  const materialOptions = {!! json_encode($materials) !!};
+  const materialSelect = document.createElement('select');
+  materialSelect.name = 'item_details[][material]';
+  materialOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    materialSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(materialSelect));
+
+  const specOptions = {!! json_encode($spec) !!};
+  const specSelect = document.createElement('select');
+  specSelect.name = 'item_details[][spec]';
+  specOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    specSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(specSelect));
+
+  // Class dropdown (assuming you have an array of class options)
+  const classOptions = {!! json_encode($class) !!};
+  const classSelect = document.createElement('select');
+  classSelect.name = 'item_details[][class]';
+  classOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    classSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(classSelect));
+
+  const connOptions = {!! json_encode($conn) !!};
+  const connSelect = document.createElement('select');
+  connSelect.name = 'item_details[][conn]';
+  connOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    connSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(connSelect));
+  const sizeOptions = {!! json_encode($size) !!};
+  const sizeSelect = document.createElement('select');
+  sizeSelect.name = 'item_details[][size]';
+  sizeOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    sizeSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(sizeSelect));
+  newRow.append('<td><input type="text" name="item_details[][price]"></td>');
+  newRow.append('<td><button type="button" class="btn btn-danger btn-sm removeRow">Hapus</button></td>');
+
+  // Append the new row to the table body
+  $('#dataTable2 tbody').append(newRow);
+}
+
     $(document).ready(function() {
-        $('#dataTable').dataTable({
-      paging: false, 
-      info: false,
+        const previewPhotos = document.getElementById('previewPhotos');
 
-      //add these config to remove empty header
-      "bJQueryUI": true,
-      "sDom": 'lfrtip'
+       
+        $('#addPhotos').click(function(event) {
+            
+            event.preventDefault(); // Prevent default button action (if any)
+            $('#photos').trigger('click');
+        });
 
+        $('#photos').change(function(e) {
+  const files = e.target.files;
+
+  for (const file of files) {
+    const reader = new FileReader();
+
+    // // Check if the file is an image
+    // if (!file.type.match('image.*')) {
+    //   alert("Please select only image files.");
+    //   return;
+    // }
+
+    // // Check file size (optional)
+    // if (file.size > 1024 * 1024 * 2) { // 2MB limit (adjust as needed)
+    //   alert("File size exceeds the limit of 2MB.");
+    //   return;
+    // }
+
+    reader.readAsDataURL(file); // Read file content as data URL
+
+    reader.onload = function(event) {
+      const previewImage = document.createElement('div');
+      previewImage.classList.add('preview-image');
+
+      const img = document.createElement('img');
+      img.src = event.target.result;
+      img.classList.add('img-thumbnail', 'mr-2');
+      img.width = 200; // Add styling for previews
+      previewImage.appendChild(img);
+
+      const removeButton = document.createElement('button');
+      removeButton.type = 'button';
+      removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'removePhoto');
+      removeButton.textContent = 'Hapus'; // Set button text (optional)
+      previewImage.appendChild(removeButton);
+
+      previewPhotos.appendChild(previewImage);
+
+      // Attach click event listener to the remove button
+      removeButton.addEventListener('click', removePreviewImage);
+    };
+
+    reader.onerror = function(error) {
+      console.error("Error reading file:", error);
+      alert("An error occurred while previewing the image.");
+    };
+  }
 });
+
+function removePreviewImage(e) {
+  // Get the parent element of the button (which is the preview-image div)
+  const previewImage = e.target.parentElement;
+  // Remove the preview-image element from the previewPhotos container
+  previewPhotos.removeChild(previewImage);
+}
+        // Event listener for "Tambah data" button
+        $('.btn-outline-info.rounded-pill').click(function() {
+            console.log('check');
+            addNew();
+
+        }, );
+
+        // Event listener for "Hapus" button (remove row)
+        $(document).on('click', '.removeRow', function() {
+            $(this).parent().parent().remove();
+        });
+
+       
+        
 });
                  </script>
 @endsection

@@ -158,11 +158,8 @@
                                 @else
                                 <td></td>
                                 @endif
-                                @if(isset($item->photos) && !empty($item->photos) && count(json_decode($item->photos)) > 0)
-                                <td> <img src="{{ asset('public/uploads/items/'.json_decode($item->photos, true)[0]) }}" width="100px"></img></td>
-                                @else
+    
                                 <td></td>
-                                @endif
                                 <td>
                                     <div class="btn-group mb-1">
                                         <div class="dropdown">
@@ -224,7 +221,7 @@
                 {data: 'name',name: 'name'},
                 {data: 'brand', name: 'brand'},
                 {data: 'category_id', name: 'category_id'},
-                {data: 'desc', name: 'desc'},
+                {data: 'description', name: 'description'},
                 {data: 'photos', name: 'photos'},
                 {data: 'action', name: 'action', orderable: false, searchable: false },
             ],

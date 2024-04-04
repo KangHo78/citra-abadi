@@ -38,7 +38,7 @@ class ItemController extends Controller
         $category_id = 0;
         $brand = "";
         $photo = "";
-        
+        $photo_html = "";
         if($request->filled('sku')) {
             $data = $data->where('sku', 'like', self::like($request->sku));
         }
@@ -156,7 +156,9 @@ class ItemController extends Controller
                 ->addColumn('photos', function($row) use($photo){
                     try{
                         $photo = "";
+                        $photo_html = "";
                     if(!empty($row->photos) && $row->photos != '[]') {
+                        Log::info('photo processing');
                         $item_photo_temp_list = json_decode($row->photos, true)[0];
                         
                         Log::info(json_encode($item_photo_temp_list));
@@ -168,21 +170,23 @@ class ItemController extends Controller
                         if (Storage::disk('local')->exists($pathToFile)) {
                             // Get a temporary URL for the file (valid for a limited time)
                             // $photo = Storage::disk('local')->url($pathToFile);
-                            $photo = asset($pathToFile);
+                            $photo = Storage::disk('local')->url($pathToFile);
                         }
                         // $photo = asset($photo);
                         // $string=asset();
                         Log::info($photo);
-                        Log::info('<img src="'.$photo.'" width="100px"></img>');
+                        $photo_html = '<img src="'.$photo.'" width="100px"></img>';
+                        Log::info($photo_html);
                         // Log::info("photodfdfc ".asset($photo));
                     }
-                        return '<img src="'.$photo.'" width="100px"></img>';
+                        return $photo_html;
 
                         } catch(\Throwable $e) {
+                            Log::info($e->getMessage().' '.json_encode($e->getTrace()));
                             return "";
                         }
                 })
-                ->rawColumns(['action', 'date', 'num_product', 'customer', 'branch', 'price', 'status', 'payment', 'shipping', 'payment_status'])
+                ->rawColumns(['action', 'date', 'num_product', 'customer', 'branch', 'price', 'status', 'payment', 'shipping', 'payment_status', 'photos'])
                 ->make(true);
             // Log::info('jdd '.json_encode($json_decode_data));
             return $json_decode_data;
@@ -235,17 +239,19 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->brand_id = $validatedData['brand_id'];
         $item->category_id = $validatedData['category_id'];
-        $item->save();
+        
         Log::info('before photo check');
         Log::info(json_encode($request->photos));
         Log::info('before photo check 2');
         // Handle Photo Upload (if any)
         if (isset($request->photos) && $request->hasFile('photos')) {
-            // Log::info(json_encode($request->photos));
+            Log::info('inside photo');
+            Log::info(json_encode($request->photos));
             $photos = [];
             foreach ($request->file('photos') as $photo) {
-                Log::info(json_encode($photo));
+                
                 $photoName = uniqid() . '.' . $photo->getClientOriginalExtension();
+                Log::info('Photo name'.json_encode($photoName));
                 $photo->storeAs('public/uploads/items', $photoName);
                 $photos[] = $photoName;
             }
@@ -253,6 +259,7 @@ class ItemController extends Controller
         } else {
             $item->photos = '[]'; // Empty JSON array if no photos uploaded
         }
+        $item->save();
     
         // Handle Data Details
         if(!empty($request->item_details)) {
@@ -313,8 +320,27 @@ class ItemController extends Controller
     }
     function edit(Request $request, $id) {
         Log::info($id);
-        $data = Item::findOrFail($id)->first();
-        return view($this->path.'/edit',compact('data'));
+        $data = Item::findOrFail($id);
+        $photos = [];
+        Log::info($data->photos);
+        if(!empty($data->photos) && $data->photos != '[]') {
+            $item_photo_temp_list = json_decode($data->photos, true);
+            
+            Log::info(json_encode($item_photo_temp_list));
+            foreach($item_photo_temp_list as $item_photo_temp) {
+                $pathToFile = 'public/uploads/items/'.$item_photo_temp; // Replace with your file path and disk
+                Log::info($pathToFile);
+                // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                if (Storage::disk('local')->exists($pathToFile)) {
+                    // Get a temporary URL for the file (valid for a limited time)
+                    $item_photo_link = Storage::disk('local')->temporaryUrl($pathToFile, now()->addMinutes(5));
+                    array_push($photos, $item_photo_link); // Adjust expiry time as needed
+                }
+            }
+        }
+        Log::info(json_encode($photos));
+        return view($this->path.'/edit',compact('data', 'photos'));
     }
     function update(Request $request, $id) {
         $item = Item::findOrFail($id);
