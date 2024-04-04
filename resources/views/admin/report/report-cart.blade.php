@@ -274,7 +274,7 @@
                         </div>
                         <div class = "invoice-head-top-right text-end">
                             <h3>Laporan Keranjang</h3>
-                            <h5>Jl tenggilis Raya no 77</h5>
+                            <h5>{{ env('') }}</h5>
                             <h5>+62 8231 9323 34</h5>
                             <h5>citraabaditeknik.com</h5>
                         </div>

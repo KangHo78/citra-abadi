@@ -17,7 +17,7 @@
     </x-slot>
 
 
-    <form id="stored" action="{{ route('customer.store2') }}" method="POST">
+    <form id="stored" action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <section id="multiple-column-form">
@@ -144,7 +144,7 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>NPWP Photo</span></h6>
-                                            <input name="npwp_photo" type="file" id="npwp_photo">
+                                            <input name="npwp_photo" type="file" id="npwp_photo" class="form-control form-control-lg ">
                                         </div>
                                     </div>
                             </div>

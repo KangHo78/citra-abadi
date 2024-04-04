@@ -19,22 +19,28 @@ class EnquiryDetailSeeder extends Seeder
         EnquiryDetail::create([
             'enquiry_id' => 1,
             'item_id' => 1,
+            'item_detail_id' => 1,
             'item_price' => 10000,
             'item_quantity' => 2,
+            'description' => 'test'
         ]);
 
         EnquiryDetail::create([
             'enquiry_id' => 2,
             'item_id' => 1,
+            'item_detail_id' => 1,
             'item_price' => 10000,
             'item_quantity' => 2,
+            'description' => ''
         ]);
 
         EnquiryDetail::create([
             'enquiry_id' => 1,
             'item_id' => 1,
+            'item_detail_id' => 1,
             'item_price' => 10000,
             'item_quantity' => 2,
+            'description' => ''
         ]);
         
         

@@ -276,17 +276,18 @@
                         <div class = "invoice-head-top-left text-start">
                             <img src="{{ asset('front-end/images/logo-light.png') }}">
                         </div>
+    
                         <div class = "invoice-head-top-right text-end">
                             <h3>Laporan Stock</h3>
                             <h5 style="
                             font-size: small;
-                        ">Jl tenggilis Raya no 77</h5>
+                        ">{{ env('APP_ADDRESS') }}</h5>
                             <h5 style="
                             font-size: small;
-                        ">+62 8231 9323 34</h5>
+                        ">{{ env('APP_PHONE') }}}}</h5>
                             <h5 style="
                             font-size: small;
-                        ">citraabaditeknik.com</h5>
+                        ">{{ env('APP_URL')}}</h5>
                         </div>
                     </div>
                     <div class = "hr"></div>

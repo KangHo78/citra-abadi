@@ -152,7 +152,10 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>NPWP Photo</span></h6>
-                                            <img src="{{ $data->npwp_photo }}" width="100px"></img>
+                                           
+                                            @if(!empty($npwp_photo) && $npwp_photo != null)
+                                            <img src="{{$npwp_photo}}" width="300px"></img>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

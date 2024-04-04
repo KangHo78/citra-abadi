@@ -16,7 +16,9 @@
     </x-slot>
 
 
-    <form id="stored">
+    <form id="stored" action="{{ route('general.store') }}" method="POST">
+        @csrf
+        @method('POST')
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -70,19 +72,19 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Alamat Situs</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="app_url" type="text" id="app_url"
                                                 placeholder="Description" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ env('APP_URL') }}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Tagline</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <h6 class="form-label"><span>Address</span></h6>
+                                            <input name="address" type="text" id="address"
                                                 placeholder="Description" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ env('APP_ADDRESS') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -90,9 +92,9 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Alamat Email</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="email" type="text" id="email"
                                                 placeholder="Description" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ env('MAIL_FROM_ADDRESS') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -100,53 +102,15 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nomor telpon</span></h6>
-                                            <input name="description" type="text" id="description"
+                                            <input name="phone" type="text" id="phone"
                                                 placeholder="0811111111" class="form-control form-control-lg "
-                                                value="">
+                                                value="{{ env('APP_PHONE') }}">
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Logo</span></h6>
-                                            <input name="description" type="file" id="description"
-                                                placeholder="Pilih File" class="form-control form-control-lg "
-                                                value="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Banner 1</span></h6>
-                                            <input name="description" type="file" id="description"
-                                                placeholder="Pilih File" class="form-control form-control-lg "
-                                                value="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Banner 2</span></h6>
-                                            <input name="description" type="file" id="description"
-                                                placeholder="Pilih File" class="form-control form-control-lg "
-                                                value="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Warna</span></h6>
-                                            <input name="description" type="color" id="description"
-                                                placeholder="#FFF" class="form-control form-control-color "
-                                                value="">
-                                        </div>
-                                    </div>
-                                </div>
+                               
+                               
                                 <!-- <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
@@ -183,8 +147,8 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
+                                >
                                 Simpan Pengaturan
                             </button>
                         </div>

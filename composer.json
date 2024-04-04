@@ -17,7 +17,9 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^4.5",
         "livewire/livewire": "^2.0",
+        "rabiloo/laravel-local-temporary-url": "^1.0",
         "spatie/laravel-permission": "^6.4",
+        "spatie/temporary-directory": "^2.2",
         "yajra/laravel-datatables": "^9.0"
     },
     "require-dev": {

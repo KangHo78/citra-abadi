@@ -14,34 +14,7 @@
         </div>
     </x-slot>
 
-    <section id="horizontal-input">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Filter Data</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row align-items-center">
-                                    <div class="col-lg-2 col-3">
-                                        <label class="col-form-label" for="first-name">Nama</label>
-                                    </div>
-                                    <div class="col-lg-10 col-9">
-                                        <input type="text" id="first-name" class="form-control" name="fname"
-                                            placeholder="First Name">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -68,11 +41,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 30; $i++)
+                            @foreach ($data as $staff)
                                 
                             <tr>
-                                <td>Staf {{ $i }}</td>
-                                <td>Admin Staf</td>
+                                <td>{{ $staff->name }}</td>
+                                @php
+                                    $roleName =  \Illuminate\Support\Facades\DB::table('model_has_roles')->where('model_id', $staff->id)->get('role_id')->get('name');
+                                @endphp
+                                @if(!empty($roleName))
+                                <td>{{ \App\Models\Role::where('id', \Illuminate\Support\Facades\DB::table('model_has_roles')->where('model_id', $staff->id)->get('role_id'))->get('name') }}</td>
+                                @else
+                                <td></td>
+                                @endif
                                 <td>
                                     <div class="btn-group mb-1">
                                         <div class="dropdown">
@@ -81,12 +61,8 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" style="">
-                                                <a href="{{route('staff.show',$i)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-eye text-primary"></i>
-                                                    <b class="p-2">Lihat</b>
-                                                </a>
-                                                <a href="{{route('staff.edit',$i)}}"
+                                                
+                                                <a href="{{route('staff.edit', $staff->id)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-pencil text-warning"></i>
                                                     <b class="p-2">Ubah</b>
@@ -94,18 +70,13 @@
                                                
                                                 <input type="hidden" name="_token"
                                                     value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
-                                                <a class="dropdown-item" data-bs-toggle="tooltip" title="Delete Data"
-                                                    onclick="destroy('https://atmanegara.com/transaction/service/service/127')"
-                                                    href="javascript:;">
-                                                    <i class="bi bi-trash text-danger"></i>
-                                                    <b class="p-2">Hapus</b>
-                                                </a>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            @endfor
+                            @endforeach
 
                         </tbody>
                     </table>

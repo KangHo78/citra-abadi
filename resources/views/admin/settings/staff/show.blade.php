@@ -4,6 +4,9 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Lihat Staf</h4>
                 <p class="text-subtitle text-muted">Buat staf dan isi form dibawah.</p>
+                @if(isset($error))
+                <p class="text-subtitle text-danger">*{{ $error }}</p>
+                @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -43,7 +46,7 @@
                                     <div class="col-6">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama</span></h6>
-                                            <input name="code" type="text" id="code"
+                                            <input name="name" type="text" id="name"
                                                 placeholder="Nama"
                                                 class="form-control form-control-lg validation required" value=""
                                                 >
@@ -51,7 +54,7 @@
                                         </div>
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Email</span></h6>
-                                            <input name="code" type="text" id="code"
+                                            <input name="email" type="text" id="email"
                                                 placeholder="Email"
                                                 class="form-control form-control-lg validation required" value=""
                                                 >

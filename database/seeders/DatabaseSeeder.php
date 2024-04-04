@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             SpecSeeder::class,
             ItemSeeder::class,
             ItemDetailSeeder::class,
-           
+            EnquirySeeder::class,
+            EnquiryDetailSeeder::class
         ]);
 
         // $this->call([

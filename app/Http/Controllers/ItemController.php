@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Material;
+use App\Models\Spec;
+use App\Models\Classes;
+use App\Models\Conn;
+use App\Models\Size;
+
+use App\Models\ItemDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -27,13 +36,9 @@ class ItemController extends Controller
         $sku = "";
         $name = "";
         $category_id = 0;
-        $subcategory_id_1 = 0;
-        $subcategory_id_2 = 0;
-        $subcategory_id_3 = 0;
-        $subcategory_id_4 = 0;
-        $subcategory_id_5 = 0;
-        $subcategory_id_6 = 0;
         $brand = "";
+        $photo = "";
+        
         if($request->filled('sku')) {
             $data = $data->where('sku', 'like', self::like($request->sku));
         }
@@ -51,54 +56,7 @@ class ItemController extends Controller
 
                 });
         }
-        if($request->filled('subcategory_id_1')) {
-            $subcategory_id_1_param = $request->subcategory_id_1;
-            $data = $data->whereHas('subcategory_1', function($query) use ($subcategory_id_1_param)
-            {
-                $query->where('id', $subcategory_id_1_param);
 
-                });
-        }
-        if($request->filled('subcategory_id_2')) {
-            $subcategory_id_2_param = $request->subcategory_id_2;
-            $data = $data->whereHas('subcategory_2', function($query) use ($subcategory_id_2_param)
-            {
-                $query->where('id', $subcategory_id_2_param);
-
-                });
-        }
-        if($request->filled('subcategory_id_3')) {
-            $subcategory_id_3_param = $request->subcategory_id_3;
-            $data = $data->whereHas('subcategory_3', function($query) use ($subcategory_id_3_param)
-            {
-                $query->where('id', $subcategory_id_3_param);
-
-                });
-        }
-        if($request->filled('subcategory_id_4')) {
-            $subcategory_id_4_param = $request->subcategory_id_4;
-            $data = $data->whereHas('subcategory_4', function($query) use ($subcategory_id_4_param)
-            {
-                $query->where('id', $subcategory_id_4_param);
-
-                });
-        }
-        if($request->filled('subcategory_id_5')) {
-            $subcategory_id_5_param = $request->subcategory_id_5;
-            $data = $data->whereHas('subcategory_5', function($query) use ($subcategory_id_5_param)
-            {
-                $query->where('id', $subcategory_id_5_param);
-
-                });
-        }
-        if($request->filled('subcategory_id_6')) {
-            $subcategory_id_1_param = $request->subcategory_id_6;
-            $data = $data->whereHas('subcategory_6', function($query) use ($subcategory_id_6_param)
-            {
-                $query->where('id', $subcategory_id_6_param);
-
-                });
-        }
         if($request->filled('brand')) {
             $brand_param = $request->brand;
             $data = $data->whereHas('brand', function($query) use ($brand_param)
@@ -117,6 +75,7 @@ class ItemController extends Controller
             // $json_decode_data = json_decode($json_encode_data, true);
             return Datatables::of($data)->addIndexColumn()
                 ->addColumn('action', function($row){
+                    
                     $btn = '<div class="btn-group mb-1">
                     <div class="dropdown">
                         <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
@@ -152,44 +111,6 @@ class ItemController extends Controller
                 ->addColumn('category_id', function($row){
                     return $row->category->name;
                 })
-                ->addColumn('subcategory_id_1', function($row){
-                    try{
-                    return $row->subcategory_1->name;
-                    } catch(\Throwable $e) {
-                        return "";
-                    }
-                })
-                ->addColumn('subcategory_id_2', function($row){
-                    try{
-                    return $row->subcategory_2->name;
-                    } catch(\Throwable $e) {
-                        return "";
-                    }
-                })
-                ->addColumn('subcategory_id_3', function($row){
-                    try{
-                        return $row->subcategory_3->name;
-                        } catch(\Throwable $e) {
-                            return "";
-                        }                })
-                ->addColumn('subcategory_id_4', function($row){
-                    try{
-                        return $row->subcategory_4->name;
-                        } catch(\Throwable $e) {
-                            return "";
-                        }                })
-                ->addColumn('subcategory_id_5', function($row){
-                    try{
-                        return $row->subcategory_5->name;
-                        } catch(\Throwable $e) {
-                            return "";
-                        }                })
-                ->addColumn('subcategory_id_6', function($row){
-                    try{
-                        return $row->subcategory_6->name;
-                        } catch(\Throwable $e) {
-                            return "";
-                        }                })
                 ->addColumn('material', function($row){
                     try{
                         return $row->material->name;
@@ -232,9 +153,30 @@ class ItemController extends Controller
                             return "";
                         }
                 })
-                ->addColumn('photos', function($row){
+                ->addColumn('photos', function($row) use($photo){
                     try{
-                        return '<img src="'.json_decode($item->photos, true)[0].'" width="100px"></img>';
+                        $photo = "";
+                    if(!empty($row->photos) && $row->photos != '[]') {
+                        $item_photo_temp_list = json_decode($row->photos, true)[0];
+                        
+                        Log::info(json_encode($item_photo_temp_list));
+                        $pathToFile = 'public/uploads/items/'.$item_photo_temp_list; // Replace with your file path and disk
+                        
+                        // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+        
+                        
+                        if (Storage::disk('local')->exists($pathToFile)) {
+                            // Get a temporary URL for the file (valid for a limited time)
+                            // $photo = Storage::disk('local')->url($pathToFile);
+                            $photo = asset($pathToFile);
+                        }
+                        // $photo = asset($photo);
+                        // $string=asset();
+                        Log::info($photo);
+                        Log::info('<img src="'.$photo.'" width="100px"></img>');
+                        // Log::info("photodfdfc ".asset($photo));
+                    }
+                        return '<img src="'.$photo.'" width="100px"></img>';
 
                         } catch(\Throwable $e) {
                             return "";
@@ -246,59 +188,128 @@ class ItemController extends Controller
             return $json_decode_data;
         }
         
-        return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'subcategory_id_1', 'subcategory_id_2', 'subcategory_id_3', 'subcategory_id_4', 'subcategory_id_5', 'subcategory_id_6', 'brand'));
+        return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'brand'));
     }
     function show(Request $request, $id) {
-        Log::info($id);
+        Log::info('ID'.$id);
         $data = Item::where('id', $id)->first();
-        return view($this->path.'/show',compact('data'));
+        $photos = [];
+        Log::info($data->photos);
+        if(!empty($data->photos) && $data->photos != '[]') {
+            $item_photo_temp_list = json_decode($data->photos, true);
+            
+            Log::info(json_encode($item_photo_temp_list));
+            foreach($item_photo_temp_list as $item_photo_temp) {
+                $pathToFile = 'public/uploads/items/'.$item_photo_temp; // Replace with your file path and disk
+                Log::info($pathToFile);
+                // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                if (Storage::disk('local')->exists($pathToFile)) {
+                    // Get a temporary URL for the file (valid for a limited time)
+                    $item_photo_link = Storage::disk('local')->temporaryUrl($pathToFile, now()->addMinutes(5));
+                    array_push($photos, $item_photo_link); // Adjust expiry time as needed
+                }
+            }
+        }
+        Log::info(json_encode($photos));
+        return view($this->path.'/show',compact('data', 'photos'));
     }
     function create(Request $request) {
         $data = [];
         return view($this->path.'/create',compact('data'));
     }
     function store(Request $request) {
+        
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'sku' => 'required|string|unique:items,sku|max:255',
+            'description' => 'nullable|string',
+            'brand_id' => 'required|integer',
+            'category_id' => 'required|integer',
+            'photos' => 'nullable|array', // optional: allow photo uploads as an array
+        ]);
+    
         $item = new Item;
-        $item->name = $request->name;
-        $item->sku = $request->sku;
+        $item->name = $validatedData['name'];
+        $item->sku = $validatedData['sku'];
         $item->description = $request->description;
-        $item->brand_id = $request->brand_id;
-        $item->category_id = $request->category_id;
-        if($request->subcategory_id_1) {
-            $item->subcategory_id_1 = $request->subcategory_id_1;
-        }
-        if($request->subcategory_id_2) {
-        $item->subcategory_id_2 = $request->subcategory_id_2;
-        }
-        if($request->subcategory_id_3) {
-        $item->subcategory_id_3 = $request->subcategory_id_3;
-        }
-        if($request->subcategory_id_4) {
-        $item->subcategory_id_4 = $request->subcategory_id_4;
-        }
-        if($request->subcategory_id_5) {
-        $item->subcategory_id_5 = $request->subcategory_id_5;
-        }
-        if($request->subcategory_id_6) {
-        $item->subcategory_id_6 = $request->subcategory_id_6;
-        }
-        if($request->photos) {
-            $item->photos = $request->photos;
-        }
+        $item->brand_id = $validatedData['brand_id'];
+        $item->category_id = $validatedData['category_id'];
         $item->save();
+        Log::info('before photo check');
+        Log::info(json_encode($request->photos));
+        Log::info('before photo check 2');
+        // Handle Photo Upload (if any)
+        if (isset($request->photos) && $request->hasFile('photos')) {
+            // Log::info(json_encode($request->photos));
+            $photos = [];
+            foreach ($request->file('photos') as $photo) {
+                Log::info(json_encode($photo));
+                $photoName = uniqid() . '.' . $photo->getClientOriginalExtension();
+                $photo->storeAs('public/uploads/items', $photoName);
+                $photos[] = $photoName;
+            }
+            $item->photos = json_encode($photos);
+        } else {
+            $item->photos = '[]'; // Empty JSON array if no photos uploaded
+        }
+    
+        // Handle Data Details
+        if(!empty($request->item_details)) {
+            Log::info(json_encode($request->item_details));
+            $itemDetail = new ItemDetail();
+        foreach ($request->item_details as $dataDetail) {
+            try{
+            $itemDetail->item_id = $item->id;
+            } catch(\Throwable $e) {
+                continue;
+            }
+            try{
+            $itemDetail->sku = $dataDetail['sku'];
+            } catch(\Throwable $e) {
+                continue;
+            }
+            try{
+            $itemDetail->material_id = Material::where('name', $dataDetail['material'])->get('id') ?? null;
+            } catch(\Throwable $e) {
+                continue;
+            }
+            try{
+            $itemDetail->spec_id = Spec::where('name', $dataDetail['spec'])->get('id') ?? null;
+            } catch(\Throwable $e) {
+                continue;
+            }
+            try{
+            $itemDetail->class_id = Classes::where('name', $dataDetail['class'])->get('id') ?? null;
+            } catch(\Throwable $e) {
+                continue;
+            }
+            try{
+            $itemDetail->conn_id = Conn::where('name', $dataDetail['conn'])->get('id') ?? null;
+            } catch(\Throwable $e) {
+                continue;
+            }
+            try{
+            $itemDetail->size_id = Size::where('name', $dataDetail['size'])->get('id') ?? null;
+            $itemDetail->save();
+            } catch(\Throwable $e) {
+                continue;
+            }
+            
+        }
+    }
+    
+        
+    
+        // Flash message or redirection after successful save
         $data = Item::orderBy('id', 'desc');
         $sku = "";
         $name = "";
         $category_id = 0;
-        $subcategory_id_1 = 0;
-        $subcategory_id_2 = 0;
-        $subcategory_id_3 = 0;
-        $subcategory_id_4 = 0;
-        $subcategory_id_5 = 0;
-        $subcategory_id_6 = 0;
+        
         $brand = "";
         
-        return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'subcategory_id_1', 'subcategory_id_2', 'subcategory_id_3', 'subcategory_id_4', 'subcategory_id_5', 'subcategory_id_6', 'brand'));
+        return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'brand'));
     }
     function edit(Request $request, $id) {
         Log::info($id);
@@ -312,24 +323,7 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->brand_id = $request->brand_id;
         $item->category_id = $request->category_id;
-        if($request->subcategory_id_1) {
-        $item->subcategory_id_1 = $request->subcategory_id_1;
-        }
-        if($request->subcategory_id_2) {
-        $item->subcategory_id_2 = $request->subcategory_id_2;
-        }
-        if($request->subcategory_id_3) {
-        $item->subcategory_id_3 = $request->subcategory_id_3;
-        }
-        if($request->subcategory_id_4) {
-        $item->subcategory_id_4 = $request->subcategory_id_4;
-        }
-        if($request->subcategory_id_5) {
-        $item->subcategory_id_5 = $request->subcategory_id_5;
-        }
-        if($request->subcategory_id_6) {
-        $item->subcategory_id_6 = $request->subcategory_id_6;
-        }
+       
         if($request->photos) {
             $item->photos = $request->photos;
         }
@@ -338,15 +332,10 @@ class ItemController extends Controller
         $sku = "";
         $name = "";
         $category_id = 0;
-        $subcategory_id_1 = 0;
-        $subcategory_id_2 = 0;
-        $subcategory_id_3 = 0;
-        $subcategory_id_4 = 0;
-        $subcategory_id_5 = 0;
-        $subcategory_id_6 = 0;
+       
         $brand = "";
         
-        return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'subcategory_id_1', 'subcategory_id_2', 'subcategory_id_3', 'subcategory_id_4', 'subcategory_id_5', 'subcategory_id_6', 'brand'));
+        return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'brand'));
     }
     function print(Request $request) {
         $data = Item::where('id', $request->id);

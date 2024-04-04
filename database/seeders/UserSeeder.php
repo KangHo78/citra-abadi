@@ -18,6 +18,23 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'User',
+            'code' => null,
+            'position' => null,
+            'company_name' => null,
+            'npwp' => null,
+            'npwp_photo' => null,
+            'address' => null,
+            'address_2' => null,
+            'phone' => null,
+            'email' => 'user@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // 'password' => 'password',
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::create( [
+            'name' => 'User',
             'code' => 'USR001',
             'position' => '1',
             'company_name' => '1',
@@ -26,7 +43,7 @@ class UserSeeder extends Seeder
             'address' => '1',
             'address_2' => '1',
             'phone' => '1',
-            'email' => 'user@gmail.com',
+            'email' => 'user2@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             // 'password' => 'password',
