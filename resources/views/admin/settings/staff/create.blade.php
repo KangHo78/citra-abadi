@@ -4,6 +4,9 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Tambah Staf</h4>
                 <p class="text-subtitle text-muted">Buat staf dan isi form dibawah.</p>
+                @if(isset($error))
+                <p class="text-subtitle text-danger">*{{ $error }}</p>
+                @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -17,7 +20,9 @@
     </x-slot>
 
 
-    <form id="stored">
+    <form id="stored" action="{{ route('staff.store') }}" method="POST">
+        @csrf
+        @method('POST')
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -43,7 +48,7 @@
                                     <div class="col-6">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama</span></h6>
-                                            <input name="code" type="text" id="code"
+                                            <input name="name" type="text" id="name"
                                                 placeholder="Nama"
                                                 class="form-control form-control-lg validation required" value=""
                                                 >
@@ -51,7 +56,7 @@
                                         </div>
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Email</span></h6>
-                                            <input name="code" type="text" id="code"
+                                            <input name="email" type="text" id="email"
                                                 placeholder="Email"
                                                 class="form-control form-control-lg validation required" value=""
                                                 >
@@ -59,7 +64,7 @@
                                         </div>
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Password</span></h6>
-                                            <input name="code" type="password" id="code"
+                                            <input name="password" type="password" id="password"
                                                 placeholder="Password"
                                                 class="form-control form-control-lg validation required" value=""
                                                 >
@@ -67,7 +72,7 @@
                                         </div>
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Konfirmasi Password</span></h6>
-                                            <input name="code" type="password" id="code"
+                                            <input name="confirm_password" type="password" id="confirm_password"
                                                 placeholder="Konfirmasi Password"
                                                 class="form-control form-control-lg validation required" value=""
                                                 >
@@ -136,8 +141,8 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
+                                >
                                 Simpan Data
                             </button>
                         </div>

@@ -33,6 +33,7 @@ use App\Http\Controllers\MobileAppSettingsController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WishlistController;
+use Rabiloo\LaravelLocalTemporaryUrl\Controllers\LocalTemporaryUrlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,7 +50,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+// Route::get('/local-temp/{path}', [LocalTemporaryUrlController::class, 'getUrl'])
+//     ->name('local.temp');
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/material',[HomeController::class, 'dataMaterial'])->name('dataMaterial');
 Route::post('/share-product',[HomeController::class, 'shareProduct'])->name('share-product');

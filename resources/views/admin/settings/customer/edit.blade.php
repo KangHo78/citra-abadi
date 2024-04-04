@@ -17,7 +17,7 @@
     </x-slot>
 
 
-    <form id="stored" action="{{ route('customer.update', $data->id) }}" method="POST">
+    <form id="stored" action="{{ route('customer.update', $data->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <section id="multiple-column-form">
@@ -165,10 +165,12 @@
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>NPWP Photo</span></h6>
-                                            @if(!empty($data->npwp_photo) && $data->npwp_photo != null)
-                                                <img src="{{ $data->npwp_photo }}" width="100px"></img>
+                                            @if(!empty($npwp_photo) && $npwp_photo != null)
+                                                
+                                                <img src="{{$npwp_photo}}" width="300px"></img>
+                                                
                                             @endif
-                                            <input name="npwp_photo" type="file" id="npwp_photo">
+                                            <input name="npwp_photo" type="file" id="npwp_photo" class="form-control form-control-lg ">
                                         </div>
                                     </div>
                                 </div>

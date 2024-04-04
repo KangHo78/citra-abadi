@@ -274,9 +274,9 @@
                         </div>
                         <div class = "invoice-head-top-right text-end">
                             <h3>Laporan Wishlist</h3>
-                            <h5>Jl tenggilis Raya no 77</h5>
-                            <h5>+62 8231 9323 34</h5>
-                            <h5>citraabaditeknik.com</h5>
+                            <h5>{{ env('APP_ADDRESS') }}</h5>
+                            <h5>{{ env('APP_PHONE') }}</h5>
+                            <h5>{{ env('APP_URL')}} </h5>
                         </div>
                     </div>
                     <div class = "hr"></div>

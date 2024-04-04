@@ -82,47 +82,6 @@ display: none;
                                                 value="{{ $data->category->name }}" readonly="">
 </div>
 
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 1</span></h6>
-                                    <input name="description" type="text" id="description"
-                                                placeholder="Category" class="form-control form-control-lg "
-                                                value="{{ $data->subcategory_1->name }}" readonly="">
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 2</span></h6>
-                                    <input name="description" type="text" id="description"
-                                                placeholder="Category" class="form-control form-control-lg "
-                                                value="{{ $data->subcategory_2->name }}" readonly="">
-</div>
-
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 3</span></h6>
-                                    <input name="description" type="text" id="description"
-                                                placeholder="Category" class="form-control form-control-lg "
-                                                value="{{ $data->subcategory_3->name }}" readonly="">
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 4</span></h6>
-                                    <input name="description" type="text" id="description"
-                                                placeholder="Category" class="form-control form-control-lg "
-                                                value="{{ $data->subcategory_4->name }}" readonly="">
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 5</span></h6>
-                                    <div class="row">
-                                    <div class="col-12">
-                                    <input name="description" type="text" id="description"
-                                                placeholder="Category" class="form-control form-control-lg "
-                                                value="{{ $data->subcategory_5->name }}" readonly="">
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 6</span></h6>
-                                    <div class="row">
-                                    <div class="col-12">
-                                    <input name="description" type="text" id="description"
-                                                placeholder="Category" class="form-control form-control-lg "
-                                                value="{{ $data->subcategory_6->name }}" readonly="">
-</div>
                                 
                                
                                
@@ -141,11 +100,9 @@ display: none;
                                             @if(!empty($data->photos))
                                             <h6 class="form-label"><span>Foto Produk</span></h6>
 
-                                            @php
-                                                $photo_list = json_decode($data->photos, true)
-                                            @endphp
-                                            @foreach($photo_list as $photo)
-                                                <img src="{{ $photo }}" width="100px"></img>
+                                           
+                                            @foreach($photos as $photo)
+                                                <img src="{{ $photo }}" width="300px"></img>
                                             @endforeach
                                             @endif
                                             <br>
@@ -171,6 +128,7 @@ display: none;
                                 <th>Class</th>
                                 <th>Conn</th>
                                 <th>Size</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -183,7 +141,7 @@ display: none;
                                 <td>{{$id->classes->name}}</td>
                                 <td>{{$id->conn->name}}</td>
                                 <td>{{$id->size->name}}</td>
-
+                                <td>Rp. {{number_format($id->price, 0, '.', ',')}}</td>
                                
                             </tr>
                             @endforeach

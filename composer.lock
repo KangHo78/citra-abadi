@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cd3e247a5b15bf53291d9a296aa7ec9",
+    "content-hash": "5a037f08be538dcdbd2860ea143eeb2c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3912,6 +3912,70 @@
             "time": "2024-03-17T01:53:00+00:00"
         },
         {
+            "name": "rabiloo/laravel-local-temporary-url",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rabiloo/laravel-local-temporary-url.git",
+                "reference": "59d758e21b5893deae97f9d682c7099899c9ee2b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rabiloo/laravel-local-temporary-url/zipball/59d758e21b5893deae97f9d682c7099899c9ee2b",
+                "reference": "59d758e21b5893deae97f9d682c7099899c9ee2b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.12|^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^6.2",
+                "orchestra/testbench": "^6.0|^7.0",
+                "phpunit/phpunit": "^9.5",
+                "psalm/plugin-laravel": "^1.0|^2.0",
+                "squizlabs/php_codesniffer": "^3.6",
+                "vimeo/psalm": "^4.11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rabiloo\\Laravel\\LocalTemporaryUrl\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rabiloo\\Laravel\\LocalTemporaryUrl\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oanh Nguyen",
+                    "email": "oanhnn.bk@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package provides temporary url method for local filesystem driver",
+            "homepage": "https://github.com/rabiloo/laravel-local-temporary-url",
+            "keywords": [
+                "filesystem",
+                "laravel",
+                "rabiloo",
+                "temporary-url"
+            ],
+            "support": {
+                "issues": "https://github.com/rabiloo/laravel-local-temporary-url/issues",
+                "source": "https://github.com/rabiloo/laravel-local-temporary-url/tree/v1.0.0"
+            },
+            "time": "2022-05-17T04:34:58+00:00"
+        },
+        {
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -4218,6 +4282,67 @@
                 }
             ],
             "time": "2024-02-28T08:11:20+00:00"
+        },
+        {
+            "name": "spatie/temporary-directory",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/temporary-directory.git",
+                "reference": "76949fa18f8e1a7f663fd2eaa1d00e0bcea0752a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/76949fa18f8e1a7f663fd2eaa1d00e0bcea0752a",
+                "reference": "76949fa18f8e1a7f663fd2eaa1d00e0bcea0752a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TemporaryDirectory\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily create, use and destroy temporary directories",
+            "homepage": "https://github.com/spatie/temporary-directory",
+            "keywords": [
+                "php",
+                "spatie",
+                "temporary-directory"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/temporary-directory/issues",
+                "source": "https://github.com/spatie/temporary-directory/tree/2.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-12-25T11:46:58+00:00"
         },
         {
             "name": "symfony/console",

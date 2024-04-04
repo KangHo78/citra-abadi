@@ -22,8 +22,9 @@ display: none;
     </x-slot>
 
 
-    <form id="stored" action="{{route('item.store')}}" method="POST">
+    <form id="stored" action="{{route('item.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('POST')
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
@@ -72,7 +73,7 @@ display: none;
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Deskripsi</span></h6>
-                                            <input name="desc" type="text" id="desc"
+                                            <input name="description" type="text" id="description"
                                                 placeholder="Description" class="form-control form-control-lg "
                                                  >
                                         </div>
@@ -82,122 +83,13 @@ display: none;
                                     <select class="select2 form-select form-control-lg validation required"
                                         name="category_id" id="category_id">
                                         <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::where('parent_category_id', null)->get() as $category)
+                                        @foreach(\App\Models\Category::all() as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
 </div>
-<div class="col-6">
-                                        <button type="button" class="btn btn-primary "
-                                                >
-                                                Tambah Kategori
-                                            </button>
-</div>
 
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 1</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_1_id" id="subcategory_1_id">
-                                        <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::whereNot('parent_category_id', null)->get() as $subcategory_1)
-                                        <option value="{{ $subcategory_1->id }}">{{ $subcategory_1->name }}</option>
-                                        @endforeach
-                                    </select>
-                                   
-</div>
-<div class="col-6">
-                                        <button type="button" class="btn btn-primary "
-                                                >
-                                                Tambah Subkategori
-                                            </button>
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 2</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_2_id" id="subcategory_2_id">
-                                    <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::whereNot('parent_category_id', null)->get() as $subcategory_2)
-                                        <option value="{{ $subcategory_2->id }}">{{ $subcategory_2->name }}</option>
-                                        @endforeach
-                                        </select>
-</div>
-<div class="col-6">
-                                        <button type="button" class="btn btn-primary "
-                                                >
-                                                Tambah Subkategori
-                                            </button>
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 3</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_3_id" id="subcategory_3_id">
-                                    <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::whereNot('parent_category_id', null)->get() as $subcategory_3)
-                                        <option value="{{ $subcategory_3->id }}">{{ $subcategory_3->name }}</option>
-                                        @endforeach
-                                        </select>
-</div>
-<div class="col-6">
-                                        <button type="button" class="btn btn-primary "
-                                                >
-                                                Tambah Subkategori
-                                            </button>
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 4</span></h6>
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_4_id" id="subcategory_4_id">
-                                    <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::whereNot('parent_category_id', null)->get() as $subcategory_4)
-                                        <option value="{{ $subcategory_4->id }}">{{ $subcategory_4->name }}</option>
-                                        @endforeach
-                                        </select>
-</div>
-<div class="col-6">
-                                        <button type="button" class="btn btn-primary "
-                                                >
-                                                Tambah Subkategori
-                                            </button>
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 5</span></h6>
-                                    <div class="row">
-                                    <div class="col-12">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_5_id" id="subcategory_5_id">
-                                    <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::whereNot('parent_category_id', null)->get() as $subcategory_5)
-                                        <option value="{{ $subcategory_5->id }}">{{ $subcategory_5->name }}</option>
-                                        @endforeach
-                                        </select>
-</div>
-<div class="col-6">
-                                        <button type="button" class="btn btn-primary "
-                                                >
-                                                Tambah Subkategori
-                                            </button>
-</div>
-                                <div class="form-group pb-1 parent">
-                                    <h6 class="form-label"><span>Subkategori 6</span></h6>
-                                    <div class="row">
-                                    <div class="col-12">
-                                    <select class="select2 form-select form-control-lg validation required"
-                                        name="subcategory_6_id" id="subcategory_6_id">
-                                    <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::whereNot('parent_category_id', null)->get() as $subcategory_6)
-                                        <option value="{{ $subcategory_6->id }}">{{ $subcategory_6->name }}</option>
-                                        @endforeach
-                                        </select>
-                                        <div class="col-6">
-                                        <button type="button" class="btn btn-primary "
-                                                >
-                                                Tambah Subkategori
-                                            </button>
-</div>
-                                
-                               
-                               
-                              
+
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Merek</span></h6>
                                     <select class="select2 form-select form-control-lg validation required"
@@ -211,19 +103,17 @@ display: none;
                                 </div>
                                 
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Foto Produk</span></h6>
-
-                                           
-                                            <button type="button" class="btn btn-primary btn-xl"
-                                                >
-                                                Tambah Foto
-                                            </button>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="col-12">
+        <div class="form-group parent" style="">
+            <h6 class="form-label"><span>Foto Produk</span></h6>
+            <input type="file" name="photos[]" id="photos" multiple hidden>
+            <button type="button" class="btn btn-primary btn-xl" id="addPhotos">
+                Tambah Foto
+            </button>
+            <div class="row" id="previewPhotos"></div>
+        </div>
+    </div>
+</div>
                             </div>
                         </div>
                     </div>
@@ -244,7 +134,7 @@ display: none;
                         </div>
                         <div class="col-sm-6 col-lg-8">
                             <button class="btn btn-outline-info rounded-pill float-end pr-2" type="button"
-                                onclick="addNew()">
+                                >
                                 Tambah data
                             </button>
                         </div>
@@ -252,7 +142,7 @@ display: none;
                 </div>
                 <div class="card-body">
                     <div class="dropHere">
-                    <table class="table" id="dataTable" width="100%">
+                    <table class="table" id="dataTable2" width="100%" style="scroll: overflow">
                         <thead>
                             <tr>
                                 <th>SKU</th>
@@ -261,6 +151,7 @@ display: none;
                                 <th>Class</th>
                                 <th>Conn</th>
                                 <th>Size</th>
+                                <th>Price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -287,19 +178,165 @@ display: none;
 
         
     </form>
-</x-app-layout>
-@section('script')
-<script>
-    $(document).ready(function() {
-        $('#dataTable').dataTable({
-      paging: false, 
-      info: false,
+    @section('scripts')
+    @php
+        $materials = \App\Models\Material::pluck('name');
+        $spec = \App\Models\Spec::pluck('name');
+        $class = \App\Models\Classes::pluck('name');
+        $conn = \App\Models\Conn::pluck('name');
+        $size = \App\Models\Size::pluck('name');
+    @endphp
+<script type="text/javascript">
+    function addNew() {
+  // Create a new table row element
+  var newRow = $('<tr>');
 
-      //add these config to remove empty header
-      "bJQueryUI": true,
-      "sDom": 'lfrtip'
-   
+  // Add cells for SKU, Material (dropdown), Spec, Class (dropdown), Conn, Size, and Action
+  newRow.append('<td><input type="text" name="item_details[][sku]"></td>');
+
+  // Material dropdown (assuming you have an array of material options)
+  const materialOptions = {!! json_encode($materials) !!};
+  const materialSelect = document.createElement('select');
+  materialSelect.name = 'item_details[][material]';
+  materialOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    materialSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(materialSelect));
+
+  const specOptions = {!! json_encode($spec) !!};
+  const specSelect = document.createElement('select');
+  specSelect.name = 'item_details[][spec]';
+  specOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    specSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(specSelect));
+
+  // Class dropdown (assuming you have an array of class options)
+  const classOptions = {!! json_encode($class) !!};
+  const classSelect = document.createElement('select');
+  classSelect.name = 'item_details[][class]';
+  classOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    classSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(classSelect));
+
+  const connOptions = {!! json_encode($conn) !!};
+  const connSelect = document.createElement('select');
+  connSelect.name = 'item_details[][conn]';
+  connOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    connSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(connSelect));
+  const sizeOptions = {!! json_encode($size) !!};
+  const sizeSelect = document.createElement('select');
+  sizeSelect.name = 'item_details[][size]';
+  sizeOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    sizeSelect.appendChild(optionElement);
+  });
+  newRow.append($('<td>').append(sizeSelect));
+  newRow.append('<td><input type="text" name="item_details[][price]"></td>');
+  newRow.append('<td><button type="button" class="btn btn-danger btn-sm removeRow">Hapus</button></td>');
+
+  // Append the new row to the table body
+  $('#dataTable2 tbody').append(newRow);
+}
+
+    $(document).ready(function() {
+        const previewPhotos = document.getElementById('previewPhotos');
+
+       
+        $('#addPhotos').click(function(event) {
+            
+            event.preventDefault(); // Prevent default button action (if any)
+            $('#photos').trigger('click');
+        });
+
+        $('#photos').change(function(e) {
+  const files = e.target.files;
+
+  for (const file of files) {
+    const reader = new FileReader();
+
+    // // Check if the file is an image
+    // if (!file.type.match('image.*')) {
+    //   alert("Please select only image files.");
+    //   return;
+    // }
+
+    // // Check file size (optional)
+    // if (file.size > 1024 * 1024 * 2) { // 2MB limit (adjust as needed)
+    //   alert("File size exceeds the limit of 2MB.");
+    //   return;
+    // }
+
+    reader.readAsDataURL(file); // Read file content as data URL
+
+    reader.onload = function(event) {
+      const previewImage = document.createElement('div');
+      previewImage.classList.add('preview-image');
+
+      const img = document.createElement('img');
+      img.src = event.target.result;
+      img.classList.add('img-thumbnail', 'mr-2');
+      img.width = 200; // Add styling for previews
+      previewImage.appendChild(img);
+
+      const removeButton = document.createElement('button');
+      removeButton.type = 'button';
+      removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'removePhoto');
+      removeButton.textContent = 'Hapus'; // Set button text (optional)
+      previewImage.appendChild(removeButton);
+
+      previewPhotos.appendChild(previewImage);
+
+      // Attach click event listener to the remove button
+      removeButton.addEventListener('click', removePreviewImage);
+    };
+
+    reader.onerror = function(error) {
+      console.error("Error reading file:", error);
+      alert("An error occurred while previewing the image.");
+    };
+  }
 });
+
+function removePreviewImage(e) {
+  // Get the parent element of the button (which is the preview-image div)
+  const previewImage = e.target.parentElement;
+  // Remove the preview-image element from the previewPhotos container
+  previewPhotos.removeChild(previewImage);
+}
+        // Event listener for "Tambah data" button
+        $('.btn-outline-info.rounded-pill').click(function() {
+            console.log('check');
+            addNew();
+
+        }, );
+
+        // Event listener for "Hapus" button (remove row)
+        $(document).on('click', '.removeRow', function() {
+            $(this).parent().parent().remove();
+        });
+
+       
+        
 });
                  </script>
 @endsection
+</x-app-layout>
+

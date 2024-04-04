@@ -22,8 +22,8 @@ class EnquirySeeder extends Seeder
             'desc' => 'Desc',
             'status' => 1,
             'customer_id' => 1,
+            'price' => 20000,
             'discount' => 10000,
-            'discount_type' => 1,
             'grand_total' => 10000,
         ]);
 
@@ -33,9 +33,9 @@ class EnquirySeeder extends Seeder
             'desc' => 'Desc 2',
             'status' => 2,
             'customer_id' => 1,
-            'discount' => 5,
-            'discount_type' => 2,
-            'grand_total' => 100000,
+            'price' => 10000,
+            'discount' => 0,
+            'grand_total' => 10000,
         ]);
         
         

@@ -1,24 +1,33 @@
 @php
+if(!isset($date_start)) {
+    $date_start = \Carbon\Carbon::createFromFormat('d/m/Y', '01/01/1970');
+} else{
+    $date_start = \Carbon\Carbon::createFromFormat('d/m/Y', $date_start);
+}
+if(!isset($date_end)) {
+    $date_end = \Carbon\Carbon::createFromFormat('d/m/Y', '01/01/2200');
+} else{
+    $date_end = \Carbon\Carbon::createFromFormat('d/m/Y', $date_end);
+}
+$total_enquiry = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->count();
 
-$total_enquiry = \App\Models\Enquiry::where('id', '>=', 1)->count();
-
-$total_enquiry_sum = \App\Models\Enquiry::where('id', '>=', 1)->sum('grand_total');
-$status_1 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 1)->count();
+$total_enquiry_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->sum('grand_total');
+$status_1 = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', 1)->count();
 \Illuminate\Support\Facades\Log::info(json_encode($data->get()));
 
-$status_2 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 2)->count();
+$status_2 = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', 2)->count();
 
-$status_3 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 3)->count();
+$status_3 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 3)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->count();
 
-$status_4 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 4)->count();
+$status_4 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 4)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->count();
 
-$status_5 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 5)->count();
+$status_5 = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 5)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->count();
 
-$status_1_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 1)->sum('grand_total');
-$status_2_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 2)->sum('grand_total');
-$status_3_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 3)->sum('grand_total');
-$status_4_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 4)->sum('grand_total');
-$status_5_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('status', 5)->sum('grand_total');
+$status_1_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', 1)->sum('grand_total');
+$status_2_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', 2)->sum('grand_total');
+$status_3_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', 3)->sum('grand_total');
+$status_4_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', 4)->sum('grand_total');
+$status_5_sum = \App\Models\Enquiry::where('id', '>=', 1)->where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', 5)->sum('grand_total');
 
 $today = Date("d/m/Y");
 $H1 = Date('d/m/Y',strtotime("-1 days"));
@@ -79,14 +88,14 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                                 <div class="input-group mb-1">
                                     <span style="padding-bottom: 16px;" class="input-group-text"><i
                                             class="bi bi-calendar"></i></span>
-                                            @if(isset($date_start))
+                                            @if(isset($date_start) && $date_start->format('d/m/Y') != '01/01/1970')
                                             <input  placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
                                                     value="" readonly="" 
                                                     onchange="generateCode()" type="hidden"><input
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
                                                     placeholder="Date" tabindex="0" type="text"
-                                                    readonly="readonly"name="date_start" id="date_start" value="{{ $date_start }}">
+                                                    readonly="readonly"name="date_start" id="date_start" value="{{ $date_start->format('d/m/Y') }}">
                                             @else
                                              <input  placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
@@ -106,14 +115,14 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                                 <div class="input-group mb-1">
                                     <span style="padding-bottom: 16px;" class="input-group-text"><i
                                             class="bi bi-calendar"></i></span>
-                                            @if(isset($date_end))
+                                            @if(isset($date_end) &&  $date_end->format('d/m/Y') != '01/01/2200')
                                             <input  placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
                                                     value="" readonly=""
                                                     onchange="generateCode()" type="hidden"><input
                                                     class="datepicker date validation required  form-control form-control-lg datepicker date validation required   form-control input"
                                                     placeholder="Date" tabindex="0" type="text"
-                                                    readonly="readonly" name="date_end" id="date_end" value="{{ $date_end }}">
+                                                    readonly="readonly" name="date_end" id="date_end" value="{{ $date_end->format('d/m/Y') }}">
                                             @else
                                             <input  placeholder="Date"
                                                     class="datepicker date validation required form-control form-control-lg flatpickr-input"
