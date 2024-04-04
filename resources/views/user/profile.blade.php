@@ -34,51 +34,60 @@
                                         <div class="row wow fadeIn">
                                             <div class="col-lg-8 mb-sm-20">
                                                 <div class="field-set">
-                                                    {{-- <h5>Username</h5>
-                                                    <input type="text" name="username" id="username"
-                                                        class="form-control" placeholder="Enter username" />
-
-                                                    <div class="spacer-20"></div>
-
-                                                    <h5>Custom URL</h5>
-                                                    <input type="text" name="custom_url" id="custom_url"
-                                                        class="form-control" placeholder="Enter your custom URL" />
-
-                                                    <div class="spacer-20"></div>
-
-                                                    <h5>Bio</h5>
-                                                    <textarea name="bio" id="bio" class="form-control" placeholder="Tell the world who you are!" /></textarea>
-
-                                                    <div class="spacer-20"></div> --}}
-
-                                                    <h5>Email Address*</h5>
+                                                    <h5>Name</h5>
                                                     <input type="text" name="email_address" id="email_address"
-                                                        class="form-control" placeholder="Enter email" />
+                                                        class="form-control" placeholder="Enter email" value="{{Auth::user()->name}}" />
 
-                                                    <div class="spacer-20"></div>
+                                                    <div class="spacer-10"></div>
 
-                                                    <h5>Phone*</h5>
+                                                    <h5>Email Address</h5>
+                                                    <input type="text" name="email_address" id="email_address"
+                                                        class="form-control" placeholder="Enter email"  value="{{Auth::user()->email}}" />
+
+                                                    <div class="spacer-10"></div>
+
+                                                    <h5>Phone</h5>
                                                     <input type="text" name="phone" id="phone"
-                                                        class="form-control" placeholder="Enter phone" />
+                                                        class="form-control" placeholder="Enter phone"  value="{{Auth::user()->phone}}" />
 
-                                                    <div class="spacer-20"></div>
+                                                    <div class="spacer-10"></div>
 
-                                                    {{-- <h5><i class="fa fa-link"></i> Your site</h5>
-                                                    <input type="text" name="your_site" id="your_site"
-                                                        class="form-control" placeholder="Enter Website URL" />
+                                                    <h5>Position</h5>
+                                                    <input type="text" name="position" id="position"
+                                                        class="form-control" placeholder="Enter Position"  value="{{Auth::user()->position}}" />
 
-                                                    <div class="spacer-20"></div>
+                                                    <div class="spacer-10"></div>
 
-                                                    <h5><i class="fa fa-twitter"></i> Twitter username</h5>
-                                                    <input type="text" name="twitter_usernam" id="twitter_usernam"
-                                                        class="form-control" placeholder="Enter Twitter username" />
+                                                    <h5>company name</h5>
+                                                    <input type="text" name="company_name" id="company_name"
+                                                        class="form-control" placeholder="Enter company name"  value="{{Auth::user()->company_name}}" />
 
-                                                    <div class="spacer-20"></div>
+                                                    <div class="spacer-10"></div>
 
-                                                    <h5><i class="fa fa-instagram"></i> Instagram username</h5>
-                                                    <input type="text" name="instagram_username"
-                                                        id="instagram_username" class="form-control"
-                                                        placeholder="Enter Instagram username" /> --}}
+                                                    <h5>npwp</h5>
+                                                    <input type="text" name="npwp" id="npwp"
+                                                        class="form-control" placeholder="Enter npwp"  value="{{Auth::user()->npwp}}" />
+
+                                                    <div class="spacer-10"></div>
+
+                                                    <h5>npwp photo</h5>
+                                                    <input type="text" name="npwp_photo" id="npwp_photo"
+                                                        class="form-control" placeholder="Enter npwp photo"  value="{{Auth::user()->phone}}" />
+
+                                                    <div class="spacer-10"></div>
+
+                                                    <h5>address</h5>
+                                                    <input type="text" name="address" id="address"
+                                                        class="form-control" placeholder="Enter address"  value="{{Auth::user()->address}}" />
+
+                                                    <div class="spacer-10"></div>
+
+                                                    <h5>address_2</h5>
+                                                    <input type="text" name="address_2" id="address_2"
+                                                        class="form-control" placeholder="Enter address_2"  value="{{Auth::user()->address_2}}" />
+
+                                                    <div class="spacer-10"></div>
+
 
                                                 </div>
                                             </div>
@@ -89,7 +98,7 @@
                                                         title="Recommend 400 x 400. Max size: 50MB. Click the image to upload."></i>
                                                 </h5>
 
-                                                <img src="https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg"
+                                                <img src="{{ auth::user()->profile_photo_path == null ? '' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
                                                     id="click_profile_img" class="d-profile-img-edit img-fluid"
                                                     alt="">
                                                 <input type="file" id="upload_profile_img">
