@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
             SpecSeeder::class,
             ItemSeeder::class,
             ItemDetailSeeder::class,
-           
         ]);
 
         // $this->call([

@@ -10,6 +10,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\PromotionController;
@@ -109,8 +110,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     
     });
+    Route::group(['prefix' => 'front-end'], function () {
+        Route::resource('about-us', FrontendController::class, [
+            'as' => 'front-end'
+        ]);
+    });
+
 
     Route::resource('vendor', VendorController::class);
+
 
 
     // Report 

@@ -215,7 +215,7 @@
                                                                     {{ $el->sku }}
                                                                 </th>
                                                                 <td style="vertical-align: middle;text-align: center;">
-                                                                    <div style="min-width:100px;max-width:200px">
+                                                                    <div style="min-width:250px;">
                                                                         {{ $el->material->name }}
                                                                     </div>
                                                                 </td>
@@ -241,9 +241,9 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" name="qty[]"
+                                                                    <input type="number" name="qty[]"
                                                                         class="form-control text-end" value=""
-                                                                        style="min-width:150px;max-width:250px" 
+                                                                        style="min-width:50px;max-width:100px" 
                                                                         >
                                                                 </td>
                                                             </tr>

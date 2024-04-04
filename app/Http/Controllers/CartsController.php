@@ -164,8 +164,11 @@ class CartsController extends Controller
                 'desc'=>'-',
                 'status'=>1,
                 'customer_id'=>Auth::user()->id,
+                'price'=>0,
+                'ppn_type'=>'NON',
+                'ppn_percentage'=>0,
+                'ppn_value'=>0,
                 'discount'=>0,
-                'discount_type'=>1,
                 'grand_total'=>0,
             ]);
             
@@ -177,6 +180,7 @@ class CartsController extends Controller
                     'item_detail_id'=>$cart[$i]->item_detail_id,
                     'item_price'=>0,
                     'item_quantity'=>$cart[$i]->qty,
+                    'description' => '-',
                 ]);
             }
 
@@ -185,7 +189,7 @@ class CartsController extends Controller
             Cart::where('user_id',Auth::user()->id)->delete();
 
             // send email
-            Mail::to('denyprasetyo41@gmail.com')->send(new orderInvoice($cart));
+            Mail::to('denyprasetyo41@gmail.com')->send(new orderInvoice($cart,$parent));
 
             return response()->json(['message' => 'Berhasil Melakukan Pembelian','id'=>$req->id,'type'=>'success']);
         } catch (\Throwable $th) {

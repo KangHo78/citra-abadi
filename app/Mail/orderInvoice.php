@@ -13,16 +13,17 @@ class orderInvoice extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $cart;
+    public $cart,$order;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($cart)
+    public function __construct($cart,$order)
     {
         //
         $this->cart = $cart;
+        $this->order = $order;
     }
 
     /**

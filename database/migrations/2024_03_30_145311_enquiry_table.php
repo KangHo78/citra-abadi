@@ -21,6 +21,9 @@ return new class extends Migration
             $table->integer('status'); // 1 = permintaan masuk, 2 = penawaran terkirim, 3 = follow up, 4 = cancel, 5 = deal
             $table->bigInteger('customer_id')->unsigned();
             $table->double('price');
+            $table->string('ppn_type');
+            $table->double('ppn_percentage');
+            $table->double('ppn_value');
             $table->double('discount');
             // $table->integer('discount_type'); // 1 = amount, 2 = %
             $table->integer('grand_total');

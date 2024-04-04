@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AboutUs;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,5 +17,12 @@ if (!function_exists('checkCarts')) {
         }
 
         return ['totalCart' => $totalCarts, 'carts' => $carts];
+    }
+}
+
+if (!function_exists('aboutUs')) {
+    function aboutUs()
+    {
+        return AboutUs::first();
     }
 }

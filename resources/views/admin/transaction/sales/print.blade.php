@@ -353,6 +353,18 @@
                                 <div class = "info-item-td text-end text-bold">Discount :</div>
                                 <div class = "info-item-td text-end">Rp.{{ number_format($data->discount,0,'.',',') }}</div>
                             </div>
+                            <div class = "invoice-body-info-item border-bottom">
+                                <div class = "info-item-td text-end text-bold">PPN Tipe :</div>
+                                <div class = "info-item-td text-end">{{$data->ppn_type}}</div>
+                            </div>
+                            <div class = "invoice-body-info-item border-bottom">
+                                <div class = "info-item-td text-end text-bold">PPN Persen :</div>
+                                <div class = "info-item-td text-end">{{$data->ppn_percentage}}</div>
+                            </div>
+                            <div class = "invoice-body-info-item border-bottom">
+                                <div class = "info-item-td text-end text-bold">PPN Nilai :</div>
+                                <div class = "info-item-td text-end">Rp.{{ number_format($data->ppn_value,0,'.',',') }}</div>
+                            </div>
                             <div class = "invoice-body-info-item">
                                 <div class = "info-item-td text-end text-bold">Grand Total :</div>
                                 <div class = "info-item-td text-end">Rp.{{ number_format($data->grand_total,0,'.',',') }}</div>

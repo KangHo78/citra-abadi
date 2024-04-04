@@ -17,6 +17,7 @@ class EnquiryDetail extends Model
         'item_detail_id', 
         'item_price', 
         'item_quantity',
+        'description',
     ];
     
     public function enquiry()
