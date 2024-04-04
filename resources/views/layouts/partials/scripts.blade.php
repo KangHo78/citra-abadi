@@ -30,7 +30,6 @@
 <script src="{{ asset('/js/main.js') }}"></script>
 
 
-
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
@@ -50,6 +49,7 @@
             numeral: true,
             numeralThousandsGroupStyle: 'thousand'
         });
+      
     });
 </script>
 {{ $script ?? '' }}

@@ -237,6 +237,49 @@
                                     </div>
                                 </div>
 
+                             
+                                <div class="col-12">
+                                    <div class="form-group parent" style="">
+                                        <h6 class="form-label"><span>PPN Type</span></h6>
+                                        <select name="ppn_type" onchange="calc()" class="form-control"
+                                            id="ppn_type">
+                                            <option value="">- Select -</option>
+                                            <option value="Include" @selected($data['data']->ppn_type == 'Include')>Include</option>
+                                            <option value="Exclusive" @selected($data['data']->ppn_type == 'Exclusive')>Exclusive</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>PPN Percentage</span></h6>
+                                            <input name="ppn_percentage" type="text" id="ppn_percentage"
+                                                onkeyup="calc()" placeholder="Nilai (Rp)"
+                                                class="form-control form-control-lg text-end numberFormat"
+                                                value="{{$data['data']->ppn_percentage}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>PPN Total</span></h6>
+                                            <input name="ppn_value" type="text" id="ppn_value" onkeyup="calc()"
+                                                placeholder="Nilai (Rp)" readonly
+                                                class="form-control form-control-lg text-end numberFormat"
+                                                value="0">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="col-12">
                                     <div class="form-group parent" style="">
                                         <h6 class="form-label"><span>Total Harga</span></h6>
@@ -275,16 +318,16 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-12 col-lg-3">
+                        <div class="col-sm-12 col-lg-5">
                             <h6>Item (detail)</h6>
                         </div>
-                        <div class="col-sm-12 col-lg-3">
+                        <div class="col-sm-12 col-lg-2">
                             <h6>Price</h6>
                         </div>
                         <div class="col-sm-12 col-lg-2">
                             <h6>Qty</h6>
                         </div>
-                        <div class="col-sm-12 col-lg-3">
+                        <div class="col-sm-12 col-lg-2">
                             <h6>Desc</h6>
                         </div>
                         <div class="col-sm-12 col-lg-1">
@@ -365,7 +408,7 @@
                     <div class="row dataDetail" style="margin-bottom: 5px;">
                         <input name="dt[]" type="hidden" class="dt" value="0">
 
-                        <div class="col-sm-12 col-lg-3">
+                        <div class="col-sm-12 col-lg-5">
                             <div class="form-group pb-3">
                                 <select class="select2 form-select form-control-lg validation required item_detail_id"
                                     name="item_detail_id[]">
@@ -373,7 +416,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-3">
+                        <div class="col-sm-6 col-lg-2">
                             <div class="form-group pb-3">
                                 <input name="price_dt[]" type="text" id="" placeholder="0" onkeyup="calc()"
                                     class="form-control form-control-lg sumTotal text-end numberFormat validation price_dt"
@@ -391,7 +434,7 @@
                                     class="form-control form-control-lg validation numberFormat text-end qty_dt">
                             </div>
                         </div>
-                        <div class="col-sm-12 col-lg-3">
+                        <div class="col-sm-12 col-lg-2">
                             <div class="form-group pb-3">
                                 <input name="description_dt[]" type="text" id="" placeholder="Description"
                                     class="form-control form-control-lg validation description_dt" value="">
@@ -555,6 +598,29 @@
                         precision: 0
                     }));
                 }
+
+                
+                var ppnPercentage = $('#ppn_percentage').val();
+                console.log(ppnPercentage);
+                var ppn = 0;
+                if ($('#ppn_type').find(':selected').val() == 'Include') {
+                    ppn = totalGrand * (ppnPercentage / 100);
+                    console.log('inc');
+                    totalGrand+=ppn;
+                } else if ($('#ppn_type').find(':selected').val() == 'Exclusive') {
+                    ppn = totalGrand * (ppnPercentage / 100);
+                    console.log('ex');
+                    totalGrand+=ppn;
+                } else {
+                    ppn = 0;
+                    console.log('non');
+                }
+                console.log(ppn);
+
+
+                $('#ppn_value').val(accounting.formatNumber(ppn, {
+                    precision: 0
+                }));
 
                 $('#total_price').val(accounting.formatNumber(totalGrand, {
                     precision: 0

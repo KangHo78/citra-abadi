@@ -30,32 +30,10 @@
                             <div class="spacer-10" style="background-size: cover;"></div>
                             <h1 class="wow fadeInUp animated" data-wow-delay=".75s"
                                 style="visibility: visible; animation-delay: 0.75s; animation-name: fadeInUp;">
-                                Established in 1980.</h1>
+                                {{ aboutUs()->header }}</h1>
                             <p class="wow fadeInUp lead animated" data-wow-delay="1s"
-                                style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">Sin Hong
-                                Hardware Pte Ltd has expanded rapidly to become one of the largest stockists and
-                                distributors of a wide range of industrial fasteners, and a specialist in Standard,
-                                Non-standard and Customised Fasteners.
-                                <br>
-                                <br>
-                                We started as a local fastener retailer that has steadily grown to our present covering
-                                multi business segments. Our 3 SBU include domestic retailing, OEM supplies services and
-                                exporting overseas. We strive to be the largest total integrated "One-Stop" fasteners
-                                solution provider and supplier in the region. Our export market covers the S.E.Asia and
-                                the rest of the world spanning from South America in the West to Fiji in the East.
-                                <br>
-                                <br>
-
-                                We cater to customers with special parts or custom-made parts for assembly requirement
-                                in various manufacturing industries. We also provide special services such as
-                                Ship-To-Stock program according to production delivery requirements by implementing Just
-                                in Time, Two Bins System, Kanban System and other logistic replenishment systems suited
-                                to our customers requirement.
-                                <br>
-                                <br>
-
-                                Sin Hong Hardware Pte Ltd is committed to work toward full comprehensive range in stock
-                                items and be recognised as a preferred supplier in the region.
+                                style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">
+                               {!! aboutUs()->body !!}
                             </p>
                             <div class="spacer-10" style="background-size: cover;"></div>
                             

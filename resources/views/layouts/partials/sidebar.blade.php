@@ -43,6 +43,7 @@
         <x-maz-sidebar-sub-item name="Staf" :link="route('staff.index')"></x-maz-sidebar-sub-item>
         <!-- Pengguna Hak Akses -->
         <x-maz-sidebar-sub-item name="Hak Akses" :link="route('role.index')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="About Us" :link="route('front-end.about-us.index')"></x-maz-sidebar-sub-item>
     </x-maz-sidebar-item>
 
 </x-maz-sidebar>
