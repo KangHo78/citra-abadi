@@ -150,6 +150,7 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
         </div>
 
         <div class="row">
+            @can('dashboard-total-enquiry')
             <div class="col-xl-4 col-lg-6 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
@@ -168,7 +169,9 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                     </div>
                 </div>
             </div>
+            @endcan
 
+            @can('dashboard-permintaan-masuk')
             <div class="col-xl-4 col-lg-6 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
@@ -185,7 +188,9 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                     </div>
                 </div>
             </div>
+            @endcan
 
+            @can('dashboard-penawaran-terkirim')
             <div class="col-xl-4 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
@@ -203,10 +208,11 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                 </div>
             </div>
         </div>
+        @endcan
 
         <div class="row">
       
-
+            @can('dashboard-follow-up')
             <div class="col-xl-4 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
@@ -224,7 +230,9 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                     </div>
                 </div>
             </div>
+            @endcan
 
+            @can('dashboard-cancel')
             <div class="col-xl-4 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
@@ -242,6 +250,9 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                     </div>
                 </div>
             </div>
+            @endcan
+
+            @can('dashboard-deal')
             <div class="col-xl-4 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
                     <div class="card-body py-4 px-4">
@@ -259,8 +270,10 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                     </div>
                 </div>
             </div>
+            @endcan
         </div>
 
+        @can('dashboard-enquiry-chart')
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
@@ -296,6 +309,7 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                 </div>
             </div>
         </div>
+        @endcan
 
 
     </section>
@@ -421,20 +435,27 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                     "#dc3545",
                     "#198754"
                     ],
-                    data: [{
+                    data: [
+                        @can('dashboard-follow-up')
+                        {
                             name: 'Follow Up',
                             y: {{ $status_3_sum }},
                             sliced: true,
                             selected: true,
                         },
+                        @endcan
+                        @can('dashboard-cancel')
                         {
                             name: 'Cancel',
                             y: {{ $status_4_sum }}
                         },
+                        @endcan
+                        @can('dashboard-deal')
                         {
                             name: 'Deal',
                             y: {{ $status_5_sum }}
                         },
+                        @endcan
 
                     ]
                 }]
@@ -506,16 +527,25 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
                     "#dc3545",
                     "#198754"
                 ],
-                series: [{
+                series: [
+                    @can('dashboard-follow-up')
+                    {
                     name: ['Follow Up'],
                     data: [{{ $status_3_sum }}],
-                },{
+                },
+                @endcan
+                @can('dashboard-cancel')
+                {
                     name: ['Cancel'],
                     data: [{{ $status_4_sum }}]
-                },{
+                },
+                @endcan
+                @can('dashboard-deal')
+                {
                     name: ['Deal'],
                     data: [{{ $status_5_sum }}]
-                }]
+                }
+                @endcan]
             });
         </script>
     @endsection

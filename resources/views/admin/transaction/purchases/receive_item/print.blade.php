@@ -243,7 +243,7 @@
                 <div class = "invoice-head">
                     <div class = "invoice-head-top">
                         <div class = "invoice-head-top-left text-start">
-                            <img src="{{ asset('front-end/images/logo-light.png') }}">
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('local')->url('front-end/images/logo-light.png'); }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
                             <h3>Penerimaan</h3>

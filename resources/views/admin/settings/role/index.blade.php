@@ -14,33 +14,7 @@
         </div>
     </x-slot>
 
-    <section id="horizontal-input">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Filter Data</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row align-items-center">
-                                    <div class="col-lg-2 col-3">
-                                        <label class="col-form-label" for="first-name">Hak Akses</label>
-                                    </div>
-                                    <div class="col-lg-10 col-9">
-                                        <input type="text" id="first-name" class="form-control" name="fname"
-                                            placeholder="First Name">
-                                    </div>
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="section">
         <div class="card">
@@ -49,12 +23,14 @@
                     <div class="col-sm-3 col-3">
                         <h4 class="card-title ">Data</h4>
                     </div>
+                    @can('settings-role-create')
                     <div class="col-sm-9 col-9">
                         <div class="buttons">
                             <a href="{{ route('role.create') }}"
                                 class="btn btn-outline-info rounded-pill float-end">Buat data baru</a>
                         </div>
                     </div>
+                    @endcan
                 </div>
             </div>
             <div class="card-body">
@@ -67,10 +43,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 30; $i++)
+                            @foreach ($data as $role)
                                 
                             <tr>
-                                <td>Hak Akses {{$i}}</td>
+                                <td>{{ $role->name }}</td>
                                 <td>
                                     <div class="btn-group mb-1">
                                         <div class="dropdown">
@@ -79,31 +55,21 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" style="">
-                                                <a href="{{route('role.show',$i)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-eye text-primary"></i>
-                                                    <b class="p-2">Lihat</b>
-                                                </a>
-                                                <a href="{{route('role.edit',$i)}}"
+                                                @can('settings-role-update')
+                                                <a href="{{route('role.edit',$role->id)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-pencil text-warning"></i>
                                                     <b class="p-2">Ubah</b>
                                                 </a>
+                                                @endcan
                                                
-                                                <input type="hidden" name="_token"
-                                                    value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
-                                                <a class="dropdown-item" data-bs-toggle="tooltip" title="Delete Data"
-                                                    onclick="destroy('https://atmanegara.com/transaction/service/service/127')"
-                                                    href="javascript:;">
-                                                    <i class="bi bi-trash text-danger"></i>
-                                                    <b class="p-2">Hapus</b>
-                                                </a>
+                                               
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            @endfor
+                            @endforeach
 
                         </tbody>
                     </table>

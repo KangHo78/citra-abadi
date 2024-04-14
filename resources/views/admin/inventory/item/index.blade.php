@@ -1,8 +1,62 @@
 <x-app-layout>
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="importModalLabel">Import Item Detail Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="importForm" action="{{ route('item_detail.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <label for="importFile" class="form-label">Import File</label>
+                <input class="form-control" type="file" id="file" name="file" required>
+                <div class="form-text">Supported file formats: CSV, XLSX</div>
+            </div>
+            </form>
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" form="importForm" class="btn btn-primary">Import</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="importItemModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="importModalLabel">Import Item Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="importItemForm" action="{{ route('items.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <label for="importFile" class="form-label">Import File</label>
+                <input class="form-control" type="file" id="file" name="file" required>
+                <div class="form-text">Supported file formats: CSV, XLSX</div>
+            </div>
+            </form>
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" form="importItemForm" class="btn btn-primary">Import</button>
+        </div>
+        </div>
+    </div>
+    </div>
     <x-slot name="header">
         <div class="row mb-2">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Daftar Item</h3>
+                 @if (session()->get('errorMsg'))
+                    <p class="text-subtitle text-danger"> {{ session()->get('errorMsg') }} </p>
+                @endif
+                @if (session()->get('successMsg'))
+                    <p class="text-subtitle text-success"> {{ session()->get('successMsg') }} </p>
+                @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -14,6 +68,7 @@
         </div>
     </x-slot>
     <form action="" method="GET">
+       
     <section id="horizontal-input">
         <div class="row">
             <div class="col-md-12">
@@ -114,21 +169,34 @@
                     </div>
                    
                     <div class="col-sm-9 col-9">
+                        @can('item-create')
                     <div class="buttons">
                           
                           <a href="{{ route('item.create') }}"
                               class="btn btn-outline-info rounded-pill float-end">Buat data baru</a>
                       </div>
+                      @endcan
                     <div class="buttons">
-                            <a href=""
-                                class="btn btn-outline-info rounded-pill float-end">Import Item</a>
+                    <button type="button" class="btn btn-outline-info rounded-pill float-end" data-bs-toggle="modal" data-bs-target="#importItemModal">
+                            Import Item
+                        </button>
+                        </div>
+                        <div class="buttons">
+                        <button type="button" class="btn btn-outline-info rounded-pill float-end" data-bs-toggle="modal" data-bs-target="#importModal">
+                            Import Item Detail
+                        </button>
+                           
                         </div>
                     <div class="buttons">
-                            <a href=""
+                            <a href="{{ route('items.export') }}"
                                 class="btn btn-outline-info rounded-pill float-end">Export Item</a>
                         </div>
                         
-                    </div>
+                    <div class="buttons">
+                            <a href="{{ route('item_detail.export') }}"
+                                class="btn btn-outline-info rounded-pill float-end">Export Item Detail</a>
+                        </div>
+                        
                 </div>
             </div>
             <div class="card-body">
@@ -154,7 +222,7 @@
                                 <td>{{$item->brand->name}}</td>
                                 <td>{{$item->category->name}}</td>
                                 @if(isset($item->description) && !empty($item->description))
-                                <td>{{$item->description}}</td>
+                                <td>{{strip_tags($item->description)}}</td>
                                 @else
                                 <td></td>
                                 @endif
@@ -173,12 +241,13 @@
                                                     <i class="bi bi-eye text-primary"></i>
                                                     <b class="p-2">Lihat</b>
                                                 </a>
+                                                @can('item-update')
                                                 <a href="{{route('item.edit',$item->id)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-pencil text-warning"></i>
                                                     <b class="p-2">Ubah</b>
                                                 </a>
-                                                
+                                                @endcan
                                             </div>
                                         </div>
                                     </div>

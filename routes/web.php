@@ -146,6 +146,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('stok_opname_print', [AdjustmentController::class, 'stok_opname_print'])->name('adjustment.stok_opname_print');
 
         Route::resource('item', ItemController::class);
+        Route::get('items/export', [ItemController::class, 'export'])->name('items.export');
+        Route::get('item_detail/export', [ItemController::class, 'export_item_detail'])->name('item_detail.export');
+        Route::post('items/import', [ItemController::class, 'import'])->name('items.import');
+        Route::post('item_detail/import', [ItemController::class, 'import_item_detail'])->name('item_detail.import');
         Route::resource('category', CategoryController::class);
         Route::resource('brand', BrandController::class);
         Route::get('brand/search', [BrandController::class, 'search'])->name('brand.search');

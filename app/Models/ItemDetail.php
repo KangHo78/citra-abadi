@@ -5,8 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class ItemDetail extends Model
 {
+    protected $fillable = [
+        'spec_id',
+        'item_id',
+        'material_id',
+        'class_id',
+        'conn_id',
+        'size_id',
+    ];
+
     use HasFactory;
     public function item()
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Artisan;
 
 class SettingsController extends Controller
@@ -37,6 +38,15 @@ class SettingsController extends Controller
         $this->overWriteEnvFile('APP_ADDRESS', $request->address);
         $this->overWriteEnvFile('MAIL_FROM_ADDRESS', $request->email);
         $this->overWriteEnvFile('APP_PHONE', $request->phone);
+        Log::info('settings check');
+        Log::info(json_encode($request->logo));
+        Log::info($request->logo);
+        Log::info($request->hasFile($request->logo));
+        if(isset($request->logo)) {
+            $logo = $request->logo;
+            $logo->storeAs('public/front-end/images', 'logo-light.png');
+            Log::info($logo->getPathname());
+        }
         // Artisan::call('cache:clear');
         $data = [];
         return redirect()->back();

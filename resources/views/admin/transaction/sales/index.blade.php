@@ -99,12 +99,15 @@
                     <div class="col-sm-3 col-3">
                         <h4 class="card-title ">Data</h4>
                     </div>
+                    @can('enquiry-create')
                     <div class="col-sm-9 col-9">
                         <div class="buttons">
                             <a href="{{ route('transaction.sales.create') }}"
                                 class="btn btn-outline-info rounded-pill float-end">Buat data baru</a>
+
                         </div>
                     </div>
+                    @endcan
                 </div>
             </div>
             <div class="card-body">
@@ -162,11 +165,13 @@
                                                         <i class="bi bi-eye text-primary"></i>
                                                         <b class="p-2">Lihat</b>
                                                     </a>
+                                                    @can('enquiry-update')
                                                     <a href="{{ route('transaction.sales.edit',  $el->id) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-pencil text-warning"></i>
                                                         <b class="p-2">Ubah</b>
                                                     </a>
+                                                    @endcan
                                                     @if ($el->status == 1 || $el->status == 2 || $el->status == 3)
                                                         <a href="{{ route('transaction.sales.email', $el->id) }}"
                                                             class="dropdown-item">

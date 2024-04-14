@@ -128,7 +128,7 @@
 
     .invoice-body table td,
     .invoice-body table th {
-        padding: 12px;
+        padding: 0px;
     }
 
     .invoice-body table tr {
@@ -237,18 +237,6 @@
 <body>
     <div class = "invoice-btns"
     style="position: fixed;width:100%;margin:0px !important;padding:10px;background-color:black;">
-    <button type = "button" class = " btn btn-warning"  onclick="printInvoice()">
-        <span>
-            <i class="fa-solid fa-print"></i>
-        </span>
-        <span>Print</span>
-    </button>
-    <button type = "button" class = " btn btn-danger"  onclick="CreatePDFfromHTML()" style="margin-left:20px">
-        <span>
-            <i class="fa-solid fa-download"></i>
-        </span>
-        <span>Download</span>
-    </button>
     <button type = "button" class = " btn btn-success"  onclick="exportToExcel()" style="margin-left:20px">
         <span>
             <i class="fa-solid fa-book"></i>
@@ -270,10 +258,16 @@
                 <div class = "invoice-head">
                     <div class = "invoice-head-top">
                         <div class = "invoice-head-top-left text-start">
-                            <img src="{{ asset('front-end/images/logo-light.png') }}">
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('local')->url('front-end/images/logo-light.png'); }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
                             <h3>Laporan Enquirer</h3>
+                            @if(isset($date_start) && !empty($date_start))
+                                <h4> Dari: {{ $date_start }} </h4>
+                            @endif
+                            @if(isset($date_end) && !empty($date_end))
+                                <h4> Sampai: {{ $date_end }} </h4>
+                            @endif
                             <h5>{{ env('APP_ADDRESS') }}</h5>
                             <h5>{{ env('APP_PHONE') }}</h5>
                             <h5>{{ env('APP_URL')}} </h5>
@@ -288,13 +282,12 @@
                             <thead>
                                 <tr>
                                     <td class = "text-bold">#</td>
-                                    <td class = "text-bold">Kode</td>
-                                    <td class = "text-bold">Tanggal</td>
                                     <td class = "text-bold">Nama</td>
+                                    <td class = "text-bold">Tanggal</td>
                                     <td class = "text-bold">Tlp</td>
                                     <td class = "text-bold">Alamat</td>
-                                    <td class = "text-bold">Total Enquiry</td>
-                                    <td class = "text-bold">Total Nominal Enquiry</td>
+                                    <td class = "text-bold">Jumlah</td>
+                                    <td class = "text-bold">Jumlah (Rp.)</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -303,18 +296,17 @@
                                 @endphp
                                 @foreach ($data as $user)
                                     <tr>
-                                        <td>{{$i++}}</td>
-                                        <td>{{$user->code}}</td>
-                                        <td>{{date_format($user->created_at, 'd F Y')}}</td>
+                                        <td>{{$i++}}</td>                                        
                                         <td>{{$user->name}}</td>
+                                        <td>{{date_format($user->created_at, 'd/m/Y')}}</td>
                                         <td>{{$user->phone}}</td>
-                                        <td>{{$user->address}}</td>
+                                        <td>{{$user->address}} {{$user->address_2}}</td>
                                         @php
                                         \Illuminate\Support\Facades\Log::info(json_encode($user->enquiry));
                                         @endphp
                                         @if (!empty($user->enquiry))
                                         <td>{{$user->enquiry->count()}}</td>
-                                        <td class = "text-end">Rp. {{number_format($user->enquiry->sum('grand_total'),0,'.',',')}}</td>
+                                        <td>Rp. {{number_format($user->enquiry->sum('grand_total'),0,'.',',')}}</td>
                                         @else
                                         <td>0</td>
                                         <td>Rp. 0</td>
@@ -327,8 +319,7 @@
                     </div>
                 </div>
                 <div class = "invoice-foot text-center">
-                    <p><span class = "text-bold text-center">NOTE:&nbsp;</span>This is computer generated receipt and
-                        does not require physical signature.</p>
+                    
                 </div>
             </div>
         </div>
@@ -339,13 +330,12 @@
 
 </html>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 <script>
     function printInvoice() {
         window.print();
     }
-</script>
-<script>
-    //Create PDf from HTML...
+     //Create PDf from HTML...
 function CreatePDFfromHTML() {
     var HTML_Width = $(".invoice-wrapper").width();
     var HTML_Height = $(".invoice-wrapper").height();
@@ -368,16 +358,14 @@ function CreatePDFfromHTML() {
 
         const d = new Date();
         const date = d.getFullYear()+d.getMonth()+d.getDate()+d.getHours()+d.getMinutes();
-        pdf.save("Invoice_Penjualan_"+date+".pdf");
+        pdf.save("Laporan_User_"+date+".pdf");
         $(".invoice-wrapper").hide();
     });
+   
 }
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
-<script>
 function exportToExcel() {
     var htmlTable = document.getElementById("invoice-body");
     var workbook = XLSX.utils.table_to_book(htmlTable);
     XLSX.writeFile(workbook, 'table.xlsx');
 }
-</script>
 </script>

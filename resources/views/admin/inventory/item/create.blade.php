@@ -73,9 +73,11 @@ display: none;
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Deskripsi</span></h6>
-                                            <input name="description" type="text" id="description"
+                    
+                                            <textarea name="description" type="text" id="description"
                                                 placeholder="Description" class="form-control form-control-lg "
                                                  >
+</textarea>
                                         </div>
                                     </div>
                                 <div class="form-group pb-1 parent">
@@ -142,7 +144,7 @@ display: none;
                 </div>
                 <div class="card-body">
                     <div class="dropHere">
-                    <table class="table" id="dataTable2" width="100%" style="scroll: overflow">
+                    <table class="table" id="dataTable2" width="100%" style="scroll: overflow; table-layout: initial; word-wrap: break-word; overflow-x: scroll; display:block;">
                         <thead>
                             <tr>
                                 <th>SKU</th>
@@ -165,8 +167,7 @@ display: none;
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
-                                >
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit">
                                 Simpan Data
                             </button>
                         </div>
@@ -178,6 +179,7 @@ display: none;
 
         
     </form>
+
     @section('scripts')
     @php
         $materials = \App\Models\Material::pluck('name');
@@ -186,13 +188,17 @@ display: none;
         $conn = \App\Models\Conn::pluck('name');
         $size = \App\Models\Size::pluck('name');
     @endphp
-<script type="text/javascript">
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+            type="text/css" />
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
+        </script>
+        <script type="text/javascript">
     function addNew() {
   // Create a new table row element
-  var newRow = $('<tr>');
+  var newRow = $('<tr style="overflow-y: scroll; overflow-x: scroll;">');
 
   // Add cells for SKU, Material (dropdown), Spec, Class (dropdown), Conn, Size, and Action
-  newRow.append('<td><input type="text" name="item_details[][sku]"></td>');
+  newRow.append('<td width="5%"><input type="text" name="item_details[][sku]" width="5px"></td>');
 
   // Material dropdown (assuming you have an array of material options)
   const materialOptions = {!! json_encode($materials) !!};
@@ -204,7 +210,7 @@ display: none;
     optionElement.textContent = option;
     materialSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(materialSelect));
+  newRow.append($('<td width="10%">').append(materialSelect));
 
   const specOptions = {!! json_encode($spec) !!};
   const specSelect = document.createElement('select');
@@ -215,7 +221,7 @@ display: none;
     optionElement.textContent = option;
     specSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(specSelect));
+  newRow.append($('<td width="5%">').append(specSelect));
 
   // Class dropdown (assuming you have an array of class options)
   const classOptions = {!! json_encode($class) !!};
@@ -227,7 +233,7 @@ display: none;
     optionElement.textContent = option;
     classSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(classSelect));
+  newRow.append($('<td width="5%">').append(classSelect));
 
   const connOptions = {!! json_encode($conn) !!};
   const connSelect = document.createElement('select');
@@ -238,7 +244,7 @@ display: none;
     optionElement.textContent = option;
     connSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(connSelect));
+  newRow.append($('<td width="5%">').append(connSelect));
   const sizeOptions = {!! json_encode($size) !!};
   const sizeSelect = document.createElement('select');
   sizeSelect.name = 'item_details[][size]';
@@ -248,26 +254,51 @@ display: none;
     optionElement.textContent = option;
     sizeSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(sizeSelect));
-  newRow.append('<td><input type="text" name="item_details[][price]"></td>');
-  newRow.append('<td><button type="button" class="btn btn-danger btn-sm removeRow">Hapus</button></td>');
+  newRow.append($('<td width="5%">').append(sizeSelect));
+  newRow.append('<td width="5%"><input type="text" name="item_details[][price]" width="5px"></td>');
+  newRow.append('<td width="5%"><button type="button" class="btn btn-danger btn-sm removeRow">Hapus</button></td>');
 
   // Append the new row to the table body
   $('#dataTable2 tbody').append(newRow);
 }
 
     $(document).ready(function() {
+        var editor = new FroalaEditor('#description' , {
+  // Other configuration options
+  toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'insertLink', 'insertImage']
+});
+        // $('#description').FroalaEditor({
+        // // Optional configuration options for Froala editor
+        // });
         const previewPhotos = document.getElementById('previewPhotos');
 
+        var existingFiles = Array.from($('#photos')[0].files);
+
+        var existingFileData = null;
+
+        var allFiles = null;
        
         $('#addPhotos').click(function(event) {
             
             event.preventDefault(); // Prevent default button action (if any)
+
+            // Store existing file data before triggering the file input
+            existingFileData = existingFiles.map(file => URL.createObjectURL(file));
+            console.log(existingFileData);
+
             $('#photos').trigger('click');
         });
 
         $('#photos').change(function(e) {
-  const files = e.target.files;
+        const files = e.target.files;
+        // If there are existing file data, create previews for them
+        // if (existingFileData) {
+        //         existingFileData.forEach(dataURL => {
+        //             const previewImage = createPreviewImage(dataURL); // Adjust as needed
+        //             previewPhotos.appendChild(previewImage);
+        //         });
+        //     }
+  console.log(document.getElementById('photos').value);
 
   for (const file of files) {
     const reader = new FileReader();
@@ -313,6 +344,38 @@ display: none;
       alert("An error occurred while previewing the image.");
     };
   }
+    // ... after processing newly selected files
+    allFiles = existingFiles.concat(Array.from(e.target.files));
+    existingFiles = allFiles; // Update the existingFiles array
+});
+
+$('#stored').submit(function() {
+    console.log(allFiles);
+    const formData = new FormData(this);
+    if(allFiles != null) {
+    // allFiles.forEach(file => formData.append('photos[]', file));
+    const fileInput = document.getElementById('photos');
+    fileInput.files = new Blob([new Blob(newFiles)], { type: 'application/octet-stream' });
+    console.log('allFile');
+    }
+    console.log(formData);
+    $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log('test');
+                // Handle successful submission (e.g., redirect, display success message)
+            },
+            error: function(error) {
+                // Handle errors during submission
+            }
+        });
+
+    // Submit the form with the combined files
+    // ...
 });
 
 function removePreviewImage(e) {

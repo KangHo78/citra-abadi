@@ -16,7 +16,7 @@
     </x-slot>
 
 
-    <form id="stored" action="{{ route('general.store') }}" method="POST">
+    <form id="stored" action="{{ route('general.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <section id="multiple-column-form">
@@ -108,7 +108,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group parent" style="">
+                                            <h6 class="form-label"><span>Logo</span></h6>
+                                            <img src="{{\Illuminate\Support\Facades\Storage::disk('local')->url('/front-end/images/logo-light.png')}}" width="300px"></img>
+                                            <input name="logo" type="file" id="logo"
+                                                 class="form-control form-control-lg ">
+                                        </div>
+                                    </div>
+                                </div>
                                
                                
                                 <!-- <div class="row">

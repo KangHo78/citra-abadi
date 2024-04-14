@@ -9,6 +9,7 @@ use App\Models\Classes;
 use App\Models\Conn;
 use App\Models\Size;
 
+use App\Exceptions\CustomArrayException;
 use App\Models\ItemDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ItemExport;
+use App\Exports\ItemDetailExport;
+use App\Imports\ItemImport;
+use App\Imports\ItemDetailImport;
+use Validator;
+use DB;
 
 class ItemController extends Controller
 {
@@ -61,7 +69,6 @@ class ItemController extends Controller
             $brand_param = $request->brand;
             $data = $data->whereHas('brand', function($query) use ($brand_param)
             {
-                Log::info($brand_param);
                 $query->where('id', $brand_param);
 
                 });
@@ -101,6 +108,9 @@ class ItemController extends Controller
                 })
                 ->addColumn('sku', function($row){
                     return $row->sku;
+                })
+                ->addColumn('description', function($row){
+                    return strip_tags($row->description);
                 })
                 ->addColumn('name', function($row){
                     return $row->name;
@@ -158,10 +168,8 @@ class ItemController extends Controller
                         $photo = "";
                         $photo_html = "";
                     if(!empty($row->photos) && $row->photos != '[]') {
-                        Log::info('photo processing');
                         $item_photo_temp_list = json_decode($row->photos, true)[0];
                         
-                        Log::info(json_encode($item_photo_temp_list));
                         $pathToFile = 'public/uploads/items/'.$item_photo_temp_list; // Replace with your file path and disk
                         
                         // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
@@ -174,9 +182,7 @@ class ItemController extends Controller
                         }
                         // $photo = asset($photo);
                         // $string=asset();
-                        Log::info($photo);
                         $photo_html = '<img src="'.$photo.'" width="100px"></img>';
-                        Log::info($photo_html);
                         // Log::info("photodfdfc ".asset($photo));
                     }
                         return $photo_html;
@@ -195,7 +201,6 @@ class ItemController extends Controller
         return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'brand'));
     }
     function show(Request $request, $id) {
-        Log::info('ID'.$id);
         $data = Item::where('id', $id)->first();
         $photos = [];
         Log::info($data->photos);
@@ -263,44 +268,54 @@ class ItemController extends Controller
     
         // Handle Data Details
         if(!empty($request->item_details)) {
-            Log::info(json_encode($request->item_details));
             $itemDetail = new ItemDetail();
         foreach ($request->item_details as $dataDetail) {
+            Log::info('Data Details'.json_encode($dataDetail));
+
             try{
             $itemDetail->item_id = $item->id;
             } catch(\Throwable $e) {
-                continue;
             }
             try{
+                Log::info('sku entered'.$dataDetail['sku']);
             $itemDetail->sku = $dataDetail['sku'];
+            Log::info('sku check'.$itemDetail->sku);
             } catch(\Throwable $e) {
-                continue;
             }
             try{
-            $itemDetail->material_id = Material::where('name', $dataDetail['material'])->get('id') ?? null;
+                Log::info('material entered');
+                $material_id = Material::where('name', $dataDetail['material'])->first()->id;
+            $itemDetail->material_id = $material_id ?? null;
+            Log::info('material check'.$itemDetail->material_id);
             } catch(\Throwable $e) {
-                continue;
             }
             try{
-            $itemDetail->spec_id = Spec::where('name', $dataDetail['spec'])->get('id') ?? null;
+                Log::info('spec entered');
+            $itemDetail->spec_id = Spec::where('name', $dataDetail['spec'])->first()->id ?? null;
+            Log::info('spec check');
             } catch(\Throwable $e) {
-                continue;
             }
             try{
-            $itemDetail->class_id = Classes::where('name', $dataDetail['class'])->get('id') ?? null;
+            $itemDetail->class_id = Classes::where('name', $dataDetail['class'])->first()->id ?? null;
             } catch(\Throwable $e) {
-                continue;
             }
             try{
-            $itemDetail->conn_id = Conn::where('name', $dataDetail['conn'])->get('id') ?? null;
+            $itemDetail->conn_id = Conn::where('name', $dataDetail['conn'])->first()->id ?? null;
             } catch(\Throwable $e) {
-                continue;
             }
             try{
-            $itemDetail->size_id = Size::where('name', $dataDetail['size'])->get('id') ?? null;
+                Log::info('check size');
+            $itemDetail->size_id = Size::where('name', $dataDetail['size'])->first()->id ?? null;
+            } catch(\Throwable $e) {
+            }
+
+            try{
+            Log::info('Item Detail Pre Execution'.json_encode($itemDetail));
+            $itemDetail->price =  (int) $dataDetail['price'];
             $itemDetail->save();
+            Log::info('Item Detail Save Executed'.json_encode($itemDetail));
             } catch(\Throwable $e) {
-                continue;
+                Log::info($e->getMessage());
             }
             
         }
@@ -309,12 +324,13 @@ class ItemController extends Controller
         
     
         // Flash message or redirection after successful save
-        $data = Item::orderBy('id', 'desc');
+        $data = Item::orderBy('id', 'desc')->get();
         $sku = "";
         $name = "";
         $category_id = 0;
         
         $brand = "";
+        Log::info('before controller');
         
         return view($this->path.'/index',compact('data', 'sku', 'name', 'category_id', 'brand'));
     }
@@ -354,6 +370,72 @@ class ItemController extends Controller
             $item->photos = $request->photos;
         }
         $item->save();
+        $itemDetail = new ItemDetail();
+        $list_sku = [];
+        if(!empty($request->item_details)) {
+        foreach ($request->item_details as $dataDetail) {
+            Log::info('Data Details'.json_encode($dataDetail));
+           
+            try{
+            $itemDetail->item_id = $item->id;
+            } catch(\Throwable $e) {
+            }
+            try{
+                Log::info('sku entered'.$dataDetail['sku']);
+                $itemDetailCheck = ItemDetail::where('sku', $dataDetail['sku'])->first();
+                if(!empty($itemDetailCheck)) {
+                    $itemDetail = $itemDetailCheck;
+                }
+            $itemDetail->sku = $dataDetail['sku'];
+            Log::info('sku check'.$itemDetail->sku);
+            } catch(\Throwable $e) {
+            }
+            try{
+                Log::info('material entered');
+                $material_id = Material::where('name', $dataDetail['material'])->first()->id;
+            $itemDetail->material_id = $material_id ?? null;
+            Log::info('material check'.$itemDetail->material_id);
+            } catch(\Throwable $e) {
+            }
+            try{
+                Log::info('spec entered');
+            $itemDetail->spec_id = Spec::where('name', $dataDetail['spec'])->first()->id ?? null;
+            Log::info('spec check');
+            } catch(\Throwable $e) {
+            }
+            try{
+            $itemDetail->class_id = Classes::where('name', $dataDetail['class'])->first()->id ?? null;
+            } catch(\Throwable $e) {
+            }
+            try{
+            $itemDetail->conn_id = Conn::where('name', $dataDetail['conn'])->first()->id ?? null;
+            } catch(\Throwable $e) {
+            }
+            try{
+                Log::info('check size');
+            $itemDetail->size_id = Size::where('name', $dataDetail['size'])->first()->id ?? null;
+            } catch(\Throwable $e) {
+            }
+
+            try{
+            Log::info('Item Detail Pre Execution'.json_encode($itemDetail));
+            $itemDetail->price =  (int) $dataDetail['price'];
+            $itemDetail->save();
+            array_push('list_sku', $dataDetail['sku']);
+            Log::info('Item Detail Save Executed'.json_encode($itemDetail));
+            } catch(\Throwable $e) {
+                Log::info($e->getMessage());
+            }
+        }
+    }
+        $itemDetailCheck = ItemDetail::where('item_id', $id)->get();
+        foreach($itemDetailCheck as $idc) {
+
+            if(!in_array($idc->sku, $list_sku)) {
+                Log::info('test');
+                ItemDetail::destroy($idc->id);
+            }
+        }
         $data = Item::orderBy('id', 'desc');
         $sku = "";
         $name = "";
@@ -371,6 +453,95 @@ class ItemController extends Controller
         Item::find($request->id)->delete();
         $data = Item::all();
         return view($this->path.'/index',compact('data'));
+    }
+
+    function export(Request $request) {
+        $filePath = 'temp/items.xlsx';
+        Excel::store(new ItemExport, $filePath);
+        return Storage::download($filePath);
+    }
+    function export_item_detail(Request $request) {
+        $filePath = 'temp/item_details.xlsx';
+        Excel::store(new ItemDetailExport, $filePath);
+        return Storage::download($filePath);
+    }
+    function import(Request $request) {
+
+        $validator = Validator::make(
+            $request->all(),
+            rules: [
+                'file' => ['required', 'mimetypes:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+            ],
+            messages:[
+                'file.mimetypes' => 'File type must be .xlsx'
+            ]
+        );
+
+        $validator->validate();
+
+
+        $file = $request->file('file');
+
+        DB::beginTransaction();
+        try {
+            Log::info('import item 1');
+            Excel::import(new ItemImport(), $file);
+            Log::info('import item 2');
+        } catch (CustomArrayException $errorMsg) {
+            Log::info('import item 3');
+            Log::info('Error Msg'.$errorMsg);
+            $errorLog = '';
+            foreach ($errorMsg->getData() as $key => $errors) {
+                $errorLog = $errorLog . "Row {$key}:\n";
+                foreach ($errors as $error) {
+                    $errorLog = $errorLog . "- " . $error . "\n";
+                }
+            }
+            DB::commit();
+            return back()->with(['errorValidationImportItem' => true, 'errorMsg' => $errorLog]);
+        }
+
+        DB::commit();
+
+        return back()->with(['successMsg' => 'Item Sukses Di Impor']);
+    }
+    function import_item_detail(Request $request) {
+        Log::info('import item test in');
+        $validator = Validator::make(
+            $request->all(),
+            rules: [
+                'file' => ['required', 'mimetypes:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+            ],
+            messages:[
+                'file.mimetypes' => 'File type must be .xlsx'
+            ]
+        );
+
+        $validator->validate();
+
+        $file = $request->file('file');
+
+        DB::beginTransaction();
+        try {
+            Log::info('import item test');
+            Excel::import(new ItemDetailImport(), $file);
+        } catch (CustomArrayException $errorMsg) {
+            Log::info('import item error');
+            $errorLog = '';
+            foreach ($errorMsg->getData() as $key => $errors) {
+                $errorLog = $errorLog . "Row {$key}:\n";
+                foreach ($errors as $error) {
+                    $errorLog = $errorLog . "- " . $error . "\n";
+                }
+            }
+            Log::info($errorLog);
+            DB::commit();
+            return back()->with(['errorValidationImportItem' => true, 'errorMsg' => $errorLog]);
+        }
+        
+        DB::commit();
+
+        return back()->with(['successMsg' => 'Item Detail Sukses Di Impor']);
     }
 
 

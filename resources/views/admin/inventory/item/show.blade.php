@@ -72,7 +72,7 @@ display: none;
                                             <h6 class="form-label"><span>Deskripsi</span></h6>
                                             <input name="description" type="text" id="description"
                                                 placeholder="Description" class="form-control form-control-lg "
-                                                value="{{ $data->desc }}" readonly="">
+                                                value="{{ strip_tags($data->description) }}" readonly="">
                                         </div>
                                     </div>
                                 <div class="form-group pb-1 parent">

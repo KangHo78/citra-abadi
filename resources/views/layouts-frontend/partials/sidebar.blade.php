@@ -1,9 +1,11 @@
-<x-maz-sidebar :href="route('dashboard')" :logo="{{ asset('front-end/images/logo-light.png') }}">
+<x-maz-sidebar :href="route('dashboard')" :logo="{{ \Illuminate\Support\Facades\Storage::disk('local')->url('front-end/images/logo-light.png') }}">
 
     <!-- Add Sidebar Menu Items Here -->
 
     <x-maz-sidebar-item name="Dashboard" :link="route('dashboard')" icon="bi bi-grid-fill"></x-maz-sidebar-item>
+    @can('enquiry-read')
     <x-maz-sidebar-item name="Penjualan" :link="route('transaction.sales.index')" icon="bi bi-grid-fill"></x-maz-sidebar-item>
+    @endcan
     
     <x-maz-sidebar-item name="Pembelian" icon="bi bi-stack">
         <x-maz-sidebar-sub-item name="Pembelian" :link="route('transaction.purchasing.index')"></x-maz-sidebar-sub-item>

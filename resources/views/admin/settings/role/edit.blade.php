@@ -17,7 +17,9 @@
     </x-slot>
 
 
-    <form id="stored">
+    <form id="stored" action="{{ route('role.update', $data->id) }}" method="POST">
+        @csrf
+        @method('PUT')
         <section id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-sm-12 col-lg-8 col-md-12">
@@ -45,7 +47,7 @@
                                             <h6 class="form-label"><span>Nama Hak Akses</span></h6>
                                             <input name="code" type="text" id="code"
                                                 placeholder="Hak Akses"
-                                                class="form-control form-control-lg validation required" value=""
+                                                class="form-control form-control-lg validation required" value="{{ $data->name }}"
                                                 >
 
                                         </div>
@@ -74,8 +76,9 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Total Enquiry</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    <input class="form-check-input" type="checkbox" value="" id="dashboard-total-enquiry" name="dashboard-total-enquiry" style="margin-left: 75px;" checked>
+                                                <label class="form-check-label" for="flexCheckChecked"
+                                               >
                                                     Lihat
                                                 
                                             </div>
@@ -84,7 +87,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Permintaan Masuk</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="dashboard-permintaan-masuk" name="dashboard-permintaan-masuk" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                 
@@ -94,7 +97,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Penawaran Terkirim</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="dashboard-penawaran-terkirim" name="dashboard-penawaran-terkirim" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                 
@@ -104,7 +107,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Follow Up</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="dashboard-follow-up" name="dashboard-follow-up" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                 
@@ -114,7 +117,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Cancel</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="dashboard-cancel" name="dashboard-cancel" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                 
@@ -124,7 +127,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Deal</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="dashboard-deal" name="dashboard-deal" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                 
@@ -134,7 +137,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Enquiry Chart</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="dashboard-enquiry-chart" name="dashboard-enquiry-chart" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                 
@@ -144,185 +147,21 @@
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Enquiry</span></h6>
                                             <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Kode</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
+                                            <br>
+                                            <input class="form-check-input" type="checkbox" value="" id="enquiry-create" name="enquiry-create" style="margin-left: 25px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="enquiry-read" name="enquiry-read" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="enquiry-update" name="enquiry-update" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
+                                                    
+                                                
                                             
                                             </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Tanggal</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
                                             
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Deskripsi</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Status</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Kode Customer</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Nama Customer</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Telpon Customer</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Email Customer</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Harga Item</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Jenis & Quantity Item</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
                                            
                                         </div>
                                     </div>
@@ -330,311 +169,32 @@
                                 <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Item</span></h6>
                                             <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>SKU</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
+                                            <br>
+                                            <input class="form-check-input" type="checkbox" value="" id="item-create" name="item-create" style="margin-left: 25px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="item-update" name="item-update" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
+                                                    
+                                                
                                             
                                             </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Nama</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
                                             
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Deskripsi</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Kategori</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Subkategori 1</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Subkategori 2</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Subkategori 3</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Subkategori 4</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Subkategori 5</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Subkategori 6</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Material</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Finishing</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Diameter</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Qty / Pkt</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Merek</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <h6 class="form-label" style="margin-left: 25px"><span>Foto</span></h6>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
-                                            
-                                            </div>
                                            
                                         </div>
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Merek</span></h6>
                                             <div class="col-12">
-                                                
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
+                                            <br>
+                                            <input class="form-check-input" type="checkbox" value="" id="brand-create" name="brand-create" style="margin-left: 25px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="brand-update" name="brand-update" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
+                                                    
+                                                
                                             
                                             </div>
                                             
@@ -647,7 +207,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Enquirer</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="report-enquirer" name="report-enquirer" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                    
@@ -658,7 +218,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Item</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="report-item" name="report-item"  style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                    
@@ -669,7 +229,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Wishlist</span></h6>
                                                 <br>
                                                 
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="report-wishlist" name="report-wishlist"  style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                     
@@ -680,7 +240,7 @@
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Share Produk</span></h6>
                                                 <br>
                                                
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="report-share-product" name="report-share-product"  style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
                                                    
@@ -693,72 +253,68 @@
                                                 <br>
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Umum</span></h6>
                                                 <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                               
+                                                    <input class="form-check-input" type="checkbox" value="" id="settings-general" name="settings-general" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
+                                                   
                                             
                                             </div>
                                             <div class="col-12">
                                                 <br>
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Enquirer</span></h6>
                                                 <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="settings-enquirer-create" name="settings-enquirer-create" style="margin-left: 25px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                    
+                                                    <input class="form-check-input" type="checkbox" value="" id="settings-enquirer-update" name="settings-enquirer-update" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
+                                                  
                                             
                                             </div>
                                             <div class="col-12">
                                                 <br>
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Staf</span></h6>
                                                 <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="settings-staff-create" name="settings-staff-create" style="margin-left: 25px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="settings-staff-read" name="settings-staff-read" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="settings-staff-update" name="settings-staff-update" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
+                        
                                             
                                             </div>
                                             <div class="col-12">
                                                 <br>
                                                 <h6 class="form-label" style="margin-left: 25px"><span>Hak Akses</span></h6>
                                                 <br>
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 25px;" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="settings-role-create" name="settings-role-create"style="margin-left: 25px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Tambah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="settings-role-read" name="settings-role-read" style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Lihat
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+                                                    <input class="form-check-input" type="checkbox" value="" id="settings-role-update" name="settings-role-update"  style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Ubah
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="margin-left: 75px;" checked>
+            
+                                            
+                                            </div>
+                                            <div class="col-12">
+                                                <br>
+                                                <h6 class="form-label" style="margin-left: 25px"><span>About Us</span></h6>
+                                                
+                                        
+                                                    <input class="form-check-input" type="checkbox" value="" id="settings-about-us-update" name="settings-about-us-update"  style="margin-left: 75px;" checked>
                                                 <label class="form-check-label" for="flexCheckChecked">
-                                                    Hapus
+                                                    Ubah
+            
                                             
                                             </div>
                                             
@@ -777,144 +333,12 @@
 
         <section class="section">
             <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="row">
-                                <div class="col-sm-12 col-lg-6 text-start">
-                                    <h4 class="card-title ">Data Detail</h4>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-8">
-                            <button class="btn btn-outline-info rounded-pill float-end pr-2" type="button"
-                                onclick="addNew()" id="testAdd">
-                                Tambah data
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="dropHere">
-                    <table class="table" id="dataTable">
-                        <thead>
-                            <tr>
-                                <th>Nama Staf</th>
-                                <th>Email</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for ($i = 0; $i < 30; $i++)
-                                
-                            <tr>
-                                <td>Staf {{$i}}</td>
-                                <td>staf{{$i}}@email.com</td>
-                               
-                                <td>
-                                    <div class="btn-group mb-1">
-                                        <div class="dropdown">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu" style="">
-                                                <a href="{{route('transaction.sales.show',$i)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-eye text-primary"></i>
-                                                    <b class="p-2">Lihat</b>
-                                                </a>
-                                                <a href="{{route('transaction.sales.edit',$i)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-pencil text-warning"></i>
-                                                    <b class="p-2">Ubah</b>
-                                                </a>
-                                                <a href="{{route('transaction.sales.print',$i)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-printer text-primary"></i>
-                                                    <b class="p-2">Cetak</b>
-                                                </a>
-                                                <input type="hidden" name="_token"
-                                                    value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
-                                                <a class="dropdown-item" data-bs-toggle="tooltip" title="Delete Data"
-                                                    onclick="destroy('https://atmanegara.com/transaction/service/service/127')"
-                                                    href="javascript:;">
-                                                    <i class="bi bi-trash text-danger"></i>
-                                                    <b class="p-2">Hapus</b>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endfor
-
-                        </tbody>
-                    </table>
-                    
-            </div>`
-                   <!-- <table class="table" id="dataTable">
-                        <thead>
-                            <tr>
-                                <th>SKU</th>
-                                <th>Item Description</th>
-                                <th>Stok Sekarang</th>
-                                <th>Stok Baru</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                                    </table> -->
-                       <!--   <tbody>
-                            
-                                
-                            <tr>
-                                <td> SET121</td>
-                                <td> Item Desc</td>
-                                <td> 1 </td>
-                                <td> 2 </td>
-                                <td>
-                                    <div class="btn-group mb-1">
-                                        <div class="dropdown">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu" style="">
-                                                <a href="{{route('item.show',1)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-eye text-primary"></i>
-                                                    <b class="p-2">Lihat</b>
-                                                </a>
-                                                <a href="{{route('item.edit',1)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-pencil text-warning"></i>
-                                                    <b class="p-2">Ubah</b>
-                                                </a>
-                                                
-                                                <input type="hidden" name="_token"
-                                                    value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
-                                                <a class="dropdown-item" data-bs-toggle="tooltip" title="Delete Data"
-                                                    onclick="destroy('https://atmanegara.com/transaction/service/service/127')"
-                                                    href="javascript:;">
-                                                    <i class="bi bi-trash text-danger"></i>
-                                                    <b class="p-2">Hapus</b>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table> -->
-                    </div>
-                </div>
+               
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="button"
-                                onclick="save()">
+                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
+                                >
                                 Simpan Data
                             </button>
                         </div>

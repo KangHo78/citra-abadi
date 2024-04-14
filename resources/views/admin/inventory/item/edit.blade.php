@@ -73,17 +73,19 @@ display: none;
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Deskripsi</span></h6>
-                                            <input name="desc" type="text" id="desc"
-                                                placeholder="Description" class="form-control form-control-lg "
-                                                value="{{ $data->description }}" >
+                                            <textarea name="description" type="text" id="description"
+                                                placeholder="Description" class="form-control form-control-lg " value="{{ $data->description }}"
+                                                 >
+</textarea>
+                                           
                                         </div>
                                     </div>
                                 <div class="form-group pb-1 parent">
                                     <h6 class="form-label"><span>Kategori</span></h6>
                                     <select class="select2 form-select form-control-lg validation required"
                                         name="category_id" id="category_id">
-                                        <option value="0" selected="">- Select -</option>
-                                        @foreach(\App\Models\Category::where('parent_category_id', null)->get() as $category)
+                                        <option value="0">- Select -</option>
+                                        @foreach(\App\Models\Category::all() as $category)
                                         @if($category->id == $data->category->id)
                                         <option value="{{ $category->id }}" selected="">{{ $category->name }}</option>
                                         @else
@@ -150,7 +152,7 @@ display: none;
                         </div>
                         <div class="col-sm-6 col-lg-8">
                             <button class="btn btn-outline-info rounded-pill float-end pr-2" type="button"
-                                onclick="addNew()">
+                            >
                                 Tambah data
                             </button>
                         </div>
@@ -158,7 +160,7 @@ display: none;
                 </div>
                 <div class="card-body">
                     <div class="dropHere">
-                    <table class="table" id="dataTable" width="100%">
+                    <table class="table" id="dataTable2" width="100%" style="scroll: overflow; table-layout: initial; word-wrap: break-word; overflow-x: scroll; display:block;">
                         <thead>
                             <tr>
                                 <th>SKU</th>
@@ -167,44 +169,12 @@ display: none;
                                 <th>Class</th>
                                 <th>Conn</th>
                                 <th>Size</th>
+                                <th>Price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data->item_detail as $id)
-                                
-                            <tr>
-                                <td>{{$id->sku}}</td>
-                                <td>{{$id->material->name}}</td>
-                                <td>{{$id->spec->name}}</td>
-                                <td>{{$id->classes->name}}</td>
-                                <td>{{$id->conn->name}}</td>
-                                <td>{{$id->size->name}}</td>
-                                <td>
-                                <div class="btn-group mb-1">
-                                        <div class="dropdown">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu" style="">
-                                                <a href="{{route('item.show',$id->id)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-eye text-primary"></i>
-                                                    <b class="p-2">Lihat</b>
-                                                </a>
-                                                <a href="{{route('item.edit',$id->id)}}"
-                                                    class="dropdown-item">
-                                                    <i class="bi bi-pencil text-warning"></i>
-                                                    <b class="p-2">Ubah</b>
-                                                </a>
-                                                
-                                            </div>
-                                        </div>
-</td>
-                               
-                            </tr>
-                            @endforeach
+                            
 
                         </tbody>
                     </table>
@@ -213,8 +183,8 @@ display: none;
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit"
-                                >
+                        <button class="btn btn-outline-success rounded-pill float-end buttonSave" type="submit">
+
                                 Simpan Data
                             </button>
                         </div>
@@ -227,7 +197,6 @@ display: none;
 
        
     </form>
-</x-app-layout>
 @section('scripts')
 @php
         $materials = \App\Models\Material::pluck('name');
@@ -236,13 +205,17 @@ display: none;
         $conn = \App\Models\Conn::pluck('name');
         $size = \App\Models\Size::pluck('name');
     @endphp
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+            type="text/css" />
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
+        </script>
 <script type="text/javascript">
     function addNew() {
   // Create a new table row element
-  var newRow = $('<tr>');
+  var newRow = $('<tr style="overflow-y: scroll; overflow-x: scroll;">');
 
   // Add cells for SKU, Material (dropdown), Spec, Class (dropdown), Conn, Size, and Action
-  newRow.append('<td><input type="text" name="item_details[][sku]"></td>');
+  newRow.append('<td width="5%"><input type="text" name="item_details[][sku]" width="5px"></td>');
 
   // Material dropdown (assuming you have an array of material options)
   const materialOptions = {!! json_encode($materials) !!};
@@ -254,7 +227,7 @@ display: none;
     optionElement.textContent = option;
     materialSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(materialSelect));
+  newRow.append($('<td width="10%">').append(materialSelect));
 
   const specOptions = {!! json_encode($spec) !!};
   const specSelect = document.createElement('select');
@@ -265,7 +238,7 @@ display: none;
     optionElement.textContent = option;
     specSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(specSelect));
+  newRow.append($('<td width="5%">').append(specSelect));
 
   // Class dropdown (assuming you have an array of class options)
   const classOptions = {!! json_encode($class) !!};
@@ -277,7 +250,7 @@ display: none;
     optionElement.textContent = option;
     classSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(classSelect));
+  newRow.append($('<td width="5%">').append(classSelect));
 
   const connOptions = {!! json_encode($conn) !!};
   const connSelect = document.createElement('select');
@@ -288,7 +261,7 @@ display: none;
     optionElement.textContent = option;
     connSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(connSelect));
+  newRow.append($('<td width="5%">').append(connSelect));
   const sizeOptions = {!! json_encode($size) !!};
   const sizeSelect = document.createElement('select');
   sizeSelect.name = 'item_details[][size]';
@@ -298,15 +271,22 @@ display: none;
     optionElement.textContent = option;
     sizeSelect.appendChild(optionElement);
   });
-  newRow.append($('<td>').append(sizeSelect));
-  newRow.append('<td><input type="text" name="item_details[][price]"></td>');
-  newRow.append('<td><button type="button" class="btn btn-danger btn-sm removeRow">Hapus</button></td>');
+  newRow.append($('<td width="5%">').append(sizeSelect));
+  newRow.append('<td width="5%"><input type="text" name="item_details[][price]" width="5px"></td>');
+  newRow.append('<td width="5%"><button type="button" class="btn btn-danger btn-sm removeRow">Hapus</button></td>');
 
   // Append the new row to the table body
   $('#dataTable2 tbody').append(newRow);
 }
 
     $(document).ready(function() {
+        var editor = new FroalaEditor('#description' , {
+  // Other configuration options
+  toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'insertLink', 'insertImage'],
+}, function () {
+  // Call the method inside the initialized event.
+  editor.html.set("{!! $data->description !!}");
+});
         const previewPhotos = document.getElementById('previewPhotos');
 
        
@@ -315,10 +295,115 @@ display: none;
             event.preventDefault(); // Prevent default button action (if any)
             $('#photos').trigger('click');
         });
+        const materialOptions1 = {!! json_encode($materials) !!};
+        const specOptions1 = {!! json_encode($spec) !!};
+        const classOptions1 = {!! json_encode($class) !!};
+        const connOptions1 = {!! json_encode($conn) !!};
+        const sizeOptions1 = {!! json_encode($size) !!};
+
+
+
+
+        @foreach ($data->item_detail as $id)
+    var newRow = $('<tr style="overflow-y: scroll; overflow-x: scroll;">');
+
+  // Add cells for SKU, Material (dropdown), Spec, Class (dropdown), Conn, Size, and Action
+  newRow.append('<td width="5%"><input type="text" name="item_details[][sku]" width="5px" value="{{ $id->sku }}"></td>');
+
+  // Material dropdown (assuming you have an array of material options)
+  var materialSelect1 = document.createElement('select');
+  materialSelect1.name = 'item_details[][material]';
+  materialOptions1.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    var currentOption = "{!! $id->material->name !!}";
+    if(currentOption == option) {
+        optionElement.selected = true;
+    } else {
+        optionElement.selected = false;
+    }
+    
+   
+    materialSelect1.appendChild(optionElement);
+  });
+  newRow.append($('<td width="10%">').append(materialSelect1));
+
+  var specSelect1 = document.createElement('select');
+  specSelect1.name = 'item_details[][spec]';
+  specOptions1.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    var currentOption = "{!! $id->spec->name !!}";
+    if(currentOption == option) {
+        optionElement.selected = true;
+    } else {
+        optionElement.selected = false;
+    }
+    specSelect1.appendChild(optionElement);
+  });
+  newRow.append($('<td width="5%">').append(specSelect1));
+
+  // Class dropdown (assuming you have an array of class options)
+  var classSelect1 = document.createElement('select');
+  classSelect1.name = 'item_details[][class]';
+  classOptions1.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    var currentOption = "{!! $id->classes->name !!}";
+    if(currentOption == option) {
+        optionElement.selected = true;
+    } else {
+        optionElement.selected = false;
+    }
+    classSelect1.appendChild(optionElement);
+  });
+  newRow.append($('<td width="5%">').append(classSelect1));
+
+  var connSelect1 = document.createElement('select');
+  connSelect1.name = 'item_details[][conn]';
+  connOptions1.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    var currentOption = "{!! $id->conn->name !!}";
+    if(currentOption == option) {
+        optionElement.selected = true;
+    } else {
+        optionElement.selected = false;
+    }
+    connSelect1.appendChild(optionElement);
+  });
+  newRow.append($('<td width="5%">').append(connSelect1));
+  var sizeSelect1 = document.createElement('select');
+  sizeSelect1.name = 'item_details[][size]';
+  sizeOptions1.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option;
+    var currentOption = "{!! $id->size->name !!}";
+    if(currentOption == option) {
+        optionElement.selected = true;
+    } else {
+        optionElement.selected = false;
+    }
+    sizeSelect1.appendChild(optionElement);
+  });
+  newRow.append($('<td width="5%">').append(sizeSelect1));
+  newRow.append('<td width="5%"><input type="text" name="item_details[][price]" width="5px" value={{ $id->price }}></td>');
+  newRow.append('<td width="5%"><button type="button" class="btn btn-danger btn-sm removeRow">Hapus</button></td>');
+
+  // Append the new row to the table body
+  $('#dataTable2 tbody').append(newRow);
+                                
+                                
+    @endforeach
 
         $('#photos').change(function(e) {
   const files = e.target.files;
-
+    
   for (const file of files) {
     const reader = new FileReader();
 
@@ -388,3 +473,4 @@ function removePreviewImage(e) {
 });
                  </script>
 @endsection
+</x-app-layout>
