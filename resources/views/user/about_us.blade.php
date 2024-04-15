@@ -50,11 +50,11 @@
                             <div class="mb-sm-30" style="background-size: cover;"></div>
                         </div>
                         <div class="col-md-5 xs-hide" style="background-size: cover;">
-                            <img src="https://lh3.googleusercontent.com/p/AF1QipPEzRIond-5aMxLmYw3Y89K76QSfyhQL8zLwRDD=s680-w680-h510"
+                            <img src="{{ asset(aboutUs()->image1) }}"
                                 class="lazy img-fluid wow fadeIn animated" data-wow-delay="1.25s" alt=""
                                 style="visibility: visible; animation-delay: 1.25s; animation-name: fadeIn;border-radius: 10px;width:100vh">
 
-                            <img src="https://lh3.googleusercontent.com/p/AF1QipPEzRIond-5aMxLmYw3Y89K76QSfyhQL8zLwRDD=s680-w680-h510"
+                            <img src="{{asset(aboutUs()->image2)}}"
                                 class="lazy img-fluid wow fadeIn animated pt20" data-wow-delay="1.25s" alt=""
                                 style="visibility: visible; animation-delay: 1.25s; animation-name: fadeIn;border-radius: 10px;width:100vh">
 

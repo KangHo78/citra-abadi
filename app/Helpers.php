@@ -2,6 +2,7 @@
 
 use App\Models\AboutUs;
 use App\Models\Cart;
+use App\Models\Services;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('checkCarts')) {
@@ -9,8 +10,8 @@ if (!function_exists('checkCarts')) {
     {
 
         if (Auth::check()) {
-            $totalCarts = Cart::where('user_id', Auth::user()->id)->count();
-            $carts = Cart::where('user_id', Auth::user()->id)->get();
+            $totalCarts = Cart::with('item','item_detail')->where('user_id', Auth::user()->id)->count();
+            $carts = Cart::with('item','item_detail')->where('user_id', Auth::user()->id)->get();
         }else{
             $totalCarts = 0;
             $carts = [];
@@ -24,5 +25,12 @@ if (!function_exists('aboutUs')) {
     function aboutUs()
     {
         return AboutUs::first();
+    }
+}
+
+if (!function_exists('servicesFront')) {
+    function servicesFront()
+    {
+        return Services::get();
     }
 }

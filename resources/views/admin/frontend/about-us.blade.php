@@ -30,11 +30,44 @@
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST" action="#">
+                <form id="aboutUsForm" method="POST" action="#" enctype="multipart/form-data">
                     @csrf
-                    <input type="text" class="form-control" name="header" value="{{aboutUs()->header}}">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12 pb-2">
+                            <div class="form-group parent" style="">
+                                <h6 class="form-label"><span>Header</span></h6>
+                                <input type="text" class="form-control header" name="header"
+                                    value="{{ aboutUs()->header }}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 pb-2">
+                            <div class="form-group parent" style="">
+                                <h6 class="form-label"><span>Gambar 1</span></h6>
+                                <input type="file" class="form-control image1" name="image1">
+                                <br>
+                                <img src="{{ asset(aboutUs()->image1) }}" alt="" width="100%">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6 pb-2">
+                            <div class="form-group parent" style="">
+                                <h6 class="form-label"><span>Gambar 2</span></h6>
+                                <input type="file" class="form-control image2" name="image2">
+                                <br>
+                                <img src="{{ asset(aboutUs()->image2) }}" alt="" width="100%">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-12 pb-2">
+                            <div class="form-group parent" style="">
+                                <h6 class="form-label"><span>Body</span></h6>
+                                <div id="myEditor">{!! aboutUs()->body !!}</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <br>
-                    <div id="myEditor">{!! aboutUs()->body !!}</div>
                     <br>
                     <button id="saveButton" class="btn btn-primary" type="button">Save</button>
                 </form>
@@ -58,15 +91,35 @@
                 });
 
                 function saveContent(content) {
+
+                    var formData = new FormData($('#aboutUsForm')[0]);
+                    var header = $('.header').val();
+
+                    var additionalContent = editor.html.get(); // Mendapatkan konten dari editor
+                    formData.append('content', additionalContent);
+
+
+                    $('.image').each(function(index, element) {
+                        formData.append('image' + (index + 1), element.files[0]);
+                    });
                     $.ajax({
                         url: '{{ route('front-end.about-us.store') }}',
                         method: 'POST',
-                        data: {
-                            content: content,
-                            _token: '{{ csrf_token() }}'
-                        },
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        cache: false,
+                        // data: {
+                        //     header: header,
+                        //     content: content,
+                        //     _token: '{{ csrf_token() }}'
+                        // },
                         success: function(response) {
                             console.log('Konten disimpan');
+                            iziToast.success({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
                             // Tambahkan logika atau respons lainnya di sini
                         },
                         error: function(xhr, status, error) {

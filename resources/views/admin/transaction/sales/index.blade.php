@@ -24,7 +24,7 @@
                         <h4 class="card-title">Filter Data</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('transaction.sales.index')}}" method="GET">
+                        <form action="{{ route('transaction.sales.index') }}" method="GET">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group pb-1 parent">
@@ -33,7 +33,8 @@
                                             <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                     class="bi bi-calendar"></i></span>
                                             <input class="form-control form-control-lg datepicker" placeholder="Date"
-                                                tabindex="0" type="text" id="date_start" name="date_start" value="{{request()->input('date_start')}}">
+                                                tabindex="0" type="text" id="date_start" name="date_start"
+                                                value="{{ request()->input('date_start') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +45,8 @@
                                             <span style="padding-bottom: 16px;" class="input-group-text"><i
                                                     class="bi bi-calendar"></i></span>
                                             <input class="form-control form-control-lg datepicker" placeholder="Date"
-                                                tabindex="0" type="text" id="date_end" name="date_end" value="{{request()->input('date_end')}}">
+                                                tabindex="0" type="text" id="date_end" name="date_end"
+                                                value="{{ request()->input('date_end') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +57,8 @@
                                         <h6 class="form-label"><span>Kode</span></h6>
                                         <div class="input-group mb-1">
                                             <input class="form-control form-control-lg " placeholder="Kode"
-                                                tabindex="0" type="text" id="code" name="code" value="{{request()->input('code')}}">
+                                                tabindex="0" type="text" id="code" name="code"
+                                                value="{{ request()->input('code') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -63,12 +66,13 @@
                                     <div class="form-group pb-1 parent">
                                         <h6 class="form-label"><span>Customer</span></h6>
                                         <div class="input-group mb-1">
-                                           <select name="customer" id="" class="form-control select2">
-                                            <option value="">- Select -</option>
-                                            @foreach ($customer as $el)
-                                                <option value="{{$el->id}}" @selected(request()->input('customer') == $el->id)>{{$el->name}}</option>
-                                            @endforeach
-                                           </select>
+                                            <select name="customer" id="" class="form-control select2">
+                                                <option value="">- Select -</option>
+                                                @foreach ($customer as $el)
+                                                    <option value="{{ $el->id }}" @selected(request()->input('customer') == $el->id)>
+                                                        {{ $el->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -135,12 +139,12 @@
                                         @elseif ($el->status == 3)
                                             <span class="badge bg-warning">Follow Up</span>
                                         @elseif ($el->status == 4)
-                                            <span class="badge bg-success">Cancel</span>
+                                            <span class="badge bg-danger">Cancel</span>
                                         @elseif ($el->status == 5)
-                                            <span class="badge bg-danger">Deal</span>
+                                            <span class="badge bg-success">Deal</span>
                                         @endif
                                     </td>
-                                    <td class="text-end">Rp.{{ number_format($el->grand_total,0,'.',',') }}</td>
+                                    <td class="text-end">Rp.{{ number_format($el->grand_total, 0, '.', ',') }}</td>
                                     <td>
                                         <ul>
                                             @foreach ($el->enquiry_detail as $el1)
@@ -162,7 +166,7 @@
                                                         <i class="bi bi-eye text-primary"></i>
                                                         <b class="p-2">Lihat</b>
                                                     </a>
-                                                    <a href="{{ route('transaction.sales.edit',  $el->id) }}"
+                                                    <a href="{{ route('transaction.sales.edit', $el->id) }}"
                                                         class="dropdown-item">
                                                         <i class="bi bi-pencil text-warning"></i>
                                                         <b class="p-2">Ubah</b>
@@ -179,14 +183,14 @@
                                                         <i class="bi bi-printer text-primary"></i>
                                                         <b class="p-2">Cetak</b>
                                                     </a>
-                                                    <input type="hidden" name="_token"
-                                                        value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
-                                                    <a class="dropdown-item" data-bs-toggle="tooltip"
-                                                        title="Delete Data" onclick="destroy('')"
-                                                        href="javascript:;">
-                                                        <i class="bi bi-trash text-danger"></i>
-                                                        <b class="p-2">Hapus</b>
-                                                    </a>
+                                                    @if ($el->status == 1 || $el->status == 2 || $el->status == 3)
+                                                        <a href="#" class="dropdown-item"
+                                                            data-bs-toggle="tooltip" title="Delete Data"
+                                                            onclick="destroy('{{ $el->id }}')">
+                                                            <i class="bi bi-trash text-danger"></i>
+                                                            <b class="p-2">Cancel</b>
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -203,6 +207,41 @@
 
 
     @section('scripts')
-        <script></script>
+        <script>
+            function destroy(params) {
+                var route = "{{ route('transaction.sales.destroy', ':params') }}";
+                route = route.replace(':params', params);
+                $.ajax({
+                    url: route, // Ganti dengan URL endpoint Anda
+                    method: 'DELETE',
+                    dataType: 'json',
+                    data: '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+                            location.reload();
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                        }
+                        // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
+                        // '_blank');
+
+                    },
+                    error: function(xhr, status, error) {
+                        iziToast.error({
+                            title: 'Pemberitahuan',
+                            message: response.message,
+                        });
+                    }
+                });
+            }
+        </script>
     @endsection
 </x-app-layout>

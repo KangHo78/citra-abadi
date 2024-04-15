@@ -72,8 +72,10 @@ class CartsController extends Controller
             $type = 'warning';
         }
 
+        $cart = checkCarts();
 
-        return response()->json(['message' => $response, 'type' => $type]);
+
+        return response()->json(['message' => $response, 'type' => $type,'cart'=>$cart]);
     }
 
     function removeItemCart(Request $req)

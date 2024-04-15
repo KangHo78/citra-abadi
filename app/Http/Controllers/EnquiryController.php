@@ -171,7 +171,6 @@ class EnquiryController extends Controller
         }
 
         return redirect()->route('transaction.sales.index');
-        return view($this->path . '/index', compact('data'));
     }
     function print($id)
     {
@@ -186,11 +185,12 @@ class EnquiryController extends Controller
         Mail::to($data->customer->email)->send(new orderEnquiry($data));
         return view($this->path . '/print', compact('data'));
     }
-    function destroy(Request $request)
+    function destroy($id)
     {
-        Enquiry::find($request->id)->delete();
-        $data = Enquiry::all();
-        return view($this->path . '/show', compact('data'));
+        Enquiry::where('id',$id)->update([
+            'status'=>4
+        ]);
+        return response()->json(['message' => 'Berhasil Merubah Status','type'=>'success']);
     }
     function getDataItemDetail(Request $request)
     {

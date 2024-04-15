@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             SpecSeeder::class,
             ItemSeeder::class,
             ItemDetailSeeder::class,
-            // EnquirySeeder::class,
+            AboutUsSeeder::class,
             // EnquiryDetailSeeder::class
         ]);
 

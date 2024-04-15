@@ -79,7 +79,8 @@
                                 </span>
                                 @if (Auth::check())
                                     <span id="de-click-menu-profile" class="de-menu-profile">
-                                        <img src="https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg"
+                                        {{-- https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg --}}
+                                        <img src="{{ auth::user()->profile_photo_path }}"
                                             class="img-fluid" alt="">
                                     </span>
                                 @endif
@@ -93,7 +94,9 @@
                                         <a href="{{ route('cart') }}">Show all</a>
                                     </div>
 
-                                    <ul style="max-height: 250px;overflow:auto">
+                                    <ul style="max-height: 250px;overflow:auto" >
+                                        <div class="dropHereCart">
+
                                         @foreach (checkCarts()['carts'] as $el)
                                             <li>
                                                 <a href="{{ route('product-details', $el->item_id) }}">
@@ -124,6 +127,9 @@
                                                 </a>
                                             </li>
                                         @endforeach
+                                            
+                                        </div>
+                                        
                                         {{-- <li>
                                             <a href="#">
                                                 <img class="lazy"

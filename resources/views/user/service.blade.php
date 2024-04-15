@@ -19,9 +19,19 @@
         <section aria-label="section" style="background-size: cover;">
             <div class="container" style="background-size: cover;">
                 <div class="row" style="background-size: cover;">
-                    <div class="col-lg-4 mb30" style="background-size: cover;">
+
+                    @foreach (servicesFront() as $el)
+                        <div class="col-lg-4 mb30" style="background-size: cover;">
+                            <a class="box-url" href="#">
+                                <img src="{{ asset($el->image) }}" alt="" style="width: 100%" class="mb20 img-fluid rounded-3">
+                                <h4>{{ $el->header }}</h4>
+                                <p>{{ $el->body }}
+                                </p>
+                            </a>
+                        </div>
+                    @endforeach
+                    {{-- <div class="col-lg-4 mb30" style="background-size: cover;">
                         <a class="box-url" href="login.html">
-                            {{-- <span class="box-url-label">Most Popular</span> --}}
                             <img src="https://img.freepik.com/free-vector/people-shopping-with-bags_24908-56793.jpg?t=st=1708764015~exp=1708767615~hmac=cfb6fe2eb7b4c3fd7a86bd6cb5e9f5ff8650002f097f4b003567d5310f4ce706&w=740" alt="" class="mb20 img-fluid rounded-3">
                             <h4>RETAIL</h4>
                             <p>Supply, distribution and wholesale in Singapore to stockists and retail hardware stores, small and medium enterprises mainly on standard parts & non standard parts.</p>
@@ -42,7 +52,7 @@
                             <h4>OEM</h4>
                             <p>Supply, distribution and wholesale in Singapore to stockists and retail hardware stores, small and medium enterprises mainly on standard parts & non standard parts.</p>
                         </a>
-                    </div>   
+                    </div>    --}}
 
                 </div>
             </div>
