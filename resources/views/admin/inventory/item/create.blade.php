@@ -9,6 +9,11 @@ display: none;
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Tambah Item</h4>
                 <p class="text-subtitle text-muted">Buat data item dan isi form dibawah.</p>
+                @if (isset($errors) && $errors->any())
+                    @foreach ($errors->all() as $error)
+                        <p class="text-subtitle text-danger">*{{ $error }}</p>
+                    @endforeach
+                @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">

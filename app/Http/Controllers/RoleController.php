@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Permission;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use DB;
 
 class RoleController extends Controller
@@ -61,8 +62,13 @@ class RoleController extends Controller
     }
     function edit(Request $request, $id) {
         $data = Role::where('id', $id)->first();
-        $role_has_permissions = DB::table('role_has_permissions')->where('role_id', $id)->get();
-        return view($this->path.'/edit',compact('data', 'role_has_permissions'));
+        $role_has_permissions = DB::table('role_has_permissions')->where('role_id', $id)->get()->toArray();
+        $permissions = [];
+        foreach($role_has_permissions as $role_has_permission) {
+            Log::info(json_encode($role_has_permission));
+            array_push($permissions, Permission::where('id', $role_has_permission->permission_id)->first()->name);
+        }
+        return view($this->path.'/edit',compact('data', 'permissions'));
     }
     function update(Request $request, $id) {
         $role = Role::where('id', $id)->first();

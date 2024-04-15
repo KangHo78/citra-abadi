@@ -360,11 +360,19 @@ class ItemController extends Controller
     }
     function update(Request $request, $id) {
         $item = Item::findOrFail($id);
-        $item->name = $request->name;
-        $item->sku = $request->sku;
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'sku' => 'required|string|unique:items,sku|max:255',
+            'description' => 'nullable|string',
+            'brand_id' => 'required|integer',
+            'category_id' => 'required|integer',
+            'photos' => 'nullable|array', // optional: allow photo uploads as an array
+        ]);
+        $item->name = $validatedData['name'];
+        $item->sku = $validatedData['sku'];
         $item->description = $request->description;
-        $item->brand_id = $request->brand_id;
-        $item->category_id = $request->category_id;
+        $item->brand_id = $validatedData['brand_id'];
+        $item->category_id = $validatedData['category_id'];
        
         if($request->photos) {
             $item->photos = $request->photos;

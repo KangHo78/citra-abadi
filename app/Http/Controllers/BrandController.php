@@ -86,6 +86,11 @@ class BrandController extends Controller
     }
     function update(Request $request, $id) {
         try{
+        if(empty($request->name)) {
+            $error = 'Nama Merek Kosong';
+            $data = [];
+            return view($this->path.'/edit',compact('data', 'error'));
+        }
         $brand = Brand::findOrFail($id);
         $brand->name = $request->name;
         $brand->save();
