@@ -27,6 +27,19 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
             ItemDetailSeeder::class,
             AboutUsSeeder::class,
+            // PermissionSeeder::class
+            RoleSeeder::class
+            // UserSeeder::class,
+            // CategoriesSeeder::class,
+            // BrandSeeder::class,
+            // ClassSeeder::class,
+            // ConnSeeder::class,
+            // MaterialSeeder::class,
+            // SizeSeeder::class,
+            // SpecSeeder::class,
+            // ItemSeeder::class,
+            // ItemDetailSeeder::class,
+            // EnquirySeeder::class,
             // EnquiryDetailSeeder::class
         ]);
 

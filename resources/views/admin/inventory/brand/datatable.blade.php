@@ -30,12 +30,13 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" style="">
-                                                
+                                                @can('brand-update')
                                                 <a href="{{route('brand.edit', $brand->id)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-pencil text-warning"></i>
                                                     <b class="p-2">Ubah</b>
                                                 </a>
+                                                @endcan
                                                 
                                                 
                                             </div>

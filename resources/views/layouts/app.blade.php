@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="stylesheet" href="https://cdn.froala-editor.com/releases/3.5.2/css/froala_editor.pkgd.min.css">
+
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 

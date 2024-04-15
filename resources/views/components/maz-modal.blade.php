@@ -18,6 +18,7 @@
     }
 </style>
 
+<form id="stored" action="" method="GET">
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -31,8 +32,15 @@
                         <h6 class="form-label"><span>Date Start</span></h6>
                         <div class="input-group mb-1">
                             <span style=";" class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+                            @php
+                            @endphp
+                            @if (isset($date_start))
                             <input class="form-control datepicker" placeholder="Date" tabindex="0" type="text"
-                                readonly="readonly">
+                                readonly="readonly" name="date_start" id="date_start" value = "{{ $date_start }}">
+                            @else
+                            <input class="form-control datepicker" placeholder="Date" tabindex="0" type="text"
+                                readonly="readonly" name="date_start" id="date_start" value = "">
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -41,33 +49,25 @@
                         <h6 class="form-label"><span>Date End</span></h6>
                         <div class="input-group mb-1">
                             <span style=";" class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+                            @if (isset($date_end))
                             <input class="form-control datepicker" placeholder="Date" tabindex="0" type="text"
-                                readonly="readonly">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group pb-1 parent">
-                        <h6 class="form-label"><span>Warehouse</span></h6>
-                        <div class="input-group mb-1">
-                            <span style=";" class="input-group-text"><i class="fa-solid fa-list"></i></span>
-                            <select class="form-control select2" name="a" id="a">
-                                <option value="">- Select -</option>
-                                <option value="">- Select -</option>
-                                <option value="">- Select -</option>
-                                <option value="">- Select -</option>
-                            </select>
+                                readonly="readonly" name="date_end" id="date_end" value = "{{ $date_end }}">
+                            @else
+                            <input class="form-control datepicker" placeholder="Date" tabindex="0" type="text"
+                                readonly="readonly" name="date_end" id="date_end" value = "">
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Filter Data</button>
+                <button type="submit" class="btn btn-primary">Filter Data</button>
             </div>
         </div>
     </div>
 </div>
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>

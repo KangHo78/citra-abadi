@@ -4,8 +4,10 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Tambah Staf</h4>
                 <p class="text-subtitle text-muted">Buat staf dan isi form dibawah.</p>
-                @if(isset($error))
-                <p class="text-subtitle text-danger">*{{ $error }}</p>
+                @if (isset($errors) && $errors->any())
+                    @foreach ($errors->all() as $error)
+                        <p class="text-subtitle text-danger">*{{ $error }}</p>
+                    @endforeach
                 @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">

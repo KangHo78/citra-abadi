@@ -4,7 +4,7 @@
             <div class="col-md-4 col-sm-6 col-xs-1">
                 <div class="widget">
                     <h5>About Us</h5>
-                    <img src="{{ asset('front-end/images/logo-light.png') }}" alt="" width="50%">
+                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('local')->url('front-end/images/logo-light.png'); }}" alt="" width="50%">
                     <div class="spacer-10"></div>
                     <p>Kami diakui karena kualitas produk dan inovasi dalam industri pipa. Kami juga telah
                         menerima penghargaan atau sertifikasi untuk produk atau praktik bisnis yang unggul..</p>

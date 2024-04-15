@@ -270,10 +270,17 @@
                 <div class = "invoice-head">
                     <div class = "invoice-head-top">
                         <div class = "invoice-head-top-left text-start">
-                            <img src="{{ asset('front-end/images/logo-light.png') }}">
+                        
+                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('local')->url('front-end/images/logo-light.png'); }}">
                         </div>
                         <div class = "invoice-head-top-right text-end">
-                            <h3>Laporan Item</h3>
+                            <h3>Laporan Item </h3>
+                            @if(isset($date_start) && !empty($date_start))
+                                <h4> Dari: {{ $date_start }} </h4>
+                            @endif
+                            @if(isset($date_end) && !empty($date_end))
+                                <h4> Sampai: {{ $date_end }} </h4>
+                            @endif
                             <h5>{{ env('APP_ADDRESS') }}</h5>
                             <h5>{{ env('APP_PHONE') }}</h5>
                             <h5>{{ env('APP_URL')}} </h5>
@@ -290,19 +297,28 @@
                                     <td class = "text-bold">#</td>
                                     <td class = "text-bold">Produk</td>
                                     <td class = "text-bold">Total Qty</td>
-                                    <td class = "text-bold text-end">Total Enquiry</td>
+                                    <td class = "text-bold">Total Enquiry</td>
                                 </tr>
                             </thead>
                             <tbody>
+                               
+                                @foreach ($data as $item)
                                 @php
                                 $i = 1;
+                                $query = \App\Models\EnquiryDetail::where('item_id', $item->id);
+                                if(isset($date_start)) {
+                                    $query = $query->where('created_at', '>=' , \Carbon\Carbon::createFromFormat('d/m/Y', $date_start));
+                                }
+                                if(isset($date_end)) {
+                                    
+                                    $query = $query->where('created_at', '<=' , \Carbon\Carbon::createFromFormat('d/m/Y', $date_end)->addDay(1));
+                                }
                                 @endphp
-                                @foreach ($data as $item)
                                     <tr>
                                         <td>{{$i++}}</td>
                                         <td>{{$item->name}}</td>
-                                        <td>{{\App\Models\EnquiryDetail::where('item_id', $item->id)->count()}}</td>
-                                        <td class = "text-end">Rp. {{number_format(10000*\App\Models\EnquiryDetail::where('item_id', $item->id)->sum('item_price'),0,'.',',')}}</td>
+                                        <td>{{$query->count()}}</td>
+                                        <td>Rp. {{number_format(10000*$query->sum('item_price'),0,'.',',')}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -311,25 +327,20 @@
                     </div>
                 </div>
                 <div class = "invoice-foot text-center">
-                    <p><span class = "text-bold text-center">NOTE:&nbsp;</span>This is computer generated receipt and
-                        does not require physical signature.</p>
+                   
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
 </body>
 
-</html>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 <script>
     function printInvoice() {
         window.print();
     }
-</script>
-<script>
-    //Create PDf from HTML...
+     //Create PDf from HTML...
 function CreatePDFfromHTML() {
     var HTML_Width = $(".invoice-wrapper").width();
     var HTML_Height = $(".invoice-wrapper").height();
@@ -352,16 +363,15 @@ function CreatePDFfromHTML() {
 
         const d = new Date();
         const date = d.getFullYear()+d.getMonth()+d.getDate()+d.getHours()+d.getMinutes();
-        pdf.save("Invoice_Penjualan_"+date+".pdf");
+        pdf.save("Laporan_Item_"+date+".pdf");
         $(".invoice-wrapper").hide();
     });
+   
 }
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
-<script>
 function exportToExcel() {
     var htmlTable = document.getElementById("invoice-body");
     var workbook = XLSX.utils.table_to_book(htmlTable);
     XLSX.writeFile(workbook, 'table.xlsx');
 }
 </script>
-</script>
+

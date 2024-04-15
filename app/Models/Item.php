@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+    protected $fillable = [
+        'name',
+        'sku',
+        'description',
+        'brand_id',
+        'category_id',
+    ];
     use HasFactory;
     public function enquiry_detail()
     {

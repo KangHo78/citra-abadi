@@ -35,12 +35,17 @@ class StaffController extends Controller
         return view($this->path.'/create',compact('data'));
     }
     function store(Request $request) { // TODO:
-        
+        $validatedData = $request->validate([ // TODO: here
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'password' => 'required',
+            'confirm_password' => 'required'
+        ]);
         $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if($request->password == $request->confirm_password) {
-        $user->password = Hash::make($request->password);
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        if($validatedData['password'] == $validatedData['confirm_password']) {
+        $user->password = Hash::make($validatedData['password']);
         } else {
             $error = 'Password Tidak Sama';
             $data = [];
@@ -59,13 +64,19 @@ class StaffController extends Controller
         return view($this->path.'/edit',compact('data'));
     }
     function update(Request $request, $id) {
+        $validatedData = $request->validate([ // TODO: here
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'password' => 'required',
+            'confirm_password' => 'required'
+        ]);
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if(!empty($request->password) && !empty($request->confirm_password)) {
-        if($request->password == $request->confirm_password) {
-        $user->password = Hash::make($request->password);
-        } else {
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        if(!empty($validatedData['password']) && !empty($validatedData['confirm_password'])) {
+         if($validatedData['password'] == $validatedData['confirm_password']) {
+        $user->password = Hash::make($validatedData['password']);
+        }  else {
             $error = 'Password Tidak Sama';
             $data = User::findOrFail($id)->first();
             return view($this->path.'/edit',compact('data', 'error'));

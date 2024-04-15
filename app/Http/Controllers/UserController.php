@@ -90,20 +90,25 @@ class UserController extends Controller
         return substr($result, -5);
       }
     function store(Request $request) {
-        Log::info(json_encode($request->file('npwp_photo')));
+        // Log::info(json_encode($request->file('npwp_photo')));
+        $validatedData = $request->validate([ // TODO: here
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'npwp' => 'nullable|string|max:25',
+        ]);
         $user = new User;
-        $user->name = $request->name;
+        $user->name = $validatedData['name'];
         $requestCode = $request->code;
         $enquiry_check = User::where('code', $requestCode)->get();
         if(!empty($enquiry_check)) {
             $requestCode = 'CUS-'.self::incrementalHash();
         }
         $user->code = $requestCode;
-        $user->email = $request->email;
+        $user->email = $validatedData['email'];
         $user->password = "";
         $user->position = $request->position;
         $user->company_name = $request->company_name;
-        $user->npwp = $request->npwp;
+        $user->npwp = $validatedData['npwp'];
         if($request->file('npwp_photo')) {
             $imageNPWP = $request->file('npwp_photo');
             $imageNPWPName = 'NPWP_' . $user->id . '_' . time() . '.' . $imageNPWP->getClientOriginalExtension();
@@ -152,13 +157,18 @@ class UserController extends Controller
         return view($this->path.'/edit',compact('data', 'npwp_photo'));
     }
     function update(Request $request, $id) {
+        $validatedData = $request->validate([ // TODO: here
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'npwp' => 'nullable|string|max:25',
+        ]);
         $user = User::findOrFail($id);
-        $user->name = $request->name;
+        $user->name = $validatedData['name'];
         $user->code = $request->code;
-        $user->email = $request->email;
+        $user->email = $validatedData['email'];
         $user->position = $request->position;
         $user->company_name = $request->company_name;
-        $user->npwp = $request->npwp;
+        $user->npwp = $validatedData['npwp'];
         Log::info('npwp_photo_check');
         if($request->file('npwp_photo')) {
             Log::info('npwp_photo_check_2');

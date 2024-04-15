@@ -22,12 +22,14 @@
                     <div class="col-sm-3 col-3">
                         <h4 class="card-title ">Data</h4>
                     </div>
+                    @can('settings-staff-create')
                     <div class="col-sm-9 col-9">
                         <div class="buttons">
                             <a href="{{ route('staff.create') }}"
                                 class="btn btn-outline-info rounded-pill float-end">Buat data baru</a>
                         </div>
                     </div>
+                    @endcan
                 </div>
             </div>
             <div class="card-body">
@@ -61,12 +63,13 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" style="">
-                                                
+                                                @can('settings-staff-update')
                                                 <a href="{{route('staff.edit', $staff->id)}}"
                                                     class="dropdown-item">
                                                     <i class="bi bi-pencil text-warning"></i>
                                                     <b class="p-2">Ubah</b>
                                                 </a>
+                                                @endcan
                                                
                                                 <input type="hidden" name="_token"
                                                     value="5hxXelPptFRbbrxW4qS2IFpmhEtzy5g46YNK8piJ">
