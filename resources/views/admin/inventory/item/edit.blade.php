@@ -122,20 +122,19 @@ display: none;
                                 </div>
                                 
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Foto Produk</span></h6>
-
-                                            
-                                            <br>
-                                            <button type="button" class="btn btn-primary btn-xl"
-                                                >
-                                                Tambah Foto
-                                            </button>
-                                            <div class="row" id="previewPhotos"></div>
-                                            
-                                        </div>
-                                    </div>
+                                <div class="col-12">
+        <div class="form-group parent" style="">
+            <h6 class="form-label"><span>Foto Produk</span></h6>
+            @foreach($photos as $photo)
+                <img src="{{ $photo }}" width="300px"></img>
+            @endforeach
+            <input type="file" name="photos[]" id="photos" multiple hidden>
+            <button type="button" class="btn btn-primary btn-xl" id="addPhotos">
+                Tambah Foto
+            </button>
+            <div class="row" id="previewPhotos"></div>
+        </div>
+    </div>
                                 </div>
                             </div>
                         </div>
