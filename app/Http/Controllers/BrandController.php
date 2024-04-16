@@ -79,9 +79,7 @@ class BrandController extends Controller
     }
     function edit(Request $request, $id) {
         // Log::info(json_encode($request->input()));
-        Log::info($id);
         $data = Brand::findOrFail($id);
-        Log::info(json_encode($data));
         return view($this->path.'/edit',compact('data'));
     }
     function update(Request $request, $id) {

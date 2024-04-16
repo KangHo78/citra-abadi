@@ -231,10 +231,10 @@ class ItemController extends Controller
         
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'sku' => 'required|string|unique:items,sku|max:255',
+            'sku' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'brand_id' => 'required|integer',
-            'category_id' => 'required|integer',
+            'brand' => 'required|integer',
+            'category' => 'required|integer',
             'photos' => 'nullable|array', // optional: allow photo uploads as an array
         ]);
     
@@ -242,8 +242,8 @@ class ItemController extends Controller
         $item->name = $validatedData['name'];
         $item->sku = $validatedData['sku'];
         $item->description = $request->description;
-        $item->brand_id = $validatedData['brand_id'];
-        $item->category_id = $validatedData['category_id'];
+        $item->brand_id = $validatedData['brand'];
+        $item->category_id = $validatedData['category'];
         
         Log::info('before photo check');
         Log::info(json_encode($request->photos));
@@ -362,10 +362,10 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'sku' => 'required|string|unique:items,sku|max:255',
+            'sku' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'brand_id' => 'required|integer',
-            'category_id' => 'required|integer',
+            'brand' => 'required|integer',
+            'category' => 'required|integer',
             'photos' => 'nullable|array', // optional: allow photo uploads as an array
         ]);
         $item->name = $validatedData['name'];

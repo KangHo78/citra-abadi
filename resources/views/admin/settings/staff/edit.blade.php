@@ -4,6 +4,9 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Ubah Staf</h4>
                 <p class="text-subtitle text-muted">Buat staf dan isi form dibawah.</p>
+                @if (isset($error))
+                    <p class="text-subtitle text-danger">*{{ $error }}</p>
+                @endif
                 @if (isset($errors) && $errors->any())
                     @foreach ($errors->all() as $error)
                         <p class="text-subtitle text-danger">*{{ $error }}</p>
@@ -88,11 +91,14 @@
                                         <div class="form-group pb-1 parent">
                                             <h6 class="form-label"><span>Hak Akses</span></h6>
                                             <select class="select2 form-select form-control-lg validation required"
-                                                name="customer_id" id="customer_id">
-                                                <option value="" selected="">- Select -</option>
-                                                <option value="Cash">Admin Staf</option>
-                                                <option value="Cash">Admin Super</option>
-                                                <option value="Cash">Sales</option>
+                                                name="role_id" id="role_id">
+                                                @foreach($roles as $role)
+                                                @if($current_role_id == $role->id)
+                                                    <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                                                    @else
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                    @endif
+                                                @endforeach>
                                             </select>
 
                                         </div>

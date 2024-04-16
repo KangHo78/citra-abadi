@@ -41,7 +41,13 @@ class RoleController extends Controller
     }
     function store(Request $request) {
         $role = new Role;
-        $role->name = $request->name;
+        if($request->name) {
+            $role->name = $request->name;
+        }  else {
+            $error = 'Nama Hak Akses Kosong';
+            $data = [];
+            return view($this->path.'/create',compact('data', 'error'));
+        }
         $role->guard_name = 'web';
         $role->save();
         $permissions = $request->except('name');
@@ -65,14 +71,24 @@ class RoleController extends Controller
         $role_has_permissions = DB::table('role_has_permissions')->where('role_id', $id)->get()->toArray();
         $permissions = [];
         foreach($role_has_permissions as $role_has_permission) {
-            Log::info(json_encode($role_has_permission));
             array_push($permissions, Permission::where('id', $role_has_permission->permission_id)->first()->name);
         }
         return view($this->path.'/edit',compact('data', 'permissions'));
     }
     function update(Request $request, $id) {
         $role = Role::where('id', $id)->first();
-        $role->name = $request->name;
+        if($request->name) {
+            $role->name = $request->name;
+        } else {
+            $error = 'Nama Hak Akses Kosong';
+            $data = Role::where('id', $id)->first();
+            $role_has_permissions = DB::table('role_has_permissions')->where('role_id', $id)->get()->toArray();
+            $permissions = [];
+            foreach($role_has_permissions as $role_has_permission) {
+                array_push($permissions, Permission::where('id', $role_has_permission->permission_id)->first()->name);
+            }
+            return view($this->path.'/edit',compact('data', 'permissions', 'error'));
+        }
         $role->guard_name = 'web';
         $role->save();
         $permissions = $request->except('name');
@@ -80,16 +96,26 @@ class RoleController extends Controller
             $permissionCheck = Permission::where('name', $permissionKey)->first();
             if(!empty($permissionCheck)) {
                 $checked = $request->has($permissionCheck->name);
+                // Log::info('Name '.$permissionCheck->name);
+                // Log::info('Checked '.$checked);
                 $role_permission_exists = DB::table('role_has_permissions')->where('permission_id', $permissionCheck->id)->where('role_id', $role->id)->first();
                 if($checked && empty($role_permission_exists)) {
                     DB::table('role_has_permissions')->insert([
                         'permission_id' => $permissionCheck->id,
                         'role_id' => $role->id
                     ]);
-                } else if(!$checked && !empty($role_permission_exists)) {
-                    DB::table('role_has_permissions')->where('permission_id', $permissionCheck->id)->where('role_id', $role->id)->delete();
-                }
+                } 
                 
+            }
+        }
+        $permission_list = Permission::all();
+        foreach($permission_list as $permission) {
+
+            $checked = $request->has($permission->name);
+            $role_permission_exists = DB::table('role_has_permissions')->where('permission_id', $permission->id)->where('role_id', $role->id)->first();
+            if(!$checked && !empty($role_permission_exists)) {
+                
+                DB::table('role_has_permissions')->where('permission_id', $permission->id)->where('role_id', $role->id)->delete();
             }
         }
         $data = Role::orderBy('id', 'asc')->whereNot('id', 1)->get();	

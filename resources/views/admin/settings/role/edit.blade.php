@@ -4,6 +4,9 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Ubah Hak Akses</h4>
                 <p class="text-subtitle text-muted">Buat data hak akses dan isi form dibawah.</p>
+                @if(isset($error))
+                <p class="text-subtitle text-danger">*{{ $error }}</p>
+                @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -45,7 +48,7 @@
                                     <div class="col-6">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Nama Hak Akses</span></h6>
-                                            <input name="code" type="text" id="code"
+                                            <input name="name" type="text" id="name"
                                                 placeholder="Hak Akses"
                                                 class="form-control form-control-lg validation required" value="{{ $data->name }}"
                                                 >

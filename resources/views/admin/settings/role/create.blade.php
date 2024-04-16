@@ -4,6 +4,9 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h4>Tambah Hak Akses</h4>
                 <p class="text-subtitle text-muted">Buat data hak akses dan isi form dibawah.</p>
+                @if(isset($error))
+                <p class="text-subtitle text-danger">*{{ $error }}</p>
+                @endif
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">

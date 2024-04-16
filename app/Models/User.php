@@ -63,6 +63,6 @@ class User extends Authenticatable
     use HasFactory;
     public function role()
     {
-        return $this->hasMany(Role::class);
+        return $this->belongsTo(Role::class);
     }
 }
