@@ -6,25 +6,33 @@
                 <div class="row">
 
                     <div class="col-md-8 col-lg-3 text-center">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="" style="border:1px solid black">
+                                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
+                                        class="img-fluid img-rounded imageDrop" alt="">
+                                </div>
+                            </div>
+                            <div class="spacer-single"></div>
 
-                        <div class="" style="border:1px solid black">
-                            <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
-                                class="img-fluid img-rounded mb-sm-30" alt="">
-                        </div>
-                        <div class="spacer-single"></div>
-                    </div>
-                    <div class="col-md-4 col-lg-1 text-center">
-                        <div>
-                            <div class="mb10" style="border:1px solid black">
+                            <div class="col-12 d-flex" style="overflow: auto">
+                                <img src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png"
+                                    class="img-fluid img-rounded m-2 imageList" alt="" width="100px"
+                                    height="100px">
                                 <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
-                                    class="img-fluid img-rounded mb-sm-30" alt="" width="100px">
-                            </div>
-                            <div class="mb10" style="border:1px solid black">
+                                    class="img-fluid img-rounded m-2 imageList" alt="" width="100px"
+                                    height="100px">
                                 <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
-                                    class="img-fluid img-rounded mb-sm-30" alt="" width="100px">
+                                    class="img-fluid img-rounded m-2 imageList" alt="" width="100px"
+                                    height="100px">
+                                <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
+                                    class="img-fluid img-rounded m-2 imageList" alt="" width="100px"
+                                    height="100px">
                             </div>
                         </div>
+
                     </div>
+
                     <div class="col-md-12 col-lg-8">
                         <div class="item_info">
                             <!-- Auctions ends in <div class="de_countdown" data-year="2022" data-month="4" data-day="16" data-hour="8"></div> -->
@@ -243,8 +251,7 @@
                                                                 <td>
                                                                     <input type="number" name="qty[]"
                                                                         class="form-control text-end" value=""
-                                                                        style="min-width:50px;max-width:100px" 
-                                                                        >
+                                                                        style="min-width:50px;max-width:100px">
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -426,6 +433,36 @@
                                 title: 'Berhasil',
                                 message: response.message,
                             });
+
+                            $('.d-count').html(response.cart.totalCart);
+                            $('.dropHereCart').html('');
+                            var htmlString = '';
+
+                            // Loop melalui setiap objek dalam array carts
+                            response.cart.carts.forEach(function(cart) {
+                                // Membuat elemen HTML untuk setiap objek cart
+                                var cartHtml = '<li>' +
+                                                    '<a href="#">' +
+                                                        '<div class="col-12">' +
+                                                            '<div class="row">' +
+                                                                '<div class="col-4"><img style="position: relative !important;width:50px!important;height:50px!important" class="lazy" src="' + (cart.photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais') + '" alt=""></div>' +
+                                                                '<div class="col">' +
+                                                                    '<div class="" style="background-size: cover;">' +
+                                                                        '<span class="d-name"><b>' + cart.item_detail.sku + '</b> ' + cart.item.name + ' <br>' +
+                                                                        cart.qty + 'Pcs</span>' +
+                                                                    '</div>' +
+                                                                '</div>' +
+                                                            '</div>' +
+                                                        '</div>' +
+                                                    '</a>' +
+                                                '</li>';
+
+                                // Menambahkan elemen HTML cart ke dalam string HTML
+                                htmlString += cartHtml;
+                            });
+
+                            // Menambahkan string HTML ke dalam elemen target
+                            $('.dropHereCart').html(htmlString);
                         } else {
                             iziToast.warning({
                                 title: 'Pemberitahuan',
@@ -529,6 +566,20 @@
                         });
                     }
                 });
+            }
+
+            $(document).ready(function() {
+                $('.imageList').click(function() {
+                    // console.log(this);
+                    readURL(this); // Panggil fungsi untuk membaca URL gambar yang dipilih
+                });
+            });
+
+            function readURL(input) {
+                console.log(input);
+                console.log(input.src);
+
+                $('.imageDrop').attr('src', input.src); // Setel sumber gambar ke URL yang dipilih
             }
         </script>
     @endsection

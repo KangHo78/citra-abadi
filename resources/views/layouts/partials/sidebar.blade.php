@@ -60,6 +60,7 @@
         @endcan
         @can('settings-about-us-update')
         <x-maz-sidebar-sub-item name="About Us" :link="route('front-end.about-us.index')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="Services" :link="route('front-end.services.index')"></x-maz-sidebar-sub-item>
         @endcan
     </x-maz-sidebar-item>
 

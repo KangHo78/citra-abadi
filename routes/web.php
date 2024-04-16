@@ -33,6 +33,7 @@ use App\Http\Controllers\MobileAppSettingsController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WishlistController;
+use App\Models\Services;
 use Rabiloo\LaravelLocalTemporaryUrl\Controllers\LocalTemporaryUrlController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,7 @@ Route::post('/share-product',[HomeController::class, 'shareProduct'])->name('sha
 Route::get('/catalog',[CatalogController::class, 'index'])->name('catalog');
 Route::get('/product-details/{id}',[ProductDetailsController::class, 'index'])->name('product-details');
 Route::get('/profile',[HomeController::class, 'profile'])->name('profile');
+Route::post('/update-profile/{id}',[HomeController::class, 'updateProfile'])->name('update-profile');
 Route::post('/login', [LoginController::class, 'login'])->middleware('login.redirect');
 
 Route::post('/add-to-cart',[CartsController::class, 'addToCart'])->name('add-to-cart');
@@ -113,9 +115,18 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     
     });
     Route::group(['prefix' => 'front-end'], function () {
-        Route::resource('about-us', FrontendController::class, [
-            'as' => 'front-end'
-        ]);
+        Route::get('about-us', [FrontendController::class, 'aboutUsIndex'])->name('front-end.about-us.index');
+        Route::post('about-us-store', [FrontendController::class, 'aboutUsStore'])->name('front-end.about-us.store');
+
+        Route::get('services', [FrontendController::class, 'servicesIndex'])->name('front-end.services.index');
+        Route::post('services-store', [FrontendController::class, 'servicesStore'])->name('front-end.services.store');
+
+        // Route::resource('about-us', FrontendController::class, [
+        //     'as' => 'front-end'
+        // ]);
+        // Route::resource('services', FrontendController::class, [
+        //     'as' => 'front-end'
+        // ]);
     });
 
 
