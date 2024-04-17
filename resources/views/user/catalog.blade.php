@@ -47,8 +47,28 @@
                                                     </div> --}}
                                                 </div>
                                             </div>
+                                            @php
+                                                $photo = '';
+                                                if (!empty($el->photos) && $el->photos != '[]') {
+                                                    # code...
+                                                    $item_photo_temp_list = json_decode($el->photos, true)[0];
+
+                                                    $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                                    // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                                    if (Storage::disk('local')->exists($pathToFile)) {
+                                                        // Get a temporary URL for the file (valid for a limited time)
+                                                        // $photo = Storage::disk('local')->url($pathToFile);
+                                                        $photo = Storage::disk('local')->url($pathToFile);
+                                                    }
+                                                }
+
+                                            @endphp
                                             <a href="{{ route('product-details', $el->id) }}">
-                                                <img src="{{ $el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
+                                                <img src="{{ $photo != ''
+                                                    ? $photo
+                                                    : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
                                                     class="lazy nft__item_preview" alt="">
                                             </a>
                                         </div>

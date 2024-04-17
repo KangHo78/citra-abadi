@@ -13,10 +13,10 @@
                             <h6 class="wow fadeInUp" data-wow-delay=".5s"><span class="text-uppercase id-color-2">Pipe
                                     Solution Center</span></h6>
                             <div class="spacer-10"></div>
-                            <h1 class="wow fadeInUp" data-wow-delay=".75s">{{aboutUs()->header_homepage}}</h1>
+                            <h1 class="wow fadeInUp" data-wow-delay=".75s">{{ aboutUs()->header_homepage }}</h1>
                             <p class="wow fadeInUp lead" data-wow-delay="1s" style="text-decoration:underline">
-                                {{aboutUs()->body_homepage}}</p>
-                            <div class="spacer-10"></div> 
+                                {{ aboutUs()->body_homepage }}</p>
+                            <div class="spacer-10"></div>
                             <a href="explore.html" class="btn-main wow fadeInUp lead"
                                 data-wow-delay="1.25s">Katalog</a>&nbsp;
                             <a href="create-options.html" class="btn-main btn-light wow fadeInUp lead"
@@ -135,7 +135,8 @@
                                     <div class="nft__item_extra"
                                         style="background-size: cover; visibility: hidden; opacity: 0;">
                                         <div class="nft__item_buttons" style="background-size: cover;">
-                                            <button onclick="location.href='{{ route('product-details', $el->id) }}'">Buy
+                                            <button
+                                                onclick="location.href='{{ route('product-details', $el->id) }}'">Buy
                                                 Now</button>
                                             {{-- <div class="nft__item_share" style="background-size: cover;">
                                                 <h4>Share</h4>
@@ -149,8 +150,28 @@
                                             </div> --}}
                                         </div>
                                     </div>
+                                    @php
+                                        $photo = '';
+                                        if (!empty($el->photos) && $el->photos != '[]') {
+                                            # code...
+                                            $item_photo_temp_list = json_decode($el->photos, true)[0];
+
+                                            $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                            // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                            if (Storage::disk('local')->exists($pathToFile)) {
+                                                // Get a temporary URL for the file (valid for a limited time)
+                                                // $photo = Storage::disk('local')->url($pathToFile);
+                                                $photo = Storage::disk('local')->url($pathToFile);
+                                            }
+                                        }
+
+                                    @endphp
                                     <a href="{{ route('product-details', $el->id) }}">
-                                        <img src="{{ $el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
+                                        <img src="{{ $photo != ''
+                                            ? $photo
+                                            : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
                                             class="lazy nft__item_preview" alt="">
                                     </a>
                                 </div>
@@ -165,8 +186,10 @@
                                         <a href="#"></a>
                                         <br>
                                     </div>
-                                    <div class="nft__item_like" onclick="addToWishlish('{{ $el->id }}')"  style="background-size: cover;">
-                                        <i class="fa fa-heart"></i><span class="drop_{{$el->id}}">{{ getWishlistByItem($el->id) }}</span>
+                                    <div class="nft__item_like" onclick="addToWishlish('{{ $el->id }}')"
+                                        style="background-size: cover;">
+                                        <i class="fa fa-heart"></i><span
+                                            class="drop_{{ $el->id }}">{{ getWishlistByItem($el->id) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -209,8 +232,28 @@
                                             </div> --}}
                                         </div>
                                     </div>
+                                    @php
+                                        $photo = '';
+                                        if (!empty($el->photos) && $el->photos != '[]') {
+                                            # code...
+                                            $item_photo_temp_list = json_decode($el->photos, true)[0];
+
+                                            $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                            // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                            if (Storage::disk('local')->exists($pathToFile)) {
+                                                // Get a temporary URL for the file (valid for a limited time)
+                                                // $photo = Storage::disk('local')->url($pathToFile);
+                                                $photo = Storage::disk('local')->url($pathToFile);
+                                            }
+                                        }
+
+                                    @endphp
                                     <a href="{{ route('product-details', $el->id) }}">
-                                        <img src="{{ $el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
+                                        <img src="{{ $photo != ''
+                                            ? $photo
+                                            : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
                                             class="lazy nft__item_preview" alt="">
                                     </a>
                                 </div>
@@ -225,8 +268,10 @@
                                         <a href="#"></a>
                                         <br>
                                     </div>
-                                    <div class="nft__item_like" onclick = "addToWishlish('{{ $el->id }}')" style="background-size: cover;">
-                                        <i class="fa fa-heart"></i><span class="drop_{{$el->id}}">{{ getWishlistByItem($el->id) }}</span>
+                                    <div class="nft__item_like" onclick = "addToWishlish('{{ $el->id }}')"
+                                        style="background-size: cover;">
+                                        <i class="fa fa-heart"></i><span
+                                            class="drop_{{ $el->id }}">{{ getWishlistByItem($el->id) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -252,12 +297,9 @@
                         <div class="spacer-10" style="background-size: cover;"></div>
                         <h1 class="wow fadeInUp animated" data-wow-delay=".75s"
                             style="visibility: visible; animation-delay: 0.75s; animation-name: fadeInUp;">
-                            Established in 1980.</h1>
+                            {{aboutUs()->header}}</h1>
                         <p class="wow fadeInUp lead animated" data-wow-delay="1s"
-                            style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">Sin Hong
-                            Hardware Pte Ltd has expanded rapidly to become one of the largest stockists and
-                            distributors of a wide range of industrial fasteners, and a specialist in Standard,
-                            Non-standard and customised Fasteners.</p>
+                            style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">{!!aboutUs()->body!!}</p>
                         <div class="spacer-10" style="background-size: cover;"></div>
                         <a href="explore.html" class="btn-main wow fadeInUp lead animated" data-wow-delay="1.25s"
                             style="visibility: visible; animation-delay: 1.25s; animation-name: fadeInUp;">Hubungi
@@ -265,7 +307,7 @@
                         <div class="mb-sm-30" style="background-size: cover;"></div>
                     </div>
                     <div class="col-md-6 xs-hide" style="background-size: cover;">
-                        <img src="https://lh3.googleusercontent.com/p/AF1QipPEzRIond-5aMxLmYw3Y89K76QSfyhQL8zLwRDD=s680-w680-h510"
+                        <img src="{{asset(aboutUs()->image1)}}"
                             class="lazy img-fluid wow fadeIn animated" data-wow-delay="1.25s" alt=""
                             style="visibility: visible; animation-delay: 1.25s; animation-name: fadeIn;border-radius: 10px;">
                     </div>
@@ -276,51 +318,47 @@
     <!-- content close -->
 
     @section('scripts')
+        <script>
+            function addToWishlish(params) {
 
-    <script>
-        
+                $.ajax({
+                    url: "{{ route('add-to-wishlist') }}", // Ganti dengan URL endpoint Anda
+                    method: 'POST',
+                    dataType: 'json',
+                    data: 'item_id=' + params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
 
-        function addToWishlish(params) {
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
+                            $(".nft__item_like i.active").removeClass("active")
 
-            $.ajax({
-                url: "{{ route('add-to-wishlist') }}", // Ganti dengan URL endpoint Anda
-                method: 'POST',
-                dataType: 'json',
-                data: 'item_id=' + params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
-                success: function(response) {
-                    // Menangani respons dari server jika diperlukan
-                    if (response.type == 'success') {
-                        iziToast.success({
-                            title: 'Berhasil',
-                            message: response.message,
-                        });
-                        $('.drop_'+params).html(response.totalWishlist);
+                        }
+                        // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
+                        // '_blank');
 
-                    } else {
-                        iziToast.warning({
+                    },
+                    error: function(xhr, status, error) {
+                        iziToast.error({
                             title: 'Pemberitahuan',
                             message: response.message,
                         });
-                        $('.drop_'+params).html(response.totalWishlist);
-                        $(".nft__item_like i.active").removeClass( "active" )
-
+                        $('.drop_' + params).html(response.totalWishlist);
+                        $(".nft__item_like i.active").removeClass("active")
                     }
-                    // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
-                    // '_blank');
-
-                },
-                error: function(xhr, status, error) {
-                    iziToast.error({
-                        title: 'Pemberitahuan',
-                        message: response.message,
-                    });
-                    $('.drop_'+params).html(response.totalWishlist);
-                    $(".nft__item_like i.active").removeClass( "active" )
-                } 
-            });
-        }
-
-    </script>
-@endsection
+                });
+            }
+        </script>
+    @endsection
 
 </x-app-layout-frontend>

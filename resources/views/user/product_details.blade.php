@@ -9,14 +9,37 @@
                         <div class="row">
                             <div class="col-12 text-center">
                                 <div class="" style="border:1px solid black">
-                                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
+                                    @php
+                                        $photo = '';
+                                        $item_photo_temp = [];
+                                        if (!empty($item->photos) && $item->photos != '[]') {
+                                            # code...
+                                            $item_photo_temp_list = json_decode($item->photos, true)[0];
+                                            $item_photo_temp = json_decode($item->photos, true);
+
+                                            $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                            // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                            if (Storage::disk('local')->exists($pathToFile)) {
+                                                // Get a temporary URL for the file (valid for a limited time)
+                                                // $photo = Storage::disk('local')->url($pathToFile);
+                                                $photo = Storage::disk('local')->url($pathToFile);
+                                            }
+                                        }
+
+                                    @endphp
+
+                                    <img src="{{ $photo != ''
+                                        ? $photo
+                                        : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
                                         class="img-fluid img-rounded imageDrop" alt="">
                                 </div>
                             </div>
                             <div class="spacer-single"></div>
 
                             <div class="col-12 d-flex" style="overflow: auto">
-                                <img src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png"
+                                {{-- <img src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png"
                                     class="img-fluid img-rounded m-2 imageList" alt="" width="100px"
                                     height="100px">
                                 <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
@@ -27,7 +50,28 @@
                                     height="100px">
                                 <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
                                     class="img-fluid img-rounded m-2 imageList" alt="" width="100px"
-                                    height="100px">
+                                    height="100px"> --}}
+
+                                @for ($i = 0; $i < count($item_photo_temp); $i++)
+                                    @php
+                                        $pathToFile = 'public/uploads/items/' . $item_photo_temp[$i]; // Replace with your file path and disk
+
+                                        // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                        if (Storage::disk('local')->exists($pathToFile)) {
+                                            // Get a temporary URL for the file (valid for a limited time)
+                                            // $photo = Storage::disk('local')->url($pathToFile);
+                                            $photo = Storage::disk('local')->url($pathToFile);
+                                        }
+
+                                        $photoss = '<img src="'.$photo.'"
+                                        class="img-fluid img-rounded m-2 imageList" alt="" width="100px"
+                                        height="100px">';
+
+                                        echo $photoss;
+                                    @endphp
+                                    
+                                @endfor
                             </div>
                         </div>
 
@@ -42,7 +86,8 @@
                                 <div class="item_info_type"><i class="fa fa-archive"></i>{{ $item->category->name }}
                                 </div>
                                 <div class="item_info_views"><i class="fa fa-eye"></i>{{ $item->views }}</div>
-                                <div class="item_info_like"><i class="fa fa-heart"></i><b class="item_info_wishlist">{{getWishlistByItem($item->id)}}</b> </div>
+                                <div class="item_info_like"><i class="fa fa-heart"></i><b
+                                        class="item_info_wishlist">{{ getWishlistByItem($item->id) }}</b> </div>
                             </div>
                             <p>
                                 {!! $item->description !!}
@@ -73,7 +118,8 @@
                             <button class="btn-main btn-lg" onclick="addToWishlish('{{ $item->id }}')"> <i
                                     class="fa fa-heart"></i> Add Wishlist </button>
                             <button class="btn-main bg-info btn-lg btn-light"
-                                onclick="shareProduct('{{ $item->id }}')"> <i class="fa fa-share-alt"></i> Copy Link Product </button>
+                                onclick="shareProduct('{{ $item->id }}')"> <i class="fa fa-share-alt"></i> Copy Link
+                                Product </button>
                         </div>
                     </div>
                 </div>
@@ -441,20 +487,25 @@
                             response.cart.carts.forEach(function(cart) {
                                 // Membuat elemen HTML untuk setiap objek cart
                                 var cartHtml = '<li>' +
-                                                    '<a href="#">' +
-                                                        '<div class="col-12">' +
-                                                            '<div class="row">' +
-                                                                '<div class="col-4"><img style="position: relative !important;width:50px!important;height:50px!important" class="lazy" src="' + (cart.photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais') + '" alt=""></div>' +
-                                                                '<div class="col">' +
-                                                                    '<div class="" style="background-size: cover;">' +
-                                                                        '<span class="d-name"><b>' + cart.item_detail.sku + '</b> ' + cart.item.name + ' <br>' +
-                                                                        cart.qty + 'Pcs</span>' +
-                                                                    '</div>' +
-                                                                '</div>' +
-                                                            '</div>' +
-                                                        '</div>' +
-                                                    '</a>' +
-                                                '</li>';
+                                    '<a href="#">' +
+                                    '<div class="col-12">' +
+                                    '<div class="row">' +
+                                    '<div class="col-4"><img style="position: relative !important;width:50px!important;height:50px!important" class="lazy" src="' +
+                                    (cart.photos == null ?
+                                        'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' :
+                                        'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais'
+                                    ) + '" alt=""></div>' +
+                                    '<div class="col">' +
+                                    '<div class="" style="background-size: cover;">' +
+                                    '<span class="d-name"><b>' + cart.item_detail.sku + '</b> ' + cart.item
+                                    .name + ' <br>' +
+                                    cart.qty + 'Pcs</span>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</a>' +
+                                    '</li>';
 
                                 // Menambahkan elemen HTML cart ke dalam string HTML
                                 htmlString += cartHtml;
@@ -497,7 +548,7 @@
                                 message: response.message,
                             });
                             $('.item_info_wishlist').html(response.totalWishlist);
-                            
+
                         } else {
                             iziToast.warning({
                                 title: 'Pemberitahuan',
