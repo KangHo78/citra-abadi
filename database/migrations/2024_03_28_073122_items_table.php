@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->bigInteger('brand_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
-            $table->double('views');
+            $table->double('views')->nullable();;
            
             $table->string('photos')->nullable();
             $table->timestamps();
