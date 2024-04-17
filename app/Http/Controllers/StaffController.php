@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Hash;
 use DB;
+use Str;
 
 class StaffController extends Controller
 {
@@ -50,6 +51,7 @@ class StaffController extends Controller
         $user->email = $validatedData['email'];
         if($validatedData['password'] == $validatedData['confirm_password']) {
         $user->password = Hash::make($validatedData['password']);
+        $user->remember_token = Str::random(10);
         } else {
             $error = 'Password Tidak Sama';
             $data = [];
@@ -62,7 +64,7 @@ class StaffController extends Controller
 
         DB::table('model_has_roles')->insert([
             'role_id' => $validatedData['role_id'],
-            'model_type' => '\App\Models\User',
+            'model_type' => 'App\Models\User',
             'model_id' => $user->id
         ]);
         
@@ -81,7 +83,9 @@ class StaffController extends Controller
         $validatedData = $request->validate([ // TODO: here
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
-            'role_id' => 'required'
+            'role_id' => 'required',
+            'password' => 'nullable',
+            'confirm_password' => 'nullable'
         ]);
         $user = User::findOrFail($id);
         $user->name = $validatedData['name'];
@@ -97,11 +101,15 @@ class StaffController extends Controller
         }
     }
         $user->save();
-        DB::table('model_has_roles')->update([
-            'role_id' => $validatedData['role_id'],
-            'model_type' => '\App\Models\User',
-            'model_id' => $user->id
-        ]);
+        try{
+            DB::table('model_has_roles')->update([
+                'role_id' => $validatedData['role_id'],
+                'model_type' => 'App\Models\User',
+                'model_id' => $user->id
+            ]);
+        } catch(\Throwable $e) {
+            
+        }
         $data = User::orderBy('id', 'desc')->where('code', null)->whereNot('id', 1)->get();;
         return view($this->path.'/index',compact('data'));
     }

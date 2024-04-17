@@ -127,7 +127,6 @@ class ItemDetailImport implements ToCollection, WithStartRow, WithBatchInserts, 
 
     public function generateRules($row){
         $rulesArr = [
-            'Master Item Name' => ['required', 'exists:items,name'],
             'Master SKU' => ['required', 'exists:items,sku'],
             'Spec' => ['required', 'exists:specs,name'],
             'Material' => ['required', 'exists:materials,name'],

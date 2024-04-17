@@ -24,14 +24,7 @@
                     <div class="col-sm-3 col-3">
                         <h4 class="card-title ">Data</h4>
                     </div>
-                    @can('settings-enquirer-create')
-                    <div class="col-sm-9 col-9">
-                        <div class="buttons">
-                            <a href="{{ route('customer.create') }}"
-                                class="btn btn-outline-info rounded-pill float-end">Buat data baru</a>
-                        </div>
-                    </div>
-                    @endcan
+
                 </div>
             </div>
             <div class="card-body">

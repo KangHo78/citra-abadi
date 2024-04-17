@@ -34,7 +34,6 @@ class SettingsController extends Controller
         return view($this->path.'/create',compact('data'));
     }
     function store(Request $request) {
-        $this->overWriteEnvFile('APP_URL', $request->app_url);
         $this->overWriteEnvFile('APP_ADDRESS', $request->address);
         $this->overWriteEnvFile('MAIL_FROM_ADDRESS', $request->email);
         $this->overWriteEnvFile('APP_PHONE', $request->phone);
