@@ -319,6 +319,7 @@ $countH6 = \App\Models\Enquiry::where('id', '>=', 1)->whereDate('created_at', '>
 
     @section('scripts')
         <script>
+            
             // var today = Date.now();
             // var H1 = today - 1;
             // var H2 = today - 2;

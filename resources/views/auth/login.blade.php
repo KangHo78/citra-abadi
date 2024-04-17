@@ -20,6 +20,7 @@
         @endif
         <form action="{{ route('login') }}" method="POST">
             @csrf
+            @method('POST')
             <div class="form-group position-relative has-icon-left mb-4">
                 <input class="form-control form-control-xl" type="email" name="email" placeholder="Email"
                     value="{{ old('email') }}">

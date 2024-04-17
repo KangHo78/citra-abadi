@@ -270,7 +270,7 @@ display: none;
     $(document).ready(function() {
         var editor = new FroalaEditor('#description' , {
   // Other configuration options
-  toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'insertLink', 'insertImage']
+  toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'insertLink']
 });
         // $('#description').FroalaEditor({
         // // Optional configuration options for Froala editor
@@ -332,11 +332,7 @@ display: none;
       img.width = 200; // Add styling for previews
       previewImage.appendChild(img);
 
-      const removeButton = document.createElement('button');
-      removeButton.type = 'button';
-      removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'removePhoto');
-      removeButton.textContent = 'Hapus'; // Set button text (optional)
-      previewImage.appendChild(removeButton);
+      
 
       previewPhotos.appendChild(previewImage);
 

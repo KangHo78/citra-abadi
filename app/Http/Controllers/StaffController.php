@@ -64,7 +64,7 @@ class StaffController extends Controller
 
         DB::table('model_has_roles')->insert([
             'role_id' => $validatedData['role_id'],
-            'model_type' => '\App\Models\User',
+            'model_type' => 'App\Models\User',
             'model_id' => $user->id
         ]);
         
@@ -104,7 +104,7 @@ class StaffController extends Controller
         try{
             DB::table('model_has_roles')->update([
                 'role_id' => $validatedData['role_id'],
-                'model_type' => '\App\Models\User',
+                'model_type' => 'App\Models\User',
                 'model_id' => $user->id
             ]);
         } catch(\Throwable $e) {

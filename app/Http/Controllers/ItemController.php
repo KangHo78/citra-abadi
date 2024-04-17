@@ -375,8 +375,20 @@ class ItemController extends Controller
         $item->brand_id = $validatedData['brand_id'];
         $item->category_id = $validatedData['category_id'];
        
-        if($request->photos) {
-            $item->photos = $request->photos;
+        if (isset($request->photos) && $request->hasFile('photos')) {
+            Log::info('inside photo');
+            Log::info(json_encode($request->photos));
+            $photos = [];
+            foreach ($request->file('photos') as $photo) {
+                
+                $photoName = uniqid() . '.' . $photo->getClientOriginalExtension();
+                Log::info('Photo name'.json_encode($photoName));
+                $photo->storeAs('public/uploads/items', $photoName);
+                $photos[] = $photoName;
+            }
+            $item->photos = json_encode($photos);
+        } else {
+            $item->photos = '[]'; // Empty JSON array if no photos uploaded
         }
         $item->save();
         $itemDetail = new ItemDetail();

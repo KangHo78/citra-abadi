@@ -128,7 +128,7 @@
 
     .invoice-body table td,
     .invoice-body table th {
-        padding: 0px;
+        padding: 3px;
     }
 
     .invoice-body table tr {
@@ -281,7 +281,6 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <td class = "text-bold">#</td>
                                     <td class = "text-bold">Nama</td>
                                     <td class = "text-bold">Tanggal</td>
                                     <td class = "text-bold">Tlp</td>
@@ -291,12 +290,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $i = 1;
-                                @endphp
+                                
                                 @foreach ($data as $user)
                                     <tr>
-                                        <td>{{$i++}}</td>                                        
                                         <td>{{$user->name}}</td>
                                         <td>{{date_format($user->created_at, 'd/m/Y')}}</td>
                                         <td>{{$user->phone}}</td>

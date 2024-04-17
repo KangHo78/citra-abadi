@@ -301,10 +301,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                               @php
+                               $i = 1;
+
+                               @endphp
                                 @foreach ($data as $item)
                                 @php
-                                $i = 1;
                                 $query = \App\Models\EnquiryDetail::where('item_id', $item->id);
                                 if(isset($date_start)) {
                                     $query = $query->where('created_at', '>=' , \Carbon\Carbon::createFromFormat('d/m/Y', $date_start));

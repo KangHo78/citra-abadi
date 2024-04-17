@@ -27,7 +27,7 @@ display: none;
     </x-slot>
 
 
-    <form id="stored" action="{{route('item.update', $data->id)}}" method="POST">
+    <form id="stored" action="{{route('item.update', $data->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{ $data->id }}">
@@ -286,7 +286,7 @@ display: none;
     $(document).ready(function() {
         var editor = new FroalaEditor('#description' , {
   // Other configuration options
-  toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'insertLink', 'insertImage'],
+  toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'insertLink'],
 }, function () {
   // Call the method inside the initialized event.
   editor.html.set("{!! $data->description !!}");
@@ -435,11 +435,7 @@ display: none;
       img.width = 200; // Add styling for previews
       previewImage.appendChild(img);
 
-      const removeButton = document.createElement('button');
-      removeButton.type = 'button';
-      removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'removePhoto');
-      removeButton.textContent = 'Hapus'; // Set button text (optional)
-      previewImage.appendChild(removeButton);
+      
 
       previewPhotos.appendChild(previewImage);
 

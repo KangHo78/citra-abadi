@@ -30,6 +30,13 @@ class DashboardController extends Controller
         }
         if($request->date_end) {
             $date_end = \Carbon\Carbon::createFromFormat('d/m/Y', $request->date_end);
+            if($request->date_start) {
+                if($date_end < $date_start) {
+                    $date_temp = $date_start;
+                    $date_start = $date_end;
+                    $date_end = $date_temp;
+                }
+            }
             $data = $data->where('created_at', '<=', $date_end);
         }
         if(!empty($date_start)) {

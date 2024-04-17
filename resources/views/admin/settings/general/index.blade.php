@@ -68,22 +68,13 @@
                                     </div> --}}
 
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group parent" style="">
-                                            <h6 class="form-label"><span>Alamat Situs</span></h6>
-                                            <input name="app_url" type="text" id="app_url"
-                                                placeholder="Description" class="form-control form-control-lg "
-                                                value="{{ env('APP_URL') }}">
-                                        </div>
-                                    </div>
-                                </div>
+        
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Address</span></h6>
                                             <input name="address" type="text" id="address"
-                                                placeholder="Description" class="form-control form-control-lg "
+                                                placeholder="Address" class="form-control form-control-lg "
                                                 value="{{ env('APP_ADDRESS') }}">
                                         </div>
                                     </div>
@@ -93,7 +84,7 @@
                                         <div class="form-group parent" style="">
                                             <h6 class="form-label"><span>Alamat Email</span></h6>
                                             <input name="email" type="text" id="email"
-                                                placeholder="Description" class="form-control form-control-lg "
+                                                placeholder="Alamat Email" class="form-control form-control-lg "
                                                 value="{{ env('MAIL_FROM_ADDRESS') }}">
                                         </div>
                                     </div>
