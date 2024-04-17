@@ -41,8 +41,8 @@
                                 <div class="item_info_type"><i class="fa fa-list"></i>SKU : {{ $item->sku }}</div>
                                 <div class="item_info_type"><i class="fa fa-archive"></i>{{ $item->category->name }}
                                 </div>
-                                <div class="item_info_views"><i class="fa fa-eye"></i>250</div>
-                                <div class="item_info_like"><i class="fa fa-heart"></i>18</div>
+                                <div class="item_info_views"><i class="fa fa-eye"></i>{{ $item->views }}</div>
+                                <div class="item_info_like"><i class="fa fa-heart"></i><b class="item_info_wishlist">{{getWishlistByItem($item->id)}}</b> </div>
                             </div>
                             <p>
                                 {!! $item->description !!}
@@ -73,8 +73,7 @@
                             <button class="btn-main btn-lg" onclick="addToWishlish('{{ $item->id }}')"> <i
                                     class="fa fa-heart"></i> Add Wishlist </button>
                             <button class="btn-main bg-info btn-lg btn-light"
-                                onclick="shareProduct('{{ $item->id }}')"> <i class="fa fa-share-alt"></i> Share
-                                Product </button>
+                                onclick="shareProduct('{{ $item->id }}')"> <i class="fa fa-share-alt"></i> Copy Link Product </button>
                         </div>
                     </div>
                 </div>
@@ -497,6 +496,8 @@
                                 title: 'Berhasil',
                                 message: response.message,
                             });
+                            $('.item_info_wishlist').html(response.totalWishlist);
+                            
                         } else {
                             iziToast.warning({
                                 title: 'Pemberitahuan',

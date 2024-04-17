@@ -510,7 +510,6 @@
                 } else if ($('#ppn_type').find(':selected').val() == 'Exclusive') {
                     ppn = totalGrand * (ppnPercentage / 100);
                     console.log('ex');
-                    totalGrand+=ppn;
                 } else {
                     ppn = 0;
                     console.log('non');

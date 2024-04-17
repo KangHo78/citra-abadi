@@ -3,6 +3,7 @@
 use App\Models\AboutUs;
 use App\Models\Cart;
 use App\Models\Services;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('checkCarts')) {
@@ -32,5 +33,12 @@ if (!function_exists('servicesFront')) {
     function servicesFront()
     {
         return Services::get();
+    }
+}
+
+if (!function_exists('getWishlistByItem')) {
+    function getWishlistByItem($id)
+    {
+        return Wishlist::where('item_id',$id)->count();
     }
 }

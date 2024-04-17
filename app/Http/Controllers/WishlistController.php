@@ -33,15 +33,28 @@ class WishlistController extends Controller
     {
         try {
             // checking Wishlist
-            $checkWishlist = Wishlist::where('item_id', $req->item_id)->where('customer_id', Auth::user()->id)->count();
-            if ($checkWishlist > 0) {
-                return response()->json(['message' => 'Sudah Ada Pada Wishlist', 'id' => $req->id, 'type' => 'warning']);
+            if (auth::check()) {
+                # code...
+
+                $checkWishlist = Wishlist::where('item_id', $req->item_id)->where('customer_id', Auth::user()->id)->count();
+
+                if ($checkWishlist > 0) {
+                    $totalWishlist = getWishlistByItem($req->item_id);
+
+                    return response()->json(['message' => 'Sudah Ada Pada Wishlist', 'id' => $req->item_id, 'totalWishlist' => $totalWishlist, 'type' => 'warning']);
+                } else {
+                    Wishlist::create(['item_id' => $req->item_id, 'customer_id' => Auth::user()->id]);
+                }
+                $totalWishlist = getWishlistByItem($req->item_id);
+
+                return response()->json(['message' => 'Berhasil Menambahkan Ke Wishlist', 'id' => $req->item_id, 'totalWishlist' => $totalWishlist, 'type' => 'success']);
             } else {
-                Wishlist::create(['item_id' => $req->item_id, 'customer_id' => Auth::user()->id]);
+                return response()->json(['message' =>'Harus Login Dahulu', 'id' => $req->item_id, 'totalWishlist' => Wishlist::where('item_id', $req->item_id)->count(), 'type' => 'error']);
             }
-            return response()->json(['message' => 'Berhasil Menambahkan Ke Wishlist', 'id' => $req->id, 'type' => 'success']);
         } catch (\Throwable $th) {
-            return response()->json(['message' => $th->getMessage(), 'id' => $req->id, 'type' => 'error']);
+            $totalWishlist = getWishlistByItem($req->item_id);
+
+            return response()->json(['message' => $th->getMessage(), 'id' => $req->item_id, 'totalWishlist' => $totalWishlist, 'type' => 'error']);
         }
     }
 }

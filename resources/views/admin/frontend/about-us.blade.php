@@ -18,7 +18,8 @@
         </div>
     </x-slot>
 
-
+    <form id="aboutUsForm" method="POST" action="#" enctype="multipart/form-data">
+        @csrf
 
     <section class="section">
         <div class="card">
@@ -30,8 +31,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="aboutUsForm" method="POST" action="#" enctype="multipart/form-data">
-                    @csrf
+              
                     <div class="row">
                         <div class="col-sm-12 col-lg-12 pb-2">
                             <div class="form-group parent" style="">
@@ -67,13 +67,51 @@
                         </div>
                     </div>
 
-                    <br>
-                    <br>
-                    <button id="saveButton" class="btn btn-primary" type="button">Save</button>
-                </form>
+                   
             </div>
         </div>
     </section>
+
+
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-3 col-3">
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+              
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12 pb-2">
+                            <div class="form-group parent" style="">
+                                <h6 class="form-label"><span>Header Homepage</span></h6>
+                                <input type="text" class="form-control header_homepage" name="header_homepage"
+                                    value="{{ aboutUs()->header_homepage }}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-12 pb-2">
+                            <div class="form-group parent" style="">
+                                <h6 class="form-label"><span>Body Homepage</span></h6>
+                                <input type="text" class="form-control body_homepage" name="body_homepage"
+                                value="{{ aboutUs()->body_homepage }}">
+                            </div>
+                        </div>
+                    </div>
+
+                   
+            </div>
+        </div>
+    </section>
+
+
+    <button id="saveButton" class="btn btn-primary" type="button">Save</button>
+
+</form>
+
 
 
     @section('scripts')
@@ -120,6 +158,7 @@
                                 title: 'Pemberitahuan',
                                 message: response.message,
                             });
+                            location.reload();
                             // Tambahkan logika atau respons lainnya di sini
                         },
                         error: function(xhr, status, error) {

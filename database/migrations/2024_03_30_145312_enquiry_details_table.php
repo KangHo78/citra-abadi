@@ -18,9 +18,9 @@ return new class extends Migration
             $table->bigInteger('enquiry_id')->unsigned();
             $table->bigInteger('item_id')->unsigned();
             $table->bigInteger('item_detail_id')->unsigned();
-            $table->integer('item_price');
-            $table->integer('item_quantity');
-            $table->text('description');
+            $table->double('item_price');
+            $table->double('item_quantity');
+            $table->text('description')->nullable();
 
             $table->timestamps();
             $table->foreign('enquiry_id')->references('id')->on('enquiries');

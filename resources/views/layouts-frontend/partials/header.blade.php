@@ -80,7 +80,7 @@
                                 @if (Auth::check())
                                     <span id="de-click-menu-profile" class="de-menu-profile">
                                         {{-- https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg --}}
-                                        <img src="{{ auth::user()->profile_photo_path }}"
+                                        <img src="{{ auth::user()->profile_photo_path }}" onerror="this.src='https://madebydesignesia.com/themes/gigaland/images/author_single/author_thumbnail.jpg';" 
                                             class="img-fluid" alt="">
                                     </span>
                                 @endif
@@ -165,7 +165,7 @@
                                     <div id="de-submenu-profile" class="de-submenu"
                                         style="display: none; background-size: cover;">
                                         <div class="d-name" style="background-size: cover;">
-                                            <h4>Monica Lucas</h4>
+                                            <h4>{{Auth::user()->name}}</h4>
                                             {{-- <a href="02_dark-profile.html">Set display name</a> --}}
                                         </div>
                                         {{-- <div class="spacer-10" style="background-size: cover;"></div>

@@ -35,7 +35,7 @@
                                                     <button
                                                         onclick="location.href='{{ route('product-details', $el->id) }}'">Buy
                                                         Now</button>
-                                                    <div class="nft__item_share">
+                                                    {{-- <div class="nft__item_share">
                                                         <h4>Share</h4>
                                                         <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
                                                             target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
@@ -44,7 +44,7 @@
                                                         <a
                                                             href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
                                                                 class="fa fa-envelope fa-lg"></i></a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                             <a href="{{ route('product-details', $el->id) }}">
@@ -63,8 +63,8 @@
                                                 <a href="#"></a>
                                                 <br>
                                             </div>
-                                            <div class="nft__item_like">
-                                                <i class="fa fa-heart"></i><span>50</span>
+                                            <div class="nft__item_like" onclick="addToWishlish('{{ $el->id }}')">
+                                                <i class="fa fa-heart"></i><span>{{ getWishlistByItem($el->id) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -228,6 +228,47 @@
             // });
 
             // }
+
+
+            function addToWishlish(params) {
+
+                $.ajax({
+                    url: "{{ route('add-to-wishlist') }}", // Ganti dengan URL endpoint Anda
+                    method: 'POST',
+                    dataType: 'json',
+                    data: 'item_id=' + params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
+
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
+                            $(".nft__item_like i.active").removeClass("active")
+
+                        }
+                        // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
+                        // '_blank');
+
+                    },
+                    error: function(xhr, status, error) {
+                        iziToast.error({
+                            title: 'Pemberitahuan',
+                            message: response.message,
+                        });
+                        $('.drop_' + params).html(response.totalWishlist);
+                        $(".nft__item_like i.active").removeClass("active")
+                    }
+                });
+            }
         </script>
     @endsection
 

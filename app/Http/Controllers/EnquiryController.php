@@ -89,10 +89,11 @@ class EnquiryController extends Controller
     function store(Request $req)
     {
         // dd($req->all());
-        // return $req->all();
+        $var = $req->date;
+        $date = str_replace('/', '-', $var);
         $parent = Enquiry::create([
             'code' => $req->code,
-            'date' => date("Y-m-d", strtotime($req->date)),
+            'date' => date("Y-m-d", strtotime($date)),
             'desc' => $req->desc,
             'status' => $req->status,
             'customer_id' => $req->customer_id,
@@ -130,8 +131,12 @@ class EnquiryController extends Controller
     {
 
         // return $req->all();
+        $var = $req->date;
+        $date = str_replace('/', '-', $var);
+
+
         $parent = Enquiry::where('id',$req->id)->update([
-            'date' => date("Y-m-d", strtotime($req->date)),
+            'date' => date("Y-m-d", strtotime($date)),
             'desc' => $req->desc ?? '-',
             'status' => $req->status,
             'customer_id' => $req->customer_id,
@@ -180,8 +185,11 @@ class EnquiryController extends Controller
     }
     function email($id)
     { //TODO:
-        $data = Enquiry::where('id', $id)->first();
+        $data = Enquiry::with('enquiry_detail')->where('id', $id)->first();
         Log::info(json_encode($id));
+        Enquiry::where('id',$id)->update([
+            'status'=>3
+        ]);
         Mail::to($data->customer->email)->send(new orderEnquiry($data));
         return view($this->path . '/print', compact('data'));
     }

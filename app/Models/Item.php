@@ -13,6 +13,7 @@ class Item extends Model
         'description',
         'brand_id',
         'category_id',
+        'views',
     ];
     use HasFactory;
     public function enquiry_detail()
