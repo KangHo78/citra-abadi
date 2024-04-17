@@ -9,11 +9,11 @@
                             <div id="logo">
                                 <a href="{{ url('/') }}">
                                     <img alt="" class="logo"
-                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png" />
+                                        src="{{\Illuminate\Support\Facades\Storage::disk('local')->url('front-end/images/logo-light.png')}}" />
                                     {{-- {{ asset('front-end/images/logo-light.png') }} --}}
                                     {{-- https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png --}}
                                     <img alt="" class="logo-2"
-                                        src="https://images.tokopedia.net/img/cache/215-square/GAnVPX/2023/3/9/4f15d93d-0a84-4017-8e6a-b8514ee05dbc.png"
+                                        src="{{\Illuminate\Support\Facades\Storage::disk('local')->url('front-end/images/logo-light.png')}}"
                                         width="60px" />
                                 </a>
                             </div>
