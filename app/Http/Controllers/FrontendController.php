@@ -52,6 +52,8 @@ class FrontendController extends Controller
             'body' => $req->input('content'),
             'image1' => $imageName1,
             'image2' => $imageName2,
+            'header_homepage' => $req->input('header_homepage'),
+            'body_homepage' => $req->input('body_homepage'),
         ]);
 
         // Redirect atau response lainnya

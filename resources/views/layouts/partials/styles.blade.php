@@ -11,6 +11,7 @@
 {{-- <link rel="stylesheet" href="{{ mix('css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 <link rel="stylesheet" href="{{ mix('css/app-dark.css') }}"> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @vite(['resources/sass/bootstrap.scss', 'resources/sass/themes/dark/app-dark.scss', 'resources/sass/pages/auth.scss', 'resources/sass/app.scss'])
 
 @livewireStyles

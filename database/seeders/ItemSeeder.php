@@ -23,6 +23,7 @@ class ItemSeeder extends Seeder
             'brand_id' => 1,
             'category_id' => 1,
             'photos' => "[1]",
+            'views' => 0,
 
         ]);
 
@@ -33,6 +34,7 @@ class ItemSeeder extends Seeder
             'brand_id' => 1,
             'category_id' => 1,
             'photos' => "[1]",
+            'views' => 0,
 
         ]);
         

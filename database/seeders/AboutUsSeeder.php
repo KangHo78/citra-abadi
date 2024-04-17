@@ -20,6 +20,8 @@ class AboutUsSeeder extends Seeder
             'header' => 'CS',
             'image1' => NULL,
             'image2' => NULL,
+            'body_homepage' => 'Koneksi yang Aman, Layanan yang Tak Terkalahkan',
+            'header_homepage' => 'Perusahaan pipa kami adalah pilihan utama bagi klien yang mengutamakan kualitas, keandalan, dan inovasi dalam infrastruktur.',
         ]);
         
     }

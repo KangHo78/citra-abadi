@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('header')->nullable();
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
+            $table->text('body_homepage')->nullable();
+            $table->text('header_homepage')->nullable();
             $table->timestamps();
         });
     }

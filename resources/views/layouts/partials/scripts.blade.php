@@ -29,6 +29,7 @@
 @livewireScripts
 <script src="{{ asset('/js/main.js') }}"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 
 <script>
     $(document).ready(function() {

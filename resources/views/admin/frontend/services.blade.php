@@ -119,6 +119,7 @@
                                 title: 'Pemberitahuan',
                                 message: response.message,
                             });
+                            location.reload();
                             // Tambahkan logika atau respons lainnya di sini
                         },
                         error: function(xhr, status, error) {

@@ -159,13 +159,17 @@
                                                         ">
                                                                         {{ $el->code }}</h3>
                                                                     <div class="de-switch">
-                                                                        <input type="button"
-                                                                            @if ($el->status == 1) value="Progres"
-                                                                            class="btn-main btn-xs"
-                                                                        @else
-                                                                            value="Cancel"
-                                                                            class="btn-danger btn-xs" @endif
-                                                                            style="padding: 5px 15px;">
+                                                                        @if ($el->status == 1)
+                                                                        <span class="badge bg-info">Permintaan Masuk</span>
+                                                                    @elseif ($el->status == 2)
+                                                                        <span class="badge bg-info">Penawaran Terkirim</span>
+                                                                    @elseif ($el->status == 3)
+                                                                        <span class="badge bg-warning">Follow Up</span>
+                                                                    @elseif ($el->status == 4)
+                                                                        <span class="badge bg-danger">Cancel</span>
+                                                                    @elseif ($el->status == 5)
+                                                                        <span class="badge bg-success">Deal</span>
+                                                                    @endif
                                                                     </div>
                                                                     <div class="clearfix"></div>
                                                                     <h6><u>Rp.

@@ -13,11 +13,9 @@
                             <h6 class="wow fadeInUp" data-wow-delay=".5s"><span class="text-uppercase id-color-2">Pipe
                                     Solution Center</span></h6>
                             <div class="spacer-10"></div>
-                            <h1 class="wow fadeInUp" data-wow-delay=".75s">Koneksi yang <span class="id-color-2">Aman,
-                                </span> Layanan yang Tak Terkalahkan</h1>
+                            <h1 class="wow fadeInUp" data-wow-delay=".75s">{{ aboutUs()->header_homepage }}</h1>
                             <p class="wow fadeInUp lead" data-wow-delay="1s" style="text-decoration:underline">
-                                Perusahaan pipa kami adalah pilihan utama bagi klien yang mengutamakan kualitas,
-                                keandalan, dan inovasi dalam infrastruktur.</p>
+                                {{ aboutUs()->body_homepage }}</p>
                             <div class="spacer-10"></div>
                             <a href="explore.html" class="btn-main wow fadeInUp lead"
                                 data-wow-delay="1.25s">Katalog</a>&nbsp;
@@ -104,7 +102,7 @@
                 <div id="item-carousel-big-type-4" class="owl-carousel owl-center wow fadeIn" data-wow-delay="1s">
                     @foreach ($category as $el)
                         <div class="nft_pic mod-a">
-                            <a href="{{ route('product-details',$el->id) }}">
+                            <a href="{{ route('product-details', $el->id) }}">
                                 <span class="nft_pic_info">
                                     <span class="nft_pic_title">{{ $el->name }}</span>
                                     <span class="nft_pic_by">-</span>
@@ -129,51 +127,74 @@
                         <h2 class="style-2">Produk Populer</h2>
                     </div>
                     @foreach ($item as $el)
-                    <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        style="display: block; background-size: cover;">
-                        <div class="nft__item style-2" style="background-size: cover;">
+                        <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                            style="display: block; background-size: cover;">
+                            <div class="nft__item style-2" style="background-size: cover;">
 
-                            <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                <div class="nft__item_extra"
-                                    style="background-size: cover; visibility: hidden; opacity: 0;">
-                                    <div class="nft__item_buttons" style="background-size: cover;">
-                                        <button onclick="location.href='{{ route('product-details',$el->id) }}'">Buy
-                                            Now</button>
-                                        <div class="nft__item_share" style="background-size: cover;">
-                                            <h4>Share</h4>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                            <a
-                                                href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                    class="fa fa-envelope fa-lg"></i></a>
+                                <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
+                                    <div class="nft__item_extra"
+                                        style="background-size: cover; visibility: hidden; opacity: 0;">
+                                        <div class="nft__item_buttons" style="background-size: cover;">
+                                            <button
+                                                onclick="location.href='{{ route('product-details', $el->id) }}'">Buy
+                                                Now</button>
+                                            {{-- <div class="nft__item_share" style="background-size: cover;">
+                                                <h4>Share</h4>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
+                                                    target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
+                                                <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
+                                                    target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+                                                <a
+                                                    href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
+                                                        class="fa fa-envelope fa-lg"></i></a>
+                                            </div> --}}
                                         </div>
                                     </div>
+                                    @php
+                                        $photo = '';
+                                        if (!empty($el->photos) && $el->photos != '[]') {
+                                            # code...
+                                            $item_photo_temp_list = json_decode($el->photos, true)[0];
+
+                                            $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                            // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                            if (Storage::disk('local')->exists($pathToFile)) {
+                                                // Get a temporary URL for the file (valid for a limited time)
+                                                // $photo = Storage::disk('local')->url($pathToFile);
+                                                $photo = Storage::disk('local')->url($pathToFile);
+                                            }
+                                        }
+
+                                    @endphp
+                                    <a href="{{ route('product-details', $el->id) }}">
+                                        <img src="{{ $photo != ''
+                                            ? $photo
+                                            : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
+                                            class="lazy nft__item_preview" alt="">
+                                    </a>
                                 </div>
-                                <a href="{{ route('product-details',$el->id) }}">
-                                    <img src="{{$el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais'}}"
-                                    class="lazy nft__item_preview" alt="">
-                                </a>
-                            </div>
-                            <div class="nft__item_info" style="background-size: cover;">
-                                <a href="{{ route('product-details',$el->id) }}">
-                                    <h4 style="margin-right: 25px;">{{$el->name}}</h4>
-                                </a>
-                                <div class="nft__item_click" style="background-size: cover;">
-                                    <span></span>
-                                </div>
-                                <div class="nft__item_action" style="background-size: cover;">
-                                    <a href="#"></a>
-                                    <br>
-                                </div>
-                                <div class="nft__item_like" style="background-size: cover;">
-                                    <i class="fa fa-heart"></i><span>50</span>
+                                <div class="nft__item_info" style="background-size: cover;">
+                                    <a href="{{ route('product-details', $el->id) }}">
+                                        <h4 style="margin-right: 25px;">{{ $el->name }}</h4>
+                                    </a>
+                                    <div class="nft__item_click" style="background-size: cover;">
+                                        <span></span>
+                                    </div>
+                                    <div class="nft__item_action" style="background-size: cover;">
+                                        <a href="#"></a>
+                                        <br>
+                                    </div>
+                                    <div class="nft__item_like" onclick="addToWishlish('{{ $el->id }}')"
+                                        style="background-size: cover;">
+                                        <i class="fa fa-heart"></i><span
+                                            class="drop_{{ $el->id }}">{{ getWishlistByItem($el->id) }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
                 </div>
         </section>
 
@@ -196,9 +217,10 @@
                                     <div class="nft__item_extra"
                                         style="background-size: cover; visibility: hidden; opacity: 0;">
                                         <div class="nft__item_buttons" style="background-size: cover;">
-                                            <button onclick="location.href='{{ route('product-details',$el->id) }}'">Buy
+                                            <button
+                                                onclick="location.href='{{ route('product-details', $el->id) }}'">Buy
                                                 Now</button>
-                                            <div class="nft__item_share" style="background-size: cover;">
+                                            {{-- <div class="nft__item_share" style="background-size: cover;">
                                                 <h4>Share</h4>
                                                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
                                                     target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
@@ -207,17 +229,37 @@
                                                 <a
                                                     href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
                                                         class="fa fa-envelope fa-lg"></i></a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
-                                    <a href="{{ route('product-details',$el->id) }}">
-                                        <img src="{{$el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais'}}"
-                                        class="lazy nft__item_preview" alt="">
+                                    @php
+                                        $photo = '';
+                                        if (!empty($el->photos) && $el->photos != '[]') {
+                                            # code...
+                                            $item_photo_temp_list = json_decode($el->photos, true)[0];
+
+                                            $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                            // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                            if (Storage::disk('local')->exists($pathToFile)) {
+                                                // Get a temporary URL for the file (valid for a limited time)
+                                                // $photo = Storage::disk('local')->url($pathToFile);
+                                                $photo = Storage::disk('local')->url($pathToFile);
+                                            }
+                                        }
+
+                                    @endphp
+                                    <a href="{{ route('product-details', $el->id) }}">
+                                        <img src="{{ $photo != ''
+                                            ? $photo
+                                            : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
+                                            class="lazy nft__item_preview" alt="">
                                     </a>
                                 </div>
                                 <div class="nft__item_info" style="background-size: cover;">
-                                    <a href="{{ route('product-details',$el->id) }}">
-                                        <h4 style="margin-right: 25px;">{{$el->name}}</h4>
+                                    <a href="{{ route('product-details', $el->id) }}">
+                                        <h4 style="margin-right: 25px;">{{ $el->name }}</h4>
                                     </a>
                                     <div class="nft__item_click" style="background-size: cover;">
                                         <span></span>
@@ -226,8 +268,10 @@
                                         <a href="#"></a>
                                         <br>
                                     </div>
-                                    <div class="nft__item_like" style="background-size: cover;">
-                                        <i class="fa fa-heart"></i><span>50</span>
+                                    <div class="nft__item_like" onclick = "addToWishlish('{{ $el->id }}')"
+                                        style="background-size: cover;">
+                                        <i class="fa fa-heart"></i><span
+                                            class="drop_{{ $el->id }}">{{ getWishlistByItem($el->id) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -253,12 +297,9 @@
                         <div class="spacer-10" style="background-size: cover;"></div>
                         <h1 class="wow fadeInUp animated" data-wow-delay=".75s"
                             style="visibility: visible; animation-delay: 0.75s; animation-name: fadeInUp;">
-                            Established in 1980.</h1>
+                            {{aboutUs()->header}}</h1>
                         <p class="wow fadeInUp lead animated" data-wow-delay="1s"
-                            style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">Sin Hong
-                            Hardware Pte Ltd has expanded rapidly to become one of the largest stockists and
-                            distributors of a wide range of industrial fasteners, and a specialist in Standard,
-                            Non-standard and customised Fasteners.</p>
+                            style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">{!!aboutUs()->body!!}</p>
                         <div class="spacer-10" style="background-size: cover;"></div>
                         <a href="explore.html" class="btn-main wow fadeInUp lead animated" data-wow-delay="1.25s"
                             style="visibility: visible; animation-delay: 1.25s; animation-name: fadeInUp;">Hubungi
@@ -266,7 +307,7 @@
                         <div class="mb-sm-30" style="background-size: cover;"></div>
                     </div>
                     <div class="col-md-6 xs-hide" style="background-size: cover;">
-                        <img src="https://lh3.googleusercontent.com/p/AF1QipPEzRIond-5aMxLmYw3Y89K76QSfyhQL8zLwRDD=s680-w680-h510"
+                        <img src="{{asset(aboutUs()->image1)}}"
                             class="lazy img-fluid wow fadeIn animated" data-wow-delay="1.25s" alt=""
                             style="visibility: visible; animation-delay: 1.25s; animation-name: fadeIn;border-radius: 10px;">
                     </div>
@@ -275,5 +316,49 @@
         </div>
     </section>
     <!-- content close -->
+
+    @section('scripts')
+        <script>
+            function addToWishlish(params) {
+
+                $.ajax({
+                    url: "{{ route('add-to-wishlist') }}", // Ganti dengan URL endpoint Anda
+                    method: 'POST',
+                    dataType: 'json',
+                    data: 'item_id=' + params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
+
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
+                            $(".nft__item_like i.active").removeClass("active")
+
+                        }
+                        // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
+                        // '_blank');
+
+                    },
+                    error: function(xhr, status, error) {
+                        iziToast.error({
+                            title: 'Pemberitahuan',
+                            message: response.message,
+                        });
+                        $('.drop_' + params).html(response.totalWishlist);
+                        $(".nft__item_like i.active").removeClass("active")
+                    }
+                });
+            }
+        </script>
+    @endsection
 
 </x-app-layout-frontend>

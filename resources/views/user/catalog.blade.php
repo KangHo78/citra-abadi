@@ -35,7 +35,7 @@
                                                     <button
                                                         onclick="location.href='{{ route('product-details', $el->id) }}'">Buy
                                                         Now</button>
-                                                    <div class="nft__item_share">
+                                                    {{-- <div class="nft__item_share">
                                                         <h4>Share</h4>
                                                         <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
                                                             target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
@@ -44,11 +44,31 @@
                                                         <a
                                                             href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
                                                                 class="fa fa-envelope fa-lg"></i></a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
+                                            @php
+                                                $photo = '';
+                                                if (!empty($el->photos) && $el->photos != '[]') {
+                                                    # code...
+                                                    $item_photo_temp_list = json_decode($el->photos, true)[0];
+
+                                                    $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                                    // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                                    if (Storage::disk('local')->exists($pathToFile)) {
+                                                        // Get a temporary URL for the file (valid for a limited time)
+                                                        // $photo = Storage::disk('local')->url($pathToFile);
+                                                        $photo = Storage::disk('local')->url($pathToFile);
+                                                    }
+                                                }
+
+                                            @endphp
                                             <a href="{{ route('product-details', $el->id) }}">
-                                                <img src="{{ $el->photos == null ? 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
+                                                <img src="{{ $photo != ''
+                                                    ? $photo
+                                                    : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
                                                     class="lazy nft__item_preview" alt="">
                                             </a>
                                         </div>
@@ -63,8 +83,8 @@
                                                 <a href="#"></a>
                                                 <br>
                                             </div>
-                                            <div class="nft__item_like">
-                                                <i class="fa fa-heart"></i><span>50</span>
+                                            <div class="nft__item_like" onclick="addToWishlish('{{ $el->id }}')">
+                                                <i class="fa fa-heart"></i><span>{{ getWishlistByItem($el->id) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -228,6 +248,47 @@
             // });
 
             // }
+
+
+            function addToWishlish(params) {
+
+                $.ajax({
+                    url: "{{ route('add-to-wishlist') }}", // Ganti dengan URL endpoint Anda
+                    method: 'POST',
+                    dataType: 'json',
+                    data: 'item_id=' + params + '&_token=' + $('meta[name="csrf-token"]').attr('content'),
+                    success: function(response) {
+                        // Menangani respons dari server jika diperlukan
+                        if (response.type == 'success') {
+                            iziToast.success({
+                                title: 'Berhasil',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
+
+                        } else {
+                            iziToast.warning({
+                                title: 'Pemberitahuan',
+                                message: response.message,
+                            });
+                            $('.drop_' + params).html(response.totalWishlist);
+                            $(".nft__item_like i.active").removeClass("active")
+
+                        }
+                        // window.open('mailto:test@example.com?subject=Testing out mailto!&body=' + 'a' + '!',
+                        // '_blank');
+
+                    },
+                    error: function(xhr, status, error) {
+                        iziToast.error({
+                            title: 'Pemberitahuan',
+                            message: response.message,
+                        });
+                        $('.drop_' + params).html(response.totalWishlist);
+                        $(".nft__item_like i.active").removeClass("active")
+                    }
+                });
+            }
         </script>
     @endsection
 

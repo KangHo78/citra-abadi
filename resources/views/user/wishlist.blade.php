@@ -25,51 +25,61 @@
                         <div class="row">
 
                             @foreach ($data as $el)
-                            <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                                style="display: block; background-size: cover;">
-                                <div class="nft__item style-2" style="background-size: cover;">
-        
-                                    <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
-                                        <div class="nft__item_extra"
-                                            style="background-size: cover; visibility: hidden; opacity: 0;">
-                                            <div class="nft__item_buttons" style="background-size: cover;">
-                                                <button onclick="location.href='{{ route('product-details',$el->item->id) }}'">Buy
-                                                    Now</button>
-                                                <div class="nft__item_share" style="background-size: cover;">
-                                                    <h4>Share</h4>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-                                                    <a href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                                        target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-                                                    <a
-                                                        href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io"><i
-                                                            class="fa fa-envelope fa-lg"></i></a>
+                                <div class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                                    style="display: block; background-size: cover;">
+                                    <div class="nft__item style-2" style="background-size: cover;">
+
+                                        <div class="nft__item_wrap" style="background-size: cover; height: 221px;">
+                                            <div class="nft__item_extra"
+                                                style="background-size: cover; visibility: hidden; opacity: 0;">
+                                                <div class="nft__item_buttons" style="background-size: cover;">
+                                                    <button
+                                                        onclick="location.href='{{ route('product-details', $el->item->id) }}'">Buy
+                                                        Now</button>
+                                                   
                                                 </div>
                                             </div>
+                                            @php
+                                                $photo = '';
+                                                if (!empty($el->item->photos) && $el->item->photos != '[]') {
+                                                    # code...
+                                                    $item_photo_temp_list = json_decode($el->item->photos, true)[0];
+
+                                                    $pathToFile = 'public/uploads/items/' . $item_photo_temp_list; // Replace with your file path and disk
+
+                                                    // $pathToFile = 'public/uploads/items'.$data->photos; // Replace with your file path and disk
+
+                                                    if (Storage::disk('local')->exists($pathToFile)) {
+                                                        // Get a temporary URL for the file (valid for a limited time)
+                                                        // $photo = Storage::disk('local')->url($pathToFile);
+                                                        $photo = Storage::disk('local')->url($pathToFile);
+                                                    }
+                                                }
+
+                                            @endphp
+                                            <a href="{{ route('product-details', $el->item->id) }}">
+                                                <img src="{{ $photo != ''
+                                                    ? $photo
+                                                    : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais' }}"
+                                                    class="lazy nft__item_preview" alt="">
+                                            </a>
                                         </div>
-                                        <a href="{{ route('product-details',$el->item->id) }}">
-                                            <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/5/31/d433e28b-a196-4417-91f5-febc740cb744.jpg"
-                                                class="lazy nft__item_preview" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="nft__item_info" style="background-size: cover;">
-                                        <a href="{{ route('product-details',$el->item->id) }}">
-                                            <h4 style="margin-right: 25px;">{{$el->item->name}}</h4>
-                                        </a>
-                                        <div class="nft__item_click" style="background-size: cover;">
-                                            <span></span>
-                                        </div>
-                                        <div class="nft__item_action" style="background-size: cover;">
-                                            <a href="#"></a>
-                                            <br>
-                                        </div>
-                                        <div class="nft__item_like" style="background-size: cover;">
-                                            <i class="fa fa-heart"></i><span>50</span>
+                                        <div class="nft__item_info" style="background-size: cover;">
+                                            <a href="{{ route('product-details', $el->item->id) }}">
+                                                <h4 style="margin-right: 25px;">{{ $el->item->name }}</h4>
+                                            </a>
+                                            <div class="nft__item_click" style="background-size: cover;">
+                                                <span></span>
+                                            </div>
+                                            <div class="nft__item_action" style="background-size: cover;">
+                                                <a href="#"></a>
+                                                <br>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
 
                             <div class="col-md-12 text-center">
                                 <a href="#" id="loadmore" class="btn-main wow fadeInUp lead">Load more</a>

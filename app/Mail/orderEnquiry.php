@@ -13,7 +13,7 @@ class orderEnquiry extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $cart;
+    public $data;
     /**
      * Create a new message instance.
      *
@@ -22,7 +22,7 @@ class orderEnquiry extends Mailable
     public function __construct($data)
     {
         //
-        $this->data= $data;
+        $this->data = $data;
     }
 
     /**
@@ -32,7 +32,7 @@ class orderEnquiry extends Mailable
      */
     public function build()
     {
-        $data = $this->data;
-        return $this->view('user.email_enquiry', compact('data'));
+        $order = $this->data;
+        return $this->view('user.email_enquiry', compact('order'));
     }
 }
