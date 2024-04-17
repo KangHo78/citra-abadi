@@ -215,7 +215,7 @@ class ItemController extends Controller
 
                 if (Storage::disk('local')->exists($pathToFile)) {
                     // Get a temporary URL for the file (valid for a limited time)
-                    $item_photo_link = Storage::disk('local')->temporaryUrl($pathToFile, now()->addMinutes(5));
+                    $item_photo_link = Storage::disk('local')->temporaryUrl($pathToFile, now()->addMinutes(1000000000));
                     array_push($photos, $item_photo_link); // Adjust expiry time as needed
                 }
             }
@@ -387,12 +387,11 @@ class ItemController extends Controller
                 $photos[] = $photoName;
             }
             $item->photos = json_encode($photos);
-        } else {
-            $item->photos = '[]'; // Empty JSON array if no photos uploaded
-        }
+        } 
         $item->save();
         $itemDetail = new ItemDetail();
         $list_sku = [];
+        $current_sku = "";
         if(!empty($request->item_details)) {
         foreach ($request->item_details as $dataDetail) {
             Log::info('Data Details'.json_encode($dataDetail));
@@ -404,6 +403,7 @@ class ItemController extends Controller
             try{
                 Log::info('sku entered'.$dataDetail['sku']);
                 $itemDetailCheck = ItemDetail::where('sku', $dataDetail['sku'])->first();
+                $current_sku = $dataDetail['sku'];
                 if(!empty($itemDetailCheck)) {
                     $itemDetail = $itemDetailCheck;
                 }
@@ -441,8 +441,10 @@ class ItemController extends Controller
             try{
             Log::info('Item Detail Pre Execution'.json_encode($itemDetail));
             $itemDetail->price =  (int) $dataDetail['price'];
+            Log::info('IDPE 1');
             $itemDetail->save();
-            array_push('list_sku', $dataDetail['sku']);
+            Log::info('IDPE 2');
+            array_push($list_sku, $current_sku);
             Log::info('Item Detail Save Executed'.json_encode($itemDetail));
             } catch(\Throwable $e) {
                 Log::info($e->getMessage());
@@ -451,7 +453,7 @@ class ItemController extends Controller
     }
         $itemDetailCheck = ItemDetail::where('item_id', $id)->get();
         foreach($itemDetailCheck as $idc) {
-
+            // Log::info('list_sku', json_encode($list_sku));
             if(!in_array($idc->sku, $list_sku)) {
                 Log::info('test');
                 ItemDetail::destroy($idc->id);
